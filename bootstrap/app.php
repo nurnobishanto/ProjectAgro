@@ -17,7 +17,7 @@ $app = new Illuminate\Foundation\Application(
 
 $environmentFile = '.env'; // Default environment file
 
-$domain = isset($_SERVER['HTTP_HOST']) ? $_SERVER['HTTP_HOST'] : '';
+$domain = $_SERVER['HTTP_HOST'] ?? '';
 
 if ($domain === 'sehrishagro.com') {
     $environmentFile = '.env.sehrishagro';
