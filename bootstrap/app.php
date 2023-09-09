@@ -19,7 +19,7 @@ $environmentFile = '.env'; // Default environment file
 
 $domain = $_SERVER['HTTP_HOST'] ?? '';
 
-if ($domain === 'sehrishagro.com') {
+if ($domain === 'sehrishagro.com' || $domain = 'www.sehrishagro.com') {
     $environmentFile = '.env.sehrishagro';
 }
 elseif ($domain === 'localhost' || $domain === '127.0.0.1' || $domain === '127.0.0.1:8000') {

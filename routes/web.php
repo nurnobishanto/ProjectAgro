@@ -16,7 +16,6 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return $_SERVER['HTTP_HOST'];
     return view('welcome');
 });
 
