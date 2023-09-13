@@ -68,4 +68,5 @@ return [
     'permission_denied' => 'অনুমতি প্রত্যাখ্যান!',
     'permission_denied_msg' => 'আপনি সুপার অ্যাডমিনের কিছু পরিবর্তন করতে পারবেন না!',
     'trash_list' => 'ট্র্যাশ তালিকা',
+    'dashboard' => 'ড্যাশবোর্ড',
 ];

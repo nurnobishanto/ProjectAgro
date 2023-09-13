@@ -69,5 +69,6 @@ return [
     'permission_denied' => 'Permission Denied!',
     'permission_denied_msg' => 'You can not change anything in super admin!',
     'trash_list' => 'Trash list',
+    'dashboard' => 'Dashboard',
 
 ];
