@@ -301,19 +301,19 @@ return [
             'topnav_right' => true,
         ],
         [
-            'text' => 'Language',
+            'text' => 'language',
             'topnav_right' => true,
-            'icon' => 'flag-icon flag-icon-us',
+            'icon' => 'fas fa-language',
             'submenu' => [
                 [
-                    'text'=>'English',
+                    'text'=>'bangla',
                     'icon' => 'flag-icon flag-icon-us',
-                    'url'=> '#'
+                    'url'=> 'command/lang/bn'
                 ],
                 [
-                    'text'=>'Bangla',
+                    'text'=>'english',
                     'icon' => 'flag-icon flag-icon-kh',
-                    'url'=> '#'
+                    'url'=> 'command/lang/en'
                 ]
             ]
         ],
@@ -400,25 +400,7 @@ return [
             'icon_color' => 'cyan',
             'url'        => '#',
         ],
-        [
-            'text'    => 'Lamguage',
-            'icon'    => 'fas fa-fw fa-share',
-            'submenu' => [
-                [
-                    'text' => 'Bangla',
-                    'url'  => 'command/lang/bn',
-                ],
-                [
-                    'text'    => 'English',
-                    'url'     => 'command/lang/en',
 
-                ],
-                [
-                    'text' => 'level_one',
-                    'url'  => '#',
-                ],
-            ],
-        ],
         ['header' => 'Settings'],
         [
             'text'    => 'Commands',

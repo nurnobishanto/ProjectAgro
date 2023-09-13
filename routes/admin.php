@@ -6,6 +6,6 @@ use Illuminate\Support\Facades\Route;
 
 
 Route::get('/', function () {
-    App::setLocale(session()->get('locale'));
+    App::setLocale(session('locale'));
     return view('dashboard');
 })->name('dashboard');
