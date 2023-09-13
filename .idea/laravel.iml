@@ -126,6 +126,7 @@
       <excludeFolder url="file://$MODULE_DIR$/vendor/php-flasher/flasher-laravel" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/php-flasher/flasher" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/yoeunes/toastr" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/spatie/laravel-permission" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
