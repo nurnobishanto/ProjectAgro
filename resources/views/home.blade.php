@@ -8,8 +8,8 @@
 
 @section('content')
     <p>Welcome to this beautiful admin panel.</p>
-    {{App::getLocale()}}
-    {{session()->get('locale')}}
+    L {{app()->currentLocale()}}
+    S {{session()->get('locale')}}
 @stop
 
 @section('css')
