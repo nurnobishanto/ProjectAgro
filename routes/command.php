@@ -47,7 +47,7 @@ Route::prefix('command')->group(function (){
     Route::get('/migrate-fresh-seed', function (){
         App::setLocale(session('locale'));
         Artisan::call('migrate:fresh --seed');
-        toastr()->success(Artisan::output(), __('fresh_migrated_seed'));
+        toastr()->success(Artisan::output(), __('notification.fresh_migrated_seed'));
         return redirect()->back();
     });
     Route::get('lang/{locale?}', function ($locale) {
