@@ -8,12 +8,18 @@
 
 @section('content')
     <p>Welcome to this beautiful admin panel.</p>
+    {{app()->currentLocale()}}
+    {{session()->get('locale')}}
 @stop
 
 @section('css')
-    <link rel="stylesheet" href="/css/admin_custom.css">
+
 @stop
 
 @section('js')
-    <script> console.log('Hi!'); </script>
+    <script>
+        $(document).ready(function() {
+            toastr.now();
+        });
+    </script>
 @stop

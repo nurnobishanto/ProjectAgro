@@ -256,7 +256,7 @@ return [
     'dashboard_url' => 'home',
     'logout_url' => 'admin/logout',
     'login_url' => 'admin/login',
-    'register_url' => null,
+    'register_url' => 'admin/register',
     'password_reset_url' => 'admin/password/reset',
     'password_email_url' => 'admin/password/email',
     'profile_url' => false,
@@ -299,6 +299,23 @@ return [
         [
             'type'         => 'fullscreen-widget',
             'topnav_right' => true,
+        ],
+        [
+            'text' => 'Language',
+            'topnav_right' => true,
+            'icon' => 'flag-icon flag-icon-us',
+            'submenu' => [
+                [
+                    'text'=>'English',
+                    'icon' => 'flag-icon flag-icon-us',
+                    'url'=> '#'
+                ],
+                [
+                    'text'=>'Bangla',
+                    'icon' => 'flag-icon flag-icon-kh',
+                    'url'=> '#'
+                ]
+            ]
         ],
 
         // Sidebar items:
@@ -382,6 +399,67 @@ return [
             'text'       => 'information',
             'icon_color' => 'cyan',
             'url'        => '#',
+        ],
+        [
+            'text'    => 'Lamguage',
+            'icon'    => 'fas fa-fw fa-share',
+            'submenu' => [
+                [
+                    'text' => 'Bangla',
+                    'url'  => 'command/lang/bn',
+                ],
+                [
+                    'text'    => 'English',
+                    'url'     => 'command/lang/en',
+
+                ],
+                [
+                    'text' => 'level_one',
+                    'url'  => '#',
+                ],
+            ],
+        ],
+        ['header' => 'Settings'],
+        [
+            'text'    => 'Commands',
+            'icon'    => 'fas fa-thumbs-up',
+            //'can'  => 'commands.manage',
+            'submenu' => [
+                [
+                    'text' => 'Clear Cache',
+                    //'can'  => 'command.cache_clear',
+                    'url' => 'command/clear-cache'
+                ],
+                [
+                    'text' => 'Clear Route',
+                    //'can'  => 'command.route_clear',
+                    'url' => 'command/clear-route'
+                ],
+                [
+                    'text' => 'Optimize',
+                    //'can'  => 'command.optimize',
+                    'url' => 'command/optimize'
+                ],
+                [
+                    'text' => 'Migrate',
+                    //'can'  => 'command.migrate',
+                    'url' => 'command/migrate'
+                ],
+                [
+                    'text' => 'Fresh Migrate',
+                    //'can'  => 'command.migrate_fresh',
+                    'url' => 'command/migrate-fresh'
+                ],
+                [
+                    'text' => 'Fresh Migrate and Seed',
+                    //'can'  => 'command.migrate_fresh_seed',
+                    'url' => 'command/migrate-fresh-seed'
+                ],
+
+
+
+            ],
+
         ],
     ],
 
