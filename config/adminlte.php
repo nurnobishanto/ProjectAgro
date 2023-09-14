@@ -321,45 +321,76 @@ return [
             'url' => 'admin',
             'icon' => 'fas fa-tachometer-alt',
         ],
-        ['header' => 'Settings'],
+        ['header' => 'cattle_management'],
+        [
+            'text' => 'cattle',
+            'url' => 'admin/cattles',
+            'can' => 'cattle_manage',
+            'icon' => 'fas fa-tachometer-alt',
+        ],
+        [
+            'text' => 'cattle_type',
+            'url' => 'admin/cattle-types',
+            'can' => 'cattle_type_manage',
+            'icon' => 'fas fa-tachometer-alt',
+        ],
+        [
+            'text' => 'supplier',
+            'url' => 'admin/suppliers',
+            'can' => 'supplier_manage',
+            'icon' => 'fas fa-tachometer-alt',
+        ],
+        ['header' => 'settings'],
+        [
+            'text'    => 'global_settings',
+            'icon'    => 'fas fa-cogs',
+            'can' => ['site_setting_manage'],
+            'submenu' => [
+                [
+                    'text' => 'site_setting',
+                    'can' => 'site_setting_manage',
+                    'url' => ''
+                ],
+            ]
+        ],
         [
             'text'    => 'commands',
             'icon'    => 'fas fa-thumbs-up',
-            //'can'  => 'commands.manage',
+            'can'  => 'commands_manage',
             'submenu' => [
                 [
                     'text' => 'clear_cache',
-                    //'can'  => 'command.cache_clear',
+                    'can'  => 'command_cache_clear',
                     'url' => 'command/clear-cache'
                 ],
                 [
                     'text' => 'clear_config',
-                    //'can'  => 'command.route_clear',
+                    'can'  => 'command_config_clear',
                     'url' => 'command/clear-config'
                 ],
                 [
                     'text' => 'clear_route',
-                    //'can'  => 'command.route_clear',
+                    'can'  => 'command_route_clear',
                     'url' => 'command/clear-route'
                 ],
                 [
                     'text' => 'optimize',
-                    //'can'  => 'command.optimize',
+                    'can'  => 'command_optimize',
                     'url' => 'command/optimize'
                 ],
                 [
                     'text' => 'migrate',
-                    //'can'  => 'command.migrate',
+                    'can'  => 'command_migrate',
                     'url' => 'command/migrate'
                 ],
                 [
                     'text' => 'fresh_migrate',
-                    //'can'  => 'command.migrate_fresh',
+                    'can'  => 'command_migrate_fresh',
                     'url' => 'command/migrate-fresh'
                 ],
                 [
                     'text' => 'fresh_migrate_seed',
-                    //'can'  => 'command.migrate_fresh_seed',
+                    'can'  => 'command_migrate_fresh_seed',
                     'url' => 'command/migrate-fresh-seed'
                 ],
 

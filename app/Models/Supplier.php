@@ -6,13 +6,16 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class CattleType extends Model
+class Supplier extends Model
 {
     use HasFactory, SoftDeletes;
-
     protected $fillable = [
-        'title',
-        'status',
+        'name',
+        'photo',
+        'phone',
+        'email',
+        'address',
+        'company',
         'created_by',
     ];
 

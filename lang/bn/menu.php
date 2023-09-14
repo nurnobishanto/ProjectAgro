@@ -20,4 +20,12 @@ return [
     'users_admins' => 'ব্যবহারকারী এন্ড এডমিন',
     'users' => 'ব্যবহারকারী',
     'admins' => 'এডমিন',
+    'setting' => 'সেটিং',
+    'settings' => 'সেটিং সমূহ',
+    'global_settings' => 'গ্লোবাল সেটিংস',
+    'site_setting' => 'সাইট সেটিং',
+    'cattle_management' => 'গবাদি পশু ব্যবস্থাপনা',
+    'cattle' => 'গবাদি পশু',
+    'cattle_type' => 'গবাদি পশুর ধরন',
+    'supplier' => 'সাপ্লাইয়ার',
 ];

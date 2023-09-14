@@ -20,4 +20,12 @@ return [
     'users_admins' => 'Users and Admins',
     'users' => 'Users',
     'admins' => 'Admins',
+    'setting' => 'Setting',
+    'settings' => 'Settings',
+    'global_settings' => 'Global Settings',
+    'site_setting' => 'Site Setting',
+    'cattle_management' => 'Cattle Management',
+    'cattle' => 'Cattle',
+    'cattle_type' => 'Cattle Type',
+    'supplier' => 'Supplier',
 ];
