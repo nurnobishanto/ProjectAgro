@@ -1,7 +1,5 @@
 @extends('adminlte::page')
-
 @section('title', 'View Role')
-
 @section('content_header')
     <div class="row mb-2">
         <div class="col-sm-6">
@@ -17,7 +15,6 @@
         </div>
     </div>
 @stop
-
 @section('content')
     <div class="row">
         <div class="col-12">
@@ -90,12 +87,17 @@
         </div>
     </div>
 @stop
+@section('footer')
+    <strong>{{__('global.developed_by')}} <a href="https://soft-itbd.com">{{__('global.soft_itbd')}}</a>.</strong>
+    {{__('global.all_rights_reserved')}}.
+    <div class="float-right d-none d-sm-inline-block">
+        <b>{{__('global.version')}}</b> {{env('DEV_VERSION')}}
+    </div>
+@stop
 @section('toastr',true)
 @section('plugins.Sweetalert2', true)
 @section('css')
-
 @stop
-
 @section('js')
     <script>
         function isDelete(button) {

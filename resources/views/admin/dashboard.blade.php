@@ -5,7 +5,6 @@
 @section('content_header')
     <h1>{{__('global.dashboard')}}</h1>
 @stop
-
 @section('content')
     <div class="row">
         <div class="col-12 col-sm-6 col-md-3">
@@ -62,8 +61,15 @@
         </div>
 
     </div>
-@stop
 
+@stop
+@section('footer')
+    <strong>{{__('global.developed_by')}} <a href="https://soft-itbd.com">{{__('global.soft_itbd')}}</a>.</strong>
+    {{__('global.all_rights_reserved')}}.
+    <div class="float-right d-none d-sm-inline-block">
+        <b>{{__('global.version')}}</b> {{env('DEV_VERSION')}}
+    </div>
+@stop
 @section('css')
     <link rel="stylesheet" href="/css/admin_custom.css">
 @stop

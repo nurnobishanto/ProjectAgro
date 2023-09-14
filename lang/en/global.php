@@ -70,5 +70,9 @@ return [
     'permission_denied_msg' => 'You can not change anything in super admin!',
     'trash_list' => 'Trash list',
     'dashboard' => 'Dashboard',
+    'developed_by' => 'Developed by',
+    'soft_itbd' => 'SOFT-ITBD',
+    'all_rights_reserved' => 'All rights reserved by Sehrish Agro',
+    'version' => 'Version',
 
 ];

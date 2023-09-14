@@ -59,6 +59,13 @@
         </div>
     </div>
 @stop
+@section('footer')
+    <strong>{{__('global.developed_by')}} <a href="https://soft-itbd.com">{{__('global.soft_itbd')}}</a>.</strong>
+    {{__('global.all_rights_reserved')}}.
+    <div class="float-right d-none d-sm-inline-block">
+        <b>{{__('global.version')}}</b> {{env('DEV_VERSION')}}
+    </div>
+@stop
 @section('toastr',true)
 @section('css')
 
