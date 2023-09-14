@@ -24,7 +24,8 @@
     <header class="d-flex flex-wrap align-items-center justify-content-center justify-content-md-between py-3 mb-4 border-bottom">
         <div class="col-md-3 mb-2 mb-md-0">
             <a href="/" class="d-inline-flex link-body-emphasis text-decoration-none">
-                Sehrish Agro
+                <img src="{{asset('self/light-logo.png')}}" alt="Sehrish Agro" class="img-fluid navbar-brand" style="max-height: 100px">
+
             </a>
         </div>
 
