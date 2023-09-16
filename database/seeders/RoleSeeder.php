@@ -98,6 +98,17 @@ class RoleSeeder extends Seeder
                 ]
             ],
             [
+                'group_name' => 'SessionYear',
+                'permissions' => [
+                    'session_year_manage',
+                    'session_year_list',
+                    'session_year_view',
+                    'session_year_update',
+                    'session_year_delete',
+                    'session_year_create',
+                ]
+            ],
+            [
                 'group_name' => 'Cattle',
                 'permissions' => [
                     'cattle_manage',

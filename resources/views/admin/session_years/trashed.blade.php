@@ -1,23 +1,20 @@
 @extends('adminlte::page')
 
-@section('title', __('global.cattle_types'))
+@section('title', __('global.session_years'). __('global.deleted'))
 
 @section('content_header')
     <div class="row mb-2">
         <div class="col-sm-6">
-            <h1>{{__('global.cattle_types')}}</h1>
-            @can('cattle_type_create')
-                <a href="{{route('admin.cattle-types.create')}}" class="btn btn-primary mt-2">{{__('global.add_new')}}</a>
-            @endcan
-            @can('cattle_type_list')
-                <a href="{{route('admin.cattle-types.trashed')}}" class="btn btn-danger mt-2">{{__('global.trash_list')}}</a>
+            <h1>{{__('global.session_years'). __('global.deleted')}}</h1>
+            @can('supplier_list')
+                <a href="{{route('admin.session-years.index')}}" class="btn btn-primary mt-2">{{__('global.go_back')}}</a>
             @endcan
 
         </div>
         <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
                 <li class="breadcrumb-item"><a href="{{route('admin.dashboard')}}">{{__('global.home')}}</a></li>
-                <li class="breadcrumb-item active">{{__('global.cattle_types')}}</li>
+                <li class="breadcrumb-item active">{{__('global.session_years')}}</li>
             </ol>
 
         </div>
@@ -27,43 +24,30 @@
 @section('content')
     <div class="row">
         <div class="col-12">
-            @can('cattle_type_list')
+            @can('supplier_list')
                 <div class="card">
                     <div class="card-body table-responsive">
-                        <table id="adminsList" class="table  dataTable table-bordered table-striped">
+                        <table id="suppliersList" class="table  dataTable table-bordered table-striped">
                             <thead>
                             <tr>
                                 <th>{{__('global.sl')}}</th>
-                                <th>{{__('global.title')}}</th>
+                                <th>{{__('global.session_year')}}</th>
                                 <th>{{__('global.status')}}</th>
-                                <th>{{__('global.updated_at')}}</th>
+                                <th>{{__('global.deleted_at')}}</th>
                                 <th>{{__('global.action')}}</th>
                             </tr>
                             </thead>
                             <tbody>
                             <?php $sl = 1; ?>
-                            @foreach($cattle_types as $cattle_type)
+                            @foreach($session_years as $session_year)
                                 <tr>
-
                                     <td>{{$sl++}}</td>
-                                    <td>{{$cattle_type->title}}</td>
-                                    <td>{{$cattle_type->status}}</td>
-                                    <td>{{date_format($cattle_type->updated_at,'d M y h:i A') }}</td>
+                                    <td>{{$session_year->year}}</td>
+                                    <td>{{$session_year->status}}</td>
+                                    <td>{{date_format($session_year->deleted_at,'d M y h:i A')}}</td>
                                     <td class="text-center">
-                                        <form action="{{ route('admin.cattle-types.destroy', $cattle_type->id) }}" method="POST">
-                                            @method('DELETE')
-                                            @csrf
-                                            @can('cattle_type_view')
-                                                <a href="{{route('admin.cattle-types.show',['cattle_type'=>$cattle_type->id])}}" class="btn btn-info px-1 py-0 btn-sm"><i class="fa fa-eye"></i></a>
-                                            @endcan
-                                            @can('cattle_type_update')
-                                                <a href="{{route('admin.cattle-types.edit',['cattle_type'=>$cattle_type->id])}}" class="btn btn-warning px-1 py-0 btn-sm"><i class="fa fa-pen"></i></a>
-                                            @endcan
-                                            @can('cattle_type_delete')
-                                                <button onclick="isDelete(this)" class="btn btn-danger btn-sm px-1 py-0"><i class="fa fa-trash"></i></button>
-                                            @endcan
-
-                                        </form>
+                                        <a href="{{route('admin.session-years.restore',['session_year'=>$session_year->id])}}"  class="btn btn-success btn-sm px-1 py-0"><i class="fa fa-arrow-left"></i></a>
+                                        <a href="{{route('admin.session-years.force_delete',['session_year'=>$session_year->id])}}"  class="btn btn-danger btn-sm px-1 py-0"><i class="fa fa-trash"></i></a>
                                     </td>
                                 </tr>
                             @endforeach
@@ -72,9 +56,9 @@
                             <tfoot>
                             <tr>
                                 <th>{{__('global.sl')}}</th>
-                                <th>{{__('global.title')}}</th>
+                                <th>{{__('global.session_year')}}</th>
                                 <th>{{__('global.status')}}</th>
-                                <th>{{__('global.updated_at')}}</th>
+                                <th>{{__('global.deleted_at')}}</th>
                                 <th>{{__('global.action')}}</th>
                             </tr>
                             </tfoot>
@@ -127,7 +111,7 @@
         }
 
         $(document).ready(function() {
-            $("#adminsList").DataTable({
+            $("#suppliersList").DataTable({
                 dom: 'Bfrtip',
                 responsive: true,
                 lengthChange: false,

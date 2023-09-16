@@ -28,4 +28,5 @@ return [
     'cattle' => 'গবাদি পশু',
     'cattle_type' => 'গবাদি পশুর ধরন',
     'supplier' => 'সাপ্লাইয়ার',
+    'session_year' => 'সেশন ইয়ার',
 ];

@@ -1,17 +1,17 @@
 @extends('adminlte::page')
 
-@section('title', __('global.create_cattle_type'))
+@section('year', __('global.create_session_year'))
 
 @section('content_header')
     <div class="row mb-2">
         <div class="col-sm-6">
-            <h1>{{ __('global.create_cattle_type')}}</h1>
+            <h1>{{ __('global.create_session_year')}}</h1>
         </div>
         <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
                 <li class="breadcrumb-item"><a href="{{route('admin.dashboard')}}">{{ __('global.home')}}</a></li>
-                <li class="breadcrumb-item"><a href="{{route('admin.cattle-types.index')}}">{{ __('global.cattle_types')}}</a></li>
-                <li class="breadcrumb-item active">{{ __('global.create_cattle_type')}}</li>
+                <li class="breadcrumb-item"><a href="{{route('admin.session-years.index')}}">{{ __('global.session_years')}}</a></li>
+                <li class="breadcrumb-item active">{{ __('global.create_session_year')}}</li>
             </ol>
 
         </div>
@@ -23,7 +23,7 @@
         <div class="col-12">
             <div class="card">
                 <div class="card-body">
-                    <form action="{{route('admin.cattle-types.store')}}" method="POST" enctype="multipart/form-data" id="admin-form">
+                    <form action="{{route('admin.session-years.store')}}" method="POST" enctype="multipart/form-data" id="admin-form">
                         @csrf
                         @if (count($errors) > 0)
                             <div class = "alert alert-danger">
@@ -37,14 +37,20 @@
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <label for="title">{{ __('global.title')}}</label>
-                                    <input id="title" name="title" class="form-control" placeholder="{{ __('global.enter_title')}}">
+                                    <label for="year">{{ __('global.select_session_year')}}</label>
+                                    <select id="year" name="year" class="select2 form-control">
+                                        <?php $cy = date('Y') ?>
+                                        <option value="">{{ __('global.select_session_year')}}</option>
+                                        @for($y = $cy;$y>2000;$y--)
+                                            <option value="{{$y}} - {{$y+1}}">{{$y}} - {{$y+1}}</option>
+                                        @endfor
+                                    </select>
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label for="status">{{__('global.select_status')}}</label>
-                                    <select name="status" class="form-control" id="status">
+                                    <select name="status" class="select2 form-control" id="status">
                                         <option value="active">{{__('global.active')}}</option>
                                         <option value="deactivate">{{__('global.deactivate')}}</option>
                                     </select>
@@ -53,7 +59,7 @@
 
                         </div>
 
-                        @can('cattle_type_create')
+                        @can('session_year_create')
                             <button class="btn btn-success" type="submit">{{ __('global.create')}}</button>
                         @endcan
                     </form>
@@ -82,7 +88,9 @@
 @section('js')
     <script>
         $(document).ready(function() {
-            $('.select2').select2();
+            $('.select2').select2({
+                theme: "classic"
+            });
         });
     </script>
 @stop

@@ -96,4 +96,11 @@ return [
     'cattle_type' => 'গবাদি পশুর ধরন',
     'update_cattle_type' => 'গবাদি পশুর ধরন আপডেট করুন',
     'view_cattle_type' => 'গবাদি পশুর ধরন দেখুন',
+    'session_year' => 'সেশন ইয়ার',
+    'session_years' => 'সেশন ইয়ার সমূহ',
+    'create_session_year' => 'সেশন ইয়ার তৈরি করুন',
+    'select_session_year' => 'সেশনের ইয়ার নির্বাচন করুন',
+    'update_session_year' => 'সেশন ইয়ার আপডেট করুন',
+    'delete_session_year' => 'সেশন ইয়ার মুছে ফেলুন',
+    'view_session_year' => 'সেশন ইয়ার দেখুন',
 ];

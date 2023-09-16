@@ -335,6 +335,12 @@ return [
             'icon' => 'fas fa-tachometer-alt',
         ],
         [
+            'text' => 'session_year',
+            'url' => 'admin/session-years',
+            'can' => 'session_year_manage',
+            'icon' => 'fas fa-tachometer-alt',
+        ],
+        [
             'text' => 'supplier',
             'url' => 'admin/suppliers',
             'can' => 'supplier_manage',

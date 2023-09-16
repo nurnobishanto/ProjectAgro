@@ -94,9 +94,15 @@ return [
     'deleted_at' => 'Deleted',
     'created_by' => 'Created By',
     'create_cattle_type' => 'Create Cattle Type',
-
     'cattle_type' => 'Cattle Type',
     'update_cattle_type' => 'Update Cattle Type',
     'view_cattle_type' => 'View Cattle Type',
+    'session_year' => 'Session Year',
+    'session_years' => 'Session Years',
+    'create_session_year' => 'Create Session Year',
+    'select_session_year' => 'Select Session Year',
+    'update_session_year' => 'Update Session Year',
+    'delete_session_year' => 'Delete Session Year',
+    'view_session_year' => 'View Session Year',
 
 ];

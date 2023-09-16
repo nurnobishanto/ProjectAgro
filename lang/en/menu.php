@@ -28,4 +28,5 @@ return [
     'cattle' => 'Cattle',
     'cattle_type' => 'Cattle Type',
     'supplier' => 'Supplier',
+    'session_year' => 'Session Year',
 ];
