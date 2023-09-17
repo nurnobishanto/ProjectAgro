@@ -121,6 +121,7 @@
       <path value="$PROJECT_DIR$/vendor/yoeunes/toastr" />
       <path value="$PROJECT_DIR$/vendor/spatie/laravel-permission" />
       <path value="$PROJECT_DIR$/vendor/ladumor/laravel-pwa" />
+      <path value="$PROJECT_DIR$/vendor/graham-campbell/markdown" />
     </include_path>
   </component>
   <component name="PhpProjectSharedConfiguration" php_language_level="8.1" />

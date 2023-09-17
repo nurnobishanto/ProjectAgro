@@ -31,4 +31,5 @@ return [
     'session_year' => 'Session Year',
     'batches' => 'Batches',
     'breeds' => 'Breeds',
+    'farm' => 'Farm',
 ];

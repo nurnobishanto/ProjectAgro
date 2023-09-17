@@ -131,6 +131,17 @@ class RoleSeeder extends Seeder
                 ]
             ],
             [
+                'group_name' => 'Farms',
+                'permissions' => [
+                    'farm_manage',
+                    'farm_list',
+                    'farm_view',
+                    'farm_update',
+                    'farm_delete',
+                    'farm_create',
+                ]
+            ],
+            [
                 'group_name' => 'Cattle',
                 'permissions' => [
                     'cattle_manage',

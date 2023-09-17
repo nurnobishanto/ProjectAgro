@@ -145,7 +145,7 @@ class AdminController extends Controller
             @unlink($old_image_path);
         }
         $admin->forceDelete();
-        toastr()->success(__('admin').__('global.deleted_success'),__('global.deleted'));
+        toastr()->success(__('global.admin').__('global.deleted_success'),__('global.deleted'));
         return redirect()->route('admin.admins.trashed');
     }
     public function profile(){

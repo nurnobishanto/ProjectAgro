@@ -119,4 +119,11 @@ return [
     'delete_batch' => 'Delete Batch',
     'view_batch' => 'View Batch',
     'enter_batch' => 'Enter Batch',
+
+    'farm' => 'Farm',
+    'farms' => 'Farms',
+    'create_farm' => 'Create Farm',
+    'update_farm' => 'Update Farm',
+    'delete_farm' => 'Delete Farm',
+    'view_farm' => 'View Farm',
 ];

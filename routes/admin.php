@@ -6,6 +6,7 @@ use App\Http\Controllers\Admin\BatchController;
 use App\Http\Controllers\Admin\BreedsController;
 use App\Http\Controllers\Admin\CattleTypeController;
 use App\Http\Controllers\Admin\DashboardController;
+use App\Http\Controllers\Admin\FarmController;
 use App\Http\Controllers\Admin\PermissionController;
 use App\Http\Controllers\Admin\RoleController;
 use App\Http\Controllers\Admin\SessionYearController;
@@ -56,3 +57,9 @@ Route::get('/breeds/trashed',[BreedsController::class,'trashed_list'])->middlewa
 Route::get('/breeds/trashed/{breed}/restore',[BreedsController::class,'restore'])->middleware('permission:breed_manage')->name('breeds.restore');
 Route::get('/breeds/trashed/{breed}/delete',[BreedsController::class,'force_delete'])->middleware('permission:breed_manage')->name('breeds.force_delete');
 Route::resource('/breeds',BreedsController::class)->middleware('permission:breed_manage');
+
+//Farm
+Route::get('/farms/trashed',[FarmController::class,'trashed_list'])->middleware('permission:farm_manage')->name('farms.trashed');
+Route::get('/farms/trashed/{farm}/restore',[FarmController::class,'restore'])->middleware('permission:farm_manage')->name('farms.restore');
+Route::get('/farms/trashed/{farm}/delete',[FarmController::class,'force_delete'])->middleware('permission:farm_manage')->name('farms.force_delete');
+Route::resource('/farms',FarmController::class)->middleware('permission:farm_manage');

@@ -31,4 +31,5 @@ return [
     'session_year' => 'সেশন ইয়ার',
     'batches' => 'ব্যাচ',
     'breeds' => 'জাত',
+    'farm' => 'খামার',
 ];

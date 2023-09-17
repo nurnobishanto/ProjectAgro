@@ -113,10 +113,16 @@ return [
     'view_breed' => 'জাত দেখুন',
     'enter_breeds' => 'জাত লিখুন',
     'select_cattle_type' => 'গবাদি পশুর ধরন নির্বাচন করুন',
-
     'create_batch' => 'ব্যাচ তৈরি করুন',
     'update_batch' => 'ব্যাচ আপডেট করুন',
     'delete_batch' => 'ব্যাচ মুছে ফেলুন',
     'view_batch' => 'ব্যাচ দেখুন',
     'enter_batch' => 'ব্যাচ লিখুন',
+
+    'farm' => 'খামার',
+    'farms' => 'খামার সমূহ',
+    'create_farm' => 'খামার তৈরি করুন',
+    'update_farm' => 'খামার আপডেট করুন',
+    'delete_farm' => 'খামার মুছে ফেলুন',
+    'view_farm' => 'খামার দেখুন',
 ];
