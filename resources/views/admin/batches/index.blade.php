@@ -1,23 +1,23 @@
 @extends('adminlte::page')
 
-@section('title', __('global.cattle_types'))
+@section('title', __('global.batches'))
 
 @section('content_header')
     <div class="row mb-2">
         <div class="col-sm-6">
-            <h1>{{__('global.cattle_types')}}</h1>
-            @can('cattle_type_create')
-                <a href="{{route('admin.cattle-types.create')}}" class="btn btn-primary mt-2">{{__('global.add_new')}}</a>
+            <h1>{{__('global.batches')}}</h1>
+            @can('batch_create')
+                <a href="{{route('admin.batches.create')}}" class="btn btn-primary mt-2">{{__('global.add_new')}}</a>
             @endcan
-            @can('cattle_type_delete')
-                <a href="{{route('admin.cattle-types.trashed')}}" class="btn btn-danger mt-2">{{__('global.trash_list')}}</a>
+            @can('batch_delete')
+                <a href="{{route('admin.batches.trashed')}}" class="btn btn-danger mt-2">{{__('global.trash_list')}}</a>
             @endcan
 
         </div>
         <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
                 <li class="breadcrumb-item"><a href="{{route('admin.dashboard')}}">{{__('global.home')}}</a></li>
-                <li class="breadcrumb-item active">{{__('global.cattle_types')}}</li>
+                <li class="breadcrumb-item active">{{__('global.batches')}}</li>
             </ol>
 
         </div>
@@ -27,14 +27,14 @@
 @section('content')
     <div class="row">
         <div class="col-12">
-            @can('cattle_type_list')
+            @can('batch_list')
                 <div class="card">
                     <div class="card-body table-responsive">
                         <table id="adminsList" class="table  dataTable table-bordered table-striped">
                             <thead>
                             <tr>
                                 <th>{{__('global.sl')}}</th>
-                                <th>{{__('global.title')}}</th>
+                                <th>{{__('global.batch')}}</th>
                                 <th>{{__('global.status')}}</th>
                                 <th>{{__('global.updated_at')}}</th>
                                 <th>{{__('global.action')}}</th>
@@ -42,24 +42,24 @@
                             </thead>
                             <tbody>
                             <?php $sl = 1; ?>
-                            @foreach($cattle_types as $cattle_type)
+                            @foreach($batches as $batch)
                                 <tr>
 
                                     <td>{{$sl++}}</td>
-                                    <td>{{$cattle_type->title}}</td>
-                                    <td>{{$cattle_type->status}}</td>
-                                    <td>{{date_format($cattle_type->updated_at,'d M y h:i A') }}</td>
+                                    <td>{{$batch->name}}</td>
+                                    <td>{{$batch->status}}</td>
+                                    <td>{{date_format($batch->updated_at,'d M y h:i A') }}</td>
                                     <td class="text-center">
-                                        <form action="{{ route('admin.cattle-types.destroy', $cattle_type->id) }}" method="POST">
+                                        <form action="{{ route('admin.batches.destroy', $batch->id) }}" method="POST">
                                             @method('DELETE')
                                             @csrf
-                                            @can('cattle_type_view')
-                                                <a href="{{route('admin.cattle-types.show',['cattle_type'=>$cattle_type->id])}}" class="btn btn-info px-1 py-0 btn-sm"><i class="fa fa-eye"></i></a>
+                                            @can('batch_view')
+                                                <a href="{{route('admin.batches.show',['batch'=>$batch->id])}}" class="btn btn-info px-1 py-0 btn-sm"><i class="fa fa-eye"></i></a>
                                             @endcan
-                                            @can('cattle_type_update')
-                                                <a href="{{route('admin.cattle-types.edit',['cattle_type'=>$cattle_type->id])}}" class="btn btn-warning px-1 py-0 btn-sm"><i class="fa fa-pen"></i></a>
+                                            @can('batch_update')
+                                                <a href="{{route('admin.batches.edit',['batch'=>$batch->id])}}" class="btn btn-warning px-1 py-0 btn-sm"><i class="fa fa-pen"></i></a>
                                             @endcan
-                                            @can('cattle_type_delete')
+                                            @can('batch_delete')
                                                 <button onclick="isDelete(this)" class="btn btn-danger btn-sm px-1 py-0"><i class="fa fa-trash"></i></button>
                                             @endcan
 
@@ -72,7 +72,7 @@
                             <tfoot>
                             <tr>
                                 <th>{{__('global.sl')}}</th>
-                                <th>{{__('global.title')}}</th>
+                                <th>{{__('global.batch')}}</th>
                                 <th>{{__('global.status')}}</th>
                                 <th>{{__('global.updated_at')}}</th>
                                 <th>{{__('global.action')}}</th>

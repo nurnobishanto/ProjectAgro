@@ -104,6 +104,7 @@ return [
     'delete_session_year' => 'সেশন ইয়ার মুছে ফেলুন',
     'view_session_year' => 'সেশন ইয়ার দেখুন',
     'batches' => 'ব্যাচ',
+    'batch' => 'ব্যাচ',
     'breeds' => 'জাত',
     'breed' => 'জাত',
     'create_breed' => 'জাত তৈরি করুন',
@@ -112,4 +113,10 @@ return [
     'view_breed' => 'জাত দেখুন',
     'enter_breeds' => 'জাত লিখুন',
     'select_cattle_type' => 'গবাদি পশুর ধরন নির্বাচন করুন',
+
+    'create_batch' => 'ব্যাচ তৈরি করুন',
+    'update_batch' => 'ব্যাচ আপডেট করুন',
+    'delete_batch' => 'ব্যাচ মুছে ফেলুন',
+    'view_batch' => 'ব্যাচ দেখুন',
+    'enter_batch' => 'ব্যাচ লিখুন',
 ];

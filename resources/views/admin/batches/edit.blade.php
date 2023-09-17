@@ -1,17 +1,17 @@
 @extends('adminlte::page')
 
-@section('title', __('global.update_cattle_type'))
+@section('title', __('global.update_batch'))
 
 @section('content_header')
     <div class="row mb-2">
         <div class="col-sm-6">
-            <h1>{{ __('global.update_cattle_type')}}</h1>
+            <h1>{{ __('global.update_batch')}}</h1>
         </div>
         <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
                 <li class="breadcrumb-item"><a href="{{route('admin.dashboard')}}">{{ __('global.home')}}</a></li>
-                <li class="breadcrumb-item"><a href="{{route('admin.cattle-types.index')}}">{{ __('global.cattle_types')}}</a></li>
-                <li class="breadcrumb-item active">{{ __('global.update_cattle_type')}}</li>
+                <li class="breadcrumb-item"><a href="{{route('admin.batches.index')}}">{{ __('global.batches')}}</a></li>
+                <li class="breadcrumb-item active">{{ __('global.update_batch')}}</li>
             </ol>
 
         </div>
@@ -23,7 +23,7 @@
         <div class="col-12">
             <div class="card">
                 <div class="card-body">
-                    <form action="{{route('admin.cattle-types.update',['cattle_type'=>$cattle_type->id])}}" method="POST" enctype="multipart/form-data" id="supplier-form">
+                    <form action="{{route('admin.batches.update',['batch'=>$batch->id])}}" method="POST" enctype="multipart/form-data" id="supplier-form">
                         @method('PUT')
                         @csrf
                         @if (count($errors) > 0)
@@ -38,23 +38,23 @@
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <label for="title">{{ __('global.title')}}</label>
-                                    <input id="title" value="{{$cattle_type->title}}" name="title" class="form-control" placeholder="{{ __('global.enter_title')}}">
+                                    <label for="name">{{ __('global.batch')}}</label>
+                                    <input id="name" value="{{$batch->name}}" name="name" class="form-control" placeholder="{{ __('global.enter_batch')}}">
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label for="status">{{ __('global.select_status')}}</label>
                                     <select name="status" class="form-control" id="status">
-                                        <option value="active" @if($cattle_type->status == 'active') selected @endif>{{ __('global.active')}}</option>
-                                        <option value="deactivate" @if($cattle_type->status == 'deactivate') selected @endif>{{ __('global.deactivate')}}</option>
+                                        <option value="active" @if($batch->status == 'active') selected @endif>{{ __('global.active')}}</option>
+                                        <option value="deactivate" @if($batch->status == 'deactivate') selected @endif>{{ __('global.deactivate')}}</option>
                                     </select>
                                 </div>
                             </div>
 
                         </div>
 
-                        @can('cattle_type_update')
+                        @can('batch_update')
                             <button class="btn btn-success" type="submit">{{ __('global.update')}}</button>
                         @endcan
                     </form>

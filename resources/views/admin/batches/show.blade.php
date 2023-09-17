@@ -1,17 +1,17 @@
 @extends('adminlte::page')
 
-@section('title', __('global.view_cattle_type'))
+@section('title', __('global.view_batch'))
 
 @section('content_header')
     <div class="row mb-2">
         <div class="col-sm-6">
-            <h1>{{__('global.view_cattle_type')}} - {{$cattle_type->title}}</h1>
+            <h1>{{__('global.view_batch')}} - {{$batch->title}}</h1>
         </div>
         <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
                 <li class="breadcrumb-item"><a href="{{route('admin.dashboard')}}">{{__('global.home')}}</a></li>
-                <li class="breadcrumb-item"><a href="{{route('admin.cattle-types.index')}}">{{__('global.cattle_types')}}</a></li>
-                <li class="breadcrumb-item active">{{__('global.view_cattle_type')}}</li>
+                <li class="breadcrumb-item"><a href="{{route('admin.batches.index')}}">{{__('global.batchs')}}</a></li>
+                <li class="breadcrumb-item active">{{__('global.view_batch')}}</li>
             </ol>
 
         </div>
@@ -35,40 +35,40 @@
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label for="title">{{ __('global.title')}}</label>
-                                        <input id="title" class="form-control" disabled value="{{$cattle_type->title}}">
+                                        <label for="name">{{ __('global.batch')}}</label>
+                                        <input id="name" class="form-control" disabled value="{{$batch->name}}">
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label for="status">{{ __('global.status')}}</label>
-                                        <input id="status" class="form-control" disabled value="{{$cattle_type->status}}">
+                                        <input id="status" class="form-control" disabled value="{{$batch->status}}">
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label for="updated_at">{{ __('global.updated_at')}}</label>
-                                        <input id="updated_at" class="form-control" disabled value="{{date_format($cattle_type->updated_at,'d M y h:i A') }}">
+                                        <input id="updated_at" class="form-control" disabled value="{{date_format($batch->updated_at,'d M y h:i A') }}">
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label for="created_by">{{ __('global.created_by')}}</label>
-                                        <input id="created_by" class="form-control" disabled value="{{$cattle_type->createdBy->name}}">
+                                        <input id="created_by" class="form-control" disabled value="{{$batch->createdBy->name}}">
                                     </div>
                                 </div>
                             </div>
 
 
 
-                        <form action="{{ route('admin.cattle-types.destroy', $cattle_type->id) }}" method="POST">
+                        <form action="{{ route('admin.batches.destroy', $batch->id) }}" method="POST">
                             @method('DELETE')
                             @csrf
-                            <a href="{{route('admin.cattle-types.index')}}" class="btn btn-success" >Go Back</a>
-                            @can('cattle_type_update')
-                                <a href="{{route('admin.cattle-types.edit',['cattle_type'=>$cattle_type->id])}}" class="btn btn-warning "><i class="fa fa-pen"></i> Edit</a>
+                            <a href="{{route('admin.batches.index')}}" class="btn btn-success" >Go Back</a>
+                            @can('batch_update')
+                                <a href="{{route('admin.batches.edit',['batch'=>$batch->id])}}" class="btn btn-warning "><i class="fa fa-pen"></i> Edit</a>
                             @endcan
-                            @can('cattle_type_delete')
+                            @can('batch_delete')
                                 <button onclick="isDelete(this)" class="btn btn-danger"><i class="fa fa-trash"></i> Delete</button>
                             @endcan
                         </form>

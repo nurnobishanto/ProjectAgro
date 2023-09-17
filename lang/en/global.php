@@ -105,6 +105,7 @@ return [
     'delete_session_year' => 'Delete Session Year',
     'view_session_year' => 'View Session Year',
     'batches' => 'Batches',
+    'batch' => 'Batch',
     'breeds' => 'Breeds',
     'breed' => 'Breeds',
     'create_breed' => 'Create Breeds',
@@ -113,4 +114,9 @@ return [
     'view_breed' => 'View Breeds',
     'enter_breeds' => 'Enter Breeds',
     'select_cattle_type' => 'Select Cattle type',
+    'create_batch' => 'Create Batch',
+    'update_batch' => 'Update Batch',
+    'delete_batch' => 'Delete Batch',
+    'view_batch' => 'View Batch',
+    'enter_batch' => 'Enter Batch',
 ];

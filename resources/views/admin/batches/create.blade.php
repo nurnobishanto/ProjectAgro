@@ -1,17 +1,17 @@
 @extends('adminlte::page')
 
-@section('title', __('global.create_cattle_type'))
+@section('title', __('global.create_batch'))
 
 @section('content_header')
     <div class="row mb-2">
         <div class="col-sm-6">
-            <h1>{{ __('global.create_cattle_type')}}</h1>
+            <h1>{{ __('global.create_batch')}}</h1>
         </div>
         <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
                 <li class="breadcrumb-item"><a href="{{route('admin.dashboard')}}">{{ __('global.home')}}</a></li>
-                <li class="breadcrumb-item"><a href="{{route('admin.cattle-types.index')}}">{{ __('global.cattle_types')}}</a></li>
-                <li class="breadcrumb-item active">{{ __('global.create_cattle_type')}}</li>
+                <li class="breadcrumb-item"><a href="{{route('admin.batches.index')}}">{{ __('global.batches')}}</a></li>
+                <li class="breadcrumb-item active">{{ __('global.create_batch')}}</li>
             </ol>
 
         </div>
@@ -23,7 +23,7 @@
         <div class="col-12">
             <div class="card">
                 <div class="card-body">
-                    <form action="{{route('admin.cattle-types.store')}}" method="POST" enctype="multipart/form-data" id="admin-form">
+                    <form action="{{route('admin.batches.store')}}" method="POST" enctype="multipart/form-data" id="admin-form">
                         @csrf
                         @if (count($errors) > 0)
                             <div class = "alert alert-danger">
@@ -37,8 +37,8 @@
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <label for="title">{{ __('global.title')}}</label>
-                                    <input id="title" name="title" class="form-control" placeholder="{{ __('global.enter_title')}}">
+                                    <label for="name">{{ __('global.batch')}}</label>
+                                    <input id="name" name="name" class="form-control" placeholder="{{ __('global.enter_batch')}}">
                                 </div>
                             </div>
                             <div class="col-md-6">
@@ -53,7 +53,7 @@
 
                         </div>
 
-                        @can('cattle_type_create')
+                        @can('batch_create')
                             <button class="btn btn-success" type="submit">{{ __('global.create')}}</button>
                         @endcan
                     </form>
