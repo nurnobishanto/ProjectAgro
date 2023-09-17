@@ -53,7 +53,7 @@
     </div>
     <div class="card-body">
         @php
-            $readmePath = base_path('readme.md'); // Replace with the actual path to your readme.md file
+            $readmePath = base_path('README.md'); // Replace with the actual path to your readme.md file
             $readmeContent = \Illuminate\Support\Facades\File::get($readmePath);
         @endphp
         @markdown($readmeContent)
