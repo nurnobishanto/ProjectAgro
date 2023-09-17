@@ -9,7 +9,7 @@
             @can('admin_create')
                 <a href="{{route('admin.admins.create')}}" class="btn btn-primary mt-2">{{__('global.add_new')}}</a>
             @endcan
-            @can('admin_list')
+            @can('admin_delete')
                 <a href="{{route('admin.admins.trashed')}}" class="btn btn-danger mt-2">{{__('global.trash_list')}}</a>
             @endcan
 

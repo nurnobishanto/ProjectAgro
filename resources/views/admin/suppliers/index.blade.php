@@ -9,7 +9,7 @@
             @can('supplier_create')
                 <a href="{{route('admin.suppliers.create')}}" class="btn btn-primary mt-2">{{__('global.add_new')}}</a>
             @endcan
-            @can('supplier_list')
+            @can('supplier_delete')
                 <a href="{{route('admin.suppliers.trashed')}}" class="btn btn-danger mt-2">{{__('global.trash_list')}}</a>
             @endcan
 

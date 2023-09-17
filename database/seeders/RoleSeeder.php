@@ -109,6 +109,28 @@ class RoleSeeder extends Seeder
                 ]
             ],
             [
+                'group_name' => 'Batches',
+                'permissions' => [
+                    'batch_manage',
+                    'batch_list',
+                    'batch_view',
+                    'batch_update',
+                    'batch_delete',
+                    'batch_create',
+                ]
+            ],
+            [
+                'group_name' => 'Breeds',
+                'permissions' => [
+                    'breed_manage',
+                    'breed_list',
+                    'breed_view',
+                    'breed_update',
+                    'breed_delete',
+                    'breed_create',
+                ]
+            ],
+            [
                 'group_name' => 'Cattle',
                 'permissions' => [
                     'cattle_manage',

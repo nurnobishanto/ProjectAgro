@@ -61,7 +61,7 @@
 
                         </div>
 
-                        @can('supplier_update')
+                        @can('session_year_update')
                             <button class="btn btn-success" type="submit">{{ __('global.update')}}</button>
                         @endcan
                     </form>

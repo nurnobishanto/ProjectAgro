@@ -24,7 +24,7 @@
 @section('content')
     <div class="row">
         <div class="col-12">
-            @can('supplier_list')
+            @can('session_year_list')
                 <div class="card">
                     <div class="card-body table-responsive">
                         <table id="suppliersList" class="table  dataTable table-bordered table-striped">
@@ -46,8 +46,10 @@
                                     <td>{{$session_year->status}}</td>
                                     <td>{{date_format($session_year->deleted_at,'d M y h:i A')}}</td>
                                     <td class="text-center">
+                                        @can('session_year_delete')
                                         <a href="{{route('admin.session-years.restore',['session_year'=>$session_year->id])}}"  class="btn btn-success btn-sm px-1 py-0"><i class="fa fa-arrow-left"></i></a>
                                         <a href="{{route('admin.session-years.force_delete',['session_year'=>$session_year->id])}}"  class="btn btn-danger btn-sm px-1 py-0"><i class="fa fa-trash"></i></a>
+                                        @endcan
                                     </td>
                                 </tr>
                             @endforeach

@@ -2,6 +2,8 @@
 
 
 use App\Http\Controllers\Admin\AdminController;
+use App\Http\Controllers\Admin\BatchController;
+use App\Http\Controllers\Admin\BreedsController;
 use App\Http\Controllers\Admin\CattleTypeController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\PermissionController;
@@ -21,17 +23,17 @@ Route::get('/admins/trashed/{admin}/restore',[AdminController::class,'restore'])
 Route::get('/admins/trashed/{admin}/delete',[AdminController::class,'force_delete'])->middleware('permission:admin_manage')->name('admins.force_delete');
 Route::resource('/admins',AdminController::class)->middleware('permission:admin_manage');
 
-//profile
+//Profile
 Route::get('/profile',[AdminController::class,'profile'])->name('profile');
 Route::post('/profile',[AdminController::class,'profile_update'])->name('profile_update');
 
-//suppliers
+//Suppliers
 Route::get('/suppliers/trashed',[SupplierController::class,'trashed_list'])->middleware('permission:supplier_manage')->name('suppliers.trashed');
 Route::get('/suppliers/trashed/{supplier}/restore',[SupplierController::class,'restore'])->middleware('permission:supplier_manage')->name('suppliers.restore');
 Route::get('/suppliers/trashed/{supplier}/delete',[SupplierController::class,'force_delete'])->middleware('permission:supplier_manage')->name('suppliers.force_delete');
 Route::resource('/suppliers',SupplierController::class)->middleware('permission:supplier_manage');
 
-//cattle-types
+//Cattle Type
 Route::get('/cattle-types/trashed',[CattleTypeController::class,'trashed_list'])->middleware('permission:cattle_type_manage')->name('cattle-types.trashed');
 Route::get('/cattle-types/trashed/{cattle_type}/restore',[CattleTypeController::class,'restore'])->middleware('permission:cattle_type_manage')->name('cattle-types.restore');
 Route::get('/cattle-types/trashed/{cattle_type}/delete',[CattleTypeController::class,'force_delete'])->middleware('permission:cattle_type_manage')->name('cattle-types.force_delete');
@@ -42,3 +44,15 @@ Route::get('/session-years/trashed',[SessionYearController::class,'trashed_list'
 Route::get('/session-years/trashed/{session_year}/restore',[SessionYearController::class,'restore'])->middleware('permission:session_year_manage')->name('session-years.restore');
 Route::get('/session-years/trashed/{session_year}/delete',[SessionYearController::class,'force_delete'])->middleware('permission:session_year_manage')->name('session-years.force_delete');
 Route::resource('/session-years',SessionYearController::class)->middleware('permission:session_year_manage');
+
+//Batch
+Route::get('/batches/trashed',[BatchController::class,'trashed_list'])->middleware('permission:batch_manage')->name('batches.trashed');
+Route::get('/batches/trashed/{batch}/restore',[BatchController::class,'restore'])->middleware('permission:batch_manage')->name('batches.restore');
+Route::get('/batches/trashed/{batch}/delete',[BatchController::class,'force_delete'])->middleware('permission:batch_manage')->name('batches.force_delete');
+Route::resource('/batches',BatchController::class)->middleware('permission:batch_manage');
+
+//Breed
+Route::get('/breeds/trashed',[BreedsController::class,'trashed_list'])->middleware('permission:breed_manage')->name('breeds.trashed');
+Route::get('/breeds/trashed/{breed}/restore',[BreedsController::class,'restore'])->middleware('permission:breed_manage')->name('breeds.restore');
+Route::get('/breeds/trashed/{breed}/delete',[BreedsController::class,'force_delete'])->middleware('permission:breed_manage')->name('breeds.force_delete');
+Route::resource('/breeds',BreedsController::class)->middleware('permission:breed_manage');

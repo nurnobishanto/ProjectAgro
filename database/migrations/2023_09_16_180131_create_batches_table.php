@@ -11,8 +11,15 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('cattle', function (Blueprint $table) {
+        Schema::create('batches', function (Blueprint $table) {
             $table->id();
+            $table->string('name');
+            $table->enum('status', ['active', 'deactivate'])->default('active');
+
+            $table->unsignedBigInteger('created_by');
+            $table->foreign('created_by')->references('id')->on('admins');
+
+            $table->softDeletes();
             $table->timestamps();
         });
     }
@@ -22,6 +29,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('cattle');
+        Schema::dropIfExists('batches');
     }
 };

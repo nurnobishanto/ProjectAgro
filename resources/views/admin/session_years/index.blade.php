@@ -10,7 +10,7 @@
             @can('session_year_create')
                 <a href="{{route('admin.session-years.create')}}" class="btn btn-primary mt-2">{{__('global.add_new')}}</a>
             @endcan
-            @can('session_year_list')
+            @can('session_year_delete')
                 <a href="{{route('admin.session-years.trashed')}}" class="btn btn-danger mt-2">{{__('global.trash_list')}}</a>
             @endcan
 

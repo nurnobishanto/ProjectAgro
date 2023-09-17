@@ -11,18 +11,19 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('admins', function (Blueprint $table) {
+        Schema::create('farms', function (Blueprint $table) {
             $table->id();
             $table->string('name');
             $table->string('photo')->nullable();
-            $table->string('email')->unique();
-            $table->timestamp('email_verified_at')->nullable();
-            $table->string('password');
-            $table->string('status')->default('active');
-            $table->double('balance')->default(0.0);
-            $table->rememberToken();
-            $table->timestamps();
+            $table->string('phone')->nullable();
+            $table->string('address')->nullable();
+            $table->enum('status', ['active', 'deactivate'])->default('active');
+
+            $table->unsignedBigInteger('created_by');
+            $table->foreign('created_by')->references('id')->on('admins');
+
             $table->softDeletes();
+            $table->timestamps();
         });
     }
 
@@ -31,6 +32,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('admins');
+        Schema::dropIfExists('farms');
     }
 };

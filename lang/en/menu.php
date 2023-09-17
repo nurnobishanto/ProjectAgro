@@ -29,4 +29,6 @@ return [
     'cattle_type' => 'Cattle Type',
     'supplier' => 'Supplier',
     'session_year' => 'Session Year',
+    'batches' => 'Batches',
+    'breeds' => 'Breeds',
 ];

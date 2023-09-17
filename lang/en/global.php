@@ -104,5 +104,13 @@ return [
     'update_session_year' => 'Update Session Year',
     'delete_session_year' => 'Delete Session Year',
     'view_session_year' => 'View Session Year',
-
+    'batches' => 'Batches',
+    'breeds' => 'Breeds',
+    'breed' => 'Breeds',
+    'create_breed' => 'Create Breeds',
+    'update_breed' => 'Update Breeds',
+    'delete_breed' => 'Delete Breeds',
+    'view_breed' => 'View Breeds',
+    'enter_breeds' => 'Enter Breeds',
+    'select_cattle_type' => 'Select Cattle type',
 ];

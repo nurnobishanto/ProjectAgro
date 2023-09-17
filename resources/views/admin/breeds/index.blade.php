@@ -1,20 +1,23 @@
 @extends('adminlte::page')
 
-@section('title', __('global.admins'))
+@section('title', __('global.breeds'))
 
 @section('content_header')
     <div class="row mb-2">
         <div class="col-sm-6">
-            <h1>{{__('global.admins')}}</h1>
-            @can('admin_list')
-                <a href="{{route('admin.admins.index')}}" class="btn btn-primary mt-2">{{__('global.go_back')}}</a>
+            <h1>{{__('global.breeds')}}</h1>
+            @can('breed_create')
+                <a href="{{route('admin.breeds.create')}}" class="btn btn-primary mt-2">{{__('global.add_new')}}</a>
+            @endcan
+            @can('breed_delete')
+                <a href="{{route('admin.breeds.trashed')}}" class="btn btn-danger mt-2">{{__('global.trash_list')}}</a>
             @endcan
 
         </div>
         <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
                 <li class="breadcrumb-item"><a href="{{route('admin.dashboard')}}">{{__('global.home')}}</a></li>
-                <li class="breadcrumb-item active">{{__('global.admins')}}</li>
+                <li class="breadcrumb-item active">{{__('global.breeds')}}</li>
             </ol>
 
         </div>
@@ -24,44 +27,45 @@
 @section('content')
     <div class="row">
         <div class="col-12">
-            @can('admin_list')
+            @can('breed_list')
                 <div class="card">
                     <div class="card-body table-responsive">
                         <table id="adminsList" class="table  dataTable table-bordered table-striped">
                             <thead>
                             <tr>
-                                <th width="18%">{{__('global.photo')}}</th>
-                                <th width="25%">{{__('global.name')}}</th>
-                                <th width="20%">{{__('global.email')}}</th>
-                                <th width="15%">{{__('menu.roles')}}</th>
-                                <th width="7%">{{__('global.status')}}</th>
-                                <th width="15%">{{__('global.action')}}</th>
+                                <th>{{__('global.sl')}}</th>
+                                <th>{{__('global.cattle_type')}}</th>
+                                <th>{{__('global.breeds')}}</th>
+                                <th>{{__('global.status')}}</th>
+                                <th>{{__('global.updated_at')}}</th>
+                                <th>{{__('global.action')}}</th>
                             </tr>
                             </thead>
                             <tbody>
-                            @foreach($admins as $admin)
+                            <?php $sl = 1; ?>
+                            @foreach($breeds as $breed)
                                 <tr>
 
-                                    <td>
-                                        <img class="rounded border" width="100px" src="{{asset('uploads/'.$admin->photo)}}" alt="{{$admin->name}}">
-                                    </td>
-                                    <td>{{$admin->name}}</td>
-                                    <td>{{$admin->email}}</td>
-                                    <td>
-                                        @foreach($admin->roles as $role)
-                                            <a class="badge badge-success text-capitalize">{{$role->name}}</a>
-                                        @endforeach
-                                    </td>
-                                    <td>
-                                        @if($admin->status=='active') <span class="badge-success badge">Active</span>
-                                        @else <span class="badge-danger badge">Deactivate</span>
-                                        @endif
-                                    </td>
+                                    <td>{{$sl++}}</td>
+                                    <td>{{$breed->cattle_type->title}}</td>
+                                    <td>{{$breed->name}}</td>
+                                    <td>{{$breed->status}}</td>
+                                    <td>{{date_format($breed->updated_at,'d M y h:i A') }}</td>
                                     <td class="text-center">
-                                        @can('admin_delete')
-                                        <a href="{{route('admin.admins.restore',['admin'=>$admin->id])}}"  class="btn btn-success btn-sm px-1 py-0"><i class="fa fa-arrow-left"></i></a>
-                                        <a href="{{route('admin.admins.force_delete',['admin'=>$admin->id])}}"  class="btn btn-danger btn-sm px-1 py-0"><i class="fa fa-trash"></i></a>
-                                        @endcan
+                                        <form action="{{ route('admin.breeds.destroy', $breed->id) }}" method="POST">
+                                            @method('DELETE')
+                                            @csrf
+                                            @can('breed_view')
+                                                <a href="{{route('admin.breeds.show',['breed'=>$breed->id])}}" class="btn btn-info px-1 py-0 btn-sm"><i class="fa fa-eye"></i></a>
+                                            @endcan
+                                            @can('breed_update')
+                                                <a href="{{route('admin.breeds.edit',['breed'=>$breed->id])}}" class="btn btn-warning px-1 py-0 btn-sm"><i class="fa fa-pen"></i></a>
+                                            @endcan
+                                            @can('breed_delete')
+                                                <button onclick="isDelete(this)" class="btn btn-danger btn-sm px-1 py-0"><i class="fa fa-trash"></i></button>
+                                            @endcan
+
+                                        </form>
                                     </td>
                                 </tr>
                             @endforeach
@@ -69,11 +73,11 @@
                             </tbody>
                             <tfoot>
                             <tr>
-                                <th>{{__('global.photo')}}</th>
-                                <th>{{__('global.name')}}</th>
-                                <th>{{__('global.email')}}</th>
-                                <th>{{__('menu.roles')}}</th>
+                                <th>{{__('global.sl')}}</th>
+                                <th>{{__('global.cattle_type')}}</th>
+                                <th>{{__('global.breeds')}}</th>
                                 <th>{{__('global.status')}}</th>
+                                <th>{{__('global.updated_at')}}</th>
                                 <th>{{__('global.action')}}</th>
                             </tr>
                             </tfoot>

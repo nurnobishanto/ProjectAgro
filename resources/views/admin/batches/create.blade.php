@@ -1,17 +1,17 @@
 @extends('adminlte::page')
 
-@section('title', __('global.update_cattle_type'))
+@section('title', __('global.create_cattle_type'))
 
 @section('content_header')
     <div class="row mb-2">
         <div class="col-sm-6">
-            <h1>{{ __('global.update_cattle_type')}}</h1>
+            <h1>{{ __('global.create_cattle_type')}}</h1>
         </div>
         <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
                 <li class="breadcrumb-item"><a href="{{route('admin.dashboard')}}">{{ __('global.home')}}</a></li>
                 <li class="breadcrumb-item"><a href="{{route('admin.cattle-types.index')}}">{{ __('global.cattle_types')}}</a></li>
-                <li class="breadcrumb-item active">{{ __('global.update_cattle_type')}}</li>
+                <li class="breadcrumb-item active">{{ __('global.create_cattle_type')}}</li>
             </ol>
 
         </div>
@@ -23,8 +23,7 @@
         <div class="col-12">
             <div class="card">
                 <div class="card-body">
-                    <form action="{{route('admin.cattle-types.update',['cattle_type'=>$cattle_type->id])}}" method="POST" enctype="multipart/form-data" id="supplier-form">
-                        @method('PUT')
+                    <form action="{{route('admin.cattle-types.store')}}" method="POST" enctype="multipart/form-data" id="admin-form">
                         @csrf
                         @if (count($errors) > 0)
                             <div class = "alert alert-danger">
@@ -39,23 +38,23 @@
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label for="title">{{ __('global.title')}}</label>
-                                    <input id="title" value="{{$cattle_type->title}}" name="title" class="form-control" placeholder="{{ __('global.enter_title')}}">
+                                    <input id="title" name="title" class="form-control" placeholder="{{ __('global.enter_title')}}">
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <label for="status">{{ __('global.select_status')}}</label>
+                                    <label for="status">{{__('global.select_status')}}</label>
                                     <select name="status" class="form-control" id="status">
-                                        <option value="active" @if($cattle_type->status == 'active') selected @endif>{{ __('global.active')}}</option>
-                                        <option value="deactivate" @if($cattle_type->status == 'deactivate') selected @endif>{{ __('global.deactivate')}}</option>
+                                        <option value="active">{{__('global.active')}}</option>
+                                        <option value="deactivate">{{__('global.deactivate')}}</option>
                                     </select>
                                 </div>
                             </div>
 
                         </div>
 
-                        @can('cattle_type_update')
-                            <button class="btn btn-success" type="submit">{{ __('global.update')}}</button>
+                        @can('cattle_type_create')
+                            <button class="btn btn-success" type="submit">{{ __('global.create')}}</button>
                         @endcan
                     </form>
                 </div>
@@ -73,35 +72,17 @@
 @section('plugins.toastr',true)
 @section('plugins.Select2',true)
 @section('css')
-    <style>
-        .select2-container--default .select2-selection--multiple .select2-selection__choice{
-            color: black;
-        }
-    </style>
+<style>
+    .select2-container--default .select2-selection--multiple .select2-selection__choice{
+        color: black;
+    }
+</style>
 @stop
 
 @section('js')
-<script>
-    $(document).ready(function() {
-        $('.select2').select2();
-    });
-    document.addEventListener('DOMContentLoaded', function () {
-        const imageForm = document.getElementById('supplier-form');
-        const selectedImage = document.getElementById('selected-image');
-
-        imageForm.addEventListener('change', function () {
-            const fileInput = this.querySelector('input[type="file"]');
-            const file = fileInput.files[0];
-
-            if (file) {
-                const imageUrl = URL.createObjectURL(file);
-                selectedImage.src = imageUrl;
-                selectedImage.style.display = 'block';
-            } else {
-                selectedImage.src = '';
-                selectedImage.style.display = 'none';
-            }
+    <script>
+        $(document).ready(function() {
+            $('.select2').select2();
         });
-    });
-</script>
+    </script>
 @stop

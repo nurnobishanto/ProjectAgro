@@ -50,8 +50,10 @@
                                     <td>{{$supplier->email}}</td>
                                     <td>{{$supplier->company}}</td>
                                     <td class="text-center">
+                                        @can('supplier_delete')
                                         <a href="{{route('admin.suppliers.restore',['supplier'=>$supplier->id])}}"  class="btn btn-success btn-sm px-1 py-0"><i class="fa fa-arrow-left"></i></a>
                                         <a href="{{route('admin.suppliers.force_delete',['supplier'=>$supplier->id])}}"  class="btn btn-danger btn-sm px-1 py-0"><i class="fa fa-trash"></i></a>
+                                        @endcan
                                     </td>
                                 </tr>
                             @endforeach

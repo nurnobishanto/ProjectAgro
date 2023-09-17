@@ -1,20 +1,20 @@
 @extends('adminlte::page')
 
-@section('title', __('global.admins'))
+@section('title', __('global.breeds'). __('global.deleted'))
 
 @section('content_header')
     <div class="row mb-2">
         <div class="col-sm-6">
-            <h1>{{__('global.admins')}}</h1>
-            @can('admin_list')
-                <a href="{{route('admin.admins.index')}}" class="btn btn-primary mt-2">{{__('global.go_back')}}</a>
+            <h1>{{__('global.breeds'). __('global.deleted')}}</h1>
+            @can('supplier_list')
+                <a href="{{route('admin.breeds.index')}}" class="btn btn-primary mt-2">{{__('global.go_back')}}</a>
             @endcan
 
         </div>
         <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
                 <li class="breadcrumb-item"><a href="{{route('admin.dashboard')}}">{{__('global.home')}}</a></li>
-                <li class="breadcrumb-item active">{{__('global.admins')}}</li>
+                <li class="breadcrumb-item active">{{__('global.breeds')}}</li>
             </ol>
 
         </div>
@@ -24,43 +24,33 @@
 @section('content')
     <div class="row">
         <div class="col-12">
-            @can('admin_list')
+            @can('supplier_list')
                 <div class="card">
                     <div class="card-body table-responsive">
-                        <table id="adminsList" class="table  dataTable table-bordered table-striped">
+                        <table id="suppliersList" class="table  dataTable table-bordered table-striped">
                             <thead>
                             <tr>
-                                <th width="18%">{{__('global.photo')}}</th>
-                                <th width="25%">{{__('global.name')}}</th>
-                                <th width="20%">{{__('global.email')}}</th>
-                                <th width="15%">{{__('menu.roles')}}</th>
-                                <th width="7%">{{__('global.status')}}</th>
-                                <th width="15%">{{__('global.action')}}</th>
+                                <th>{{__('global.sl')}}</th>
+                                <th>{{__('global.cattle_type')}}</th>
+                                <th>{{__('global.breed')}}</th>
+                                <th>{{__('global.status')}}</th>
+                                <th>{{__('global.deleted_at')}}</th>
+                                <th>{{__('global.action')}}</th>
                             </tr>
                             </thead>
                             <tbody>
-                            @foreach($admins as $admin)
+                            <?php $sl = 1; ?>
+                            @foreach($breeds as $breed)
                                 <tr>
-
-                                    <td>
-                                        <img class="rounded border" width="100px" src="{{asset('uploads/'.$admin->photo)}}" alt="{{$admin->name}}">
-                                    </td>
-                                    <td>{{$admin->name}}</td>
-                                    <td>{{$admin->email}}</td>
-                                    <td>
-                                        @foreach($admin->roles as $role)
-                                            <a class="badge badge-success text-capitalize">{{$role->name}}</a>
-                                        @endforeach
-                                    </td>
-                                    <td>
-                                        @if($admin->status=='active') <span class="badge-success badge">Active</span>
-                                        @else <span class="badge-danger badge">Deactivate</span>
-                                        @endif
-                                    </td>
+                                    <td>{{$sl++}}</td>
+                                    <td>{{$breed->cattle_type->title}}</td>
+                                    <td>{{$breed->name}}</td>
+                                    <td>{{$breed->status}}</td>
+                                    <td>{{date_format($breed->deleted_at,'d M y h:i A')}}</td>
                                     <td class="text-center">
-                                        @can('admin_delete')
-                                        <a href="{{route('admin.admins.restore',['admin'=>$admin->id])}}"  class="btn btn-success btn-sm px-1 py-0"><i class="fa fa-arrow-left"></i></a>
-                                        <a href="{{route('admin.admins.force_delete',['admin'=>$admin->id])}}"  class="btn btn-danger btn-sm px-1 py-0"><i class="fa fa-trash"></i></a>
+                                        @can('breed_delete')
+                                        <a href="{{route('admin.breeds.restore',['breed'=>$breed->id])}}"  class="btn btn-success btn-sm px-1 py-0"><i class="fa fa-arrow-left"></i></a>
+                                        <a href="{{route('admin.breeds.force_delete',['breed'=>$breed->id])}}"  class="btn btn-danger btn-sm px-1 py-0"><i class="fa fa-trash"></i></a>
                                         @endcan
                                     </td>
                                 </tr>
@@ -69,11 +59,11 @@
                             </tbody>
                             <tfoot>
                             <tr>
-                                <th>{{__('global.photo')}}</th>
-                                <th>{{__('global.name')}}</th>
-                                <th>{{__('global.email')}}</th>
-                                <th>{{__('menu.roles')}}</th>
+                                <th>{{__('global.sl')}}</th>
+                                <th>{{__('global.cattle_type')}}</th>
+                                <th>{{__('global.breed')}}</th>
                                 <th>{{__('global.status')}}</th>
+                                <th>{{__('global.deleted_at')}}</th>
                                 <th>{{__('global.action')}}</th>
                             </tr>
                             </tfoot>
@@ -126,7 +116,7 @@
         }
 
         $(document).ready(function() {
-            $("#adminsList").DataTable({
+            $("#suppliersList").DataTable({
                 dom: 'Bfrtip',
                 responsive: true,
                 lengthChange: false,
