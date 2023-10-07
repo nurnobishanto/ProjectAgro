@@ -364,6 +364,12 @@ return [
             'can' => 'supplier_manage',
             'icon' => 'fas fa-user-friends',
         ],
+        [
+            'text' => 'party',
+            'url' => 'admin/parties',
+            'can' => 'party_manage',
+            'icon' => 'fas fa-user-friends',
+        ],
         ['header' => 'inventory_management'],
         [
             'text'    => 'inventory_management',
@@ -379,6 +385,11 @@ return [
                     'text' => 'unit',
                     'can' => 'unit_manage',
                     'url' => 'admin/units'
+                ],
+                [
+                    'text' => 'tax',
+                    'can' => 'tax_manage',
+                    'url' => 'admin/taxes'
                 ],
             ]
         ],
