@@ -32,4 +32,7 @@ return [
     'batches' => 'Batches',
     'breeds' => 'Breeds',
     'farm' => 'Farm',
+    'inventory_management' => 'Inventory Management',
+    'unit' => 'Unit',
+    'product' => 'Product',
 ];
