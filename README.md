@@ -7,7 +7,7 @@
 ### Introduction
 This project is a new software development endeavor undertaken by Soft-ITBD.com.
 
-<h3 style="color:green"> Complete task</h3>
+## Complete task
 
 ### System Management
 - Language Switcher System.
@@ -29,7 +29,7 @@ This project is a new software development endeavor undertaken by Soft-ITBD.com.
 - Product Listing.
 
 
-<h3 style="color:red">Next Task *** Remaining</h3>
+## Next Task *** Remaining
 - Cattle Listing.
 - party Listing.
 - Stock Management.
