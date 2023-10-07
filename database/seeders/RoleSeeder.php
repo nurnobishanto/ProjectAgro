@@ -88,6 +88,18 @@ class RoleSeeder extends Seeder
                 ]
             ],
             [
+                'group_name' => 'Party',
+                'permissions' => [
+                    'party_manage',
+                    'party_list',
+                    'party_view',
+                    'party_update',
+                    'party_delete',
+                    'party_create',
+                ]
+            ],
+
+            [
                 'group_name' => 'CattleType',
                 'permissions' => [
                     'cattle_type_manage',

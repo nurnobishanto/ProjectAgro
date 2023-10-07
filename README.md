@@ -23,6 +23,7 @@ This project is a new software development endeavor undertaken by Soft-ITBD.com.
 
 #### Global Crud
 - Supplier Listing.
+- Party Listing.
 
 #### Inventory Management
 - Unit Listing.
@@ -32,7 +33,6 @@ This project is a new software development endeavor undertaken by Soft-ITBD.com.
 
 ## Next Task *** Remaining
 - Cattle Listing.
-- Party Listing.
 - Stock Management.
 - Product Purchase.
 

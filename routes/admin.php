@@ -8,6 +8,7 @@ use App\Http\Controllers\Admin\CattleController;
 use App\Http\Controllers\Admin\CattleTypeController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\FarmController;
+use App\Http\Controllers\Admin\PartyController;
 use App\Http\Controllers\Admin\PermissionController;
 use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\Admin\RoleController;
@@ -37,6 +38,13 @@ Route::get('/suppliers/trashed',[SupplierController::class,'trashed_list'])->mid
 Route::get('/suppliers/trashed/{supplier}/restore',[SupplierController::class,'restore'])->middleware('permission:supplier_manage')->name('suppliers.restore');
 Route::get('/suppliers/trashed/{supplier}/delete',[SupplierController::class,'force_delete'])->middleware('permission:supplier_manage')->name('suppliers.force_delete');
 Route::resource('/suppliers',SupplierController::class)->middleware('permission:supplier_manage');
+
+//Party
+Route::get('/parties/trashed',[PartyController::class,'trashed_list'])->middleware('permission:party_manage')->name('parties.trashed');
+Route::get('/parties/trashed/{party}/restore',[PartyController::class,'restore'])->middleware('permission:party_manage')->name('parties.restore');
+Route::get('/parties/trashed/{party}/delete',[PartyController::class,'force_delete'])->middleware('permission:party_manage')->name('parties.force_delete');
+Route::resource('/parties',PartyController::class)->middleware('permission:party_manage');
+
 
 //Cattle Type
 Route::get('/cattle-types/trashed',[CattleTypeController::class,'trashed_list'])->middleware('permission:cattle_type_manage')->name('cattle-types.trashed');

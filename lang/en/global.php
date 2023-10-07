@@ -125,7 +125,6 @@ return [
     'update_farm' => 'Update Farm',
     'delete_farm' => 'Delete Farm',
     'view_farm' => 'View Farm',
-
     'select_farm' => 'Select Farm',
     'cattle' => 'Cattle',
     'select_farm ' => 'Select Farm',
@@ -206,4 +205,10 @@ return [
     'update_tax' => 'Update Tax',
     'delete_tax' => 'Delete Tax',
     'view_tax' => 'View Tax',
+    'party' => 'Party',
+    'parties' => 'Parties',
+    'create_party' => 'Create Party',
+    'update_party' => 'Update Party',
+    'delete_party' => 'Delete Party',
+    'view_party' => 'View Party',
 ];
