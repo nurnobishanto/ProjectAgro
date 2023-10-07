@@ -13,6 +13,7 @@ use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\Admin\RoleController;
 use App\Http\Controllers\Admin\SessionYearController;
 use App\Http\Controllers\Admin\SupplierController;
+use App\Http\Controllers\Admin\TaxController;
 use App\Http\Controllers\Admin\UnitController;
 use Illuminate\Support\Facades\Route;
 
@@ -84,3 +85,9 @@ Route::get('/products/trashed',[ProductController::class,'trashed_list'])->middl
 Route::get('/products/trashed/{product}/restore',[ProductController::class,'restore'])->middleware('permission:product_manage')->name('products.restore');
 Route::get('/products/trashed/{product}/delete',[ProductController::class,'force_delete'])->middleware('permission:product_manage')->name('products.force_delete');
 Route::resource('/products',ProductController::class)->middleware('permission:product_manage');
+
+//Vat
+Route::get('/taxes/trashed',[TaxController::class,'trashed_list'])->middleware('permission:tax_manage')->name('taxes.trashed');
+Route::get('/taxes/trashed/{tax}/restore',[TaxController::class,'restore'])->middleware('permission:tax_manage')->name('taxes.restore');
+Route::get('/taxes/trashed/{tax}/delete',[TaxController::class,'force_delete'])->middleware('permission:tax_manage')->name('taxes.force_delete');
+Route::resource('/taxes',TaxController::class)->middleware('permission:tax_manage');

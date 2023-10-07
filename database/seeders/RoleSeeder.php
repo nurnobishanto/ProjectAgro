@@ -186,6 +186,17 @@ class RoleSeeder extends Seeder
                     'product_create',
                 ]
             ],
+            [
+                'group_name' => 'Tax',
+                'permissions' => [
+                    'tax_manage',
+                    'tax_list',
+                    'tax_view',
+                    'tax_update',
+                    'tax_delete',
+                    'tax_create',
+                ]
+            ],
 
 
         ];

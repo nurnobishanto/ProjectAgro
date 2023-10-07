@@ -35,4 +35,5 @@ return [
     'inventory_management' => 'Inventory Management',
     'unit' => 'Unit',
     'product' => 'Product',
+    'tax' => 'Tax',
 ];

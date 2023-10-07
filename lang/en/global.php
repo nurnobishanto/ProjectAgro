@@ -197,4 +197,13 @@ return [
     'vaccination' => 'Cattle vaccination',
     'previous_balance' => 'Previous Balance',
     'current_balance' => 'Current Balance',
+    'tax' => 'Tax',
+    'tax_name' => 'Tax Name',
+    'enter_tax_name' => 'Enter Tax Name',
+    'enter_tax' => 'Enter Tax',
+    'taxes' => 'Taxes',
+    'create_tax' => 'Create Tax',
+    'update_tax' => 'Update Tax',
+    'delete_tax' => 'Delete Tax',
+    'view_tax' => 'View Tax',
 ];
