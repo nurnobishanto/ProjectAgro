@@ -20,4 +20,8 @@ class CattleType extends Model
     {
         return $this->belongsTo(Admin::class, 'created_by');
     }
+    public function breeds()
+    {
+        return $this->hasMany(Breeds::class);
+    }
 }
