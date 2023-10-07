@@ -1,17 +1,17 @@
 @extends('adminlte::page')
 
-@section('title', __('global.view_supplier'))
+@section('title', __('global.view_product'))
 
 @section('content_header')
     <div class="row mb-2">
         <div class="col-sm-6">
-            <h1>{{__('global.view_supplier')}} - {{$supplier->name}}</h1>
+            <h1>{{__('global.view_product')}} - {{$product->name}}</h1>
         </div>
         <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
                 <li class="breadcrumb-item"><a href="{{route('admin.dashboard')}}">{{__('global.home')}}</a></li>
-                <li class="breadcrumb-item"><a href="{{route('admin.suppliers.index')}}">{{__('global.suppliers')}}</a></li>
-                <li class="breadcrumb-item active">{{__('global.view_supplier')}}</li>
+                <li class="breadcrumb-item"><a href="{{route('admin.products.index')}}">{{__('global.products')}}</a></li>
+                <li class="breadcrumb-item active">{{__('global.view_product')}}</li>
             </ol>
 
         </div>
@@ -33,51 +33,74 @@
                             </div>
                         @endif
                             <div class="row">
-                                <div class="col-md-6">
+                                <div class="col-md-12">
                                     <div class="form-group">
-                                        <label for="name">{{ __('global.full_name')}}</label>
-                                        <input id="name" class="form-control" disabled value="{{$supplier->name}}">
+                                        <label for="name">{{ __('global.product')}}</label>
+                                        <input id="name" class="form-control" disabled value="{{$product->name}}">
                                     </div>
                                 </div>
-                                <div class="col-md-6">
+                                <div class="col-md-4 col-sm-6">
                                     <div class="form-group">
-                                        <label for="phone">{{ __('global.phone')}}</label>
-                                        <input id="phone" class="form-control" disabled value="{{$supplier->phone}}">
+                                        <label for="code">{{ __('global.code')}}</label>
+                                        <input id="code" class="form-control" disabled value="{{$product->code}}">
                                     </div>
                                 </div>
-                                <div class="col-md-6">
+                                <div class="col-md-4 col-sm-6">
                                     <div class="form-group">
-                                        <label for="email">{{ __('global.email_address')}}</label>
-                                        <input id="email" class="form-control" disabled value="{{$supplier->email}}">
+                                        <label for="type">{{ __('global.type')}}</label>
+                                        <input id="type" class="form-control" disabled value="{{__('global.'.$product->type)}}">
                                     </div>
                                 </div>
-                                <div class="col-md-6">
+                                <div class="col-md-4 col-sm-6">
                                     <div class="form-group">
-                                        <label for="address">{{ __('global.address')}}</label>
-                                        <input id="address" class="form-control" disabled value="{{$supplier->address}}">
+                                        <label for="unit">{{ __('global.unit')}}</label>
+                                        <input id="unit" class="form-control" disabled value="{{$product->unit->name}}">
                                     </div>
                                 </div>
-                                <div class="col-md-6">
+                                <div class="col-md-4 col-sm-6">
                                     <div class="form-group">
-                                        <label for="company">{{ __('global.company')}}</label>
-                                        <input id="company" class="form-control" disabled value="{{$supplier->company}}">
+                                        <label for="purchase_price">{{ __('global.purchase_price')}}</label>
+                                        <input id="purchase_price" class="form-control" disabled value="{{$product->purchase_price}}">
                                     </div>
                                 </div>
-                                <div class="col-md-6">
+                                <div class="col-md-4 col-sm-6">
                                     <div class="form-group">
-                                        <label for="current_balance">{{ __('global.current_balance')}}</label>
-                                        <input id="current_balance" class="form-control" disabled value="{{$supplier->current_balance}}">
+                                        <label for="sale_price">{{ __('global.sale_price')}}</label>
+                                        <input id="sale_price" class="form-control" disabled value="{{$product->sale_price}}">
                                     </div>
                                 </div>
-                                <div class="col-md-6">
+                                <div class="col-md-4 col-sm-6">
+                                    <div class="form-group">
+                                        <label for="alert_quantity">{{ __('global.alert_quantity')}}</label>
+                                        <input id="alert_quantity" class="form-control" disabled value="{{$product->alert_quantity}}">
+                                    </div>
+                                </div>
+                                <div class="col-md-4 col-sm-6">
+                                    <div class="form-group">
+                                        <label for="status">{{ __('global.status')}}</label>
+                                        <input id="status" class="form-control" disabled value="{{__('global.'.$product->status)}}">
+                                    </div>
+                                </div>
+                                <div class="col-md-4 col-sm-6">
+                                    <div class="form-group">
+                                        <label for="updated_at">{{ __('global.updated_at')}}</label>
+                                        <input id="updated_at" class="form-control" disabled value="{{date_format($product->updated_at,'d M y h:i A') }}">
+                                    </div>
+                                </div>
+                                <div class="col-md-4 col-sm-6">
                                     <div class="form-group">
                                         <label for="created_by">{{ __('global.created_by')}}</label>
-                                        <input id="created_by" class="form-control" disabled value="{{$supplier->createdBy->name}}">
+                                        <input id="created_by" class="form-control" disabled value="{{$product->createdBy->name}}">
                                     </div>
                                 </div>
-                                <div class="col-md-6">
+                                <div class="col-md-8">
                                     <div class="form-group">
-                                        <img src="{{asset('uploads/'.$supplier->photo)}}" alt="{{$supplier->name}}" class="img-fluid" style="max-height: 150px">
+                                        <textarea class="form-control">{{$product->description}}</textarea>
+                                    </div>
+                                </div>
+                                <div class="col-md-4 col-sm-6">
+                                    <div class="form-group">
+                                        <img src="{{asset('uploads/'.$product->image)}}" class="img-thumbnail">
                                     </div>
                                 </div>
 
@@ -85,14 +108,14 @@
 
 
 
-                        <form action="{{ route('admin.suppliers.destroy', $supplier->id) }}" method="POST">
+                        <form action="{{ route('admin.products.destroy', $product->id) }}" method="POST">
                             @method('DELETE')
                             @csrf
-                            <a href="{{route('admin.suppliers.index')}}" class="btn btn-success" >Go Back</a>
-                            @can('supplier_update')
-                                <a href="{{route('admin.suppliers.edit',['supplier'=>$supplier->id])}}" class="btn btn-warning "><i class="fa fa-pen"></i> Edit</a>
+                            <a href="{{route('admin.products.index')}}" class="btn btn-success" >Go Back</a>
+                            @can('product_update')
+                                <a href="{{route('admin.products.edit',['product'=>$product->id])}}" class="btn btn-warning "><i class="fa fa-pen"></i> Edit</a>
                             @endcan
-                            @can('supplier_delete')
+                            @can('product_delete')
                                 <button onclick="isDelete(this)" class="btn btn-danger"><i class="fa fa-trash"></i> Delete</button>
                             @endcan
                         </form>

@@ -10,6 +10,16 @@ if (!function_exists('myCustomFunction')) {
         // Your custom logic here
     }
 }
+if (!function_exists('productCodeGenerate')) {
+
+    function productCodeGenerate()
+    {
+        do{
+            $value = 'PID-'.rand(11111,99999);
+        }while(!\App\Models\Product::where('code',$value));
+        return $value;
+    }
+}
 if (!function_exists('setSetting')) {
 
     function setSetting($key, $value)

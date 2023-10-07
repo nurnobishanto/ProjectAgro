@@ -35,7 +35,6 @@ class SupplierController extends Controller
         App::setLocale(session('locale'));
         $request->validate([
             'name' => 'required',
-            'email' => 'email|unique:suppliers',
             'photo' => 'image|mimes:jpeg,png,jpg,gif|max:2048',
         ]);
         $imagePath = null;
@@ -47,6 +46,8 @@ class SupplierController extends Controller
             'phone' =>$request->phone,
             'email' =>$request->email,
             'company' =>$request->company,
+            'previous_balance' =>$request->previous_balance??0,
+            'current_balance' =>$request->previous_balance??0,
             'address' =>$request->address,
             'created_by' =>auth()->user()->id,
             'photo' =>$imagePath,

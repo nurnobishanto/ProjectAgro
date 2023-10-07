@@ -7,21 +7,34 @@
 ### Introduction
 This project is a new software development endeavor undertaken by Soft-ITBD.com.
 
-### Complete task
+## Complete task
+### System Management
 - Language Switcher System.
 - Role & Permission Management/Listing.
 - Admin Management/Listing.
+
+### Cattle Management
 - Cattle Type Listing.
 - Cattle Breeds Listing for different Cattle Type.
 - Batch Listing
 - Session Year Listing.
 - Farm Listing.
 
+### Global Crud
+- Supplier Listing.
+
+### Inventory Management
+- Unit Listing.
+- Product Listing.
 
 
-### Next Task
+
+## Next Task *** Remaining
 
 - Cattle Listing.
+- party Listing.
+- Stock Management.
+- Product Purchase.
 
 
 Thank you for your interest in the New Project Development by Soft-ITBD.com! If you have any questions or need further assistance, please don't hesitate to contact us at nurnobishanro1@gmail.com. We look forward to collaborating with you on this exciting project.

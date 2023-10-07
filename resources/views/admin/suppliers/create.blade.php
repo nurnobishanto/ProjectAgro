@@ -37,19 +37,25 @@
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <label for="name">{{ __('global.full_name')}}</label>
+                                    <label for="name">{{ __('global.full_name')}} <span class="text-danger"> *</span></label>
                                     <input id="name" name="name" class="form-control" placeholder="{{ __('global.enter_full_name')}}">
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <label for="phone">{{ __('global.phone')}}</label>
+                                    <label for="previous_balance">{{ __('global.previous_balance')}}</label>
+                                    <input id="previous_balance" type="number" name="previous_balance" class="form-control" placeholder="{{ __('global.previous_balance')}}">
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="phone">{{ __('global.phone')}} <span class="text-danger"> *</span></label>
                                     <input id="phone" name="phone" class="form-control" placeholder="{{ __('global.enter_phone')}}">
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <label for="email">{{ __('global.email_address')}}</label>
+                                    <label for="email">{{ __('global.email_address')}} <span class="text-danger"> *</span></label>
                                     <input id="email" name="email" type="email" class="form-control" placeholder="{{ __('global.enter_email_address')}}">
                                 </div>
                             </div>

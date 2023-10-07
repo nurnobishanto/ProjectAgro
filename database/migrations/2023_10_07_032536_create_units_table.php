@@ -11,20 +11,17 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('suppliers', function (Blueprint $table) {
+        Schema::create('units', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->string('photo')->nullable(); // Nullable for the image file path
-            $table->string('phone')->nullable();
-            $table->string('email')->nullable();
-            $table->text('address')->nullable();
-            $table->string('company')->nullable();
-            $table->double('previous_balance')->default(0);
-            $table->double('current_balance')->default(0);
+            $table->string('code');
+            $table->enum('status', ['active', 'deactivate'])->default('active');
+
             $table->unsignedBigInteger('created_by');
             $table->foreign('created_by')->references('id')->on('admins');
-            $table->timestamps();
+
             $table->softDeletes();
+            $table->timestamps();
         });
     }
 
@@ -33,6 +30,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('suppliers');
+        Schema::dropIfExists('units');
     }
 };

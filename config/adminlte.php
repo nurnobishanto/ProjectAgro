@@ -362,7 +362,25 @@ return [
             'text' => 'supplier',
             'url' => 'admin/suppliers',
             'can' => 'supplier_manage',
-            'icon' => 'fas fa-tachometer-alt',
+            'icon' => 'fas fa-user-friends',
+        ],
+        ['header' => 'inventory_management'],
+        [
+            'text'    => 'inventory_management',
+            'icon'    => 'fas fa-warehouse',
+            'can' => ['inventory_manage'],
+            'submenu' => [
+                [
+                    'text' => 'product',
+                    'can' => 'product_manage',
+                    'url' => 'admin/products'
+                ],
+                [
+                    'text' => 'unit',
+                    'can' => 'unit_manage',
+                    'url' => 'admin/units'
+                ],
+            ]
         ],
         ['header' => 'settings'],
         [

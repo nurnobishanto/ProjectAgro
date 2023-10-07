@@ -26,6 +26,7 @@ class RoleSeeder extends Seeder
                 'permissions' => [
                     'dashboard_manage',
                     'site_setting_manage',
+                    'inventory_manage',
                 ]
             ],
             [
@@ -150,6 +151,39 @@ class RoleSeeder extends Seeder
                     'cattle_update',
                     'cattle_delete',
                     'cattle_create',
+                ]
+            ],
+            [
+                'group_name' => 'CattleStructure',
+                'permissions' => [
+                    'cattle_structure_manage',
+                    'cattle_structure_list',
+                    'cattle_structure_view',
+                    'cattle_structure_update',
+                    'cattle_structure_delete',
+                    'cattle_structure_create',
+                ]
+            ],
+            [
+                'group_name' => 'Unit',
+                'permissions' => [
+                    'unit_manage',
+                    'unit_list',
+                    'unit_view',
+                    'unit_update',
+                    'unit_delete',
+                    'unit_create',
+                ]
+            ],
+            [
+                'group_name' => 'Product',
+                'permissions' => [
+                    'product_manage',
+                    'product_list',
+                    'product_view',
+                    'product_update',
+                    'product_delete',
+                    'product_create',
                 ]
             ],
 

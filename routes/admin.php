@@ -4,13 +4,16 @@
 use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Admin\BatchController;
 use App\Http\Controllers\Admin\BreedsController;
+use App\Http\Controllers\Admin\CattleController;
 use App\Http\Controllers\Admin\CattleTypeController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\FarmController;
 use App\Http\Controllers\Admin\PermissionController;
+use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\Admin\RoleController;
 use App\Http\Controllers\Admin\SessionYearController;
 use App\Http\Controllers\Admin\SupplierController;
+use App\Http\Controllers\Admin\UnitController;
 use Illuminate\Support\Facades\Route;
 
 
@@ -63,3 +66,21 @@ Route::get('/farms/trashed',[FarmController::class,'trashed_list'])->middleware(
 Route::get('/farms/trashed/{farm}/restore',[FarmController::class,'restore'])->middleware('permission:farm_manage')->name('farms.restore');
 Route::get('/farms/trashed/{farm}/delete',[FarmController::class,'force_delete'])->middleware('permission:farm_manage')->name('farms.force_delete');
 Route::resource('/farms',FarmController::class)->middleware('permission:farm_manage');
+
+//Cattle Listing
+Route::get('/cattles/trashed',[CattleController::class,'trashed_list'])->middleware('permission:cattle_manage')->name('cattles.trashed');
+Route::get('/cattles/trashed/{farm}/restore',[CattleController::class,'restore'])->middleware('permission:cattle_manage')->name('cattles.restore');
+Route::get('/cattles/trashed/{farm}/delete',[CattleController::class,'force_delete'])->middleware('permission:cattle_manage')->name('cattles.force_delete');
+Route::resource('/cattles',CattleController::class)->middleware('permission:cattle_manage');
+
+//Unit
+Route::get('/units/trashed',[UnitController::class,'trashed_list'])->middleware('permission:unit_manage')->name('units.trashed');
+Route::get('/units/trashed/{unit}/restore',[UnitController::class,'restore'])->middleware('permission:unit_manage')->name('units.restore');
+Route::get('/units/trashed/{unit}/delete',[UnitController::class,'force_delete'])->middleware('permission:unit_manage')->name('units.force_delete');
+Route::resource('/units',UnitController::class)->middleware('permission:unit_manage');
+
+//Product
+Route::get('/products/trashed',[ProductController::class,'trashed_list'])->middleware('permission:product_manage')->name('products.trashed');
+Route::get('/products/trashed/{product}/restore',[ProductController::class,'restore'])->middleware('permission:product_manage')->name('products.restore');
+Route::get('/products/trashed/{product}/delete',[ProductController::class,'force_delete'])->middleware('permission:product_manage')->name('products.force_delete');
+Route::resource('/products',ProductController::class)->middleware('permission:product_manage');

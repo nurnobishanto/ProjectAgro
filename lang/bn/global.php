@@ -118,7 +118,6 @@ return [
     'delete_batch' => 'ব্যাচ মুছে ফেলুন',
     'view_batch' => 'ব্যাচ দেখুন',
     'enter_batch' => 'ব্যাচ লিখুন',
-
     'farm' => 'খামার',
     'farms' => 'খামার সমূহ',
     'create_farm' => 'খামার তৈরি করুন',

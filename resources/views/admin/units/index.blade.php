@@ -1,23 +1,23 @@
 @extends('adminlte::page')
 
-@section('title', __('global.suppliers'))
+@section('title', __('global.units'))
 
 @section('content_header')
     <div class="row mb-2">
         <div class="col-sm-6">
-            <h1>{{__('global.suppliers')}}</h1>
-            @can('supplier_create')
-                <a href="{{route('admin.suppliers.create')}}" class="btn btn-primary mt-2">{{__('global.add_new')}}</a>
+            <h1>{{__('global.units')}}</h1>
+            @can('unit_create')
+                <a href="{{route('admin.units.create')}}" class="btn btn-primary mt-2">{{__('global.add_new')}}</a>
             @endcan
-            @can('supplier_delete')
-                <a href="{{route('admin.suppliers.trashed')}}" class="btn btn-danger mt-2">{{__('global.trash_list')}}</a>
+            @can('unit_delete')
+                <a href="{{route('admin.units.trashed')}}" class="btn btn-danger mt-2">{{__('global.trash_list')}}</a>
             @endcan
 
         </div>
         <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
                 <li class="breadcrumb-item"><a href="{{route('admin.dashboard')}}">{{__('global.home')}}</a></li>
-                <li class="breadcrumb-item active">{{__('global.suppliers')}}</li>
+                <li class="breadcrumb-item active">{{__('global.units')}}</li>
             </ol>
 
         </div>
@@ -27,44 +27,41 @@
 @section('content')
     <div class="row">
         <div class="col-12">
-            @can('supplier_list')
+            @can('unit_list')
                 <div class="card">
                     <div class="card-body table-responsive">
                         <table id="adminsList" class="table  dataTable table-bordered table-striped">
                             <thead>
                             <tr>
-                                <th>{{__('global.photo')}}</th>
-                                <th>{{__('global.name')}}</th>
-                                <th>{{__('global.phone')}}</th>
-                                <th>{{__('global.email')}}</th>
-                                <th>{{__('global.company')}}</th>
-                                <th>{{__('global.current_balance')}}</th>
+                                <th>{{__('global.sl')}}</th>
+                                <th>{{__('global.unit')}}</th>
+                                <th>{{__('global.code')}}</th>
+                                <th>{{__('global.status')}}</th>
+                                <th>{{__('global.updated_at')}}</th>
                                 <th>{{__('global.action')}}</th>
                             </tr>
                             </thead>
                             <tbody>
-                            @foreach($suppliers as $supplier)
+                            <?php $sl = 1; ?>
+                            @foreach($units as $unit)
                                 <tr>
 
-                                    <td>
-                                        <img class="rounded border" width="100px" src="{{asset('uploads/'.$supplier->photo)}}" alt="{{$supplier->name}}">
-                                    </td>
-                                    <td>{{$supplier->name}}</td>
-                                    <td>{{$supplier->phone}}</td>
-                                    <td>{{$supplier->email}}</td>
-                                    <td>{{$supplier->company}}</td>
-                                    <td>{{$supplier->current_balance}}</td>
+                                    <td>{{$sl++}}</td>
+                                    <td>{{$unit->name}}</td>
+                                    <td>{{$unit->code}}</td>
+                                    <td>{{$unit->status}}</td>
+                                    <td>{{date_format($unit->updated_at,'d M y h:i A') }}</td>
                                     <td class="text-center">
-                                        <form action="{{ route('admin.suppliers.destroy', $supplier->id) }}" method="POST">
+                                        <form action="{{ route('admin.units.destroy', $unit->id) }}" method="POST">
                                             @method('DELETE')
                                             @csrf
-                                            @can('supplier_view')
-                                                <a href="{{route('admin.suppliers.show',['supplier'=>$supplier->id])}}" class="btn btn-info px-1 py-0 btn-sm"><i class="fa fa-eye"></i></a>
+                                            @can('unit_view')
+                                                <a href="{{route('admin.units.show',['unit'=>$unit->id])}}" class="btn btn-info px-1 py-0 btn-sm"><i class="fa fa-eye"></i></a>
                                             @endcan
-                                            @can('supplier_update')
-                                                <a href="{{route('admin.suppliers.edit',['supplier'=>$supplier->id])}}" class="btn btn-warning px-1 py-0 btn-sm"><i class="fa fa-pen"></i></a>
+                                            @can('unit_update')
+                                                <a href="{{route('admin.units.edit',['unit'=>$unit->id])}}" class="btn btn-warning px-1 py-0 btn-sm"><i class="fa fa-pen"></i></a>
                                             @endcan
-                                            @can('supplier_delete')
+                                            @can('unit_delete')
                                                 <button onclick="isDelete(this)" class="btn btn-danger btn-sm px-1 py-0"><i class="fa fa-trash"></i></button>
                                             @endcan
 
@@ -76,12 +73,11 @@
                             </tbody>
                             <tfoot>
                             <tr>
-                                <th>{{__('global.photo')}}</th>
-                                <th>{{__('global.name')}}</th>
-                                <th>{{__('global.phone')}}</th>
-                                <th>{{__('global.email')}}</th>
-                                <th>{{__('global.company')}}</th>
-                                <th>{{__('global.current_balance')}}</th>
+                                <th>{{__('global.sl')}}</th>
+                                <th>{{__('global.unit')}}</th>
+                                <th>{{__('global.code')}}</th>
+                                <th>{{__('global.status')}}</th>
+                                <th>{{__('global.updated_at')}}</th>
                                 <th>{{__('global.action')}}</th>
                             </tr>
                             </tfoot>
