@@ -78,8 +78,8 @@ Route::resource('/farms',FarmController::class)->middleware('permission:farm_man
 
 //Cattle Listing
 Route::get('/cattles/trashed',[CattleController::class,'trashed_list'])->middleware('permission:cattle_manage')->name('cattles.trashed');
-Route::get('/cattles/trashed/{farm}/restore',[CattleController::class,'restore'])->middleware('permission:cattle_manage')->name('cattles.restore');
-Route::get('/cattles/trashed/{farm}/delete',[CattleController::class,'force_delete'])->middleware('permission:cattle_manage')->name('cattles.force_delete');
+Route::get('/cattles/trashed/{cattle}/restore',[CattleController::class,'restore'])->middleware('permission:cattle_manage')->name('cattles.restore');
+Route::get('/cattles/trashed/{cattle}/delete',[CattleController::class,'force_delete'])->middleware('permission:cattle_manage')->name('cattles.force_delete');
 Route::resource('/cattles',CattleController::class)->middleware('permission:cattle_manage');
 
 //Unit

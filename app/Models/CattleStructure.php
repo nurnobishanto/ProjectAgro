@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 class CattleStructure extends Model
 {
-    use HasFactory,SoftDeletes;
+    use HasFactory;
     protected $fillable = [
         'cattle_id',
         'date',

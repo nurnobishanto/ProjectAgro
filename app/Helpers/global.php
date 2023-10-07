@@ -10,6 +10,16 @@ if (!function_exists('myCustomFunction')) {
         // Your custom logic here
     }
 }
+if (!function_exists('calculateAgeInDaysFromDate')) {
+
+    function calculateAgeInDaysFromDate($inputDate) {
+        $inputDateTime = new DateTime($inputDate);
+        $currentDateTime = new DateTime();
+        $interval = $currentDateTime->diff($inputDateTime);
+        $ageInDays = $interval->days;
+        return $ageInDays.' Days';
+    }
+}
 if (!function_exists('productCodeGenerate')) {
 
     function productCodeGenerate()

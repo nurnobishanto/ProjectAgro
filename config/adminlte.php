@@ -323,40 +323,47 @@ return [
         ],
         ['header' => 'cattle_management'],
         [
-            'text' => 'cattle',
-            'url' => 'admin/cattles',
+            'text' => 'cattle_management',
             'can' => 'cattle_manage',
             'icon' => 'fab fa-cuttlefish',
+            'submenu' => [
+                [
+                    'text' => 'cattle',
+                    'url' => 'admin/cattles',
+                    'can' => 'cattle_manage',
+                ],
+                [
+                    'text' => 'breeds',
+                    'url' => 'admin/breeds',
+                    'can' => 'breed_manage',
+                ],
+                [
+                    'text' => 'cattle_type',
+                    'url' => 'admin/cattle-types',
+                    'can' => 'cattle_type_manage',
+                ],
+                [
+                    'text' => 'batches',
+                    'url' => 'admin/batches',
+                    'can' => 'batch_manage',
+                ],
+                [
+                    'text' => 'session_year',
+                    'url' => 'admin/session-years',
+                    'can' => 'session_year_manage',
+                ],
+            ]
         ],
-        [
-            'text' => 'cattle_type',
-            'url' => 'admin/cattle-types',
-            'can' => 'cattle_type_manage',
-            'icon' => 'fas fa-tag',
-        ],
-        [
-            'text' => 'session_year',
-            'url' => 'admin/session-years',
-            'can' => 'session_year_manage',
-            'icon' => 'fas fa-tag',
-        ],
-        [
-            'text' => 'batches',
-            'url' => 'admin/batches',
-            'can' => 'batch_manage',
-            'icon' => 'fas fa-tag',
-        ],
-        [
-            'text' => 'breeds',
-            'url' => 'admin/breeds',
-            'can' => 'breed_manage',
-            'icon' => 'fas fa-tag',
-        ],
+
+
+
+
+
         [
             'text' => 'farm',
             'url' => 'admin/farms',
             'can' => 'farm_manage',
-            'icon' => 'fas fa-tag',
+            'icon' => 'fas fa-igloo',
         ],
         [
             'text' => 'supplier',
@@ -368,7 +375,7 @@ return [
             'text' => 'party',
             'url' => 'admin/parties',
             'can' => 'party_manage',
-            'icon' => 'fas fa-user-friends',
+            'icon' => 'fas fa-users',
         ],
         ['header' => 'inventory_management'],
         [

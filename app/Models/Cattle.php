@@ -19,16 +19,15 @@ class Cattle extends Model
       'is_purchase',
       'purchase_date',
       'dob',
-      'age',
       'batch_id',
       'cattle_type_id',
       'breed_id',
       'image',
-      'galley',
       'gender',
       'category',
       'parent_id',
       'dairy_date',
+      'last_dairy_date',
       'total_child',
       'pregnant_date',
       'pregnant_no',
@@ -40,9 +39,6 @@ class Cattle extends Model
       'death_reason',
       'death_date',
       'sold_date',
-    ];
-    protected $casts = [
-        'galley' => 'array',
     ];
     public function parent(): \Illuminate\Database\Eloquent\Relations\BelongsTo
     {
@@ -71,5 +67,13 @@ class Cattle extends Model
     public function batch(): \Illuminate\Database\Eloquent\Relations\BelongsTo
     {
         return $this->belongsTo(Batch::class,'batch_id');
+    }
+    public function session_year(): \Illuminate\Database\Eloquent\Relations\BelongsTo
+    {
+        return $this->belongsTo(SessionYear::class);
+    }
+    public function farm(): \Illuminate\Database\Eloquent\Relations\BelongsTo
+    {
+        return $this->belongsTo(Farm::class);
     }
 }

@@ -26,7 +26,6 @@ return new class extends Migration
             $table->unsignedBigInteger('created_by');
             $table->foreign('created_by')->references('id')->on('admins');
             $table->timestamps();
-            $table->softDeletes();
         });
     }
 

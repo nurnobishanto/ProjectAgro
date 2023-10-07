@@ -25,10 +25,10 @@ class AjaxCartController extends Controller
             'bull'=>__('global.bull'),
             ];
         $femaleCategories = [
-            'calf' => 'Calf Cattle',
-            'dairy' =>'Dairy Cattle',
-            'dry' =>'Dry Cattle',
-            'pregnant' =>'Pregnant Cattle',
+            'calf' => __('global.calf'),
+            'dairy' => __('global.dairy'),
+            'dry' => __('global.dry'),
+            'pregnant' => __('global.pregnant'),
             ];
 
         // Determine the categories based on the gender
