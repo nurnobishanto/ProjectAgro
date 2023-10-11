@@ -21,6 +21,7 @@ This project is a new software development endeavor undertaken by Soft-ITBD.com.
 - Session Year Listing.
 - Farm Listing.
 - Cattle Listing.
+- Cattle Fattening.
 
 #### Global Crud
 - Supplier Listing.
