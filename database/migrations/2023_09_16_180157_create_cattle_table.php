@@ -29,7 +29,7 @@ return new class extends Migration
             $table->foreign('cattle_type_id')->references('id')->on('cattle_types');
             $table->unsignedBigInteger('breed_id');
             $table->foreign('breed_id')->references('id')->on('breeds');
-            $table->text('galley')->nullable();
+            $table->text('image')->nullable();
             $table->string('gender');
             $table->string('category');
             $table->string('status');

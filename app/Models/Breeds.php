@@ -25,4 +25,8 @@ class Breeds extends Model
     {
         return $this->belongsTo(CattleType::class, 'cattle_type_id');
     }
+    public function cattles()
+    {
+        return $this->hasMany(Cattle::class, 'breed_id');
+    }
 }

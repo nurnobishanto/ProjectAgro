@@ -356,9 +356,12 @@ return [
         ],
 
 
-
-
-
+        [
+            'text' => 'fattening',
+            'url' => 'admin/fattenings',
+            'can' => 'fattening_manage',
+            'icon' => 'fas fa-sync',
+        ],
         [
             'text' => 'farm',
             'url' => 'admin/farms',

@@ -177,6 +177,17 @@ class RoleSeeder extends Seeder
                 ]
             ],
             [
+                'group_name' => 'Fattening',
+                'permissions' => [
+                    'fattening_manage',
+                    'fattening_list',
+                    'fattening_view',
+                    'fattening_update',
+                    'fattening_delete',
+                    'fattening_create',
+                ]
+            ],
+            [
                 'group_name' => 'Unit',
                 'permissions' => [
                     'unit_manage',

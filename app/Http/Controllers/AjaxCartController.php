@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Breeds;
 use App\Models\CattleType;
 use Illuminate\Http\Request;
 
@@ -15,6 +16,12 @@ class AjaxCartController extends Controller
         $cattle_type_id = $request->input('cattle_type_id');
         $data = CattleType::find($cattle_type_id);
         return response()->json($data->breeds);
+
+    }
+    public function cattle_breed(Request $request){
+        $breed_id = $request->input('breed_id');
+        $data = Breeds::find($breed_id);
+        return response()->json($data->cattles);
 
     }
     public function category(Request $request){

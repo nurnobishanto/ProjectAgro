@@ -168,43 +168,5 @@
                 }
             });
         }
-        function checkSinglePermission(idName, className,inGroupCount,total,groupCount) {
-            if($('.'+className+' input:checked').length === inGroupCount){
-                $('#'+idName).prop('checked',true);
-            }else {
-                $('#'+idName).prop('checked',false);
-            }
-            if($('.permissions input:checked').length === total+groupCount){
-                $('#select_all').prop('checked',true);
-            }else {
-                $('#select_all').prop('checked',false);
-            }
-        }
-
-        function checkPermissionByGroup(idName, className,total,groupCount) {
-            if($('#'+idName).is(':checked')){
-                $('.'+className+' input').prop('checked',true);
-            }else {
-                $('.'+className+' input').prop('checked',false);
-            }
-            if($('.permissions input:checked').length === total+groupCount){
-                $('#select_all').prop('checked',true);
-            }else {
-                $('#select_all').prop('checked',false);
-            }
-        }
-
-        $('#select_all').click(function(event) {
-            if(this.checked) {
-                // Iterate each checkbox
-                $(':checkbox').each(function() {
-                    this.checked = true;
-                });
-            } else {
-                $(':checkbox').each(function() {
-                    this.checked = false;
-                });
-            }
-        });
     </script>
 @stop

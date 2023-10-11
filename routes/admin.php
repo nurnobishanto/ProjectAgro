@@ -8,6 +8,7 @@ use App\Http\Controllers\Admin\CattleController;
 use App\Http\Controllers\Admin\CattleTypeController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\FarmController;
+use App\Http\Controllers\Admin\FatteningController;
 use App\Http\Controllers\Admin\PartyController;
 use App\Http\Controllers\Admin\PermissionController;
 use App\Http\Controllers\Admin\ProductController;
@@ -99,3 +100,6 @@ Route::get('/taxes/trashed',[TaxController::class,'trashed_list'])->middleware('
 Route::get('/taxes/trashed/{tax}/restore',[TaxController::class,'restore'])->middleware('permission:tax_manage')->name('taxes.restore');
 Route::get('/taxes/trashed/{tax}/delete',[TaxController::class,'force_delete'])->middleware('permission:tax_manage')->name('taxes.force_delete');
 Route::resource('/taxes',TaxController::class)->middleware('permission:tax_manage');
+
+//Fattening
+Route::resource('/fattenings',FatteningController::class)->middleware('permission:fattening_manage');

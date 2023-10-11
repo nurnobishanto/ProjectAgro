@@ -20,6 +20,7 @@ This project is a new software development endeavor undertaken by Soft-ITBD.com.
 - Batch Listing
 - Session Year Listing.
 - Farm Listing.
+- Cattle Listing.
 
 #### Global Crud
 - Supplier Listing.
@@ -32,7 +33,6 @@ This project is a new software development endeavor undertaken by Soft-ITBD.com.
 
 
 ## Next Task *** Remaining
-- Cattle Listing.
 - Stock Management.
 - Product Purchase.
 

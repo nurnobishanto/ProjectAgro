@@ -37,4 +37,5 @@ return [
     'product' => 'Product',
     'tax' => 'Tax',
     'party' => 'Party',
+    'fattening' => 'Fattening',
 ];
