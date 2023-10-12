@@ -7,7 +7,69 @@ if (!function_exists('myCustomFunction')) {
 
     function myCustomFunction($param)
     {
-        // Your custom logic here
+
+    }
+}
+if (!function_exists('getPurchaseProducts')) {
+
+    function getPurchaseProducts($id)
+    {
+        return \App\Models\PurchaseProduct::where('purchase_id',$id)->get();
+    }
+}
+if (!function_exists('generateInvoiceId')) {
+
+    function generateInvoiceId($prefix)
+    {
+        $value = $prefix.'-'.rand(11111,99999);
+//        do{
+//            $value = 'PID-'.rand(11111,99999);
+//        }while(!\App\Models\Product::where('code',$value));
+        return $value;
+    }
+}
+
+if (!function_exists('getParties')) {
+
+    function getParties()
+    {
+        return \App\Models\Party::all();
+    }
+}
+if (!function_exists('getSuppliers')) {
+
+    function getSuppliers()
+    {
+        return \App\Models\Supplier::all();
+    }
+}
+if (!function_exists('getFarms')) {
+
+    function getFarms()
+    {
+        return \App\Models\Farm::all();
+    }
+}
+if (!function_exists('getTax')) {
+
+    function getTax()
+    {
+        return \App\Models\Tax::all();
+    }
+}
+if (!function_exists('getProducts')) {
+
+    function getProducts()
+    {
+        return \App\Models\Product::all();
+    }
+}
+
+if (!function_exists('myCustomFunction')) {
+
+    function myCustomFunction($param)
+    {
+
     }
 }
 if (!function_exists('calculateAgeInDaysFromDate')) {

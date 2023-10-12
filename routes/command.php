@@ -50,6 +50,13 @@ Route::prefix('command')->group(function (){
         toastr()->success(Artisan::output(), __('notification.fresh_migrated_seed'));
         return redirect()->back();
     });
+    Route::get('/seed', function (){
+        App::setLocale(session('locale'));
+        $seeder = new \Database\Seeders\RoleSeeder();
+        $seeder->run();
+        toastr()->info('Seed done');
+        return redirect()->route('admin.dashboard');
+    });
     Route::get('lang/{locale?}', function ($locale) {
         App::setLocale($locale);
         \app()->setLocale($locale);

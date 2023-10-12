@@ -12,6 +12,7 @@ use App\Http\Controllers\Admin\FatteningController;
 use App\Http\Controllers\Admin\PartyController;
 use App\Http\Controllers\Admin\PermissionController;
 use App\Http\Controllers\Admin\ProductController;
+use App\Http\Controllers\Admin\PurchaseController;
 use App\Http\Controllers\Admin\RoleController;
 use App\Http\Controllers\Admin\SessionYearController;
 use App\Http\Controllers\Admin\SupplierController;
@@ -103,3 +104,11 @@ Route::resource('/taxes',TaxController::class)->middleware('permission:tax_manag
 
 //Fattening
 Route::resource('/fattenings',FatteningController::class)->middleware('permission:fattening_manage');
+
+
+//Purchase
+Route::get('/purchases/trashed',[PurchaseController::class,'trashed_list'])->middleware('permission:purchase_manage')->name('purchases.trashed');
+Route::get('/purchases/trashed/{purchase}/restore',[PurchaseController::class,'restore'])->middleware('permission:purchase_manage')->name('purchases.restore');
+Route::get('/purchases/trashed/{purchase}/delete',[PurchaseController::class,'force_delete'])->middleware('permission:purchase_manage')->name('purchases.force_delete');
+Route::resource('/purchases',PurchaseController::class)->middleware('permission:purchase_manage');
+Route::get('/stock',[PurchaseController::class,'stock'])->middleware('permission:stock_manage');

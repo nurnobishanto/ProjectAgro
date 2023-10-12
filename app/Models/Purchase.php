@@ -13,13 +13,17 @@ class Purchase extends Model
         'invoice_no',
         'purchase_date',
         'supplier_id',
+        'farm_id',
         'tax',
         'discount',
         'shipping_cost',
         'labor_cost',
+        'other_cost',
         'purchase_note',
         'image',
         'total',
+        'paid',
+        'due',
         'grand_total',
         'status',
         'created_by',
@@ -38,9 +42,13 @@ class Purchase extends Model
     {
         return $this->belongsTo(Supplier::class);
     }
+    public function farm()
+    {
+        return $this->belongsTo(Farm::class);
+    }
 
     public function products()
     {
-        return $this->hasMany(PurchaseProduct::class);
+        return $this->hasMany(PurchaseProduct::class,'product_id');
     }
 }

@@ -387,6 +387,16 @@ return [
             'can' => ['inventory_manage'],
             'submenu' => [
                 [
+                    'text' => 'stock_report',
+                    'can' => 'stock_manage',
+                    'url' => 'admin/stock'
+                ],
+                [
+                    'text' => 'purchase',
+                    'can' => 'purchase_manage',
+                    'url' => 'admin/purchases'
+                ],
+                [
                     'text' => 'product',
                     'can' => 'product_manage',
                     'url' => 'admin/products'
@@ -440,6 +450,11 @@ return [
                     'text' => 'optimize',
                     'can'  => 'command_optimize',
                     'url' => 'command/optimize'
+                ],
+                [
+                    'text' => 'seed',
+                    'can'  => 'command_seed',
+                    'url' => 'command/seed'
                 ],
                 [
                     'text' => 'migrate',

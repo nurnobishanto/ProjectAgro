@@ -16,10 +16,13 @@ class RoleSeeder extends Seeder
      */
     public function run()
     {
-        $superAdmin = Role::create(['name' => 'super_admin']);
-        Role::create(['name' => 'admin']);
-        Role::create(['name' => 'employee']);
-        Role::create(['name' => 'user']);
+        $superAdmin = Role::where('name','super_admin')->first();
+        if (!$superAdmin){
+            $superAdmin = Role::create(['name' => 'super_admin']);
+            Role::create(['name' => 'admin']);
+            Role::create(['name' => 'employee']);
+            Role::create(['name' => 'user']);
+        }
         $permissions = [
             [
                 'group_name' => 'Global',
@@ -37,6 +40,7 @@ class RoleSeeder extends Seeder
                     'command_config_clear',
                     'command_route_clear',
                     'command_optimize',
+                    'command_seed',
                     'command_migrate',
                     'command_migrate_fresh',
                     'command_migrate_fresh_seed',
@@ -220,6 +224,28 @@ class RoleSeeder extends Seeder
                     'tax_create',
                 ]
             ],
+            [
+                'group_name' => 'Purchase',
+                'permissions' => [
+                    'purchase_manage',
+                    'purchase_list',
+                    'purchase_view',
+                    'purchase_update',
+                    'purchase_delete',
+                    'purchase_create',
+                ]
+            ],
+            [
+                'group_name' => 'StockReport',
+                'permissions' => [
+                    'stock_manage',
+                    'stock_list',
+                    'stock_view',
+                    'stock_update',
+                    'stock_delete',
+                    'stock_create',
+                ]
+            ],
 
 
         ];
@@ -227,8 +253,10 @@ class RoleSeeder extends Seeder
         for ($i = 0;$i<count($permissions);$i++){
             $permissions_group = $permissions[$i]['group_name'];
             for ($j = 0;$j<count($permissions[$i]['permissions']);$j++){
-                //Admin guard Permisson
-                $super_permission =  Permission::create(['name'=>$permissions[$i]['permissions'][$j],'group_name'=>$permissions_group]);
+                $super_permission = Permission::where('name',$permissions[$i]['permissions'][$j])->first();
+                if (!$super_permission){
+                    $super_permission =  Permission::create(['name'=>$permissions[$i]['permissions'][$j],'group_name'=>$permissions_group]);
+                }
                 $superAdmin->givePermissionTo($super_permission);
                 $super_permission->assignRole($superAdmin);
 

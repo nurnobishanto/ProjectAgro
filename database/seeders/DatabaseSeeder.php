@@ -16,11 +16,6 @@ class DatabaseSeeder extends Seeder
         File::deleteDirectory(public_path('uploads'));
         $this->call(RoleSeeder::class);
         $this->call(AdminSeeder::class);
-        // \App\Models\User::factory(10)->create();
 
-        // \App\Models\User::factory()->create([
-        //     'name' => 'Test User',
-        //     'email' => 'test@example.com',
-        // ]);
     }
 }

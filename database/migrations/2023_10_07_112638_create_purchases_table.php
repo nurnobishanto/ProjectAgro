@@ -17,13 +17,18 @@ return new class extends Migration
             $table->date('purchase_date');
             $table->unsignedBigInteger('supplier_id');
             $table->foreign('supplier_id')->references('id')->on('suppliers');
+            $table->unsignedBigInteger('farm_id');
+            $table->foreign('farm_id')->references('id')->on('farms');
             $table->double('tax')->default(0);
             $table->double('discount')->default(0);
             $table->double('shipping_cost')->default(0);
             $table->double('labor_cost')->default(0);
+            $table->double('other_cost')->default(0);
             $table->text('purchase_note')->nullable();
             $table->text('image')->nullable();
             $table->double('total')->default(0);
+            $table->double('paid')->default(0);
+            $table->double('due')->default(0);
             $table->double('grand_total')->default(0);
             $table->enum('status', ['pending', 'success','rejected'])->default('pending');
             $table->unsignedBigInteger('created_by');

@@ -19,7 +19,7 @@ class ProductController extends Controller
     }
     public function trashed_list(){
         App::setLocale(session('locale'));
-        $products = product::orderBy('id','DESC')->onlyTrashed()->get();
+        $products = Product::orderBy('id','DESC')->onlyTrashed()->get();
         return view('admin.products.trashed',compact('products'));
     }
     public function create()
@@ -64,7 +64,7 @@ class ProductController extends Controller
     public function show(string $id)
     {
         App::setLocale(session('locale'));
-        $product = product::find($id);
+        $product = Product::find($id);
         return view('admin.products.show',compact('product'));
     }
     public function edit(string $id)
@@ -113,14 +113,14 @@ class ProductController extends Controller
     public function destroy(string $id)
     {
         App::setLocale(session('locale'));
-        $product = product::find($id);
+        $product = Product::find($id);
         $product->delete();
         toastr()->warning($product->name.__('global.deleted_success'),__('global.product').__('global.deleted'));
         return redirect()->route('admin.products.index');
     }
     public function restore($id){
         App::setLocale(session('locale'));
-        $product = product::withTrashed()->find($id);
+        $product = Product::withTrashed()->find($id);
         $product->deleted_at = null;
         $product->update();
         toastr()->success($product->name.__('global.restored_success'),__('global.restored'));
@@ -128,7 +128,7 @@ class ProductController extends Controller
     }
     public function force_delete($id){
         App::setLocale(session('locale'));
-        $product = product::withTrashed()->find($id);
+        $product = Product::withTrashed()->find($id);
         $old_image_path = "uploads/".$product->photo;
         if (file_exists($old_image_path)) {
             @unlink($old_image_path);

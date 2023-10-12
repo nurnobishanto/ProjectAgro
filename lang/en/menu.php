@@ -38,4 +38,7 @@ return [
     'tax' => 'Tax',
     'party' => 'Party',
     'fattening' => 'Fattening',
+    'purchase' => 'Purchase',
+    'seed' => 'Seed',
+    'stock_report' => 'Stock Report',
 ];
