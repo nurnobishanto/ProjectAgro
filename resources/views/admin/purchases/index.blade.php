@@ -35,14 +35,14 @@
                             <tr>
                                 <th >{{__('global.sl')}}</th>
                                 <th width="200px">{{__('global.date')}}</th>
-                                <th width="200px">{{__('global.invoice_no')}}</th>
+                                <th width="300px">{{__('global.invoice_no')}}</th>
                                 <th width="200px">{{__('global.supplier')}}</th>
                                 <th width="200px">{{__('global.farm')}}</th>
                                 <th width="200px">{{__('global.products')}}</th>
                                 <th width="200px">{{__('global.total')}}</th>
                                 <th>{{__('global.status')}}</th>
                                 <th width="120px">{{__('global.updated_at')}}</th>
-                                <th width="80px">{{__('global.action')}}</th>
+                                <th width="200px">{{__('global.action')}}</th>
                             </tr>
                             </thead>
                             <tbody>
@@ -55,22 +55,40 @@
                                     <td>{{$purchase->invoice_no}}</td>
                                     <td>{{$purchase->supplier->name??'--'}}</td>
                                     <td>{{$purchase->farm->name??'--'}}</td>
-                                    <td>{{$purchase->products->count()}}</td>
-                                    <td>{{$purchase->products->sum('sub_total')}}</td>
+                                    <td>{{$purchase->purchaseProducts->count()}}</td>
+                                    <td>{{$purchase->purchaseProducts->sum('sub_total')}}</td>
                                     <td>{{__('global.'.$purchase->status)}}</td>
                                     <td>{{date_format($purchase->updated_at,'d M y h:i A') }}</td>
                                     <td class="text-center">
+                                        @if($purchase->status === 'pending')
                                         <form action="{{ route('admin.purchases.destroy', $purchase->id) }}" method="POST">
                                             @method('DELETE')
                                             @csrf
                                             @can('purchase_view')
                                                 <a href="{{route('admin.purchases.show',['purchase'=>$purchase->id])}}" class="btn btn-info px-1 py-0 btn-sm"><i class="fa fa-eye"></i></a>
                                             @endcan
+                                            @can('purchase_update')
+                                                <a href="{{route('admin.purchases.edit',['purchase'=>$purchase->id])}}" class="btn btn-info px-1 py-0 btn-sm"><i class="fa fa-pen"></i></a>
+                                            @endcan
                                             @can('purchase_delete')
                                                 <button onclick="isDelete(this)" class="btn btn-danger btn-sm px-1 py-0"><i class="fa fa-trash"></i></button>
                                             @endcan
 
                                         </form>
+                                        @elseif($purchase->status === 'rejected')
+                                            <span class="text-capitalize badge badge-danger">{{$purchase->status}}</span>
+                                            @can('purchase_view')
+                                                <a href="{{route('admin.purchases.show',['purchase'=>$purchase->id])}}" class="btn btn-info px-1 py-0 btn-sm"><i class="fa fa-eye"></i></a>
+                                            @endcan
+
+                                        @else
+                                            <span class="text-capitalize badge badge-success">{{$purchase->status}}</span>
+                                            @can('purchase_view')
+                                                <a href="{{route('admin.purchases.show',['purchase'=>$purchase->id])}}" class="btn btn-info px-1 py-0 btn-sm"><i class="fa fa-eye"></i></a>
+                                            @endcan
+
+                                        @endif
+
                                     </td>
                                 </tr>
                             @endforeach

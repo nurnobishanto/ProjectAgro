@@ -47,8 +47,8 @@ class Purchase extends Model
         return $this->belongsTo(Farm::class);
     }
 
-    public function products()
+    public function purchaseProducts(): \Illuminate\Database\Eloquent\Relations\HasMany
     {
-        return $this->hasMany(PurchaseProduct::class,'product_id');
+        return $this->hasMany(PurchaseProduct::class);
     }
 }

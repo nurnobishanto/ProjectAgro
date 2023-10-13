@@ -19,12 +19,11 @@ if (!function_exists('getPurchaseProducts')) {
 }
 if (!function_exists('generateInvoiceId')) {
 
-    function generateInvoiceId($prefix)
+    function generateInvoiceId($prefix,$model = \App\Models\Product::class)
     {
-        $value = $prefix.'-'.rand(11111,99999);
-//        do{
-//            $value = 'PID-'.rand(11111,99999);
-//        }while(!\App\Models\Product::where('code',$value));
+        do{
+            $value = $prefix.'-'.rand(11111,99999);
+        }while(!$model::where('code',$value));
         return $value;
     }
 }
@@ -65,11 +64,18 @@ if (!function_exists('getProducts')) {
     }
 }
 
-if (!function_exists('myCustomFunction')) {
+if (!function_exists('getAllData')) {
 
-    function myCustomFunction($param)
+    function getAllData($model)
     {
+        return $model::all();
+    }
+}
+if (!function_exists('getDataById')) {
 
+    function getDataById($model,$id)
+    {
+        return $model::find($id);
     }
 }
 if (!function_exists('calculateAgeInDaysFromDate')) {

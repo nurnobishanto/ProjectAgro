@@ -31,11 +31,13 @@ This project is a new software development endeavor undertaken by Soft-ITBD.com.
 - Unit Listing.
 - Tax Listing.
 - Product Listing.
-
-
-## Next Task *** Remaining
 - Stock Management.
 - Product Purchase.
+
+## Next Task *** Remaining
+- Cattle Feeding
+- Cattle Vaccine
+- Cattle Medicine
 
 
 

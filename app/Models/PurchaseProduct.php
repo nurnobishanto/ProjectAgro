@@ -16,12 +16,12 @@ class PurchaseProduct extends Model
         'sub_total',
     ];
 
-    public function purchase()
+    public function purchase(): \Illuminate\Database\Eloquent\Relations\BelongsTo
     {
         return $this->belongsTo(Purchase::class);
     }
 
-    public function product()
+    public function product(): \Illuminate\Database\Eloquent\Relations\BelongsTo
     {
         return $this->belongsTo(Product::class);
     }

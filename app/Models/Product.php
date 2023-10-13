@@ -23,12 +23,16 @@ class Product extends Model
         'created_by',
     ];
 
-    public function createdBy()
+    public function createdBy(): \Illuminate\Database\Eloquent\Relations\BelongsTo
     {
         return $this->belongsTo(Admin::class, 'created_by');
     }
-    public function unit()
+    public function unit(): \Illuminate\Database\Eloquent\Relations\BelongsTo
     {
         return $this->belongsTo(Unit::class, 'unit_id');
+    }
+    public function purchaseProducts(): \Illuminate\Database\Eloquent\Relations\HasMany
+    {
+        return $this->hasMany(PurchaseProduct::class);
     }
 }

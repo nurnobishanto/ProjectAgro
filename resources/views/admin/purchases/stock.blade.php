@@ -1,20 +1,16 @@
 @extends('adminlte::page')
 
-@section('title', __('global.purchases'). __('global.deleted'))
+@section('title', __('global.stocks'))
 
 @section('content_header')
     <div class="row mb-2">
         <div class="col-sm-6">
-            <h1>{{__('global.purchases'). __('global.deleted')}}</h1>
-            @can('supplier_list')
-                <a href="{{route('admin.purchases.index')}}" class="btn btn-primary mt-2">{{__('global.go_back')}}</a>
-            @endcan
-
+            <h1>{{__('global.stocks')}}</h1>
         </div>
         <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
                 <li class="breadcrumb-item"><a href="{{route('admin.dashboard')}}">{{__('global.home')}}</a></li>
-                <li class="breadcrumb-item active">{{__('global.purchases')}}</li>
+                <li class="breadcrumb-item active">{{__('global.stocks')}}</li>
             </ol>
 
         </div>
@@ -24,59 +20,75 @@
 @section('content')
     <div class="row">
         <div class="col-12">
-            @can('supplier_list')
+            @can('stock_list')
                 <div class="card">
+                    <div class="card-header">
+                        <form class="" action="" method="get">
+                            <div class="row">
+                                <div class="col-md-3 col-sm-5">
+                                    <div class="form-group">
+                                        <select class="form-control select2" name="farm_id">
+                                            <option value="">All</option>
+                                            @foreach(getFarms() as $farm)
+                                                <option value="{{$farm->id}}"  @if($farm_id == $farm->id) selected @endif>{{$farm->name}}</option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-md-3 col-sm-5">
+                                    <div class="form-group">
+                                        <select class="form-control select2" name="product_id">
+                                            <option value="">All</option>
+                                            @foreach(getProducts() as $product)
+                                                <option value="{{$product->id}}" @if($product_id == $product->id) selected @endif >{{$product->name}}</option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-md-2 col-sm-2">
+                                    <div class="form-group">
+                                       <input type="submit" value="Filter" class="form-control btn btn-info">
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <input type="text" class="btn btn-secondary" readonly value="{{__('global.total')}} : {{$totalBalance}} Taka">
+                                </div>
+                            </div>
+                        </form>
+                    </div>
                     <div class="card-body table-responsive">
-                        <table id="suppliersList" class="table  dataTable table-bordered table-striped">
+                        <table id="stockList" class="table  dataTable table-bordered table-striped">
                             <thead>
                             <tr>
                                 <th >{{__('global.sl')}}</th>
-                                <th width="200px">{{__('global.date')}}</th>
-                                <th width="200px">{{__('global.invoice_no')}}</th>
-                                <th width="200px">{{__('global.supplier')}}</th>
                                 <th width="200px">{{__('global.farm')}}</th>
                                 <th width="200px">{{__('global.products')}}</th>
-                                <th width="200px">{{__('global.total')}}</th>
-                                <th>{{__('global.status')}}</th>
-                                <th width="120px">{{__('global.updated_at')}}</th>
-                                <th width="80px">{{__('global.action')}}</th>
+                                <th width="200px">{{__('global.qty')}}</th>
+                                <th width="200px">{{__('global.unit_price')}}</th>
+                                <th width="200px">{{__('global.balance')}}</th>
                             </tr>
                             </thead>
                             <tbody>
-                            <?php $sl = 1; ?>
-                            @foreach($purchases as $purchase)
+                                <?php $sl = 1; ?>
+                            @foreach($stocks as $stock)
                                 <tr>
                                     <td>{{$sl++}}</td>
-                                    <td>{{$purchase->purchase_date}}</td>
-                                    <td>{{$purchase->invoice_no}}</td>
-                                    <td>{{$purchase->supplier->name??'--'}}</td>
-                                    <td>{{$purchase->farm->name??'--'}}</td>
-                                    <td>{{$purchase->purchaseProducts->count()}}</td>
-                                    <td>{{$purchase->purchaseProducts->sum('sub_total')}}</td>
-                                    <td>{{__('global.'.$purchase->status)}}</td>
-                                    <td>{{date_format($purchase->updated_at,'d M y h:i A') }}</td>
-                                    <td class="text-center">
-                                        @can('purchase_delete')
-                                        <a href="{{route('admin.purchases.restore',['purchase'=>$purchase->id])}}"  class="btn btn-success btn-sm px-1 py-0"><i class="fa fa-arrow-left"></i></a>
-                                        <a href="{{route('admin.purchases.force_delete',['purchase'=>$purchase->id])}}"  class="btn btn-danger btn-sm px-1 py-0"><i class="fa fa-trash"></i></a>
-                                        @endcan
-                                    </td>
+                                    <td>{{$stock->farm->name??'--'}}</td>
+                                    <td>{{$stock->product->name}}</td>
+                                    <td>{{$stock->quantity}} <sup>{{$stock->product->unit->name}}</sup></td>
+                                    <td>{{$stock->unit_price}} </td>
+                                    <td>{{$stock->unit_price * $stock->quantity}}</td>
                                 </tr>
                             @endforeach
-
                             </tbody>
                             <tfoot>
                             <tr>
                                 <th >{{__('global.sl')}}</th>
-                                <th width="200px">{{__('global.date')}}</th>
-                                <th width="200px">{{__('global.invoice_no')}}</th>
-                                <th width="200px">{{__('global.supplier')}}</th>
                                 <th width="200px">{{__('global.farm')}}</th>
                                 <th width="200px">{{__('global.products')}}</th>
-                                <th width="200px">{{__('global.total')}}</th>
-                                <th>{{__('global.status')}}</th>
-                                <th width="120px">{{__('global.updated_at')}}</th>
-                                <th width="80px">{{__('global.action')}}</th>
+                                <th width="200px">{{__('global.qty')}}</th>
+                                <th width="200px">{{__('global.unit_price')}}</th>
+                                <th width="200px">{{__('global.balance')}}</th>
                             </tr>
                             </tfoot>
                         </table>
@@ -98,6 +110,7 @@
 @section('plugins.datatablesPlugins', true)
 @section('plugins.Datatables', true)
 @section('plugins.Sweetalert2', true)
+@section('plugins.Select2', true)
 
 
 @section('css')
@@ -107,28 +120,12 @@
 @section('js')
 
     <script>
-        function isDelete(button) {
-            event.preventDefault();
-            var row = $(button).closest("tr");
-            var form = $(button).closest("form");
-            Swal.fire({
-                title: @json(__('global.deleteConfirmTitle')),
-                text: @json(__('global.deleteConfirmText')),
-                icon: "warning",
-                showCancelButton: true,
-                confirmButtonText: @json(__('global.deleteConfirmButtonText')),
-                cancelButtonText: @json(__('global.deleteCancelButton')),
-            }).then((result) => {
-                console.log(result)
-                if (result.value) {
-                    // Trigger the form submission
-                    form.submit();
-                }
-            });
-        }
 
         $(document).ready(function() {
-            $("#suppliersList").DataTable({
+            $('.select2').select2({
+                theme:'classic'
+            });
+            $("#stockList").DataTable({
                 dom: 'Bfrtip',
                 responsive: true,
                 lengthChange: false,
@@ -173,10 +170,10 @@
                         next: "{{ __('global.next') }}",
                         last: "{{ __('global.last') }}",
                     }
-                }
+                },
             });
-
         });
+
 
     </script>
 @stop

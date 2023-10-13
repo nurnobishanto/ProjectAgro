@@ -110,5 +110,6 @@ Route::resource('/fattenings',FatteningController::class)->middleware('permissio
 Route::get('/purchases/trashed',[PurchaseController::class,'trashed_list'])->middleware('permission:purchase_manage')->name('purchases.trashed');
 Route::get('/purchases/trashed/{purchase}/restore',[PurchaseController::class,'restore'])->middleware('permission:purchase_manage')->name('purchases.restore');
 Route::get('/purchases/trashed/{purchase}/delete',[PurchaseController::class,'force_delete'])->middleware('permission:purchase_manage')->name('purchases.force_delete');
+Route::post('/purchases/{purchase}/approve',[PurchaseController::class,'approve'])->middleware('permission:purchase_approve')->name('purchases.approve');
 Route::resource('/purchases',PurchaseController::class)->middleware('permission:purchase_manage');
-Route::get('/stock',[PurchaseController::class,'stock'])->middleware('permission:stock_manage');
+Route::get('/stock',[PurchaseController::class,'stock'])->middleware('permission:stock_manage')->name('stock');

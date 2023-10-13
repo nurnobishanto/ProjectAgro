@@ -88,7 +88,7 @@ class ProductController extends Controller
             'sale_price' => 'required',
             'status' => 'required',
         ]);
-        $imageFile = null;
+        $imageFile = $product->image??null;
         if($request->file('image')){
             $imageFile = $request->file('image')->store('product-image');
             $old_image_path = "uploads/".$request->image_old;

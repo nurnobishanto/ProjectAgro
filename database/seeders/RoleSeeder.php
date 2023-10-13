@@ -233,6 +233,7 @@ class RoleSeeder extends Seeder
                     'purchase_update',
                     'purchase_delete',
                     'purchase_create',
+                    'purchase_approve',
                 ]
             ],
             [
