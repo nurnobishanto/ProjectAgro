@@ -9,6 +9,9 @@ use App\Http\Controllers\Admin\CattleTypeController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\FarmController;
 use App\Http\Controllers\Admin\FatteningController;
+use App\Http\Controllers\Admin\FeedingCategoryController;
+use App\Http\Controllers\Admin\FeedingGroupController;
+use App\Http\Controllers\Admin\FeedingMomentController;
 use App\Http\Controllers\Admin\PartyController;
 use App\Http\Controllers\Admin\PermissionController;
 use App\Http\Controllers\Admin\ProductController;
@@ -113,3 +116,21 @@ Route::get('/purchases/trashed/{purchase}/delete',[PurchaseController::class,'fo
 Route::post('/purchases/{purchase}/approve',[PurchaseController::class,'approve'])->middleware('permission:purchase_approve')->name('purchases.approve');
 Route::resource('/purchases',PurchaseController::class)->middleware('permission:purchase_manage');
 Route::get('/stock',[PurchaseController::class,'stock'])->middleware('permission:stock_manage')->name('stock');
+
+//Feeding Category
+Route::get('/feeding-categories/trashed',[FeedingCategoryController::class,'trashed_list'])->middleware('permission:feeding_category_manage')->name('feeding-categories.trashed');
+Route::get('/feeding-categories/trashed/{feeding_category}/restore',[FeedingCategoryController::class,'restore'])->middleware('permission:feeding_category_manage')->name('feeding-categories.restore');
+Route::get('/feeding-categories/trashed/{feeding_category}/delete',[FeedingCategoryController::class,'force_delete'])->middleware('permission:feeding_category_manage')->name('feeding-categories.force_delete');
+Route::resource('/feeding-categories',FeedingCategoryController::class)->middleware('permission:feeding_category_manage');
+
+//Feeding Moment
+Route::get('/feeding-moments/trashed',[FeedingMomentController::class,'trashed_list'])->middleware('permission:feeding_moment_manage')->name('feeding-moments.trashed');
+Route::get('/feeding-moments/trashed/{feeding_moment}/restore',[FeedingMomentController::class,'restore'])->middleware('permission:feeding_moment_manage')->name('feeding-moments.restore');
+Route::get('/feeding-moments/trashed/{feeding_moment}/delete',[FeedingMomentController::class,'force_delete'])->middleware('permission:feeding_moment_manage')->name('feeding-moments.force_delete');
+Route::resource('/feeding-moments',FeedingMomentController::class)->middleware('permission:feeding_moment_manage');
+
+//Feeding Group
+Route::get('/feeding-groups/trashed',[FeedingGroupController::class,'trashed_list'])->middleware('permission:feeding_group_manage')->name('feeding-groups.trashed');
+Route::get('/feeding-groups/trashed/{feeding_group}/restore',[FeedingGroupController::class,'restore'])->middleware('permission:feeding_group_manage')->name('feeding-groups.restore');
+Route::get('/feeding-groups/trashed/{feeding_group}/delete',[FeedingGroupController::class,'force_delete'])->middleware('permission:feeding_group_manage')->name('feeding-groups.force_delete');
+Route::resource('/feeding-groups',FeedingGroupController::class)->middleware('permission:feeding_group_manage');

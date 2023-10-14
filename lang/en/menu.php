@@ -41,4 +41,9 @@ return [
     'purchase' => 'Purchase',
     'seed' => 'Seed',
     'stock_report' => 'Stock Report',
+    'feeding_management' => 'Feeding Management',
+    'feeding_group' => 'Feeding Group',
+    'feeding_moment' => 'Feeding Moment',
+    'feeding_category' => 'Feeding Category',
+    'feeding' => 'Feeding',
 ];

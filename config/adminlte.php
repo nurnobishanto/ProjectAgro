@@ -325,7 +325,7 @@ return [
         [
             'text' => 'cattle_management',
             'can' => 'cattle_manage',
-            'icon' => 'fab fa-cuttlefish',
+            'icon' => 'fa fa-hippo',
             'submenu' => [
                 [
                     'text' => 'cattle',
@@ -354,8 +354,33 @@ return [
                 ],
             ]
         ],
-
-
+        [
+            'text' => 'feeding_management',
+            'can' => 'feeding_manage',
+            'icon' => 'fas fa-utensils',
+            'submenu' => [
+                [
+                    'text' => 'feeding',
+                    'url' => 'admin/feedings',
+                    'can' => 'feeding_manage',
+                ],
+                [
+                    'text' => 'feeding_group',
+                    'url' => 'admin/feeding-groups',
+                    'can' => 'feeding_group_manage',
+                ],
+                [
+                    'text' => 'feeding_moment',
+                    'url' => 'admin/feeding-moments',
+                    'can' => 'feeding_moment_manage',
+                ],
+                [
+                    'text' => 'feeding_category',
+                    'url' => 'admin/feeding-categories',
+                    'can' => 'feeding_category_manage',
+                ],
+            ]
+        ],
         [
             'text' => 'fattening',
             'url' => 'admin/fattenings',

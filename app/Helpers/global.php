@@ -49,11 +49,25 @@ if (!function_exists('getFarms')) {
         return \App\Models\Farm::all();
     }
 }
+if (!function_exists('getCattleTypes')) {
+
+    function getCattleTypes()
+    {
+        return \App\Models\CattleType::all();
+    }
+}
 if (!function_exists('getTax')) {
 
     function getTax()
     {
         return \App\Models\Tax::all();
+    }
+}
+if (!function_exists('getFeedItems')) {
+
+    function getFeedItems()
+    {
+        return \App\Models\Product::where('type','cattle_meal')->get();
     }
 }
 if (!function_exists('getProducts')) {

@@ -21,7 +21,7 @@
 
 <body>
 <div class="container">
-    <header class="d-flex flex-wrap align-items-center justify-content-center justify-content-md-between py-3 mb-4 border-bottom">
+    <header class="d-flex flex-wrap align-items-center justify-content-center justify-content-md-between py-3 mb-4 border-bottom sticky-top" id="nav">
         <div class="col-md-3 mb-2 mb-md-0">
             <a href="/" class="d-inline-flex link-body-emphasis text-decoration-none">
                 <img src="{{asset('self/light-logo.png')}}" alt="Sehrish Agro" class="img-fluid navbar-brand" style="max-height: 100px">
@@ -30,8 +30,8 @@
         </div>
 
         <ul class="nav col-12 col-md-auto mb-2 justify-content-center mb-md-0">
-            <li><a href="#" class="nav-link px-2 link-secondary">Home</a></li>
-            {{--                <li><a href="#" class="nav-link px-2">Features</a></li>--}}
+            <li><a href="#nav" class="nav-link px-2 ">Home</a></li>
+            <li><a href="#progress" class="nav-link px-2">Progress</a></li>
             {{--                <li><a href="#" class="nav-link px-2">Pricing</a></li>--}}
             {{--                <li><a href="#" class="nav-link px-2">FAQs</a></li>--}}
             {{--                <li><a href="#" class="nav-link px-2">About</a></li>--}}
@@ -61,6 +61,13 @@
             </a>
         </h2>
         <p> Laravel v{{ Illuminate\Foundation\Application::VERSION }} (PHP v{{ PHP_VERSION }})</p>
+    </section>
+    <section class="container" id="progress">
+        @php
+            $readmePath = base_path('README.md'); // Replace with the actual path to your readme.md file
+            $readmeContent = \Illuminate\Support\Facades\File::get($readmePath);
+        @endphp
+        @markdown($readmeContent)
     </section>
 
 </main>

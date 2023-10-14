@@ -192,6 +192,50 @@ class RoleSeeder extends Seeder
                 ]
             ],
             [
+                'group_name' => 'Feeding',
+                'permissions' => [
+                    'feeding_manage',
+                    'feeding_list',
+                    'feeding_view',
+                    'feeding_update',
+                    'feeding_delete',
+                    'feeding_create',
+                ]
+            ],
+            [
+                'group_name' => 'FeedingGroup',
+                'permissions' => [
+                    'feeding_group_manage',
+                    'feeding_group_list',
+                    'feeding_group_view',
+                    'feeding_group_update',
+                    'feeding_group_delete',
+                    'feeding_group_create',
+                ]
+            ],
+            [
+                'group_name' => 'FeedingCategory',
+                'permissions' => [
+                    'feeding_category_manage',
+                    'feeding_category_list',
+                    'feeding_category_view',
+                    'feeding_category_update',
+                    'feeding_category_delete',
+                    'feeding_category_create',
+                ]
+            ],
+            [
+                'group_name' => 'FeedingMoment',
+                'permissions' => [
+                    'feeding_moment_manage',
+                    'feeding_moment_list',
+                    'feeding_moment_view',
+                    'feeding_moment_update',
+                    'feeding_moment_delete',
+                    'feeding_moment_create',
+                ]
+            ],
+            [
                 'group_name' => 'Unit',
                 'permissions' => [
                     'unit_manage',

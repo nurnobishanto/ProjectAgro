@@ -35,4 +35,8 @@ class Product extends Model
     {
         return $this->hasMany(PurchaseProduct::class);
     }
+    public function feedingGroups(): \Illuminate\Database\Eloquent\Relations\BelongsToMany
+    {
+        return $this->belongsToMany(FeedingGroup::class, 'feeding_group_product');
+    }
 }
