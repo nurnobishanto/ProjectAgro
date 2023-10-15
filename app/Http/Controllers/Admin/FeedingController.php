@@ -126,8 +126,15 @@ class FeedingController extends Controller
     {
         App::setLocale(session('locale'));
         $feeding = FeedingRecord::find($id);
+        $data = array();
 
-        return view('admin.feedings.show',compact('feeding'));
+        $feeding_group = FeedingGroup::where('id',$feeding->feeding_group_id)->first();
+        $data['feeding_group'] = $feeding_group;
+        $data['feeding'] = $feeding;
+        $data['items'] = $feeding_group->products??[];
+        $data['cattles'] = Cattle::where('farm_id',$feeding_group->farm_id)->where('cattle_type_id',$feeding_group->cattle_type_id)->where('status','active')->get();
+
+        return view('admin.feedings.show',$data);
     }
     public function edit(string $id)
     {
@@ -284,7 +291,7 @@ class FeedingController extends Controller
         $feeding->products()->sync($items);
         $feeding->deleted_at = null;
         $feeding->update();
-        toastr()->success($feeding->name.__('global.restored_success'),__('global.restored'));
+        toastr()->success($feeding->date.__('global.restored_success'),__('global.restored'));
         return redirect()->route('admin.feedings.index');
     }
     public function force_delete($id){
@@ -295,6 +302,13 @@ class FeedingController extends Controller
         $feeding->forceDelete();
         toastr()->error(__('global.feeding').__('global.deleted_success'),__('global.deleted'));
         return redirect()->route('admin.feedings.trashed');
+    }
+    public function approve ($id){
+        $feeding = FeedingRecord::find($id);
+        $feeding->status = 'success';
+        $feeding->update();
+        toastr()->success($feeding->date.__('global.approved_success'),__('global.approved'));
+        return redirect()->route('admin.feedings.index');
     }
 
 }

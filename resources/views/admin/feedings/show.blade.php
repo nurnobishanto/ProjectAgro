@@ -1,17 +1,17 @@
 @extends('adminlte::page')
 
-@section('title', __('global.view_feeding_group'))
+@section('title', __('global.view_feeding'))
 
 @section('content_header')
     <div class="row mb-2">
         <div class="col-sm-6">
-            <h1>{{__('global.view_feeding_group')}}</h1>
+            <h1>{{__('global.view_feeding')}}</h1>
         </div>
         <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
                 <li class="breadcrumb-item"><a href="{{route('admin.dashboard')}}">{{__('global.home')}}</a></li>
-                <li class="breadcrumb-item"><a href="{{route('admin.feeding-groups.index')}}">{{__('global.feeding_groups')}}</a></li>
-                <li class="breadcrumb-item active">{{__('global.view_feeding_group')}}</li>
+                <li class="breadcrumb-item"><a href="{{route('admin.feedings.index')}}">{{__('global.feedings')}}</a></li>
+                <li class="breadcrumb-item active">{{__('global.view_feeding')}}</li>
             </ol>
 
         </div>
@@ -22,6 +22,48 @@
     <div class="row">
         <div class="col-12">
             <div class="card">
+                <div class="card-header">
+                    <div class="row">
+                        <div class="col-lg-6 col-md-6 col-sm-12">
+                            <ul class="list-group">
+                                <li class="list-group-item">
+                                    <strong>{{__('global.farm')}} :</strong> {{$feeding_group->farm->name}}
+                                    <strong>{{__('global.cattle_type')}} :</strong> {{$feeding_group->cattle_type->title}}
+                                </li>
+                                <li class="list-group-item">
+                                    <strong>{{__('global.feeding')}} :</strong> {{$feeding_group->feeding_category->name}} {{$feeding_group->feeding_moment->name}}
+                                </li>
+                                <li class="list-group-item">
+                                    <strong>{{__('global.total_cost')}}</strong> {{$feeding->total_cost}} /
+                                    <strong>{{__('global.cattles')}} :</strong> {{$feeding->cattles->count()}}  =
+                                    <strong>{{__('global.average')}} :</strong> {{round($feeding->total_cost/$feeding->cattles->count(),2)}}
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="col-lg-3 col-md-3 col-sm-6 col-6">
+                            <div class="card">
+                                <div class="card-body">
+                                    <div class="form-group">
+                                        <label for="date">{{ __('global.select_date')}}<span class="text-danger"> *</span></label>
+                                        <input name="date" id="date" value="{{$feeding->date}}" disabled type="text" class="form-control datepicker">
+                                        <input name="feeding_group_id" value="{{$feeding_group->id}}"  class="d-none">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-3 col-md-3 col-sm-6 col-6">
+                            <div class="card">
+                                <div class="card-body">
+                                    <div class="form-group">
+                                        <label for="comment">{{ __('global.comment')}}</label>
+                                        <textarea rows="1" name="comment" id="comment" disabled type="text" class="form-control">{{$feeding->comment}}</textarea>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
                 <div class="card-body">
                         @if (count($errors) > 0)
                             <div class = "alert alert-danger">
@@ -33,82 +75,38 @@
                             </div>
                         @endif
                             <div class="row">
-                                <div class="col-md-4 col-sm-6">
-                                    <div class="form-group">
-                                        <label for="farm_id">{{ __('global.select_farm')}}<span class="text-danger"> *</span></label>
-                                        <select disabled name="farm_id" id="farm_id" class="form-control select2">
-                                            <option value="">{{ __('global.select_farm')}}</option>
-                                            @foreach(getFarms() as $farm)
-                                                <option value="{{$farm->id}}" @if($farm->id == $feeding_group->farm_id) selected @endif>{{$farm->name}}</option>
-                                            @endforeach
 
-                                        </select>
+                                @foreach($items as $item)
+                                    <div class="col-lg-3 col-md-4 col-sm-6 col-6">
+                                        <div class="card">
+                                            <div class="card-body">
+                                                <div class="form-group">
+                                                    <label>{{ $item->name }} ({{ (getStock($feeding_group->farm_id, $item->id)->quantity ?? 0) + (getFeedRecordProduct($feeding->id,$item->id)->quantity??0) }} {{ $item->unit->code }})</label>
+                                                    <input name="items[]" value="{{ $item->id }}" class="d-none">
+                                                    <table>
+                                                        <tr>
+                                                            <td>
+                                                                <input
+                                                                    disabled
+                                                                    name="qty[]"
+                                                                    type="number"
+                                                                    value="{{(getFeedRecordProduct($feeding->id,$item->id)->quantity??0)}}"
+                                                                    placeholder="{{ __('global.quantity') }}"
+                                                                    class="form-control quantity-input"
+                                                                    data-min="0"
+                                                                    data-max="{{(getStock($feeding_group->farm_id, $item->id)->quantity ?? 0) + (getFeedRecordProduct($feeding->id,$item->id)->quantity??0) }}"
+                                                                >
+                                                            </td>
+                                                            <td>{{ $item->unit->code }}</td>
+                                                        </tr>
+                                                    </table>
+                                                </div>
+                                            </div>
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="col-md-4 col-sm-6">
-                                    <div class="form-group">
-                                        <label for="cattle_type_id">{{ __('global.select_cattle_type')}}<span class="text-danger"> *</span></label>
-                                        <select disabled name="cattle_type_id" id="cattle_type_id" class="form-control select2">
-                                            <option value="">{{ __('global.select_cattle_type')}}</option>
-                                            @foreach(getCattleTypes() as $ct)
-                                                <option value="{{$ct->id}}" @if($ct->id == $feeding_group->cattle_type_id) selected @endif>{{$ct->title}}</option>
-                                            @endforeach
-                                        </select>
-                                    </div>
-                                </div>
-                                <div class="col-md-4 col-sm-6">
-                                    <div class="form-group">
-                                        <label for="feeding_category_id">{{ __('global.select_feeding_category')}}<span class="text-danger"> *</span></label>
-                                        <select disabled name="feeding_category_id" id="feeding_category_id" class="form-control select2">
-                                            <option value="">{{ __('global.select_feeding_category')}}</option>
-                                            @foreach(getAllData(\App\Models\FeedingCategory::class) as $fc)
-                                                <option value="{{$fc->id}}" @if($fc->id == $feeding_group->feeding_category_id) selected @endif>{{$fc->name}}</option>
-                                            @endforeach
-                                        </select>
-                                    </div>
-                                </div>
-                                <div class="col-md-4 col-sm-6">
-                                    <div class="form-group">
-                                        <label for="feeding_moment_id">{{ __('global.select_feeding_moment')}}<span class="text-danger"> *</span></label>
-                                        <select disabled name="feeding_moment_id" id="feeding_moment_id" class="form-control select2">
-                                            <option value="">{{ __('global.select_feeding_moment')}}</option>
-                                            @foreach(getAllData(\App\Models\FeedingMoment::class) as $fm)
-                                                <option value="{{$fm->id}}" @if($fm->id == $feeding_group->feeding_moment_id) selected @endif>{{$fm->name}}</option>
-                                            @endforeach
-                                        </select>
-                                    </div>
-                                </div>
-                                <div class="col-md-4 col-sm-6">
-                                    <div class="form-group">
-                                        <label for="status">{{ __('global.status')}}</label>
-                                        <input id="status" class="form-control" disabled value="{{ __('global.'.$feeding_group->status)}}">
-                                    </div>
-                                </div>
-                                <div class="col-md-4 col-sm-6">
-                                    <div class="form-group">
-                                        <label for="updated_at">{{ __('global.updated_at')}}</label>
-                                        <input id="updated_at" class="form-control" disabled value="{{date_format($feeding_group->updated_at,'d M y h:i A') }}">
-                                    </div>
-                                </div>
-                                <div class="col-md-4 col-sm-6">
-                                    <div class="form-group">
-                                        <label for="updated_by">{{ __('global.updated_by')}}</label>
-                                        <input id="updated_by" class="form-control" disabled value="{{$feeding_group->updatedBy->name}}">
-                                    </div>
-                                </div>
-                                <div class="col-md-4 col-sm-6">
-                                    <div class="form-group">
-                                        <label for="updated_at">{{ __('global.created_at')}}</label>
-                                        <input id="updated_at" class="form-control" disabled value="{{date_format($feeding_group->created_at,'d M y h:i A') }}">
-                                    </div>
-                                </div>
-                                <div class="col-md-4 col-sm-6">
-                                    <div class="form-group">
-                                        <label for="created_by">{{ __('global.created_by')}}</label>
-                                        <input id="created_by" class="form-control" disabled value="{{$feeding_group->createdBy->name}}">
-                                    </div>
-                                </div>
-                                <div class="col-12">
+                                @endforeach
+
+                                <div class="col-12" id="cattle_list">
                                     <div class="card">
                                         <div class="card-header">
                                             <h5 class="card-title">{{__('global.select_feeding_item')}}</h5>
@@ -120,16 +118,26 @@
                                                     <thead>
                                                     <tr>
                                                         <th width="80px">{{__('global.select')}}</th>
-                                                        <th>{{__('global.item_name')}}</th>
-                                                        <th>{{__('global.item_unit')}}</th>
+                                                        <th>{{__('global.tag_id')}}</th>
+                                                        <th>{{__('global.gender')}}</th>
+                                                        <th>{{__('global.batch_no')}}</th>
+                                                        <th>{{__('global.session_year')}}</th>
+                                                        <th>{{__('global.weight')}}</th>
+                                                        <th>{{__('global.height')}}</th>
+                                                        <th>{{__('global.width')}}</th>
                                                     </tr>
                                                     </thead>
                                                     <tbody>
-                                                    @foreach($feeding_group->products as $item)
+                                                    @foreach($cattles as $cattle)
                                                         <tr>
-                                                            <td><input type="checkbox" disabled @if ($feeding_group->products->contains($item->id)) checked @endif name="items[]"  value="{{$item->id}}" class="form-control form-check"></td>
-                                                            <td>{{$item->name}}</td>
-                                                            <td>{{$item->unit->name??'--'}} ( {{$item->unit->code??'--'}} )</td>
+                                                            <td><input disabled type="checkbox" name="cattles[]" @if ($feeding->cattles->contains($cattle->id)) checked @endif  value="{{$cattle->id}}" class="form-control form-check"></td>
+                                                            <td>{{$cattle->tag_id}}</td>
+                                                            <td>{{__('global.'.$cattle->gender)}}</td>
+                                                            <td>{{$cattle->batch->name}}</td>
+                                                            <td>{{$cattle->session_year->year}}</td>
+                                                            <td>{{getLatestCattleStructure($cattle->id,'weight')}} <sup>{{__('global.kg')}}</sup></td>
+                                                            <td>{{getLatestCattleStructure($cattle->id,'height')}} <sup>{{__('global.inch')}}</sup></td>
+                                                            <td>{{getLatestCattleStructure($cattle->id,'width')}} <sup>{{__('global.inch')}}</sup></td>
                                                         </tr>
                                                     @endforeach
                                                     </tbody>
@@ -143,16 +151,21 @@
 
 
 
-                        <form action="{{ route('admin.feeding-groups.destroy', $feeding_group->id) }}" method="POST">
+                        <form action="{{ route('admin.feedings.destroy', $feeding->id) }}" method="POST">
                             @method('DELETE')
                             @csrf
-                            <a href="{{route('admin.feeding-groups.index')}}" class="btn btn-success" >Go Back</a>
-                            @can('feeding_group_update')
-                                <a href="{{route('admin.feeding-groups.edit',['feeding_group'=>$feeding_group->id])}}" class="btn btn-warning "><i class="fa fa-pen"></i> Edit</a>
-                            @endcan
-                            @can('feeding_group_delete')
-                                <button onclick="isDelete(this)" class="btn btn-danger"><i class="fa fa-trash"></i> Delete</button>
-                            @endcan
+                            <a href="{{route('admin.feedings.index')}}" class="btn btn-success" >Go Back</a>
+                            @if($feeding->status == 'pending')
+                                @can('feeding_update')
+                                    <a href="{{route('admin.feedings.edit',['feeding'=>$feeding->id])}}" class="btn btn-warning "><i class="fa fa-pen"></i> Edit</a>
+                                @endcan
+                                @can('feeding_delete')
+                                    <button onclick="isDelete(this)" class="btn btn-danger"><i class="fa fa-trash"></i> Delete</button>
+                                @endcan
+                                @can('feeding_approve')
+                                    <a href="{{route('admin.feedings.approve',['feeding'=>$feeding->id])}}" class="btn btn-primary "><i class="fa fa-thumbs-up"></i> Approve</a>
+                                @endcan
+                            @endif
                         </form>
 
                 </div>
@@ -194,43 +207,8 @@
                 }
             });
         }
-        function checkSinglePermission(idName, className,inGroupCount,total,groupCount) {
-            if($('.'+className+' input:checked').length === inGroupCount){
-                $('#'+idName).prop('checked',true);
-            }else {
-                $('#'+idName).prop('checked',false);
-            }
-            if($('.permissions input:checked').length === total+groupCount){
-                $('#select_all').prop('checked',true);
-            }else {
-                $('#select_all').prop('checked',false);
-            }
-        }
+        $(document).ready(function() {
 
-        function checkPermissionByGroup(idName, className,total,groupCount) {
-            if($('#'+idName).is(':checked')){
-                $('.'+className+' input').prop('checked',true);
-            }else {
-                $('.'+className+' input').prop('checked',false);
-            }
-            if($('.permissions input:checked').length === total+groupCount){
-                $('#select_all').prop('checked',true);
-            }else {
-                $('#select_all').prop('checked',false);
-            }
-        }
-
-        $('#select_all').click(function(event) {
-            if(this.checked) {
-                // Iterate each checkbox
-                $(':checkbox').each(function() {
-                    this.checked = true;
-                });
-            } else {
-                $(':checkbox').each(function() {
-                    this.checked = false;
-                });
-            }
         });
     </script>
 @stop

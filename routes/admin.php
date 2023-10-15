@@ -140,4 +140,5 @@ Route::resource('/feeding-groups',FeedingGroupController::class)->middleware('pe
 Route::get('/feedings/trashed',[FeedingController::class,'trashed_list'])->middleware('permission:feeding_manage')->name('feedings.trashed');
 Route::get('/feedings/trashed/{feeding}/restore',[FeedingController::class,'restore'])->middleware('permission:feeding_manage')->name('feedings.restore');
 Route::get('/feedings/trashed/{feeding}/delete',[FeedingController::class,'force_delete'])->middleware('permission:feeding_manage')->name('feedings.force_delete');
+Route::get('/feedings/{feeding}/approve',[FeedingController::class,'approve'])->middleware('permission:feeding_approve')->name('feedings.approve');
 Route::resource('/feedings',FeedingController::class)->middleware('permission:feeding_manage');

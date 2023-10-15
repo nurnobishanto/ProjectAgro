@@ -314,4 +314,6 @@ return [
     'select_date' => 'Select Date',
     'average' => 'Average',
     'comment' => 'Comment',
+    'approved' => 'Approved',
+    'approved_success' => 'Approved Successfully',
 ];
