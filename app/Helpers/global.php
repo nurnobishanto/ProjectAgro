@@ -1,13 +1,44 @@
 <?php
 
 
+use App\Models\FeedingRecord;
 use App\Models\GlobalSetting;
+
 
 if (!function_exists('myCustomFunction')) {
 
     function myCustomFunction($param)
     {
 
+    }
+}
+if (!function_exists('getFeedRecordProduct')) {
+    function getFeedRecordProduct($record_id, $product_id)
+    {
+        $feedingRecord = FeedingRecord::find($record_id);
+
+        if (!$feedingRecord) {
+            return [];
+        }
+
+        $product = $feedingRecord->products()->wherePivot('product_id', $product_id)->first();
+
+        return $product ? $product->pivot : [];
+    }
+}
+if (!function_exists('getStock')) {
+
+    function getStock($farm_id,$product_id)
+    {
+        return \App\Models\Stock::where('farm_id',$farm_id)->where('product_id',$product_id)->first();
+    }
+}
+if (!function_exists('getLatestCattleStructure')) {
+
+    function getLatestCattleStructure($id,$column)
+    {
+        $cattleStructure = \App\Models\CattleStructure::where('cattle_id',$id)->orderBy('id','desc')->first();
+        return $cattleStructure->$column;
     }
 }
 if (!function_exists('getPurchaseProducts')) {

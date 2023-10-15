@@ -26,6 +26,8 @@ This project is a new software development endeavor undertaken by Soft-ITBD.com.
 - Cattle Feeding Category
 - Cattle Feeding Moment
 - Cattle Feeding Group
+- Cattle Feeding
+- Cattle Feeding Management
 
 #### Global Crud
 - Supplier Listing.
@@ -39,8 +41,7 @@ This project is a new software development endeavor undertaken by Soft-ITBD.com.
 - Product Purchase.
 
 ## Next Task *** Remaining
-- Cattle Feeding 
-- Cattle Feeding Management
+
 - Cattle Vaccine
 - Cattle Medicine
 

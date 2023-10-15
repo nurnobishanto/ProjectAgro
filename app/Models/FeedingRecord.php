@@ -9,7 +9,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 class FeedingRecord extends Model
 {
     use HasFactory, SoftDeletes;
-    protected $fillable = ['date','feeding_group_id','status','created_by','updated_by'];
+    protected $fillable = ['date','feeding_group_id','status','comment','per_cattle_cost','total_cost','created_by','updated_by'];
 
     public function feedingGroup(): \Illuminate\Database\Eloquent\Relations\BelongsTo
     {
@@ -18,7 +18,8 @@ class FeedingRecord extends Model
 
     public function products(): \Illuminate\Database\Eloquent\Relations\BelongsToMany
     {
-        return $this->belongsToMany(Product::class, 'feeding_record_product');
+        return $this->belongsToMany(Product::class, 'feeding_record_product')->withPivot('unit_price','quantity','total_cost');
+
     }
 
     public function cattles(): \Illuminate\Database\Eloquent\Relations\BelongsToMany

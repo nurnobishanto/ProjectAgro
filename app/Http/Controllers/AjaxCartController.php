@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Breeds;
 use App\Models\CattleType;
+use App\Models\Farm;
+use App\Models\FeedingGroup;
 use Illuminate\Http\Request;
 
 class AjaxCartController extends Controller
@@ -42,5 +44,43 @@ class AjaxCartController extends Controller
         $selectedCategories = ($gender === 'male') ? $maleCategories : $femaleCategories;
 
         return response()->json($selectedCategories);
+    }
+
+    public function get_feeding_farms(){
+        $feeding_groups =  FeedingGroup::select('farm_id')->distinct('farm_id')->get();
+        $farms = [];
+        foreach ($feeding_groups as $feeding_group){
+            $farms[] = [
+                'farm_id' => $feeding_group->farm_id,
+                'name' => $feeding_group->farm->name,
+            ];
+        }
+        return response()->json($farms);
+    }
+    public function get_feeding_farms_cattle_types(Request $request){
+
+        $farm_id = $request->input('farm_id');
+        $feeding_groups =  FeedingGroup::select('farm_id','cattle_type_id')->where('farm_id',$farm_id)->distinct('cattle_type_id')->get();
+        $cattle_types= [];
+        foreach ($feeding_groups as $feeding_group){
+            $cattle_types[] = [
+                'cattle_type_id' => $feeding_group->cattle_type_id,
+                'name' => $feeding_group->cattle_type->title,
+            ];
+        }
+        return response()->json($cattle_types);
+    }
+    public function get_feeding_group_period(Request $request){
+        $farm_id = $request->input('farm_id');
+        $cattle_type_id = $request->input('cattle_type_id');
+        $feeding_groups =  FeedingGroup::where('farm_id',$farm_id)->where('cattle_type_id',$cattle_type_id)->distinct('cattle_type_id')->get();
+        $groups= [];
+        foreach ($feeding_groups as $feeding_group){
+            $groups[] = [
+                'id' => $feeding_group->id,
+                'name' => $feeding_group->feeding_category->name.' - '.$feeding_group->feeding_moment->name,
+            ];
+        }
+        return response()->json($groups);
     }
 }

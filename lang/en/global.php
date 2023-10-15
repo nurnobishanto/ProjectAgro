@@ -302,4 +302,16 @@ return [
     'item_unit' => 'Item Unit',
     'items' => 'Items',
     'select' => 'Select',
+
+    'feeding' => 'Feeding',
+    'feedings' => 'Feedings',
+    'create_feeding' => 'Create Feeding',
+    'update_feeding' => 'Update Feeding',
+    'delete_feeding' => 'Delete Feeding',
+    'view_feeding' => 'View Feeding',
+    'select_feeding_group' => 'Select Feeding Group',
+    'quantity' => 'Quantity',
+    'select_date' => 'Select Date',
+    'average' => 'Average',
+    'comment' => 'Comment',
 ];

@@ -162,21 +162,26 @@
         var $toggleAllButton = $('#toggleAllButton');
 
         $toggleAllButton.on('click', function() {
-            $checkboxes.prop('checked', function(i, val) {
-                return !val;
-            });
+            var allChecked = $checkboxes.length === $checkboxes.filter(':checked').length;
+
+            if (allChecked) {
+                // If all checkboxes are checked, uncheck all
+                $checkboxes.prop('checked', false);
+            } else {
+                // If not all checkboxes are checked, check all
+                $checkboxes.prop('checked', true);
+            }
+
             toggleButtonText();
         });
 
         function toggleButtonText() {
             if ($checkboxes.length === $checkboxes.filter(':checked').length) {
                 $toggleAllButton.text('Uncheck All');
-                $toggleAllButton.removeClass('badge-success')
-                $toggleAllButton.addClass('badge-danger')
+                $toggleAllButton.removeClass('badge-success').addClass('badge-danger');
             } else {
                 $toggleAllButton.text('Check All');
-                $toggleAllButton.removeClass('badge-danger')
-                $toggleAllButton.addClass('badge-success')
+                $toggleAllButton.removeClass('badge-danger').addClass('badge-success');
             }
         }
 

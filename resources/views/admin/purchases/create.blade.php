@@ -412,7 +412,7 @@
                 $dis.val(discountValue);
                 $paid.val(paidAmountValue);
 
-                var totalValue = subTotal + shippingCostValue + laborCostValue + taxAmount - discountValue;
+                var totalValue = subTotal + shippingCostValue + laborCostValue + otherCostValue + taxAmount - discountValue;
                 $total.val(totalValue);
 
                 var dueValue = totalValue - paidAmountValue;

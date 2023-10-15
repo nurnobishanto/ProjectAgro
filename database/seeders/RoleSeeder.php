@@ -200,6 +200,7 @@ class RoleSeeder extends Seeder
                     'feeding_update',
                     'feeding_delete',
                     'feeding_create',
+                    'feeding_approve',
                 ]
             ],
             [
