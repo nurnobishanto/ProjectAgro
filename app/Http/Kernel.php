@@ -23,6 +23,7 @@ class Kernel extends HttpKernel
         \App\Http\Middleware\TrimStrings::class,
         \Illuminate\Foundation\Http\Middleware\ConvertEmptyStringsToNull::class,
         \App\Http\Middleware\ChangeLocale::class,
+        \App\Http\Middleware\HttpsRedirectMiddleware::class,
     ];
 
     /**
