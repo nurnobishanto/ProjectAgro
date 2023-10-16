@@ -18,8 +18,6 @@ class FatteningController extends Controller
     public function create(Request $request){
         $request->validate([
             'tag_id'=>'required',
-            'breed_id'=>'required',
-            'cattle_type_id'=>'required',
         ]);
         App::setLocale(session('locale'));
         $data = array();

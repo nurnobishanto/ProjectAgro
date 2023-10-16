@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Breeds;
+use App\Models\Cattle;
 use App\Models\CattleType;
 use App\Models\Farm;
 use App\Models\FeedingGroup;
@@ -10,8 +11,19 @@ use Illuminate\Http\Request;
 
 class AjaxCartController extends Controller
 {
+    public function farms(){
+        $data =  Farm::all();
+        return response()->json($data);
+    }
+
     public function cattle_types(){
         $data =  CattleType::all();
+        return response()->json($data);
+    }
+    public function farm_cattle_list(Request $request){
+        $farm_id = $request->input('farm_id');
+        $cattle_type_id = $request->input('cattle_type_id');
+        $data =  Cattle::where('cattle_type_id',$cattle_type_id)->where('farm_id',$farm_id)->get();
         return response()->json($data);
     }
     public function cattle_type(Request $request){

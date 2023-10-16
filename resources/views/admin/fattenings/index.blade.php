@@ -34,23 +34,26 @@
                             </div>
                         @endif
                         <div class="row">
-                            <div class="col-md-4 col-sm-6">
+                            <div class="col-lg-2 col-md-3 col-sm-6">
+                                <div class="form-group ">
+                                    <label for="farm_id">{{ __('global.select_farm')}}<span class="text-danger"> *</span></label>
+                                    <select id="farm_id" name="farm_id" class="form-control">
+                                        <option value="">{{ __('global.select_farm')}}</option>
+                                    </select>
+
+                                </div>
+                            </div>
+                            <div class="col-lg-2 col-md-3 col-sm-6">
                                 <div class="form-group">
                                     <label for="cattle_type_id">{{ __('global.select_cattle_type')}}<span class="text-danger"> *</span></label>
                                     <select id="cattle_type_id" name="cattle_type_id" class="form-control">
                                         <option value="">{{ __('global.select_cattle_type')}}</option>
                                     </select>
+
                                 </div>
                             </div>
-                            <div class="col-md-4 col-sm-6">
-                                <div class="form-group">
-                                    <label for="breed_id">{{ __('global.select_breed')}}<span class="text-danger"> *</span></label>
-                                    <select id="breed_id" name="breed_id" class="form-control">
-                                        <option value="">{{ __('global.select_breed')}}</option>
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="col-md-4 col-sm-6">
+
+                            <div class="col-lg-2 col-md-3 col-sm-6">
                                 <div class="form-group">
                                     <label for="tag_id">{{ __('global.select_tag_id')}}<span class="text-danger"> *</span></label>
                                     <select id="tag_id" name="tag_id" class="form-control">
@@ -58,9 +61,9 @@
                                     </select>
                                 </div>
                             </div>
-                            <div class="col-md-4 col-sm-6">
+                            <div class="col-lg-2 col-md-3 col-sm-6">
                                 <div class="form-group">
-                                    <input type="submit" value="Submit" class="btn btn-primary">
+                                    <input type="submit" value="Submit" class="btn btn-primary mt-4">
                                 </div>
                             </div>
                         </div>
@@ -140,6 +143,7 @@
 @stop
 @section('plugins.datatablesPlugins', true)
 @section('plugins.Datatables', true)
+@section('plugins.Select2', true)
 @section('plugins.Sweetalert2', true)
 
 
@@ -171,6 +175,9 @@
         }
 
         $(document).ready(function() {
+            $('select').select2({
+                theme:'classic',
+            });
             $("#fatteningsList").DataTable({
                 dom: 'Bfrtip',
                 responsive: true,
@@ -218,25 +225,49 @@
                     }
                 }
             });
+            loadFarms();
             loadCattleTypes();
-            $('#cattle_type_id').change(function() {
-                var cattle_type_id = $(this).val();
-                if (cattle_type_id) {
-                    loadBreeds(cattle_type_id);
+            $('#farm_id').change(function() {
+                var farm_id = $(this).val();
+                var cattle_type_id = $('#cattle_type_id').val();
+                if (farm_id || cattle_type_id) {
+                    loadCattleList(farm_id,cattle_type_id);
                 } else {
-                    $('#breed_id').empty();
+                    $('#tag_id').empty();
                 }
             });
-            $('#breed_id').change(function() {
-                var breed_id = $(this).val();
-                if (breed_id) {
-                    loadCattleList(breed_id);
+            $('#cattle_type_id').change(function() {
+                var cattle_type_id = $(this).val();
+                var farm_id = $('#farm_id').val();
+                if (cattle_type_id || farm_id) {
+                    loadCattleList(farm_id,cattle_type_id);
                 } else {
                     $('#tag_id').empty();
                 }
             });
         });
 
+        function loadFarms() {
+            $.ajax({
+                url: '{{route('farms')}}', // Replace with your server URL
+                method: 'GET',
+                dataType: 'json',
+                success: function(data) {
+                    var farm_id = $('#farm_id');
+                    farm_id.empty();
+                    farm_id.append($('<option>', {
+                        value: '',
+                        text: '{{ __('global.select_farm')}}'
+                    }));
+                    $.each(data, function(key, value) {
+                        farm_id.append($('<option>', {
+                            value: value.id,
+                            text: value.name
+                        }));
+                    });
+                }
+            });
+        }
         function loadCattleTypes() {
             $.ajax({
                 url: '{{route('cattle_types')}}', // Replace with your server URL
@@ -258,39 +289,16 @@
                 }
             });
         }
-        function loadBreeds(cattle_type_id) {
+
+        function loadCattleList(farm_id,cattle_type_id) {
             $.ajax({
-                url: "{{ route('cattle_type') }}",
+                url: "{{ route('farm_cattle_list') }}",
                 method: 'GET',
                 dataType: 'json',
                 data: {
                     _token: '{{ csrf_token() }}', // Add a CSRF token if needed
-                    cattle_type_id: cattle_type_id // Send cattle_type_id as data
-                },
-                success: function(data) {
-                    var breedsSelect = $('#breed_id');
-                    breedsSelect.empty();
-                    breedsSelect.append($('<option>', {
-                        value: '',
-                        text: '{{__('global.select_breed')}}'
-                    }));
-                    $.each(data, function(key, value) {
-                        breedsSelect.append($('<option>', {
-                            value: value.id,
-                            text: value.name
-                        }));
-                    });
-                }
-            });
-        }
-        function loadCattleList(breed_id) {
-            $.ajax({
-                url: "{{ route('cattle_breed') }}",
-                method: 'GET',
-                dataType: 'json',
-                data: {
-                    _token: '{{ csrf_token() }}', // Add a CSRF token if needed
-                    breed_id: breed_id // Send cattle_type_id as data
+                    farm_id: farm_id ,// Send cattle_type_id as data
+                    cattle_type_id: cattle_type_id ,// Send cattle_type_id as data
                 },
                 success: function(data) {
                     var tagSelect = $('#tag_id');

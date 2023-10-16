@@ -20,7 +20,9 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::get('farms',[\App\Http\Controllers\AjaxCartController::class,'farms'])->name('farms');
 Route::get('cattle-types',[\App\Http\Controllers\AjaxCartController::class,'cattle_types'])->name('cattle_types');
+Route::get('cattle-cattle-list',[\App\Http\Controllers\AjaxCartController::class,'farm_cattle_list'])->name('farm_cattle_list');
 Route::get('cattle-type',[\App\Http\Controllers\AjaxCartController::class,'cattle_type'])->name('cattle_type');
 Route::get('cattle-breed',[\App\Http\Controllers\AjaxCartController::class,'cattle_breed'])->name('cattle_breed');
 Route::get('category',[\App\Http\Controllers\AjaxCartController::class,'category'])->name('category');
