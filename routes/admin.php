@@ -11,6 +11,7 @@ use App\Http\Controllers\Admin\FarmController;
 use App\Http\Controllers\Admin\FatteningController;
 use App\Http\Controllers\Admin\FeedingCategoryController;
 use App\Http\Controllers\Admin\FeedingController;
+use App\Http\Controllers\Admin\DewormerController;
 use App\Http\Controllers\Admin\FeedingGroupController;
 use App\Http\Controllers\Admin\FeedingMomentController;
 use App\Http\Controllers\Admin\PartyController;
@@ -21,7 +22,9 @@ use App\Http\Controllers\Admin\RoleController;
 use App\Http\Controllers\Admin\SessionYearController;
 use App\Http\Controllers\Admin\SupplierController;
 use App\Http\Controllers\Admin\TaxController;
+use App\Http\Controllers\Admin\TreatmentController;
 use App\Http\Controllers\Admin\UnitController;
+use App\Http\Controllers\Admin\VaccineController;
 use Illuminate\Support\Facades\Route;
 
 
@@ -142,3 +145,24 @@ Route::get('/feedings/trashed/{feeding}/restore',[FeedingController::class,'rest
 Route::get('/feedings/trashed/{feeding}/delete',[FeedingController::class,'force_delete'])->middleware('permission:feeding_manage')->name('feedings.force_delete');
 Route::get('/feedings/{feeding}/approve',[FeedingController::class,'approve'])->middleware('permission:feeding_approve')->name('feedings.approve');
 Route::resource('/feedings',FeedingController::class)->middleware('permission:feeding_manage');
+
+//Feeding Dewormer
+Route::get('/dewormers/trashed',[DewormerController::class,'trashed_list'])->middleware('permission:dewormer_manage')->name('dewormers.trashed');
+Route::get('/dewormers/trashed/{dewormer}/restore',[DewormerController::class,'restore'])->middleware('permission:dewormer_manage')->name('dewormers.restore');
+Route::get('/dewormers/trashed/{dewormer}/delete',[DewormerController::class,'force_delete'])->middleware('permission:dewormer_manage')->name('dewormers.force_delete');
+Route::get('/dewormers/{dewormer}/approve',[DewormerController::class,'approve'])->middleware('permission:dewormer_approve')->name('dewormers.approve');
+Route::resource('/dewormers',DewormerController::class)->middleware('permission:dewormer_manage');
+
+//Feeding Vaccine
+Route::get('/vaccines/trashed',[VaccineController::class,'trashed_list'])->middleware('permission:vaccine_manage')->name('vaccines.trashed');
+Route::get('/vaccines/trashed/{vaccine}/restore',[VaccineController::class,'restore'])->middleware('permission:vaccine_manage')->name('vaccines.restore');
+Route::get('/vaccines/trashed/{vaccine}/delete',[VaccineController::class,'force_delete'])->middleware('permission:vaccine_manage')->name('vaccines.force_delete');
+Route::get('/vaccines/{vaccine}/approve',[VaccineController::class,'approve'])->middleware('permission:vaccine_approve')->name('vaccines.approve');
+Route::resource('/vaccines',VaccineController::class)->middleware('permission:vaccine_manage');
+
+//Feeding Treatment
+Route::get('/treatments/trashed',[TreatmentController::class,'trashed_list'])->middleware('permission:treatment_manage')->name('treatments.trashed');
+Route::get('/treatments/trashed/{treatment}/restore',[TreatmentController::class,'restore'])->middleware('permission:treatment_manage')->name('treatments.restore');
+Route::get('/treatments/trashed/{treatment}/delete',[TreatmentController::class,'force_delete'])->middleware('permission:treatment_manage')->name('treatments.force_delete');
+Route::get('/treatments/{treatment}/approve',[TreatmentController::class,'approve'])->middleware('permission:treatment_approve')->name('treatments.approve');
+Route::resource('/treatments',TreatmentController::class)->middleware('permission:treatment_manage');

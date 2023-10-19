@@ -80,4 +80,13 @@ class Cattle extends Model
     {
         return $this->belongsToMany(FeedingRecord::class, 'feeding_record_cattle');
     }
+    public function dewormers(): \Illuminate\Database\Eloquent\Relations\BelongsToMany
+    {
+        return $this->belongsToMany(Dewormer::class);
+    }
+
+    public function vaccines(): \Illuminate\Database\Eloquent\Relations\BelongsToMany
+    {
+        return $this->belongsToMany(Vaccine::class);
+    }
 }

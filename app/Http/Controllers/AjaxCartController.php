@@ -7,6 +7,7 @@ use App\Models\Cattle;
 use App\Models\CattleType;
 use App\Models\Farm;
 use App\Models\FeedingGroup;
+use App\Models\Product;
 use Illuminate\Http\Request;
 
 class AjaxCartController extends Controller
@@ -24,6 +25,45 @@ class AjaxCartController extends Controller
         $farm_id = $request->input('farm_id');
         $cattle_type_id = $request->input('cattle_type_id');
         $data =  Cattle::where('cattle_type_id',$cattle_type_id)->where('farm_id',$farm_id)->get();
+        return response()->json($data);
+    }
+    public function farm_medicine_list(Request $request){
+        $farm_id = $request->input('farm_id');
+        $products =  Product::where('type','cattle_medicine')->get();
+        $data = [];
+        foreach ($products as $product){
+            $data[] = [
+                'id' => $product->id,
+                'name' => $product->name. ' ('.(getStock($farm_id, $product->id)->quantity ?? 0).' X '.$product->unit->code.' )'
+            ];
+        }
+
+        return response()->json($data);
+    }
+    public function farm_dewormer_list(Request $request){
+        $farm_id = $request->input('farm_id');
+        $products =  Product::where('type','dewormer_medicine')->get();
+        $data = [];
+        foreach ($products as $product){
+            $data[] = [
+                'id' => $product->id,
+                'name' => $product->name. ' ('.(getStock($farm_id, $product->id)->quantity ?? 0).' X '.$product->unit->code.' )'
+            ];
+        }
+
+        return response()->json($data);
+    }
+    public function farm_vaccine_list(Request $request){
+        $farm_id = $request->input('farm_id');
+        $products =  Product::where('type','vaccination')->get();
+        $data = [];
+        foreach ($products as $product){
+            $data[] = [
+                'id' => $product->id,
+                'name' => $product->name. ' ('.(getStock($farm_id, $product->id)->quantity ?? 0).' X '.$product->unit->code.' )'
+            ];
+        }
+
         return response()->json($data);
     }
     public function cattle_type(Request $request){

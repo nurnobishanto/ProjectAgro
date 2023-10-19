@@ -237,6 +237,42 @@ class RoleSeeder extends Seeder
                 ]
             ],
             [
+                'group_name' => 'Treatment',
+                'permissions' => [
+                    'treatment_manage',
+                    'treatment_list',
+                    'treatment_view',
+                    'treatment_update',
+                    'treatment_delete',
+                    'treatment_create',
+                    'treatment_approve',
+                ]
+            ],
+            [
+                'group_name' => 'Dewormer',
+                'permissions' => [
+                    'dewormer_manage',
+                    'dewormer_list',
+                    'dewormer_view',
+                    'dewormer_update',
+                    'dewormer_delete',
+                    'dewormer_create',
+                    'dewormer_approve',
+                ]
+            ],
+            [
+                'group_name' => 'Vaccine',
+                'permissions' => [
+                    'vaccine_manage',
+                    'vaccine_list',
+                    'vaccine_view',
+                    'vaccine_update',
+                    'vaccine_delete',
+                    'vaccine_create',
+                    'vaccine_approve',
+                ]
+            ],
+            [
                 'group_name' => 'Unit',
                 'permissions' => [
                     'unit_manage',

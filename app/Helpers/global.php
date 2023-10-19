@@ -3,6 +3,7 @@
 
 use App\Models\FeedingRecord;
 use App\Models\GlobalSetting;
+use App\Models\Treatment;
 
 
 if (!function_exists('myCustomFunction')) {
@@ -22,6 +23,20 @@ if (!function_exists('getFeedRecordProduct')) {
         }
 
         $product = $feedingRecord->products()->wherePivot('product_id', $product_id)->first();
+
+        return $product ? $product->pivot : [];
+    }
+}
+if (!function_exists('getTreatmentProduct')) {
+    function getTreatmentProduct($treatment_id, $product_id)
+    {
+        $treatment = Treatment::find($treatment_id);
+
+        if (!$treatment) {
+            return [];
+        }
+
+        $product = $treatment->products()->wherePivot('product_id', $product_id)->first();
 
         return $product ? $product->pivot : [];
     }

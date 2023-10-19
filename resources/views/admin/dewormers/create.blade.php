@@ -1,17 +1,17 @@
 @extends('adminlte::page')
 
-@section('title', __('global.create_feeding'))
+@section('title', __('global.create_dewormer'))
 
 @section('content_header')
     <div class="row mb-2">
         <div class="col-sm-6">
-            <h1>{{ __('global.create_feeding')}}</h1>
+            <h1>{{ __('global.create_dewormer')}}</h1>
         </div>
         <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
                 <li class="breadcrumb-item"><a href="{{route('admin.dashboard')}}">{{ __('global.home')}}</a></li>
-                <li class="breadcrumb-item"><a href="{{route('admin.feeding-groups.index')}}">{{ __('global.feedings')}}</a></li>
-                <li class="breadcrumb-item active">{{ __('global.create_feeding')}}</li>
+                <li class="breadcrumb-item"><a href="{{route('admin.dewormers.index')}}">{{ __('global.dewormers')}}</a></li>
+                <li class="breadcrumb-item active">{{ __('global.create_dewormer')}}</li>
             </ol>
 
         </div>
@@ -23,15 +23,14 @@
         <div class="col-12">
             <div class="card">
                 <div class="card-header">
-                    <ul class="">
-                        <li><strong>{{__('global.farm')}} :</strong> {{$feeding_group->farm->name}}</li>
-                        <li><strong>{{__('global.cattle_type')}} :</strong> {{$feeding_group->cattle_type->title}}</li>
-                        <li><strong>{{__('global.feeding_category')}} :</strong> {{$feeding_group->feeding_category->name}}</li>
-                        <li><strong>{{__('global.feeding_moment')}} :</strong> {{$feeding_group->feeding_moment->name}}</li>
-                    </ul>
+                    <div class="row">
+                        <div class="col-lg-4 col-md-4 col-sm-6 shadow p-2"><strong>{{__('global.farm')}} :</strong> {{$farm->name}}</div>
+                        <div class="col-lg-4 col-md-4 col-sm-6 shadow p-2"><strong>{{__('global.cattle_type')}} :</strong> {{$cattle_type->title}}</div>
+                        <div class="col-lg-4 col-md-4 col-sm-6 shadow p-2"><strong>{{__('global.dewormer')}} :</strong> {{$product->name}}</div>
+                    </div>
                 </div>
                 <div class="card-body">
-                    <form action="{{route('admin.feedings.store')}}" method="POST" enctype="multipart/form-data" id="admin-form">
+                    <form action="{{route('admin.dewormers.store')}}" method="POST" enctype="multipart/form-data" id="admin-form">
                         @csrf
                         @if (count($errors) > 0)
                             <div class = "alert alert-danger">
@@ -42,50 +41,75 @@
                                 </ul>
                             </div>
                         @endif
+                        <input class="d-none" value="{{$farm->id}}" name="farm_id">
+                        <input class="d-none" value="{{$cattle_type->id}}" name="cattle_type_id">
                         <div class="row">
 
                             <div class="col-lg-3 col-md-4 col-sm-6">
                                 <div class="card">
                                     <div class="card-body">
-                                        <div class="form-group">
+                                        <div class="form">
                                             <label for="date">{{ __('global.select_date')}}<span class="text-danger"> *</span></label>
-                                            <input name="date" id="date"  type="text" class="form-control datepicker">
-                                            <input name="feeding_group_id" value="{{$feeding_group->id}}"  class="d-none">
+                                            <input readonly name="date" id="date"  type="text" class="form-control datepicker">
+
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                            @foreach($items as $item)
-                                <div class="col-lg-3 col-md-4 col-sm-6">
+                            <div class="col-lg-3 col-md-4 col-sm-6">
+                                <div class="card">
+                                    <div class="card-body">
+                                        <div class="form">
+                                            <label for="time">{{ __('global.medicine_time')}}<span class="text-danger"> *</span></label>
+                                            <input  name="time" id="time"  type="text" class="form-control" placeholder="{{ __('global.medicine_time')}}">
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-lg-3 col-md-4 col-sm-6">
+                                <div class="card">
+                                    <div class="card-body">
+                                        <div class="form">
+                                            <label for="end_date">{{ __('global.select_end_date')}}<span class="text-danger"> *</span></label>
+                                            <input readonly name="end_date" id="end_date"  type="text" class="form-control datepicker">
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-lg-3 col-md-4 col-sm-6">
                                     <div class="card">
                                         <div class="card-body">
-                                            <div class="form-group">
-                                                <label>{{ $item->name }} ({{ getStock($feeding_group->farm_id, $item->id)->quantity ?? 0 }} {{ $item->unit->code }})</label>
-                                                <input name="items[]" value="{{ $item->id }}" class="d-none">
+                                            <div class="form">
+                                                <label>{{ $product->name }} ({{ getStock($farm->id, $product->id)->quantity ?? 0 }} {{ $product->unit->code }})</label>
+                                                <input name="product_id" value="{{ $product->id }}" class="d-none">
                                                 <table>
                                                     <tr>
                                                         <td>
                                                             <input
-                                                                name="qty[]"
+                                                                name="quantity"
                                                                 type="number"
+                                                                step=any
                                                                 placeholder="{{ __('global.quantity') }}"
                                                                 class="form-control quantity-input"
-                                                                data-min="0"
-                                                                data-max="{{ getStock($feeding_group->farm_id, $item->id)->quantity ?? 0 }}"
+                                                                data-min="0.1"
+                                                                data-max="{{ getStock($farm->id, $product->id)->quantity ?? 0 }}"
                                                             >
                                                         </td>
-                                                        <td>{{ $item->unit->code }}</td>
+                                                        <td>{{ $product->unit->code }}</td>
                                                     </tr>
                                                 </table>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-                            @endforeach
-                            <div class="col-lg-3 col-md-4 col-sm-6">
+                            <div class="col-12">
                                 <div class="card">
                                     <div class="card-body">
-                                        <div class="form-group">
+                                        <div class="form">
                                             <label for="comment">{{ __('global.comment')}}</label>
                                             <textarea name="comment" id="comment"  type="text" class="form-control">{{old('comment')}}</textarea>
                                         </div>
@@ -135,9 +159,10 @@
                                 </div>
                             </div>
 
+
                         </div>
 
-                        @can('feeding_group_create')
+                        @can('dewormer_create')
                             <button class="btn btn-success" type="submit">{{ __('global.create')}}</button>
                         @endcan
                     </form>

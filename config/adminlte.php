@@ -385,7 +385,25 @@ return [
             'text' => 'fattening',
             'url' => 'admin/fattenings',
             'can' => 'fattening_manage',
-            'icon' => 'fas fa-sync',
+            'icon' => 'fas fa-weight',
+        ],
+        [
+            'text' => 'dewormer',
+            'url' => 'admin/dewormers',
+            'can' => 'dewormer_manage',
+            'icon' => 'fas fa-pills',
+        ],
+        [
+            'text' => 'vaccine',
+            'url' => 'admin/vaccines',
+            'can' => 'vaccine_manage',
+            'icon' => 'fas fa-syringe',
+        ],
+        [
+            'text' => 'treatment',
+            'url' => 'admin/treatments',
+            'can' => 'treatment_manage',
+            'icon' => 'fas fa-hand-holding-medical',
         ],
         [
             'text' => 'farm',

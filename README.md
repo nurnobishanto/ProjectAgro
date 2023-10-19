@@ -22,6 +22,10 @@ This project is a new software development endeavor undertaken by Soft-ITBD.com.
 - Farm Listing.
 - Cattle Listing.
 - Cattle Fattening.
+- Treatment
+- Dewormer
+- Vaccine
+
 #### Cattle Feeding Management
 - Cattle Feeding Category
 - Cattle Feeding Moment
@@ -42,8 +46,11 @@ This project is a new software development endeavor undertaken by Soft-ITBD.com.
 
 ## Next Task *** Remaining
 
-- Cattle Vaccine
-- Cattle Medicine
+ - Sell Cattle
+ - Cattle death
+ - Accounting
+ - Reports
+ - Loan
 
 
 

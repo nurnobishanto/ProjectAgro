@@ -46,4 +46,7 @@ return [
     'feeding_moment' => 'Feeding Moment',
     'feeding_category' => 'Feeding Category',
     'feeding' => 'Feeding',
+    'dewormer' => 'Dewormer',
+    'vaccine' => 'Vaccine',
+    'treatment' => 'Treatment',
 ];

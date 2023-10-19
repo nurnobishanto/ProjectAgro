@@ -20,15 +20,22 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('farms',[\App\Http\Controllers\AjaxCartController::class,'farms'])->name('farms');
-Route::get('cattle-types',[\App\Http\Controllers\AjaxCartController::class,'cattle_types'])->name('cattle_types');
-Route::get('cattle-cattle-list',[\App\Http\Controllers\AjaxCartController::class,'farm_cattle_list'])->name('farm_cattle_list');
-Route::get('cattle-type',[\App\Http\Controllers\AjaxCartController::class,'cattle_type'])->name('cattle_type');
-Route::get('cattle-breed',[\App\Http\Controllers\AjaxCartController::class,'cattle_breed'])->name('cattle_breed');
-Route::get('category',[\App\Http\Controllers\AjaxCartController::class,'category'])->name('category');
-Route::get('get-feeding-farms',[\App\Http\Controllers\AjaxCartController::class,'get_feeding_farms'])->name('get_feeding_farms');
-Route::get('get-feeding-farms-cattle-types',[\App\Http\Controllers\AjaxCartController::class,'get_feeding_farms_cattle_types'])->name('get_feeding_farms_cattle_types');
-Route::get('get-feeding-group-period',[\App\Http\Controllers\AjaxCartController::class,'get_feeding_group_period'])->name('get_feeding_group_period');
+Route::prefix('ajax/')->group(function (){
+    Route::get('farms',[\App\Http\Controllers\AjaxCartController::class,'farms'])->name('farms');
+    Route::get('cattle-types',[\App\Http\Controllers\AjaxCartController::class,'cattle_types'])->name('cattle_types');
+    Route::get('cattle-cattle-list',[\App\Http\Controllers\AjaxCartController::class,'farm_cattle_list'])->name('farm_cattle_list');
+    Route::get('farm-medicine-list',[\App\Http\Controllers\AjaxCartController::class,'farm_medicine_list'])->name('farm_medicine_list');
+    Route::get('farm-dewormer-list',[\App\Http\Controllers\AjaxCartController::class,'farm_dewormer_list'])->name('farm_dewormer_list');
+    Route::get('farm-vaccine-list',[\App\Http\Controllers\AjaxCartController::class,'farm_vaccine_list'])->name('farm_vaccine_list');
+    Route::get('cattle-type',[\App\Http\Controllers\AjaxCartController::class,'cattle_type'])->name('cattle_type');
+    Route::get('cattle-breed',[\App\Http\Controllers\AjaxCartController::class,'cattle_breed'])->name('cattle_breed');
+    Route::get('category',[\App\Http\Controllers\AjaxCartController::class,'category'])->name('category');
+    Route::get('get-feeding-farms',[\App\Http\Controllers\AjaxCartController::class,'get_feeding_farms'])->name('get_feeding_farms');
+    Route::get('get-feeding-farms-cattle-types',[\App\Http\Controllers\AjaxCartController::class,'get_feeding_farms_cattle_types'])->name('get_feeding_farms_cattle_types');
+    Route::get('get-feeding-group-period',[\App\Http\Controllers\AjaxCartController::class,'get_feeding_group_period'])->name('get_feeding_group_period');
+});
+
+
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 require __DIR__.'/command.php';
