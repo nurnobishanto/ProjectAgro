@@ -13,6 +13,17 @@ if (!function_exists('myCustomFunction')) {
 
     }
 }
+if (!function_exists('getAccountType')) {
+
+    function getAccountType()
+    {
+        $type = [
+            'bank' => __('global.bank'),
+            'mobile_bank' => __('global.mobile_bank'),
+        ];
+        return $type;
+    }
+}
 if (!function_exists('getFeedRecordProduct')) {
     function getFeedRecordProduct($record_id, $product_id)
     {
@@ -121,6 +132,13 @@ if (!function_exists('getProducts')) {
     function getProducts()
     {
         return \App\Models\Product::all();
+    }
+}
+if (!function_exists('getAdmins')) {
+
+    function getAdmins()
+    {
+        return \App\Models\Admin::all();
     }
 }
 

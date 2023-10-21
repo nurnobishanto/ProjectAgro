@@ -49,4 +49,6 @@ return [
     'dewormer' => 'Dewormer',
     'vaccine' => 'Vaccine',
     'treatment' => 'Treatment',
+    'accounting' => 'Accounting',
+    'accounts' => 'Accounts',
 ];

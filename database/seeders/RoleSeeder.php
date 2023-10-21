@@ -328,6 +328,17 @@ class RoleSeeder extends Seeder
                     'stock_create',
                 ]
             ],
+            [
+                'group_name' => 'Accounts',
+                'permissions' => [
+                    'account_manage',
+                    'account_list',
+                    'account_view',
+                    'account_update',
+                    'account_delete',
+                    'account_create',
+                ]
+            ],
 
 
         ];

@@ -50,14 +50,14 @@
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <label for="name">{{ __('global.password')}}</label>
+                                    <label for="password">{{ __('global.password')}}</label>
                                     <input id="password" type="password" name="password" class="form-control" placeholder="{{ __('global.enter_password')}}">
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <label for="name">{{ __('global.confirm_password')}}</label>
-                                    <input id="password" type="password" name="password" class="form-control" placeholder="{{ __('global.enter_confirm_password')}}">
+                                    <label for="password_confirmation">{{ __('global.confirm_password')}}</label>
+                                    <input id="password_confirmation" type="password" name="password_confirmation" class="form-control" placeholder="{{ __('global.enter_confirm_password')}}">
                                 </div>
                             </div>
                             <div class="col-md-6">

@@ -456,6 +456,19 @@ return [
                 ],
             ]
         ],
+        ['header' => 'accounting'],
+        [
+            'text'    => 'accounting',
+            'icon'    => 'fas fa-cogs',
+            'can' => ['account_manage'],
+            'submenu' => [
+                [
+                    'text' => 'accounts',
+                    'can' => 'account_manage',
+                    'url' => 'admin/accounts'
+                ],
+            ]
+        ],
         ['header' => 'settings'],
         [
             'text'    => 'global_settings',

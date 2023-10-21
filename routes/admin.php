@@ -1,6 +1,7 @@
 <?php
 
 
+use App\Http\Controllers\Admin\AccountController;
 use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Admin\BatchController;
 use App\Http\Controllers\Admin\BreedsController;
@@ -166,3 +167,10 @@ Route::get('/treatments/trashed/{treatment}/restore',[TreatmentController::class
 Route::get('/treatments/trashed/{treatment}/delete',[TreatmentController::class,'force_delete'])->middleware('permission:treatment_manage')->name('treatments.force_delete');
 Route::get('/treatments/{treatment}/approve',[TreatmentController::class,'approve'])->middleware('permission:treatment_approve')->name('treatments.approve');
 Route::resource('/treatments',TreatmentController::class)->middleware('permission:treatment_manage');
+
+
+//Suppliers
+Route::get('/accounts/trashed',[AccountController::class,'trashed_list'])->middleware('permission:account_manage')->name('accounts.trashed');
+Route::get('/accounts/trashed/{account}/restore',[AccountController::class,'restore'])->middleware('permission:account_manage')->name('accounts.restore');
+Route::get('/accounts/trashed/{account}/delete',[AccountController::class,'force_delete'])->middleware('permission:account_manage')->name('accounts.force_delete');
+Route::resource('/accounts',AccountController::class)->middleware('permission:account_manage');
