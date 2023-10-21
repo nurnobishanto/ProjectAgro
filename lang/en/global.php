@@ -380,4 +380,11 @@ return [
     'note' => 'Note',
     'enter_note' => 'Enter Note',
     'success' => 'Success',
+    'cattle_death' => 'Cattle Death',
+    'cattle_deaths' => 'Cattle Death List',
+    'create_cattle_death' => 'Create Cattle Death',
+    'update_cattle_death' => 'Update Cattle Death',
+    'delete_cattle_death' => 'Delete Cattle Death',
+    'view_cattle_death' => 'View Cattle Death',
+
 ];

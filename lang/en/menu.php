@@ -54,4 +54,5 @@ return [
     'expense_management' => 'Expense Management',
     'expense_category' => 'Expense Category',
     'expenses' => 'Expenses',
+    'cattle_deaths' => 'Cattle Deaths',
 ];

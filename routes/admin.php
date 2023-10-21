@@ -6,6 +6,7 @@ use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Admin\BatchController;
 use App\Http\Controllers\Admin\BreedsController;
 use App\Http\Controllers\Admin\CattleController;
+use App\Http\Controllers\Admin\CattleDeathController;
 use App\Http\Controllers\Admin\CattleTypeController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\ExpenseCategoryController;
@@ -189,3 +190,10 @@ Route::get('/expenses/trashed/{expense}/restore',[ExpenseController::class,'rest
 Route::get('/expenses/trashed/{expense}/delete',[ExpenseController::class,'force_delete'])->middleware('permission:expense_manage')->name('expenses.force_delete');
 Route::get('/expenses/{expense}/approve',[ExpenseController::class,'approve'])->middleware('permission:expense_approve')->name('expenses.approve');
 Route::resource('/expenses',ExpenseController::class)->middleware('permission:expense_manage');
+
+//CattleDeath
+Route::get('/cattle-deaths/trashed',[CattleDeathController::class,'trashed_list'])->middleware('permission:cattle_death_manage')->name('cattle-deaths.trashed');
+Route::get('/cattle-deaths/trashed/{cattle_death}/restore',[CattleDeathController::class,'restore'])->middleware('permission:cattle_death_manage')->name('cattle-deaths.restore');
+Route::get('/cattle-deaths/trashed/{cattle_death}/delete',[CattleDeathController::class,'force_delete'])->middleware('permission:cattle_death_manage')->name('cattle-deaths.force_delete');
+Route::get('/cattle-deaths/{cattle_death}/approve',[CattleDeathController::class,'approve'])->middleware('permission:cattle_death_approve')->name('cattle-deaths.approve');
+Route::resource('/cattle-deaths',CattleDeathController::class)->middleware('permission:cattle_death_manage');

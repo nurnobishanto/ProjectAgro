@@ -460,13 +460,17 @@ return [
         [
             'text'    => 'expense_management',
             'icon'    => 'fas fa-cogs',
-            'can' => ['expense_manage','expense_category'],
+            'can' => ['expense_manage','expense_category','cattle_death_manage'],
             'submenu' => [
-
                 [
                     'text' => 'expenses',
                     'can' => 'expense_manage',
                     'url' => 'admin/expenses'
+                ],
+                [
+                    'text' => 'cattle_deaths',
+                    'can' => 'cattle_death_manage',
+                    'url' => 'admin/cattle-deaths'
                 ],
                 [
                     'text' => 'expense_category',

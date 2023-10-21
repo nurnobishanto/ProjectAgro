@@ -362,6 +362,30 @@ class RoleSeeder extends Seeder
                     'expense_approve',
                 ]
             ],
+            [
+                'group_name' => 'CattleDeath',
+                'permissions' => [
+                    'cattle_death_manage',
+                    'cattle_death_list',
+                    'cattle_death_view',
+                    'cattle_death_update',
+                    'cattle_death_delete',
+                    'cattle_death_create',
+                    'cattle_death_approve',
+                ]
+            ],
+            [
+                'group_name' => 'CattleSell',
+                'permissions' => [
+                    'cattle_sell_manage',
+                    'cattle_sell_list',
+                    'cattle_sell_view',
+                    'cattle_sell_update',
+                    'cattle_sell_delete',
+                    'cattle_sell_create',
+                    'cattle_sell_approve',
+                ]
+            ],
 
 
         ];
