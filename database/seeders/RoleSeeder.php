@@ -339,6 +339,28 @@ class RoleSeeder extends Seeder
                     'account_create',
                 ]
             ],
+            [
+                'group_name' => 'ExpenseCategory',
+                'permissions' => [
+                    'expense_category_manage',
+                    'expense_category_list',
+                    'expense_category_view',
+                    'expense_category_update',
+                    'expense_category_delete',
+                    'expense_category_create',
+                ]
+            ],
+            [
+                'group_name' => 'Expense',
+                'permissions' => [
+                    'expense_manage',
+                    'expense_list',
+                    'expense_view',
+                    'expense_update',
+                    'expense_delete',
+                    'expense_create',
+                ]
+            ],
 
 
         ];

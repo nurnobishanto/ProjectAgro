@@ -456,6 +456,25 @@ return [
                 ],
             ]
         ],
+        ['header' => 'expense_management'],
+        [
+            'text'    => 'expense_management',
+            'icon'    => 'fas fa-cogs',
+            'can' => ['expense_manage','expense_category'],
+            'submenu' => [
+
+                [
+                    'text' => 'expenses',
+                    'can' => 'expense_manage',
+                    'url' => 'admin/expenses'
+                ],
+                [
+                    'text' => 'expense_category',
+                    'can' => 'expense_category_manage',
+                    'url' => 'admin/expense-categories'
+                ],
+            ]
+        ],
         ['header' => 'accounting'],
         [
             'text'    => 'accounting',

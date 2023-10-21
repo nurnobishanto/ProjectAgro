@@ -51,4 +51,7 @@ return [
     'treatment' => 'Treatment',
     'accounting' => 'Accounting',
     'accounts' => 'Accounts',
+    'expense_management' => 'Expense Management',
+    'expense_category' => 'Expense Category',
+    'expenses' => 'Expenses',
 ];

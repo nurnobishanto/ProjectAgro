@@ -345,8 +345,6 @@ return [
     'account_type' => 'Account Type',
     'bank' => 'Bank',
     'mobile_bank' => 'Mobile Bank',
-
-
     'select_feeding_group' => 'Select Feeding Group',
     'quantity' => 'Quantity',
     'select_date' => 'Select Date',
@@ -364,4 +362,10 @@ return [
     'doctor' => 'Doctor',
     'disease' => 'Disease',
     'medicine' => 'Medicine',
+    'expense_category' => 'Expense Category',
+    'expense_categories' => 'Expense Categories',
+    'create_expense_category' => 'Create Expense Category',
+    'update_expense_category' => 'Update Expense Category',
+    'delete_expense_category' => 'Delete Expense Category',
+    'view_expense_category' => 'View Expense Category',
 ];
