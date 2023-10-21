@@ -9,6 +9,7 @@ use App\Http\Controllers\Admin\CattleController;
 use App\Http\Controllers\Admin\CattleTypeController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\ExpenseCategoryController;
+use App\Http\Controllers\Admin\ExpenseController;
 use App\Http\Controllers\Admin\FarmController;
 use App\Http\Controllers\Admin\FatteningController;
 use App\Http\Controllers\Admin\FeedingCategoryController;
@@ -181,3 +182,10 @@ Route::get('/expense-categories/trashed',[ExpenseCategoryController::class,'tras
 Route::get('/expense-categories/trashed/{expense_category}/restore',[ExpenseCategoryController::class,'restore'])->middleware('permission:expense_category_manage')->name('expense-categories.restore');
 Route::get('/expense-categories/trashed/{expense_category}/delete',[ExpenseCategoryController::class,'force_delete'])->middleware('permission:expense_category_manage')->name('expense-categories.force_delete');
 Route::resource('/expense-categories',ExpenseCategoryController::class)->middleware('permission:expense_category_manage');
+
+//Expense
+Route::get('/expenses/trashed',[ExpenseController::class,'trashed_list'])->middleware('permission:expense_manage')->name('expenses.trashed');
+Route::get('/expenses/trashed/{expense}/restore',[ExpenseController::class,'restore'])->middleware('permission:expense_manage')->name('expenses.restore');
+Route::get('/expenses/trashed/{expense}/delete',[ExpenseController::class,'force_delete'])->middleware('permission:expense_manage')->name('expenses.force_delete');
+Route::get('/expenses/{expense}/approve',[ExpenseController::class,'approve'])->middleware('permission:expense_approve')->name('expenses.approve');
+Route::resource('/expenses',ExpenseController::class)->middleware('permission:expense_manage');

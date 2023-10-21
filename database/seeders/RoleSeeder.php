@@ -359,6 +359,7 @@ class RoleSeeder extends Seeder
                     'expense_update',
                     'expense_delete',
                     'expense_create',
+                    'expense_approve',
                 ]
             ],
 
