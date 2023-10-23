@@ -340,6 +340,66 @@ class RoleSeeder extends Seeder
                 ]
             ],
             [
+                'group_name' => 'OpeningBalance',
+                'permissions' => [
+                    'opening_balance_manage',
+                    'opening_balance_list',
+                    'opening_balance_view',
+                    'opening_balance_update',
+                    'opening_balance_delete',
+                    'opening_balance_create',
+                    'opening_balance_approve',
+                ]
+            ],
+            [
+                'group_name' => 'BalanceTransfer',
+                'permissions' => [
+                    'balance_transfer_manage',
+                    'balance_transfer_list',
+                    'balance_transfer_view',
+                    'balance_transfer_update',
+                    'balance_transfer_delete',
+                    'balance_transfer_create',
+                    'balance_transfer_approve',
+                ]
+            ],
+            [
+                'group_name' => 'BalanceTransfer',
+                'permissions' => [
+                    'balance_transfer_manage',
+                    'balance_transfer_list',
+                    'balance_transfer_view',
+                    'balance_transfer_update',
+                    'balance_transfer_delete',
+                    'balance_transfer_create',
+                    'balance_transfer_approve',
+                ]
+            ],
+            [
+                'group_name' => 'SupplierPayment',
+                'permissions' => [
+                    'supplier_payment_manage',
+                    'supplier_payment_list',
+                    'supplier_payment_view',
+                    'supplier_payment_update',
+                    'supplier_payment_delete',
+                    'supplier_payment_create',
+                    'supplier_payment_approve',
+                ]
+            ],
+            [
+                'group_name' => 'PartyReceive',
+                'permissions' => [
+                    'party_receive_manage',
+                    'party_receive_list',
+                    'party_receive_view',
+                    'party_receive_update',
+                    'party_receive_delete',
+                    'party_receive_create',
+                    'party_receive_approve',
+                ]
+            ],
+            [
                 'group_name' => 'ExpenseCategory',
                 'permissions' => [
                     'expense_category_manage',
@@ -375,15 +435,27 @@ class RoleSeeder extends Seeder
                 ]
             ],
             [
-                'group_name' => 'CattleSell',
+                'group_name' => 'CattleSale',
                 'permissions' => [
-                    'cattle_sell_manage',
-                    'cattle_sell_list',
-                    'cattle_sell_view',
-                    'cattle_sell_update',
-                    'cattle_sell_delete',
-                    'cattle_sell_create',
-                    'cattle_sell_approve',
+                    'cattle_sale_manage',
+                    'cattle_sale_list',
+                    'cattle_sale_view',
+                    'cattle_sale_update',
+                    'cattle_sale_delete',
+                    'cattle_sale_create',
+                    'cattle_sale_approve',
+                ]
+            ],
+            [
+                'group_name' => 'MilkSale',
+                'permissions' => [
+                    'milk_sale_manage',
+                    'milk_sale_list',
+                    'milk_sale_view',
+                    'milk_sale_update',
+                    'milk_sale_delete',
+                    'milk_sale_create',
+                    'milk_sale_approve',
                 ]
             ],
 

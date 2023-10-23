@@ -197,3 +197,10 @@ Route::get('/cattle-deaths/trashed/{cattle_death}/restore',[CattleDeathControlle
 Route::get('/cattle-deaths/trashed/{cattle_death}/delete',[CattleDeathController::class,'force_delete'])->middleware('permission:cattle_death_manage')->name('cattle-deaths.force_delete');
 Route::get('/cattle-deaths/{cattle_death}/approve',[CattleDeathController::class,'approve'])->middleware('permission:cattle_death_approve')->name('cattle-deaths.approve');
 Route::resource('/cattle-deaths',CattleDeathController::class)->middleware('permission:cattle_death_manage');
+
+//CattleSale
+Route::get('/cattle-sales/trashed',[CattleDeathController::class,'trashed_list'])->middleware('permission:cattle_sale_manage')->name('cattle-sales.trashed');
+Route::get('/cattle-sales/trashed/{cattle_sale}/restore',[CattleDeathController::class,'restore'])->middleware('permission:cattle_sale_manage')->name('cattle-sales.restore');
+Route::get('/cattle-sales/trashed/{cattle_sale}/delete',[CattleDeathController::class,'force_delete'])->middleware('permission:cattle_sale_manage')->name('cattle-sales.force_delete');
+Route::get('/cattle-sales/{cattle_sale}/approve',[CattleDeathController::class,'approve'])->middleware('permission:cattle_sale_approve')->name('cattle-sales.approve');
+Route::resource('/cattle-sales',CattleDeathController::class)->middleware('permission:cattle_sale_manage');

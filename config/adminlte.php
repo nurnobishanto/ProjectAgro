@@ -405,6 +405,8 @@ return [
             'can' => 'treatment_manage',
             'icon' => 'fas fa-hand-holding-medical',
         ],
+        ['header' => 'global'],
+
         [
             'text' => 'farm',
             'url' => 'admin/farms',
@@ -422,6 +424,24 @@ return [
             'url' => 'admin/parties',
             'can' => 'party_manage',
             'icon' => 'fas fa-users',
+        ],
+        [
+            'text'    => 'sales',
+            'icon'    => 'fas fa-shopping-cart',
+            'icon_color' => 'green',
+            'can' => ['cattle_sale_manage','milk_sale_manage'],
+            'submenu' => [
+                [
+                    'text' => 'cattle_sale',
+                    'can' => 'cattle_sale_manage',
+                    'url' => 'admin/cattle-sales'
+                ],
+                [
+                    'text' => 'milk_sale',
+                    'can' => 'milk_sale_manage',
+                    'url' => 'admin/milk-sales'
+                ],
+            ]
         ],
         ['header' => 'inventory_management'],
         [
@@ -459,7 +479,8 @@ return [
         ['header' => 'expense_management'],
         [
             'text'    => 'expense_management',
-            'icon'    => 'fas fa-cogs',
+            'icon'    => 'fas fa-credit-card',
+            'icon_color' => 'red',
             'can' => ['expense_manage','expense_category','cattle_death_manage'],
             'submenu' => [
                 [
@@ -482,13 +503,33 @@ return [
         ['header' => 'accounting'],
         [
             'text'    => 'accounting',
-            'icon'    => 'fas fa-cogs',
-            'can' => ['account_manage'],
+            'icon'    => 'fas fa-wallet',
+            'can' => ['account_manage','opening_balance_manage','balance_transfer_manage','supplier_payment_manage','party_received_manage'],
             'submenu' => [
                 [
                     'text' => 'accounts',
                     'can' => 'account_manage',
                     'url' => 'admin/accounts'
+                ],
+                [
+                    'text' => 'opening_balance',
+                    'can' => 'opening_balance_manage',
+                    'url' => 'admin/opening-balances'
+                ],
+                [
+                    'text' => 'balance_transfer',
+                    'can' => 'balance_transfer_manage',
+                    'url' => 'admin/balance-transfers'
+                ],
+                [
+                    'text' => 'supplier_payment',
+                    'can' => 'supplier_payment_manage',
+                    'url' => 'admin/supplier-payments'
+                ],
+                [
+                    'text' => 'party_receive',
+                    'can' => 'party_receive_manage',
+                    'url' => 'admin/party-receives'
                 ],
             ]
         ],

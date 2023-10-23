@@ -44,12 +44,16 @@ This project is a new software development endeavor undertaken by Soft-ITBD.com.
 - Product Listing.
 - Stock Management.
 - Product Purchase.
-
+- Cattle death
+- Expense
 ## Next Task *** Remaining
 
- - Sell Cattle
- - Cattle death
- - Expense
+ - Sale Cattle
+ - Milk Sale
+ - Supplier Payment
+ - Party Received
+ - Opening Balance
+ - Balance Transfer
  - Reports
  - Loan
 

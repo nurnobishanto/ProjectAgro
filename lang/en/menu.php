@@ -55,4 +55,13 @@ return [
     'expense_category' => 'Expense Category',
     'expenses' => 'Expenses',
     'cattle_deaths' => 'Cattle Deaths',
+    'sale' => 'Sale',
+    'sales' => 'Sales',
+    'cattle_sale' => 'Cattle Sale',
+    'milk_sale' => 'Milk Sale',
+    'opening_balance' => 'Opening Balance',
+    'supplier_payment' => 'Supplier Payment',
+    'party_receive' => 'Party Receive',
+    'global' => 'Global',
+    'balance_transfer' => 'Balance Transfer',
 ];
