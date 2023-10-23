@@ -25,6 +25,7 @@ This project is a new software development endeavor undertaken by Soft-ITBD.com.
 - Treatment
 - Dewormer
 - Vaccine
+- Sale Cattle
 
 #### Cattle Feeding Management
 - Cattle Feeding Category
@@ -37,6 +38,8 @@ This project is a new software development endeavor undertaken by Soft-ITBD.com.
 - Supplier Listing.
 - Party Listing.
 - Account Listing.
+- Opening Balance
+
 
 #### Inventory Management
 - Unit Listing.
@@ -46,16 +49,14 @@ This project is a new software development endeavor undertaken by Soft-ITBD.com.
 - Product Purchase.
 - Cattle death
 - Expense
+- Supplier Payment
+- Party Received
+- Balance Transfer
 ## Next Task *** Remaining
-
- - Sale Cattle
  - Milk Sale
- - Supplier Payment
- - Party Received
- - Opening Balance
- - Balance Transfer
  - Reports
- - Loan
+
+
 
 
 

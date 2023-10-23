@@ -39,6 +39,9 @@ class Cattle extends Model
       'death_reason',
       'death_date',
       'sold_date',
+      'supplier_id',
+      'purchase_price',
+
     ];
     public function parent(): \Illuminate\Database\Eloquent\Relations\BelongsTo
     {

@@ -89,6 +89,23 @@
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
+                                    <label for="supplier_id">{{ __('global.select_supplier')}}<span class="text-danger"> *</span></label>
+                                    <select id="supplier_id" name="supplier_id" class="form-control">
+                                        <option value="">{{ __('global.select_supplier')}}</option>
+                                        @foreach(getSuppliers() as $supplier)
+                                            <option value="{{$supplier->id}}" @if(old('supplier_id') == $supplier->id) selected @endif>{{$supplier->name}} </option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="purchase_price">{{ __('global.purchase_price')}}<span class="text-danger"> *</span></label>
+                                    <input id="purchase_price" type="number" name="purchase_price" value="{{old('purchase_price')}}"  placeholder="{{ __('global.enter_purchase_price')}}" class="form-control">
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
                                     <label for="purchase_date">{{ __('global.entry_or_buy_date')}}<span class="text-danger"> *</span></label>
                                     <input id="purchase_date" name="purchase_date" value="{{old('purchase_date')}}" type="text" placeholder="{{ __('global.entry_or_buy_date')}}" class="datepicker form-control">
                                 </div>

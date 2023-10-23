@@ -3,6 +3,7 @@
 
 use App\Http\Controllers\Admin\AccountController;
 use App\Http\Controllers\Admin\AdminController;
+use App\Http\Controllers\Admin\BalanceTransferController;
 use App\Http\Controllers\Admin\BatchController;
 use App\Http\Controllers\Admin\BreedsController;
 use App\Http\Controllers\Admin\CattleController;
@@ -21,12 +22,14 @@ use App\Http\Controllers\Admin\FeedingGroupController;
 use App\Http\Controllers\Admin\FeedingMomentController;
 use App\Http\Controllers\Admin\OpeningBalanceController;
 use App\Http\Controllers\Admin\PartyController;
+use App\Http\Controllers\Admin\PartyReceivedController;
 use App\Http\Controllers\Admin\PermissionController;
 use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\Admin\PurchaseController;
 use App\Http\Controllers\Admin\RoleController;
 use App\Http\Controllers\Admin\SessionYearController;
 use App\Http\Controllers\Admin\SupplierController;
+use App\Http\Controllers\Admin\SupplierPaymentController;
 use App\Http\Controllers\Admin\TaxController;
 use App\Http\Controllers\Admin\TreatmentController;
 use App\Http\Controllers\Admin\UnitController;
@@ -187,6 +190,14 @@ Route::get('/opening-balances/trashed/{opening_balance}/delete',[OpeningBalanceC
 Route::get('/opening-balances/{opening_balance}/approve',[OpeningBalanceController::class,'approve'])->middleware('permission:opening_balance_approve')->name('opening-balances.approve');
 Route::resource('/opening-balances',OpeningBalanceController::class)->middleware('permission:opening_balance_manage');
 
+//Balance Transfer
+Route::get('/balance-transfers/trashed',[BalanceTransferController::class,'trashed_list'])->middleware('permission:balance_transfer_manage')->name('balance-transfers.trashed');
+Route::get('/balance-transfers/trashed/{balance_transfer}/restore',[BalanceTransferController::class,'restore'])->middleware('permission:balance_transfer_manage')->name('balance-transfers.restore');
+Route::get('/balance-transfers/trashed/{balance_transfer}/delete',[BalanceTransferController::class,'force_delete'])->middleware('permission:balance_transfer_manage')->name('balance-transfers.force_delete');
+Route::get('/balance-transfers/{balance_transfer}/approve',[BalanceTransferController::class,'approve'])->middleware('permission:balance_transfer_approve')->name('balance-transfers.approve');
+Route::resource('/balance-transfers',BalanceTransferController::class)->middleware('permission:balance_transfer_manage');
+
+
 //ExpenseCategory
 Route::get('/expense-categories/trashed',[ExpenseCategoryController::class,'trashed_list'])->middleware('permission:expense_category_manage')->name('expense-categories.trashed');
 Route::get('/expense-categories/trashed/{expense_category}/restore',[ExpenseCategoryController::class,'restore'])->middleware('permission:expense_category_manage')->name('expense-categories.restore');
@@ -213,3 +224,17 @@ Route::get('/cattle-sales/trashed/{cattle_sale}/restore',[CattleSaleController::
 Route::get('/cattle-sales/trashed/{cattle_sale}/delete',[CattleSaleController::class,'force_delete'])->middleware('permission:cattle_sale_manage')->name('cattle-sales.force_delete');
 Route::get('/cattle-sales/{cattle_sale}/approve',[CattleSaleController::class,'approve'])->middleware('permission:cattle_sale_approve')->name('cattle-sales.approve');
 Route::resource('/cattle-sales',CattleSaleController::class)->middleware('permission:cattle_sale_manage');
+
+//Supplier Payment
+Route::get('/supplier-payments/trashed',[SupplierPaymentController::class,'trashed_list'])->middleware('permission:supplier_payment_manage')->name('supplier-payments.trashed');
+Route::get('/supplier-payments/trashed/{supplier_payment}/restore',[SupplierPaymentController::class,'restore'])->middleware('permission:supplier_payment_manage')->name('supplier-payments.restore');
+Route::get('/supplier-payments/trashed/{supplier_payment}/delete',[SupplierPaymentController::class,'force_delete'])->middleware('permission:supplier_payment_manage')->name('supplier-payments.force_delete');
+Route::get('/supplier-payments/{supplier_payment}/approve',[SupplierPaymentController::class,'approve'])->middleware('permission:supplier_payment_approve')->name('supplier-payments.approve');
+Route::resource('/supplier-payments',SupplierPaymentController::class)->middleware('permission:supplier_payment_manage');
+
+//Party Receive
+Route::get('/party-receives/trashed',[PartyReceivedController::class,'trashed_list'])->middleware('permission:party_receive_manage')->name('party-receives.trashed');
+Route::get('/party-receives/trashed/{party_receive}/restore',[PartyReceivedController::class,'restore'])->middleware('permission:party_receive_manage')->name('party-receives.restore');
+Route::get('/party-receives/trashed/{party_receive}/delete',[PartyReceivedController::class,'force_delete'])->middleware('permission:party_receive_manage')->name('party-receives.force_delete');
+Route::get('/party-receives/{party_receive}/approve',[PartyReceivedController::class,'approve'])->middleware('permission:party_receive_approve')->name('party-receives.approve');
+Route::resource('/party-receives',PartyReceivedController::class)->middleware('permission:party_receive_manage');

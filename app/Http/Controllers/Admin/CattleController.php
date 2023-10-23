@@ -82,6 +82,8 @@ class CattleController extends Controller
             'entry_date' => $request->entry_date,
             'shade_no' => $request->shade_no,
             'is_purchase' => $request->is_purchase,
+            'supplier_id' => $request->supplier_id,
+            'purchase_price' => $request->purchase_price??0,
             'purchase_date' => $request->purchase_date,
             'dob' => $request->dob,
             'batch_id' => $request->batch_id,
@@ -167,6 +169,8 @@ class CattleController extends Controller
         $cattle->entry_date = $request->entry_date;
         $cattle->shade_no = $request->shade_no;
         $cattle->is_purchase = $request->is_purchase;
+        $cattle->supplier_id = $request->supplier_id;
+        $cattle->purchase_price = $request->purchase_price??0;
         $cattle->purchase_date = $request->purchase_date;
         $cattle->dob = $request->dob;
         $cattle->batch_id = $request->batch_id;
