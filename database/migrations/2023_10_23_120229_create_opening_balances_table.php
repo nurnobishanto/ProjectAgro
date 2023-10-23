@@ -11,27 +11,19 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('cattle_sales', function (Blueprint $table) {
+        Schema::create('opening_balances', function (Blueprint $table) {
             $table->id();
             $table->string('unique_id');
             $table->date('date');
             $table->unsignedBigInteger('account_id');
-            $table->unsignedBigInteger('party_id');
-            $table->unsignedBigInteger('cattle_id');
             $table->double('amount')->default(0);
-            $table->double('paid')->default(0);
-            $table->double('due')->default(0);
             $table->text('note')->nullable();
             $table->enum('status', ['pending', 'success'])->default('pending');
             $table->unsignedBigInteger('created_by');
             $table->unsignedBigInteger('updated_by');
-
             $table->timestamps();
             $table->softDeletes();
-
             $table->foreign('account_id')->references('id')->on('accounts');
-            $table->foreign('party_id')->references('id')->on('parties');
-            $table->foreign('cattle_id')->references('id')->on('cattle');
             $table->foreign('created_by')->references('id')->on('admins');
             $table->foreign('updated_by')->references('id')->on('admins');
         });
@@ -42,6 +34,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('cattle_sales');
+        Schema::dropIfExists('opening_balances');
     }
 };

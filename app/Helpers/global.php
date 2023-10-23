@@ -1,8 +1,10 @@
 <?php
 
 
+use App\Models\Account;
 use App\Models\FeedingRecord;
 use App\Models\GlobalSetting;
+use App\Models\Party;
 use App\Models\Treatment;
 
 
@@ -11,6 +13,25 @@ if (!function_exists('myCustomFunction')) {
     function myCustomFunction($param)
     {
 
+    }
+}
+if (!function_exists('getPartyList')) {
+
+    function getPartyList()
+    {
+        return Party::all();
+    }
+}
+if (!function_exists('getAccountList')) {
+
+    function getAccountList()
+    {
+        $user = auth()->user();
+        $accounts = Account::where('status','active')->get();
+        if (!$user->can('account_manage')){
+            $accounts->where('admin_id',$user->id);
+        }
+        return $accounts;
     }
 }
 if (!function_exists('getAccountType')) {
@@ -76,11 +97,11 @@ if (!function_exists('getPurchaseProducts')) {
 }
 if (!function_exists('generateInvoiceId')) {
 
-    function generateInvoiceId($prefix,$model = \App\Models\Product::class)
+    function generateInvoiceId($prefix,$model = \App\Models\Product::class,$slug = 'code')
     {
         do{
             $value = $prefix.'-'.rand(11111,99999);
-        }while(!$model::where('code',$value));
+        }while(!$model::where($slug,$value));
         return $value;
     }
 }

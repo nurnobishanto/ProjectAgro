@@ -7,6 +7,7 @@ use App\Http\Controllers\Admin\BatchController;
 use App\Http\Controllers\Admin\BreedsController;
 use App\Http\Controllers\Admin\CattleController;
 use App\Http\Controllers\Admin\CattleDeathController;
+use App\Http\Controllers\Admin\CattleSaleController;
 use App\Http\Controllers\Admin\CattleTypeController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\ExpenseCategoryController;
@@ -18,6 +19,7 @@ use App\Http\Controllers\Admin\FeedingController;
 use App\Http\Controllers\Admin\DewormerController;
 use App\Http\Controllers\Admin\FeedingGroupController;
 use App\Http\Controllers\Admin\FeedingMomentController;
+use App\Http\Controllers\Admin\OpeningBalanceController;
 use App\Http\Controllers\Admin\PartyController;
 use App\Http\Controllers\Admin\PermissionController;
 use App\Http\Controllers\Admin\ProductController;
@@ -178,6 +180,13 @@ Route::get('/accounts/trashed/{account}/restore',[AccountController::class,'rest
 Route::get('/accounts/trashed/{account}/delete',[AccountController::class,'force_delete'])->middleware('permission:account_manage')->name('accounts.force_delete');
 Route::resource('/accounts',AccountController::class)->middleware('permission:account_manage');
 
+//Opening Balance
+Route::get('/opening-balances/trashed',[OpeningBalanceController::class,'trashed_list'])->middleware('permission:opening_balance_manage')->name('opening-balances.trashed');
+Route::get('/opening-balances/trashed/{opening_balance}/restore',[OpeningBalanceController::class,'restore'])->middleware('permission:opening_balance_manage')->name('opening-balances.restore');
+Route::get('/opening-balances/trashed/{opening_balance}/delete',[OpeningBalanceController::class,'force_delete'])->middleware('permission:opening_balance_manage')->name('opening-balances.force_delete');
+Route::get('/opening-balances/{opening_balance}/approve',[OpeningBalanceController::class,'approve'])->middleware('permission:opening_balance_approve')->name('opening-balances.approve');
+Route::resource('/opening-balances',OpeningBalanceController::class)->middleware('permission:opening_balance_manage');
+
 //ExpenseCategory
 Route::get('/expense-categories/trashed',[ExpenseCategoryController::class,'trashed_list'])->middleware('permission:expense_category_manage')->name('expense-categories.trashed');
 Route::get('/expense-categories/trashed/{expense_category}/restore',[ExpenseCategoryController::class,'restore'])->middleware('permission:expense_category_manage')->name('expense-categories.restore');
@@ -199,8 +208,8 @@ Route::get('/cattle-deaths/{cattle_death}/approve',[CattleDeathController::class
 Route::resource('/cattle-deaths',CattleDeathController::class)->middleware('permission:cattle_death_manage');
 
 //CattleSale
-Route::get('/cattle-sales/trashed',[CattleDeathController::class,'trashed_list'])->middleware('permission:cattle_sale_manage')->name('cattle-sales.trashed');
-Route::get('/cattle-sales/trashed/{cattle_sale}/restore',[CattleDeathController::class,'restore'])->middleware('permission:cattle_sale_manage')->name('cattle-sales.restore');
-Route::get('/cattle-sales/trashed/{cattle_sale}/delete',[CattleDeathController::class,'force_delete'])->middleware('permission:cattle_sale_manage')->name('cattle-sales.force_delete');
-Route::get('/cattle-sales/{cattle_sale}/approve',[CattleDeathController::class,'approve'])->middleware('permission:cattle_sale_approve')->name('cattle-sales.approve');
-Route::resource('/cattle-sales',CattleDeathController::class)->middleware('permission:cattle_sale_manage');
+Route::get('/cattle-sales/trashed',[CattleSaleController::class,'trashed_list'])->middleware('permission:cattle_sale_manage')->name('cattle-sales.trashed');
+Route::get('/cattle-sales/trashed/{cattle_sale}/restore',[CattleSaleController::class,'restore'])->middleware('permission:cattle_sale_manage')->name('cattle-sales.restore');
+Route::get('/cattle-sales/trashed/{cattle_sale}/delete',[CattleSaleController::class,'force_delete'])->middleware('permission:cattle_sale_manage')->name('cattle-sales.force_delete');
+Route::get('/cattle-sales/{cattle_sale}/approve',[CattleSaleController::class,'approve'])->middleware('permission:cattle_sale_approve')->name('cattle-sales.approve');
+Route::resource('/cattle-sales',CattleSaleController::class)->middleware('permission:cattle_sale_manage');
