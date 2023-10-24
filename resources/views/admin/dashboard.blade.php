@@ -9,55 +9,81 @@
     <div class="row">
         <div class="col-12 col-sm-6 col-md-3">
             <div class="info-box">
-                <span class="info-box-icon bg-info elevation-1"><i class="fas fa-cog"></i></span>
+                <span class="info-box-icon bg-info elevation-1"><i class="fas fa-hippo"></i></span>
                 <div class="info-box-content">
-                    <span class="info-box-text">CPU Traffic</span>
-                    <span class="info-box-number">10<small>%</small></span>
+                    <span class="info-box-text">{{__('global.total_cattle')}}</span>
+                    <span class="info-box-number">{{$all_cattle_count->count()}}</span>
                 </div>
             </div>
         </div>
         <div class="col-12 col-sm-6 col-md-3">
             <div class="info-box mb-3">
-                <span class="info-box-icon bg-danger elevation-1"><i class="fas fa-thumbs-up"></i></span>
+                <span class="info-box-icon bg-primary elevation-1"><i class="fas fa-hippo"></i></span>
                 <div class="info-box-content">
-                    <span class="info-box-text">Likes</span>
-                    <span class="info-box-number">41,410</span>
+                    <span class="info-box-text">{{__('global.sold_cattle')}}</span>
+                    <span class="info-box-number">{{$all_cattle_count->where('status','active')->count()}}</span>
                 </div>
-
             </div>
-
         </div>
         <div class="clearfix hidden-md-up"></div>
         <div class="col-12 col-sm-6 col-md-3">
             <div class="info-box mb-3">
-                <span class="info-box-icon bg-success elevation-1"><i class="fas fa-shopping-cart"></i></span>
+                <span class="info-box-icon bg-danger elevation-1"><i class="fas fa-hippo"></i></span>
                 <div class="info-box-content">
-                    <span class="info-box-text">Sales</span>
-                    <span class="info-box-number">760</span>
+                    <span class="info-box-text">{{__('global.death_cattle')}}</span>
+                    <span class="info-box-number">{{$all_cattle_count->where('status','death')->count()}}</span>
                 </div>
-
             </div>
-
         </div>
         <div class="col-12 col-sm-6 col-md-3">
             <div class="info-box mb-3">
-                <span class="info-box-icon bg-warning elevation-1"><i class="fas fa-users"></i></span>
+                <span class="info-box-icon bg-success elevation-1"><i class="fas fa-hippo"></i></span>
                 <div class="info-box-content">
-                    <span class="info-box-text">New Members</span>
-                    <span class="info-box-number">2,000</span>
+                    <span class="info-box-text">{{__('global.sold_cattle')}}</span>
+                    <span class="info-box-number">{{$all_cattle_count->where('status','sold')->count()}}</span>
                 </div>
-
             </div>
-
+        </div>
+        <div class="clearfix hidden-md-up"></div>
+        <div class="col-12 col-sm-6 col-md-3">
+            <div class="info-box mb-3">
+                <span class="info-box-icon bg-success elevation-1"><i class="fas fa-user-friends"></i></span>
+                <div class="info-box-content">
+                    <span class="info-box-text">{{__('global.active_suppliers')}}</span>
+                    <span class="info-box-number">{{$suppliers->where('status','active')->count()}}</span>
+                </div>
+            </div>
+        </div>
+        <div class="col-12 col-sm-6 col-md-3">
+            <div class="info-box mb-3">
+                <span class="info-box-icon bg-info elevation-1"><i class="fas fa-users"></i></span>
+                <div class="info-box-content">
+                    <span class="info-box-text">{{__('global.active_party')}}</span>
+                    <span class="info-box-number">{{$parties->where('status','active')->count()}}</span>
+                </div>
+            </div>
+        </div>
+        <div class="clearfix hidden-md-up"></div>
+        <div class="col-12 col-sm-6 col-md-3">
+            <div class="info-box mb-3">
+                <span class="info-box-icon bg-primary elevation-1"><i class="fas fa-igloo"></i></span>
+                <div class="info-box-content">
+                    <span class="info-box-text">{{__('global.active_farms')}}</span>
+                    <span class="info-box-number">{{$farms->where('status','active')->count()}}</span>
+                </div>
+            </div>
+        </div>
+        <div class="col-12 col-sm-6 col-md-3">
+            <div class="info-box mb-3">
+                <span class="info-box-icon bg-warning elevation-1"><i class="fas fa-wallet"></i></span>
+                <div class="info-box-content">
+                    <span class="info-box-text">{{__('global.active_accounts')}}</span>
+                    <span class="info-box-number">{{$accounts->where('status','active')->count()}}</span>
+                </div>
+            </div>
         </div>
     </div>
-    <div class="card-body">
-        @php
-            $readmePath = base_path('README.md'); // Replace with the actual path to your readme.md file
-            $readmeContent = \Illuminate\Support\Facades\File::get($readmePath);
-        @endphp
-        @markdown($readmeContent)
-    </div>
+
 
 @stop
 @section('footer')

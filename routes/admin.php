@@ -238,3 +238,7 @@ Route::get('/party-receives/trashed/{party_receive}/restore',[PartyReceivedContr
 Route::get('/party-receives/trashed/{party_receive}/delete',[PartyReceivedController::class,'force_delete'])->middleware('permission:party_receive_manage')->name('party-receives.force_delete');
 Route::get('/party-receives/{party_receive}/approve',[PartyReceivedController::class,'approve'])->middleware('permission:party_receive_approve')->name('party-receives.approve');
 Route::resource('/party-receives',PartyReceivedController::class)->middleware('permission:party_receive_manage');
+
+//Setting
+Route::get('global-setting',[\App\Http\Controllers\Admin\GlobalSettingController::class,'global_setting'])->name('global_setting');
+Route::post('update-global-setting',[\App\Http\Controllers\Admin\GlobalSettingController::class,'update_global_setting'])->name('update_global_setting');

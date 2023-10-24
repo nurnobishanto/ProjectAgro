@@ -33,7 +33,10 @@ class Admin extends Authenticatable
         return 'admin/profile';
     }
     public function adminlte_image(){
-        return asset('uploads/'.auth()->user()->photo);
+        if (auth()->user()->photo){
+            return asset('uploads/'.auth()->user()->photo);
+        }
+        return asset('self/avatar.webp');
     }
 
 }

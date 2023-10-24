@@ -63,5 +63,6 @@ return [
     'supplier_payment' => 'Supplier Payment',
     'party_receive' => 'Party Receive',
     'global' => 'Global',
+    'global_setting' => 'Global Setting',
     'balance_transfer' => 'Balance Transfer',
 ];

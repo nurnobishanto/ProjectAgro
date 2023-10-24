@@ -14,7 +14,7 @@ return [
     |
     */
 
-    'title' => 'Project Agro',
+    'title' => env('APP_NAME'),
     'title_prefix' => '',
     'title_postfix' => '',
 
@@ -30,7 +30,7 @@ return [
     |
     */
 
-    'use_ico_only' => false,
+    'use_ico_only' => true,
     'use_full_favicon' => false,
 
     /*
@@ -63,7 +63,7 @@ return [
     |
     */
 
-    'logo' => '<b>Project </b>Agro',
+    'logo' => env('APP_NAME'),
     'logo_img' => 'self/dark-logo.png',
     'logo_img_class' => 'brand-image img-circle elevation-3',
     'logo_img_xl' => null,
@@ -256,10 +256,10 @@ return [
     'dashboard_url' => 'admin',
     'logout_url' => 'admin/logout',
     'login_url' => 'admin/login',
-    'register_url' => 'admin/register',
+    'register_url' => false,
     'password_reset_url' => 'admin/password/reset',
     'password_email_url' => 'admin/password/email',
-    'profile_url' => true,
+    'profile_url' => 'admin/profile',
 
     /*
     |--------------------------------------------------------------------------
@@ -537,12 +537,12 @@ return [
         [
             'text'    => 'global_settings',
             'icon'    => 'fas fa-cogs',
-            'can' => ['site_setting_manage'],
+            'can' => ['global_setting_manage'],
             'submenu' => [
                 [
-                    'text' => 'site_setting',
-                    'can' => 'site_setting_manage',
-                    'url' => ''
+                    'text' => 'global_setting',
+                    'can' => 'global_setting_manage',
+                    'url' => 'admin/global-setting'
                 ],
             ]
         ],
@@ -619,12 +619,6 @@ return [
                 ],
                 ['header' => 'users_admins'],
                 [
-                    'text'        => 'users',
-                    'url'         => 'admin/users',
-                    'icon'        => 'fas fa-users',
-                    'can'         => 'user_manage',
-                ],
-                [
                     'text'        => 'admins',
                     'url'         => 'admin/admins',
                     'icon'        => 'fas fa-user-lock',
@@ -635,11 +629,7 @@ return [
                     'url'  => 'admin/profile',
                     'icon' => 'fas fa-fw fa-user',
                 ],
-                [
-                    'text' => 'change_password',
-                    'url'  => 'admin/change-password',
-                    'icon' => 'fas fa-fw fa-lock',
-                ],
+
             ]
         ],
     ],

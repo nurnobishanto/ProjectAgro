@@ -1,17 +1,17 @@
 @extends('adminlte::page')
 
-@section('title', __('global.update_admin'))
+@section('title', __('global.update_profile'))
 
 @section('content_header')
     <div class="row mb-2">
         <div class="col-sm-6">
-            <h1>{{ __('global.update_admin')}}</h1>
+            <h1>{{ __('global.update_profile')}}</h1>
         </div>
         <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
                 <li class="breadcrumb-item"><a href="{{route('admin.dashboard')}}">{{ __('global.home')}}</a></li>
                 <li class="breadcrumb-item"><a href="{{route('admin.admins.index')}}">{{ __('global.admins')}}</a></li>
-                <li class="breadcrumb-item active">{{ __('global.update_admin')}}</li>
+                <li class="breadcrumb-item active">{{ __('global.update_profile')}}</li>
             </ol>
 
         </div>
@@ -55,8 +55,8 @@
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <label for="name">{{ __('global.confirm_password')}}</label>
-                                    <input id="password" name="password" type="password" class="form-control" placeholder="{{ __('global.enter_confirm_password')}}">
+                                    <label for="password_confirmation">{{ __('global.confirm_password')}}</label>
+                                    <input id="password_confirmation" name="password_confirmation" type="password" class="form-control" placeholder="{{ __('global.enter_confirm_password')}}">
                                 </div>
                             </div>
                             <div class="col-md-6">

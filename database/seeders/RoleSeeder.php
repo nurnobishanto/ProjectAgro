@@ -29,6 +29,7 @@ class RoleSeeder extends Seeder
                 'permissions' => [
                     'dashboard_manage',
                     'site_setting_manage',
+                    'global_setting_manage',
                     'inventory_manage',
                 ]
             ],
