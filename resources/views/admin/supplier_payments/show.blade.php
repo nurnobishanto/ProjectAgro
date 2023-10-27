@@ -63,57 +63,6 @@
                             </tr>
                         </table>
                     </div>
-                            <div class="row">
-                                <div class="col-lg-3 col-md-4 col-sm-6">
-                                    <div class="form-group">
-                                        <label for="unique_id">{{ __('global.unique_id')}}<span class="text-danger"> *</span></label>
-                                        <input name="unique_id" disabled value="{{$supplier_payment->unique_id}}" id="unique_id"  type="text" class="form-control">
-                                    </div>
-                                </div>
-                                <div class="col-lg-3 col-md-4 col-sm-6">
-                                    <div class="form-group">
-                                        <label for="date">{{ __('global.select_date')}}<span class="text-danger"> *</span></label>
-                                        <input name="date" value="{{$supplier_payment->date}}" disabled id="date"  type="text" class="form-control datepicker">
-                                    </div>
-                                </div>
-                                <div class="col-lg-3 col-md-4 col-sm-6">
-                                    <div class="form-group">
-                                        <label for="supplier_id">{{__('global.select_supplier')}}<span class="text-danger"> *</span></label>
-                                        <select disabled name="supplier_id" class=" form-control" id="account_id">
-                                            <option value="">{{__('global.select_supplier')}}</option>
-                                            @foreach(getSuppliers() as $supplier)
-                                                <option value="{{$supplier->id}}" @if($supplier->id == $supplier_payment->supplier_id) selected @endif>{{$supplier->name}} </option>
-                                            @endforeach
-                                        </select>
-                                    </div>
-                                </div>
-                                <div class="col-lg-3 col-md-4 col-sm-6">
-                                    <div class="form-group">
-                                        <label for="account_id">{{__('global.select_account')}}<span class="text-danger"> *</span></label>
-                                        <select disabled name="account_id" class=" form-control" id="account_id">
-                                            <option value="">{{__('global.select_account')}}</option>
-                                            @foreach(getAccountList() as $account)
-                                                <option value="{{$account->id}}" @if($account->id == $supplier_payment->account_id) selected @endif>{{$account->account_name}} ({{$account->account_no}}) {{$account->admin->name??'--'}}</option>
-                                            @endforeach
-                                        </select>
-                                    </div>
-                                </div>
-                                <div class="col-lg-3 col-md-3 col-sm-6">
-                                    <div class="form-group">
-                                        <label for="amount">{{ __('global.supplier_payment')}}<span class="text-danger"> *</span></label>
-                                        <input id="amount" disabled name="amount" value="{{$supplier_payment->amount}}" type="number" class="form-control" placeholder="{{ __('global.enter_supplier_payment')}}">
-                                    </div>
-                                </div>
-                                <div class="col-lg-9 col-md-9 col-md-12">
-                                    <div class="form-group">
-                                        <label for="note">{{ __('global.note')}}</label>
-                                        <textarea id="note" disabled name="note" rows="1" class="form-control">{{$supplier_payment->note}}</textarea>
-                                    </div>
-                                </div>
-
-                            </div>
-
-
                         <form action="{{ route('admin.supplier-payments.destroy', $supplier_payment->id) }}" method="POST">
                             @method('DELETE')
                             @csrf
