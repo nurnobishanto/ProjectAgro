@@ -55,7 +55,7 @@
                                     <td>{{$party_receive->date}}</td>
                                     <td>{{$party_receive->account->account_name??'--'}} ({{$party_receive->account->account_no??'--'}}) {{$party_receive->account->admin->name??'--'}}</td>
                                     <td>{{$party_receive->amount}}</td>
-                                    <td>{{__('global.'.$supplier_payment->type)}}</td>
+                                    <td>{{__('global.'.$party_receive->type)}}</td>
                                     <td>{{$party_receive->party->name}}</td>
                                     <td>{{$party_receive->status}}</td>
                                     <td>{{date_format($party_receive->updated_at,'d M y h:i A') }}</td>

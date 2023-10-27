@@ -8,6 +8,7 @@ use App\Models\Purchase;
 use App\Models\PurchaseProduct;
 use App\Models\Stock;
 use App\Models\Supplier;
+use App\Models\SupplierPayment;
 use App\Models\Unit;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\App;
@@ -225,7 +226,22 @@ class PurchaseController extends Controller
         $purchase->status = 'success';
         $purchase->due = $due;
         $purchase->update();
+
+
         $supplier =  Supplier::find($purchase->supplier_id);
+
+//        SupplierPayment::create([
+//            'unique_id' =>generateInvoiceId('SPAP',SupplierPayment::class,'unique_id'),
+//            'date' =>$purchase->date,
+//            'supplier_id' =>$purchase->supplier_id,
+//            'account_id' =>$purchase->account_id,
+//            'amount' =>$purchase->paid,
+//            'type' =>'payment',
+//            'note' =>'Payment at Purchase for '.$purchase->invoice_no,
+//            'status' => 'success',
+//            'created_by' =>auth()->user()->id,
+//            'updated_by' =>auth()->user()->id,
+//        ]);
         $supplier->current_balance = $supplier->current_balance - $purchase->due;
         $supplier->update();
         toastr()->success('Purchase has been approved ');

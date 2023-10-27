@@ -34,6 +34,7 @@ class SupplierPaymentController extends Controller
         $request->validate([
             'unique_id' => 'required',
             'date' => 'required',
+            'type' => 'required',
             'supplier_id' => 'required',
             'account_id' => 'required',
             'amount' => 'required',
@@ -44,6 +45,7 @@ class SupplierPaymentController extends Controller
             'supplier_id' =>$request->supplier_id,
             'account_id' =>$request->account_id,
             'amount' =>$request->amount,
+            'type' =>$request->type,
             'note' =>$request->note,
             'status' => 'pending',
             'created_by' =>auth()->user()->id,
@@ -71,6 +73,7 @@ class SupplierPaymentController extends Controller
         $request->validate([
             'unique_id' => 'required',
             'date' => 'required',
+            'type' => 'type',
             'supplier_id' => 'required',
             'account_id' => 'required',
             'amount' => 'required',
@@ -80,6 +83,7 @@ class SupplierPaymentController extends Controller
         $supplier_payment->account_id = $request->account_id;
         $supplier_payment->supplier_id = $request->supplier_id;
         $supplier_payment->amount = $request->amount;
+        $supplier_payment->type = $request->type;
         $supplier_payment->note = $request->note;
         $supplier_payment->status = 'pending';
         $supplier_payment->updated_by = auth()->user()->id;
@@ -119,11 +123,20 @@ class SupplierPaymentController extends Controller
             $account = $sp->account;
             $supplier = $sp->supplier;
 
-            $account->current_balance = $account->current_balance - $sp->amount;
-            $account->update();
+            if ($sp->type == 'payment'){
+                $account->current_balance = $account->current_balance - $sp->amount;
+                $account->update();
 
-            $supplier->current_balance = $supplier->current_balance - $sp->amount;
-            $supplier->update();
+                $supplier->current_balance = $supplier->current_balance + $sp->amount;
+                $supplier->update();
+            }else{
+                $account->current_balance = $account->current_balance + $sp->amount;
+                $account->update();
+
+                $supplier->current_balance = $supplier->current_balance - $sp->amount;
+                $supplier->update();
+            }
+
 
             $sp->status = 'success';
             $sp->update();

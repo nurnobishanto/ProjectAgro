@@ -71,11 +71,20 @@
                             </div>
                             <div class="col-lg-3 col-md-3 col-sm-6">
                                 <div class="form-group">
-                                    <label for="amount">{{ __('global.supplier_payment')}}<span class="text-danger"> *</span></label>
-                                    <input id="amount" name="amount" type="number" class="form-control" placeholder="{{ __('global.enter_supplier_payment')}}">
+                                    <label for="type">{{ __('global.select_type')}}<span class="text-danger"> *</span></label>
+                                    <select id="type" name="type"  class="form-control">
+                                        <option value="payment">{{__('global.payment')}}</option>
+                                        <option value="return">{{__('global.return')}}</option>
+                                    </select>
                                 </div>
                             </div>
-                            <div class="col-lg-9 col-md-9 col-md-12">
+                            <div class="col-lg-3 col-md-3 col-sm-6">
+                                <div class="form-group">
+                                    <label for="amount">{{ __('global.amount')}}<span class="text-danger"> *</span></label>
+                                    <input id="amount" name="amount" type="number" class="form-control" placeholder="{{ __('global.enter_amount')}}">
+                                </div>
+                            </div>
+                            <div class="col-lg-6 col-md-6 col-sm-6">
                                 <div class="form-group">
                                     <label for="note">{{ __('global.note')}}</label>
                                     <textarea id="note" name="note" rows="1" class="form-control">{{old('note')}}</textarea>
