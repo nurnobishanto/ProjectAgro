@@ -1,17 +1,17 @@
 @extends('adminlte::page')
 
-@section('title', __('global.update_unit'))
+@section('title', __('global.update_asset'))
 
 @section('content_header')
     <div class="row mb-2">
         <div class="col-sm-6">
-            <h1>{{ __('global.update_unit')}}</h1>
+            <h1>{{ __('global.update_asset')}}</h1>
         </div>
         <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
                 <li class="breadcrumb-item"><a href="{{route('admin.dashboard')}}">{{ __('global.home')}}</a></li>
-                <li class="breadcrumb-item"><a href="{{route('admin.units.index')}}">{{ __('global.units')}}</a></li>
-                <li class="breadcrumb-item active">{{ __('global.update_unit')}}</li>
+                <li class="breadcrumb-item"><a href="{{route('admin.assets.index')}}">{{ __('global.assets')}}</a></li>
+                <li class="breadcrumb-item active">{{ __('global.update_asset')}}</li>
             </ol>
 
         </div>
@@ -23,7 +23,7 @@
         <div class="col-12">
             <div class="card">
                 <div class="card-body">
-                    <form action="{{route('admin.units.update',['unit'=>$unit->id])}}" method="POST" enctype="multipart/form-data" id="supplier-form">
+                    <form action="{{route('admin.assets.update',['asset'=>$asset->id])}}" method="POST" enctype="multipart/form-data" id="supplier-form">
                         @method('PUT')
                         @csrf
                         @if (count($errors) > 0)
@@ -38,29 +38,29 @@
                         <div class="row">
                             <div class="col-md-4">
                                 <div class="form-group">
-                                    <label for="name">{{ __('global.unit')}} <span class="text-danger"> *</span></label>
-                                    <input id="name" name="name" class="form-control" value="{{$unit->name}}" placeholder="{{ __('global.enter_unit')}}">
+                                    <label for="name">{{ __('global.asset')}} <span class="text-danger"> *</span></label>
+                                    <input id="name" name="name" class="form-control" value="{{$asset->name}}" placeholder="{{ __('global.enter_asset')}}">
                                 </div>
                             </div>
                             <div class="col-md-4">
                                 <div class="form-group">
-                                    <label for="code">{{ __('global.code')}} <span class="text-danger"> *</span></label>
-                                    <input id="code" name="code" class="form-control" value="{{$unit->code}}" placeholder="{{ __('global.enter_code')}}">
+                                    <label for="amount">{{ __('global.amount')}} <span class="text-danger"> *</span></label>
+                                    <input id="amount" name="amount" class="form-control" value="{{$asset->amount}}" placeholder="{{ __('global.enter_amount')}}">
                                 </div>
                             </div>
                             <div class="col-md-4">
                                 <div class="form-group">
                                     <label for="status">{{ __('global.select_status')}} <span class="text-danger"> *</span></label>
                                     <select name="status" class="form-control" id="status">
-                                        <option value="active" @if($unit->status == 'active') selected @endif>{{ __('global.active')}}</option>
-                                        <option value="deactivate" @if($unit->status == 'deactivate') selected @endif>{{ __('global.deactivate')}}</option>
+                                        <option value="active" @if($asset->status == 'active') selected @endif>{{ __('global.active')}}</option>
+                                        <option value="deactivate" @if($asset->status == 'deactivate') selected @endif>{{ __('global.deactivate')}}</option>
                                     </select>
                                 </div>
                             </div>
 
                         </div>
 
-                        @can('unit_update')
+                        @can('asset_update')
                             <button class="btn btn-success" type="submit">{{ __('global.update')}}</button>
                         @endcan
                     </form>

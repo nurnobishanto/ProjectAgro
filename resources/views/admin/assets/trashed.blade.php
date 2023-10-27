@@ -1,20 +1,20 @@
 @extends('adminlte::page')
 
-@section('title', __('global.units'). __('global.deleted'))
+@section('title', __('global.assets'). __('global.deleted'))
 
 @section('content_header')
     <div class="row mb-2">
         <div class="col-sm-6">
-            <h1>{{__('global.units'). __('global.deleted')}}</h1>
+            <h1>{{__('global.assets'). __('global.deleted')}}</h1>
             @can('supplier_list')
-                <a href="{{route('admin.units.index')}}" class="btn btn-primary mt-2">{{__('global.go_back')}}</a>
+                <a href="{{route('admin.assets.index')}}" class="btn btn-primary mt-2">{{__('global.go_back')}}</a>
             @endcan
 
         </div>
         <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
                 <li class="breadcrumb-item"><a href="{{route('admin.dashboard')}}">{{__('global.home')}}</a></li>
-                <li class="breadcrumb-item active">{{__('global.units')}}</li>
+                <li class="breadcrumb-item active">{{__('global.assets')}}</li>
             </ol>
 
         </div>
@@ -31,8 +31,8 @@
                             <thead>
                             <tr>
                                 <th>{{__('global.sl')}}</th>
-                                <th>{{__('global.unit')}}</th>
-                                <th>{{__('global.code')}}</th>
+                                <th>{{__('global.asset')}}</th>
+                                <th>{{__('global.amount')}}</th>
                                 <th>{{__('global.status')}}</th>
                                 <th>{{__('global.deleted_at')}}</th>
                                 <th>{{__('global.action')}}</th>
@@ -40,17 +40,17 @@
                             </thead>
                             <tbody>
                             <?php $sl = 1; ?>
-                            @foreach($units as $unit)
+                            @foreach($assets as $asset)
                                 <tr>
                                     <td>{{$sl++}}</td>
-                                    <td>{{$unit->name}}</td>
-                                    <td>{{$unit->code}}</td>
-                                    <td>{{$unit->status}}</td>
-                                    <td>{{date_format($unit->deleted_at,'d M y h:i A')}}</td>
+                                    <td>{{$asset->name}}</td>
+                                    <td>{{$asset->amount}}</td>
+                                    <td>{{$asset->status}}</td>
+                                    <td>{{date_format($asset->deleted_at,'d M y h:i A')}}</td>
                                     <td class="text-center">
-                                        @can('unit_delete')
-                                        <a href="{{route('admin.units.restore',['unit'=>$unit->id])}}"  class="btn btn-success btn-sm px-1 py-0"><i class="fa fa-arrow-left"></i></a>
-                                        <a href="{{route('admin.units.force_delete',['unit'=>$unit->id])}}"  class="btn btn-danger btn-sm px-1 py-0"><i class="fa fa-trash"></i></a>
+                                        @can('asset_delete')
+                                        <a href="{{route('admin.assets.restore',['asset'=>$asset->id])}}"  class="btn btn-success btn-sm px-1 py-0"><i class="fa fa-arrow-left"></i></a>
+                                        <a href="{{route('admin.assets.force_delete',['asset'=>$asset->id])}}"  class="btn btn-danger btn-sm px-1 py-0"><i class="fa fa-trash"></i></a>
                                         @endcan
                                     </td>
                                 </tr>
@@ -60,8 +60,8 @@
                             <tfoot>
                             <tr>
                                 <th>{{__('global.sl')}}</th>
-                                <th>{{__('global.unit')}}</th>
-                                <th>{{__('global.code')}}</th>
+                                <th>{{__('global.asset')}}</th>
+                                <th>{{__('global.amount')}}</th>
                                 <th>{{__('global.status')}}</th>
                                 <th>{{__('global.deleted_at')}}</th>
                                 <th>{{__('global.action')}}</th>

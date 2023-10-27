@@ -1,17 +1,17 @@
 @extends('adminlte::page')
 
-@section('title', __('global.view_unit'))
+@section('title', __('global.view_asset'))
 
 @section('content_header')
     <div class="row mb-2">
         <div class="col-sm-6">
-            <h1>{{__('global.view_unit')}} - {{$unit->name}}</h1>
+            <h1>{{__('global.view_asset')}} - {{$asset->name}}</h1>
         </div>
         <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
                 <li class="breadcrumb-item"><a href="{{route('admin.dashboard')}}">{{__('global.home')}}</a></li>
-                <li class="breadcrumb-item"><a href="{{route('admin.units.index')}}">{{__('global.units')}}</a></li>
-                <li class="breadcrumb-item active">{{__('global.view_unit')}}</li>
+                <li class="breadcrumb-item"><a href="{{route('admin.assets.index')}}">{{__('global.assets')}}</a></li>
+                <li class="breadcrumb-item active">{{__('global.view_asset')}}</li>
             </ol>
 
         </div>
@@ -35,46 +35,46 @@
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label for="name">{{ __('global.unit')}}</label>
-                                        <input id="name" class="form-control" disabled value="{{$unit->name}}">
+                                        <label for="name">{{ __('global.asset')}}</label>
+                                        <input id="name" class="form-control" disabled value="{{$asset->name}}">
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label for="code">{{ __('global.code')}}</label>
-                                        <input id="code" class="form-control" disabled value="{{$unit->code}}">
+                                        <label for="amount">{{ __('global.amount')}}</label>
+                                        <input id="amount" class="form-control" disabled value="{{$asset->amount}}">
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label for="status">{{ __('global.status')}}</label>
-                                        <input id="status" class="form-control" disabled value="{{$unit->status}}">
+                                        <input id="status" class="form-control" disabled value="{{$asset->status}}">
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label for="updated_at">{{ __('global.updated_at')}}</label>
-                                        <input id="updated_at" class="form-control" disabled value="{{date_format($unit->updated_at,'d M y h:i A') }}">
+                                        <input id="updated_at" class="form-control" disabled value="{{date_format($asset->updated_at,'d M y h:i A') }}">
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label for="created_by">{{ __('global.created_by')}}</label>
-                                        <input id="created_by" class="form-control" disabled value="{{$unit->createdBy->name}}">
+                                        <input id="created_by" class="form-control" disabled value="{{$asset->createdBy->name}}">
                                     </div>
                                 </div>
                             </div>
 
 
 
-                        <form action="{{ route('admin.units.destroy', $unit->id) }}" method="POST">
+                        <form action="{{ route('admin.assets.destroy', $asset->id) }}" method="POST">
                             @method('DELETE')
                             @csrf
-                            <a href="{{route('admin.units.index')}}" class="btn btn-success" >Go Back</a>
-                            @can('unit_update')
-                                <a href="{{route('admin.units.edit',['unit'=>$unit->id])}}" class="btn btn-warning "><i class="fa fa-pen"></i> Edit</a>
+                            <a href="{{route('admin.assets.index')}}" class="btn btn-success" >Go Back</a>
+                            @can('asset_update')
+                                <a href="{{route('admin.assets.edit',['asset'=>$asset->id])}}" class="btn btn-warning "><i class="fa fa-pen"></i> Edit</a>
                             @endcan
-                            @can('unit_delete')
+                            @can('asset_delete')
                                 <button onclick="isDelete(this)" class="btn btn-danger"><i class="fa fa-trash"></i> Delete</button>
                             @endcan
                         </form>
