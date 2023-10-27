@@ -65,4 +65,5 @@ return [
     'global' => 'Global',
     'global_setting' => 'Global Setting',
     'balance_transfer' => 'Balance Transfer',
+    'asset' => 'Asset',
 ];

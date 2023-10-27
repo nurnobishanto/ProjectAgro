@@ -3,6 +3,7 @@
 
 use App\Http\Controllers\Admin\AccountController;
 use App\Http\Controllers\Admin\AdminController;
+use App\Http\Controllers\Admin\AssetController;
 use App\Http\Controllers\Admin\BalanceTransferController;
 use App\Http\Controllers\Admin\BatchController;
 use App\Http\Controllers\Admin\BreedsController;
@@ -182,6 +183,12 @@ Route::get('/accounts/trashed',[AccountController::class,'trashed_list'])->middl
 Route::get('/accounts/trashed/{account}/restore',[AccountController::class,'restore'])->middleware('permission:account_manage')->name('accounts.restore');
 Route::get('/accounts/trashed/{account}/delete',[AccountController::class,'force_delete'])->middleware('permission:account_manage')->name('accounts.force_delete');
 Route::resource('/accounts',AccountController::class)->middleware('permission:account_manage');
+
+//Assets
+Route::get('/assets/trashed',[AssetController::class,'trashed_list'])->middleware('permission:asset_manage')->name('assets.trashed');
+Route::get('/assets/trashed/{asset}/restore',[AssetController::class,'restore'])->middleware('permission:asset_manage')->name('assets.restore');
+Route::get('/assets/trashed/{asset}/delete',[AssetController::class,'force_delete'])->middleware('permission:asset_manage')->name('assets.force_delete');
+Route::resource('/assets',AssetController::class)->middleware('permission:asset_manage');
 
 //Opening Balance
 Route::get('/opening-balances/trashed',[OpeningBalanceController::class,'trashed_list'])->middleware('permission:opening_balance_manage')->name('opening-balances.trashed');

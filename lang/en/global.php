@@ -444,6 +444,12 @@ return [
     'cash' => 'Cash',
     'return' => 'Return',
     'receive' => 'Receive',
-    'payment' => 'Payment'
+    'payment' => 'Payment',
+    'asset' => 'Asset',
+    'assets' => 'Asset List',
+    'create_asset' => 'Create Asset',
+    'update_asset' => 'Update Asset',
+    'delete_asset' => 'Delete Asset',
+    'view_asset' => 'View Asset',
 
 ];

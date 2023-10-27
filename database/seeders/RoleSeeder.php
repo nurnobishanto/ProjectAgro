@@ -341,6 +341,17 @@ class RoleSeeder extends Seeder
                 ]
             ],
             [
+                'group_name' => 'Asset',
+                'permissions' => [
+                    'asset_manage',
+                    'asset_list',
+                    'asset_view',
+                    'asset_update',
+                    'asset_delete',
+                    'asset_create',
+                ]
+            ],
+            [
                 'group_name' => 'OpeningBalance',
                 'permissions' => [
                     'opening_balance_manage',

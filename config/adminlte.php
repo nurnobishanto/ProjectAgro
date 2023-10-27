@@ -507,6 +507,11 @@ return [
             'can' => ['account_manage','opening_balance_manage','balance_transfer_manage','supplier_payment_manage','party_received_manage'],
             'submenu' => [
                 [
+                    'text' => 'asset',
+                    'can' => 'asset_manage',
+                    'url' => 'admin/assets'
+                ],
+                [
                     'text' => 'accounts',
                     'can' => 'account_manage',
                     'url' => 'admin/accounts'
