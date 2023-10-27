@@ -441,4 +441,6 @@ return [
     'active_farms' => 'Active Farms',
     'active_accounts' => 'Active Accounts',
     'update_profile' => 'Update Profile',
+    'cash' => 'Cash',
+
 ];

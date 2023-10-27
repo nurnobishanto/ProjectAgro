@@ -39,6 +39,7 @@ if (!function_exists('getAccountType')) {
     function getAccountType()
     {
         $type = [
+            'cash' => __('global.cash'),
             'bank' => __('global.bank'),
             'mobile_bank' => __('global.mobile_bank'),
         ];
