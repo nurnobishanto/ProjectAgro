@@ -34,6 +34,7 @@ class PartyReceivedController extends Controller
         $request->validate([
             'unique_id' => 'required',
             'date' => 'required',
+            'type' => 'required',
             'party_id' => 'required',
             'account_id' => 'required',
             'amount' => 'required',
@@ -44,6 +45,7 @@ class PartyReceivedController extends Controller
             'party_id' =>$request->party_id,
             'account_id' =>$request->account_id,
             'amount' =>$request->amount,
+            'type' =>$request->type,
             'note' =>$request->note,
             'status' => 'pending',
             'created_by' =>auth()->user()->id,
@@ -71,6 +73,7 @@ class PartyReceivedController extends Controller
         $request->validate([
             'unique_id' => 'required',
             'date' => 'required',
+            'type' => 'required',
             'party_id' => 'required',
             'account_id' => 'required',
             'amount' => 'required',
@@ -79,6 +82,7 @@ class PartyReceivedController extends Controller
         $party_receive->date = $request->date;
         $party_receive->account_id = $request->account_id;
         $party_receive->party_id = $request->party_id;
+        $party_receive->type = $request->type;
         $party_receive->amount = $request->amount;
         $party_receive->note = $request->note;
         $party_receive->status = 'pending';
@@ -119,11 +123,21 @@ class PartyReceivedController extends Controller
             $account = $pr->account;
             $party = $pr->party;
 
-            $account->current_balance = $account->current_balance + $pr->amount;
-            $account->update();
+            if ($pr->type == 'receive'){
+                $account->current_balance = $account->current_balance + $pr->amount;
+                $account->update();
 
-            $party->current_balance = $party->current_balance - $pr->amount;
-            $party->update();
+                $party->current_balance = $party->current_balance - $pr->amount;
+                $party->update();
+            }else{
+                $account->current_balance = $account->current_balance - $pr->amount;
+                $account->update();
+
+                $party->current_balance = $party->current_balance + $pr->amount;
+                $party->update();
+            }
+
+
 
             $pr->status = 'success';
             $pr->update();

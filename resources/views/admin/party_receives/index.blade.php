@@ -37,7 +37,8 @@
                                 <th>{{__('global.unique_id')}}</th>
                                 <th>{{__('global.date')}}</th>
                                 <th>{{__('global.account')}}</th>
-                                <th>{{__('global.received_amount')}}</th>
+                                <th>{{__('global.amount')}}</th>
+                                <th>{{__('global.type')}}</th>
                                 <th>{{__('global.party')}}</th>
                                 <th>{{__('global.status')}}</th>
                                 <th>{{__('global.updated_at')}}</th>
@@ -54,6 +55,7 @@
                                     <td>{{$party_receive->date}}</td>
                                     <td>{{$party_receive->account->account_name??'--'}} ({{$party_receive->account->account_no??'--'}}) {{$party_receive->account->admin->name??'--'}}</td>
                                     <td>{{$party_receive->amount}}</td>
+                                    <td>{{__('global.'.$supplier_payment->type)}}</td>
                                     <td>{{$party_receive->party->name}}</td>
                                     <td>{{$party_receive->status}}</td>
                                     <td>{{date_format($party_receive->updated_at,'d M y h:i A') }}</td>
@@ -90,7 +92,8 @@
                                 <th>{{__('global.unique_id')}}</th>
                                 <th>{{__('global.date')}}</th>
                                 <th>{{__('global.account')}}</th>
-                                <th>{{__('global.received_amount')}}</th>
+                                <th>{{__('global.amount')}}</th>
+                                <th>{{__('global.type')}}</th>
                                 <th>{{__('global.party')}}</th>
                                 <th>{{__('global.status')}}</th>
                                 <th>{{__('global.updated_at')}}</th>

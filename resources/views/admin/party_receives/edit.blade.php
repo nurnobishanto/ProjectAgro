@@ -72,11 +72,20 @@
                             </div>
                             <div class="col-lg-3 col-md-3 col-sm-6">
                                 <div class="form-group">
+                                    <label for="type">{{ __('global.select_type')}}<span class="text-danger"> *</span></label>
+                                    <select id="type" name="type"  class="form-control">
+                                        <option value="receive" @if($party_receive->type == 'receive') selected @endif>{{__('global.receive')}}</option>
+                                        <option value="return" @if($party_receive->type == 'return') selected @endif>{{__('global.return')}}</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-lg-3 col-md-3 col-sm-6">
+                                <div class="form-group">
                                     <label for="amount">{{ __('global.party_receive')}}<span class="text-danger"> *</span></label>
                                     <input id="amount" name="amount" value="{{$party_receive->amount}}" type="number" class="form-control" placeholder="{{ __('global.enter_party_receive')}}">
                                 </div>
                             </div>
-                            <div class="col-lg-9 col-md-9 col-sm-12">
+                            <div class="col-lg-6 col-md-6 col-sm-6">
                                 <div class="form-group">
                                     <label for="note">{{ __('global.note')}}</label>
                                     <textarea id="note" name="note" rows="1" class="form-control">{{$party_receive->note}}</textarea>
