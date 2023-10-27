@@ -14,6 +14,7 @@ class SupplierPayment extends Model
                 'date',
                 'supplier_id',
                 'account_id',
+                'type',
                 'amount',
                 'note',
                 'status',

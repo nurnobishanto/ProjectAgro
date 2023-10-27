@@ -442,5 +442,8 @@ return [
     'active_accounts' => 'Active Accounts',
     'update_profile' => 'Update Profile',
     'cash' => 'Cash',
+    'return' => 'Return',
+    'receive' => 'Receive',
+    'payment' => 'Payment'
 
 ];

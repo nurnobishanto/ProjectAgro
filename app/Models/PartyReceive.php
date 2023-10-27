@@ -14,6 +14,7 @@ class PartyReceive extends Model
         'date',
         'party_id',
         'account_id',
+        'type',
         'amount',
         'note',
         'status',
