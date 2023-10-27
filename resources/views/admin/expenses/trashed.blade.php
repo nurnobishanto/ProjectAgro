@@ -49,7 +49,7 @@
                                         {{$expense->account->account_no??'--'}}<br>
                                         {{__('global.'.$expense->account->account_type)??'--'}}<br>
                                     </td>
-                                    <td>{{$expense->expense_category->name}}</td>
+                                    <td>{{$expense->expense_category->name??'--'}}</td>
                                     <td>{{$expense->amount}}</td>
                                     <td>{{__('global.'.$expense->status)}}</td>
                                     <td>{{$expense->createdBy->name??'--'}}</td>
