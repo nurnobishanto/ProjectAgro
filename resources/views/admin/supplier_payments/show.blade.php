@@ -23,15 +23,46 @@
         <div class="col-12">
             <div class="card">
                 <div class="card-body">
-                        @if (count($errors) > 0)
-                            <div class = "alert alert-danger">
-                                <ul>
-                                    @foreach ($errors->all() as $error)
-                                        <li>{{ $error }}</li>
-                                    @endforeach
-                                </ul>
-                            </div>
-                        @endif
+                    <div class="table-responsive">
+                        <table class="table table-bordered">
+                            <tr>
+                                <th>{{ __('global.unique_id')}}</th>
+                                <td>{{$supplier_payment->unique_id}}</td>
+                            </tr>
+                            <tr>
+                                <th>{{ __('global.date')}}</th>
+                                <td>{{$supplier_payment->date}}</td>
+                            </tr>
+                            <tr>
+                                <th>{{ __('global.supplier')}}</th>
+                                <td>{{$supplier_payment->supplier->name??'--'}}</td>
+                            </tr>
+                            <tr>
+                                <th>{{ __('global.account')}}</th>
+                                <td>{{$supplier_payment->account->account_name??'--'}} ({{$supplier_payment->account->account_no??'--'}}) {{$supplier_payment->account->admin->name??'--'}}</td>
+                            </tr>
+                            <tr>
+                                <th>{{ __('global.type')}}</th>
+                                <td>{{__('global.'.$supplier_payment->type)}}</td>
+                            </tr>
+                            <tr>
+                                <th>{{ __('global.amount')}}</th>
+                                <td>{{$supplier_payment->amount}}</td>
+                            </tr>
+                            <tr>
+                                <th>{{ __('global.note')}}</th>
+                                <td>{{$supplier_payment->note}}</td>
+                            </tr>
+                            <tr>
+                                <th>{{ __('global.created_by')}}</th>
+                                <td>{{$supplier_payment->createdBy->name??'--'}}</td>
+                            </tr>
+                            <tr>
+                                <th>{{ __('global.updated_by')}}</th>
+                                <td>{{$supplier_payment->updatedBy->name??'--'}}</td>
+                            </tr>
+                        </table>
+                    </div>
                             <div class="row">
                                 <div class="col-lg-3 col-md-4 col-sm-6">
                                     <div class="form-group">

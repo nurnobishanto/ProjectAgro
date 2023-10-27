@@ -82,7 +82,7 @@
                             <div class="col-lg-3 col-md-3 col-sm-6">
                                 <div class="form-group">
                                     <label for="amount">{{ __('global.party_receive')}}<span class="text-danger"> *</span></label>
-                                    <input id="amount" name="amount" value="{{$party_receive->amount}}" type="number" class="form-control" placeholder="{{ __('global.enter_party_receive')}}">
+                                    <input id="amount" min="1" name="amount" value="{{$party_receive->amount}}" type="number" class="form-control" placeholder="{{ __('global.enter_party_receive')}}">
                                 </div>
                             </div>
                             <div class="col-lg-6 col-md-6 col-sm-6">
