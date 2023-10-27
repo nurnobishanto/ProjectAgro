@@ -7,6 +7,7 @@ use App\Models\Product;
 use App\Models\Purchase;
 use App\Models\PurchaseProduct;
 use App\Models\Stock;
+use App\Models\Supplier;
 use App\Models\Unit;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\App;
@@ -190,7 +191,7 @@ class PurchaseController extends Controller
         $costPerQty = round(($cost/$totalPurchaseQty),2);
 
         $paid = $purchase->paid;
-        $due = $purchase->due;
+        $due = ($totalPurchasePrice + $cost) - $paid;
 
         foreach ($purchase->purchaseProducts as $pp){
             $stock = Stock::where('farm_id',$purchase->farm_id)->where('product_id',$pp->product_id)->first();
@@ -222,7 +223,11 @@ class PurchaseController extends Controller
             }
         }
         $purchase->status = 'success';
+        $purchase->due = $due;
         $purchase->update();
+        $supplier =  Supplier::find($purchase->supplier_id);
+        $supplier->current_balance = $supplier->current_balance - $purchase->due;
+        $supplier->update();
         toastr()->success('Purchase has been approved ');
         return redirect()->route('admin.stock');
     }

@@ -21,11 +21,10 @@
 
 <body>
 <div class="container">
-    <header class="d-flex flex-wrap align-items-center justify-content-center justify-content-md-between py-3 mb-4 border-bottom sticky-top" id="nav">
-        <div class="col-md-3 mb-2 mb-md-0">
+    <header class="d-flex flex-wrap align-items-center justify-content-center justify-content-md-between  border-bottom sticky-top" id="nav">
+        <div class="col-md-3">
             <a href="/" class="d-inline-flex link-body-emphasis text-decoration-none">
                 <img src="{{asset('self/light-logo.png')}}" alt="Sehrish Agro" class="img-fluid navbar-brand" style="max-height: 100px">
-
             </a>
         </div>
 
