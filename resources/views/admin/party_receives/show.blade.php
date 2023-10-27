@@ -23,65 +23,46 @@
         <div class="col-12">
             <div class="card">
                 <div class="card-body">
-                        @if (count($errors) > 0)
-                            <div class = "alert alert-danger">
-                                <ul>
-                                    @foreach ($errors->all() as $error)
-                                        <li>{{ $error }}</li>
-                                    @endforeach
-                                </ul>
-                            </div>
-                        @endif
-                            <div class="row">
-                                <div class="col-lg-3 col-md-4 col-sm-6">
-                                    <div class="form-group">
-                                        <label for="unique_id">{{ __('global.unique_id')}}<span class="text-danger"> *</span></label>
-                                        <input name="unique_id" disabled value="{{$party_receive->unique_id}}" id="unique_id"  type="text" class="form-control">
-                                    </div>
-                                </div>
-                                <div class="col-lg-3 col-md-4 col-sm-6">
-                                    <div class="form-group">
-                                        <label for="date">{{ __('global.select_date')}}<span class="text-danger"> *</span></label>
-                                        <input name="date" value="{{$party_receive->date}}" disabled id="date"  type="text" class="form-control datepicker">
-                                    </div>
-                                </div>
-                                <div class="col-lg-3 col-md-4 col-sm-6">
-                                    <div class="form-group">
-                                        <label for="party_id">{{__('global.select_party')}}<span class="text-danger"> *</span></label>
-                                        <select disabled name="party_id" class=" form-control" id="account_id">
-                                            <option value="">{{__('global.select_party')}}</option>
-                                            @foreach(getSuppliers() as $party)
-                                                <option value="{{$party->id}}" @if($party->id == $party_receive->party_id) selected @endif>{{$party->name}} </option>
-                                            @endforeach
-                                        </select>
-                                    </div>
-                                </div>
-                                <div class="col-lg-3 col-md-4 col-sm-6">
-                                    <div class="form-group">
-                                        <label for="account_id">{{__('global.select_account')}}<span class="text-danger"> *</span></label>
-                                        <select disabled name="account_id" class=" form-control" id="account_id">
-                                            <option value="">{{__('global.select_account')}}</option>
-                                            @foreach(getAccountList() as $account)
-                                                <option value="{{$account->id}}" @if($account->id == $party_receive->account_id) selected @endif>{{$account->account_name}} ({{$account->account_no}}) {{$account->admin->name??'--'}}</option>
-                                            @endforeach
-                                        </select>
-                                    </div>
-                                </div>
-                                <div class="col-lg-3 col-md-3 col-sm-6">
-                                    <div class="form-group">
-                                        <label for="amount">{{ __('global.party_receive')}}<span class="text-danger"> *</span></label>
-                                        <input id="amount" disabled name="amount" value="{{$party_receive->amount}}" type="number" class="form-control" placeholder="{{ __('global.enter_party_receive')}}">
-                                    </div>
-                                </div>
-                                <div class="col-lg-9 col-md-9 col-md-12">
-                                    <div class="form-group">
-                                        <label for="note">{{ __('global.note')}}</label>
-                                        <textarea id="note" disabled name="note" rows="1" class="form-control">{{$party_receive->note}}</textarea>
-                                    </div>
-                                </div>
-
-                            </div>
-
+                      <div class="table-responsive">
+                          <table class="table table-bordered">
+                              <tr>
+                                  <th>{{ __('global.unique_id')}}</th>
+                                  <td>{{$party_receive->unique_id}}</td>
+                              </tr>
+                              <tr>
+                                  <th>{{ __('global.date')}}</th>
+                                  <td>{{$party_receive->date}}</td>
+                              </tr>
+                              <tr>
+                                  <th>{{ __('global.party')}}</th>
+                                  <td>{{$party_receive->party->name??'--'}}</td>
+                              </tr>
+                              <tr>
+                                  <th>{{ __('global.account')}}</th>
+                                  <td>{{$party_receive->account->account_name??'--'}} ({{$party_receive->account->account_no??'--'}}) {{$party_receive->account->admin->name??'--'}}</td>
+                              </tr>
+                              <tr>
+                                  <th>{{ __('global.type')}}</th>
+                                  <td>{{__('global.'.$party_receive->type)}}</td>
+                              </tr>
+                              <tr>
+                                  <th>{{ __('global.amount')}}</th>
+                                  <td>{{$party_receive->amount}}</td>
+                              </tr>
+                              <tr>
+                                  <th>{{ __('global.note')}}</th>
+                                  <td>{{$party_receive->note}}</td>
+                              </tr>
+                              <tr>
+                                  <th>{{ __('global.created_by')}}</th>
+                                  <td>{{$party_receive->createdBy->name??'--'}}</td>
+                              </tr>
+                              <tr>
+                                  <th>{{ __('global.updated_by')}}</th>
+                                  <td>{{$party_receive->updatedBy->name??'--'}}</td>
+                              </tr>
+                          </table>
+                      </div>
 
                         <form action="{{ route('admin.party-receives.destroy', $party_receive->id) }}" method="POST">
                             @method('DELETE')
