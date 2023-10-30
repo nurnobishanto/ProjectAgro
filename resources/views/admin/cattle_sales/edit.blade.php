@@ -97,7 +97,13 @@
                                     <input name="due" value="{{$cattle_sale->due}}" readonly id="due" type="text" class="form-control">
                                 </div>
                             </div>
-                            <div class="col-lg-6 col-md-9 col-sm-6">
+                            <div class="col-lg-2 col-md-3 col-sm-6">
+                                <div class="form-group">
+                                    <label for="expense">{{ __('global.expense')}}</label>
+                                    <input name="expense" value="{{$cattle_sale->expense}}" id="expense" type="number" class="form-control">
+                                </div>
+                            </div>
+                            <div class="col-lg-4 col-md-6">
                                 <div class="form-group">
                                     <label for="note">{{ __('global.note')}}</label>
                                     <textarea name="note" rows="1" id="note"  type="text" class="form-control">{{$cattle_sale->note}}</textarea>

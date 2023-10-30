@@ -17,6 +17,7 @@ class CattleSale extends Model
         'cattle_id',
         'amount',
         'paid',
+        'expense',
         'due',
         'note',
         'status',

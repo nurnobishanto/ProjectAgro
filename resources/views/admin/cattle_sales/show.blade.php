@@ -22,100 +22,71 @@
     <div class="row">
         <div class="col-12">
             <div class="card">
-                <div class="card-header">
-                    <ul class="list-group">
-                        <li><strong>{{__('global.farm')}} :</strong> {{$cattle->farm->name}}</li>
-                        <li><strong>{{__('global.cattle_type')}} :</strong> {{$cattle->cattle_type->title}}</li>
-                        <li><strong>{{__('global.tag_id')}} :</strong> {{$cattle->tag_id}}</li>
-                        <li><strong>{{__('global.amount')}} :</strong> {{$amount}}</li>
-                    </ul>
-                </div>
                 <div class="card-body">
-                        @if (count($errors) > 0)
-                            <div class = "alert alert-danger">
-                                <ul>
-                                    @foreach ($errors->all() as $error)
-                                        <li>{{ $error }}</li>
-                                    @endforeach
-                                </ul>
-                            </div>
-                        @endif
-                            <div class="row">
-                                <div class="col-lg-3 col-md-4 col-sm-6">
-                                    <div class="form-group">
-                                        <label for="unique_id">{{ __('global.unique_id')}}<span class="text-danger"> *</span></label>
-                                        <input name="unique_id" readonly value="{{$cattle_sale->unique_id}}" id="unique_id"  type="text" class="form-control">
-
-                                    </div>
-                                </div>
-                                <div class="col-lg-3 col-md-4 col-sm-6">
-                                    <div class="form-group">
-                                        <label for="date">{{ __('global.select_date')}}<span class="text-danger"> *</span></label>
-                                        <input name="date" readonly id="date" value="{{$cattle_sale->date}}" type="text" class="form-control datepicker">
-                                    </div>
-                                </div>
-                                <div class="col-lg-3 col-md-4 col-sm-6">
-                                    <div class="form-group">
-                                        <label for="party_id">{{ __('global.select_party')}}<span class="text-danger"> *</span></label>
-                                        <select id="party_id" name="party_id" class="form-control">
-                                            <option value="">{{ __('global.select_party')}}</option>
-                                            @foreach(getPartyList() as $party )
-                                                <option value="{{$party->id}}"  @if($party->id == $cattle_sale->party_id) selected @endif>{{$party->name}} {{$party->phone}} {{$party->address}}</option>
-                                            @endforeach
-                                        </select>
-                                    </div>
-                                </div>
-                                <div class="col-lg-3 col-md-6 col-sm-6">
-                                    <div class="form-group">
-                                        <label for="account_id">{{ __('global.select_account')}}<span class="text-danger"> *</span></label>
-                                        <select id="account_id" name="account_id" class="form-control">
-                                            <option value="">{{ __('global.select_account')}}</option>
-                                            @foreach(getAccountList() as $account)
-                                                <option value="{{$account->id}}" @if($account->id == $cattle_sale->account_id) selected @endif>{{$account->account_name}} {{$account->account_no}} {{$account->admin->name??'--'}}</option>
-                                            @endforeach
-                                        </select>
-                                    </div>
-                                </div>
-                                <div class="col-lg-2 col-md-3 col-sm-6">
-                                    <div class="form-group">
-                                        <label for="amount">{{ __('global.sale_price')}}<span class="text-danger"> *</span></label>
-                                        <input name="amount" value="{{$cattle_sale->amount}}" id="amount"  type="number" class="form-control">
-                                    </div>
-                                </div>
-                                <div class="col-lg-2 col-md-3 col-sm-6">
-                                    <div class="form-group">
-                                        <label for="paid">{{ __('global.paid')}}</label>
-                                        <input name="paid" value="{{$cattle_sale->paid}}" id="paid"  type="number" class="form-control">
-                                    </div>
-                                </div>
-                                <div class="col-lg-2 col-md-3 col-sm-6">
-                                    <div class="form-group">
-                                        <label for="due">{{ __('global.due')}}</label>
-                                        <input name="due" value="{{$cattle_sale->due}}" readonly id="due" type="text" class="form-control">
-                                    </div>
-                                </div>
-                                <div class="col-lg-6 col-md-9 col-sm-6">
-                                    <div class="form-group">
-                                        <label for="note">{{ __('global.note')}}</label>
-                                        <textarea name="note" rows="1" id="note"  type="text" class="form-control">{{$cattle_sale->note}}</textarea>
-                                    </div>
-                                </div>
-                                <div class="col-lg-3 col-md-4 col-sm-6">
-                                    <div class="form-group">
-                                        <label for="created_by">{{ __('global.created_by')}}<span class="text-danger"> *</span></label>
-                                        <input name="created_by" readonly id="created_by" value="{{$cattle_sale->createdBy->name??'--'}}" type="text" class="form-control">
-                                    </div>
-                                </div>
-                                <div class="col-lg-3 col-md-4 col-sm-6">
-                                    <div class="form-group">
-                                        <label for="updated_by">{{ __('global.updated_by')}}<span class="text-danger"> *</span></label>
-                                        <input name="updated_by" readonly id="updated_by" value="{{$cattle_sale->updatedBy->name??'--'}}" type="text" class="form-control">
-                                    </div>
-                                </div>
-                            </div>
-
-
-
+                    <div class="table-responsive">
+                        <table class="table table-bordered">
+                            <tr>
+                                <th width="250px">{{ __('global.farm')}}</th>
+                                <td>{{$cattle->farm->name??'--'}}</td>
+                            </tr>
+                            <tr>
+                                <th width="250px">{{ __('global.cattle_type')}}</th>
+                                <td>{{$cattle->cattle_type->title??'--'}}</td>
+                            </tr>
+                            <tr>
+                                <th width="250px">{{ __('global.tag_id')}}</th>
+                                <td>{{$cattle_sale->cattle->tag_id??'--'}}</td>
+                            </tr>
+                            <tr>
+                                <th width="250px">{{ __('global.unique_id')}}</th>
+                                <td>{{$cattle_sale->unique_id??'--'}}</td>
+                            </tr>
+                            <tr>
+                                <th>{{ __('global.date')}}</th>
+                                <td>{{__('global.'.$cattle_sale->date)}}</td>
+                            </tr>
+                            <tr>
+                                <th>{{ __('global.party')}}</th>
+                                <td>{{$cattle_sale->party->name??'--'}}</td>
+                            </tr>
+                            <tr>
+                                <th>{{ __('global.amount')}}</th>
+                                <td>{{$cattle_sale->amount}}</td>
+                            </tr>
+                            <tr>
+                                <th>{{ __('global.account')}}</th>
+                                <td>{{$cattle_sale->account->account_name}} {{$cattle_sale->account->account_no}} {{$cattle_sale->account->admin->name??'--'}}</td>
+                            </tr>
+                            <tr>
+                                <th>{{ __('global.paid')}}</th>
+                                <td>{{$cattle_sale->paid}}</td>
+                            </tr>
+                            <tr>
+                                <th>{{ __('global.due')}}</th>
+                                <td>{{$cattle_sale->due}}</td>
+                            </tr>
+                            <tr>
+                                <th>{{ __('global.expense')}}</th>
+                                <td>{{$cattle_sale->expense}}</td>
+                            </tr>
+                            <tr>
+                                <th>{{ __('global.note')}}</th>
+                                <td>{{$cattle_sale->note}}</td>
+                            </tr>
+                            <tr>
+                                <th>{{ __('global.status')}}</th>
+                                <td>{{$cattle_sale->status}}</td>
+                            </tr>
+                            <tr>
+                                <th>{{ __('global.created_at')}}</th>
+                                <td>{{$cattle_sale->createdBy->name??'--'}} - {{date('d/m/y h:i A',strtotime($cattle_sale->created_at))}}</td>
+                            </tr>
+                            <tr>
+                                <th>{{ __('global.updated_at')}}</th>
+                                <td>{{$cattle_sale->updatedBy->name??'--'}} - {{date('d/m/y h:i A',strtotime($cattle_sale->updated_at))}}</td>
+                            </tr>
+                        </table>
+                    </div>
                         <form action="{{ route('admin.cattle-sales.destroy', $cattle_sale->id) }}" method="POST">
                             @method('DELETE')
                             @csrf

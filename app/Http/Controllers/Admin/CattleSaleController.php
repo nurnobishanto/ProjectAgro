@@ -65,6 +65,7 @@ class CattleSaleController extends Controller
             'amount' => $request->amount??0,
             'paid' => $request->paid??0,
             'due' => $request->due??0,
+            'expense' => $request->expense??0,
             'note' => $request->note,
             'status' => 'pending',
             'created_by' => auth()->user()->id,
@@ -112,6 +113,7 @@ class CattleSaleController extends Controller
         $cattle_sale->amount = $request->amount;
         $cattle_sale->paid = $request->paid;
         $cattle_sale->due = $request->due;
+        $cattle_sale->expense = $request->expense;
         $cattle_sale->note = $request->note;
         $cattle_sale->updated_by = auth()->user()->id;
         $cattle_sale->update();
@@ -157,7 +159,7 @@ class CattleSaleController extends Controller
             $party->update();
 
             $account = $cattle_sale->account;
-            $account->current_balance = $account->current_balance + $cattle_sale->paid;
+            $account->current_balance = $account->current_balance + ($cattle_sale->paid - $cattle->expense);
             $account->update();
 
             PartyReceive::create([
