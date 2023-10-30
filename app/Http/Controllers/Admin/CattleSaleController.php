@@ -7,6 +7,7 @@ use App\Models\Account;
 use App\Models\Cattle;
 use App\Models\CattleSale;
 use App\Models\Party;
+use App\Models\PartyReceive;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Validator;
@@ -158,6 +159,19 @@ class CattleSaleController extends Controller
             $account = $cattle_sale->account;
             $account->current_balance = $account->current_balance + $cattle_sale->paid;
             $account->update();
+
+            PartyReceive::create([
+                'unique_id' => generateInvoiceId('PR',\App\Models\PartyReceive::class,'unique_id'),
+                'date' =>$cattle_sale->date,
+                'party_id' =>$cattle_sale->party_id,
+                'account_id' =>$cattle_sale->account_id,
+                'amount' =>$cattle_sale->amount,
+                'type' =>'receive',
+                'note' =>'Received at Sale for '.$cattle_sale->unique_id,
+                'status' => 'success',
+                'created_by' =>auth()->user()->id,
+                'updated_by' =>auth()->user()->id,
+            ]);
 
             $cattle_sale->status = 'success';
             $cattle_sale->update();

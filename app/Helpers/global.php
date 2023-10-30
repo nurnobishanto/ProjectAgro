@@ -34,6 +34,20 @@ if (!function_exists('getAccountList')) {
         return $accounts;
     }
 }
+if (!function_exists('getPayType')) {
+
+    function getPayType()
+    {
+        $type = [
+            'hourly' => __('global.hourly'),
+            'daily' => __('global.daily'),
+            'weekly' => __('global.weekly'),
+            'monthly' => __('global.monthly'),
+            'yearly' => __('global.yearly'),
+        ];
+        return $type;
+    }
+}
 if (!function_exists('getAccountType')) {
 
     function getAccountType()

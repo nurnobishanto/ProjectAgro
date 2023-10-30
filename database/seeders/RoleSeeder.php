@@ -352,6 +352,17 @@ class RoleSeeder extends Seeder
                 ]
             ],
             [
+                'group_name' => 'Staff',
+                'permissions' => [
+                    'staff_manage',
+                    'staff_list',
+                    'staff_view',
+                    'staff_update',
+                    'staff_delete',
+                    'staff_create',
+                ]
+            ],
+            [
                 'group_name' => 'OpeningBalance',
                 'permissions' => [
                     'opening_balance_manage',

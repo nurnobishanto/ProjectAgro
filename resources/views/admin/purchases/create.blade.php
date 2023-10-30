@@ -82,7 +82,17 @@
                                             </select>
                                         </div>
                                     </div>
-
+                                    <div class="col-md-4 col-sm-6 col-12">
+                                        <div class="form-group">
+                                            <label for="account_id">{{ __('global.select_account')}}<span class="text-danger"> *</span></label>
+                                            <select id="account_id" name="account_id" class="select2 form-control">
+                                                <option value="">{{ __('global.select_account')}}</option>
+                                                @foreach(getAccountList() as $account)
+                                                    <option value="{{$account->id}}">{{$account->account_name}} {{$account->account_no}} {{$account->admin->name??'--'}}</option>
+                                                @endforeach
+                                            </select>
+                                        </div>
+                                    </div>
                                     <div class="col-md-4 col-sm-6 col-12">
                                         <div class="form-group">
                                             <label for="paid_amount" class="form-label">{{__('global.paid_amount')}}</label>

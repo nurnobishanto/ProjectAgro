@@ -13,6 +13,7 @@ class Purchase extends Model
         'invoice_no',
         'purchase_date',
         'supplier_id',
+        'account_id',
         'farm_id',
         'tax',
         'discount',
@@ -50,5 +51,9 @@ class Purchase extends Model
     public function purchaseProducts(): \Illuminate\Database\Eloquent\Relations\HasMany
     {
         return $this->hasMany(PurchaseProduct::class);
+    }
+    public function account(): \Illuminate\Database\Eloquent\Relations\BelongsTo
+    {
+        return $this->belongsTo(Account::class);
     }
 }

@@ -55,7 +55,6 @@
                                         @foreach($farms as $farm)
                                             <option value="{{$farm->id}}" @if(old('farm_id') == $farm->id) selected @endif>{{$farm->name}}</option>
                                         @endforeach
-
                                     </select>
                                 </div>
                             </div>

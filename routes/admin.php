@@ -29,6 +29,7 @@ use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\Admin\PurchaseController;
 use App\Http\Controllers\Admin\RoleController;
 use App\Http\Controllers\Admin\SessionYearController;
+use App\Http\Controllers\Admin\StaffController;
 use App\Http\Controllers\Admin\SupplierController;
 use App\Http\Controllers\Admin\SupplierPaymentController;
 use App\Http\Controllers\Admin\TaxController;
@@ -189,6 +190,13 @@ Route::get('/assets/trashed',[AssetController::class,'trashed_list'])->middlewar
 Route::get('/assets/trashed/{asset}/restore',[AssetController::class,'restore'])->middleware('permission:asset_manage')->name('assets.restore');
 Route::get('/assets/trashed/{asset}/delete',[AssetController::class,'force_delete'])->middleware('permission:asset_manage')->name('assets.force_delete');
 Route::resource('/assets',AssetController::class)->middleware('permission:asset_manage');
+
+//Staff
+Route::get('/staffs/trashed',[StaffController::class,'trashed_list'])->middleware('permission:staff_manage')->name('staffs.trashed');
+Route::get('/staffs/trashed/{staff}/restore',[StaffController::class,'restore'])->middleware('permission:staff_manage')->name('staffs.restore');
+Route::get('/staffs/trashed/{staff}/delete',[StaffController::class,'force_delete'])->middleware('permission:staff_manage')->name('staffs.force_delete');
+Route::resource('/staffs',StaffController::class)->middleware('permission:staff_manage');
+
 
 //Opening Balance
 Route::get('/opening-balances/trashed',[OpeningBalanceController::class,'trashed_list'])->middleware('permission:opening_balance_manage')->name('opening-balances.trashed');

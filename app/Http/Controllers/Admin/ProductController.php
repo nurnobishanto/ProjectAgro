@@ -87,6 +87,7 @@ class ProductController extends Controller
             'purchase_price' => 'required',
             'sale_price' => 'required',
             'status' => 'required',
+            'image' => 'image|mimes:jpeg,png,jpg,gif|max:2048', // Adjust file types and size as needed
         ]);
         $imageFile = $product->image??null;
         if($request->file('image')){

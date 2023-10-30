@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Account;
 use App\Models\Product;
 use App\Models\Purchase;
 use App\Models\PurchaseProduct;
@@ -46,6 +47,7 @@ class PurchaseController extends Controller
             'purchase_date' => 'required',
             'supplier_id' => 'required',
             'farm_id' => 'required',
+            'account_id' => 'required',
             'product_ids' => 'required',
             'product_quantities' => 'required',
             'product_prices' => 'required',
@@ -61,6 +63,7 @@ class PurchaseController extends Controller
             'supplier_id' => $request->supplier_id,
             'farm_id' => $request->farm_id,
             'tax' => $request->tax,
+            'account_id' => $request->account_id,
             'discount' => $request->discount??0,
             'shipping_cost' => $request->shipping_cost??0,
             'labor_cost' => $request->labor_cost??0,
@@ -99,6 +102,7 @@ class PurchaseController extends Controller
             'purchase_date' => 'required',
             'supplier_id' => 'required',
             'farm_id' => 'required',
+            'account_id' => 'required',
             'product_ids' => 'required',
             'product_quantities' => 'required',
             'product_prices' => 'required',
@@ -117,6 +121,7 @@ class PurchaseController extends Controller
         $purchase->purchase_date =  $request->purchase_date;
         $purchase->supplier_id =  $request->supplier_id;
         $purchase->farm_id =  $request->farm_id;
+        $purchase->account_id =  $request->account_id;
         $purchase->tax =  $request->tax??0;
         $purchase->discount =  $request->discount??0;
         $purchase->shipping_cost =  $request->shipping_cost??0;
@@ -228,22 +233,27 @@ class PurchaseController extends Controller
         $purchase->update();
 
 
-        $supplier =  Supplier::find($purchase->supplier_id);
+        $supplier = Supplier::find($purchase->supplier_id);
+        $account = Account::find($purchase->account_id);
 
-//        SupplierPayment::create([
-//            'unique_id' =>generateInvoiceId('SPAP',SupplierPayment::class,'unique_id'),
-//            'date' =>$purchase->date,
-//            'supplier_id' =>$purchase->supplier_id,
-//            'account_id' =>$purchase->account_id,
-//            'amount' =>$purchase->paid,
-//            'type' =>'payment',
-//            'note' =>'Payment at Purchase for '.$purchase->invoice_no,
-//            'status' => 'success',
-//            'created_by' =>auth()->user()->id,
-//            'updated_by' =>auth()->user()->id,
-//        ]);
+        SupplierPayment::create([
+            'unique_id' =>generateInvoiceId('SPAP',SupplierPayment::class,'unique_id'),
+            'date' =>$purchase->date,
+            'supplier_id' =>$purchase->supplier_id,
+            'account_id' =>$purchase->account_id,
+            'amount' =>$purchase->paid,
+            'type' =>'payment',
+            'note' =>'Payment at Purchase for '.$purchase->invoice_no,
+            'status' => 'success',
+            'created_by' =>auth()->user()->id,
+            'updated_by' =>auth()->user()->id,
+        ]);
+        $account->current_balance = $account->current_balance - $purchase->paid;
+        $account->update();
+
         $supplier->current_balance = $supplier->current_balance - $purchase->due;
         $supplier->update();
+
         toastr()->success('Purchase has been approved ');
         return redirect()->route('admin.stock');
     }

@@ -408,6 +408,12 @@ return [
         ['header' => 'global'],
 
         [
+            'text' => 'staff',
+            'url' => 'admin/staffs',
+            'can' => 'staff_manage',
+            'icon' => 'fas fa-user-ninja',
+        ],
+        [
             'text' => 'farm',
             'url' => 'admin/farms',
             'can' => 'farm_manage',
