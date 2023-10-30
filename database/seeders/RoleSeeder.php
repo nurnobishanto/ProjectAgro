@@ -470,6 +470,18 @@ class RoleSeeder extends Seeder
                 ]
             ],
             [
+                'group_name' => 'BulkCattleSale',
+                'permissions' => [
+                    'bulk_cattle_sale_manage',
+                    'bulk_cattle_sale_list',
+                    'bulk_cattle_sale_view',
+                    'bulk_cattle_sale_update',
+                    'bulk_cattle_sale_delete',
+                    'bulk_cattle_sale_create',
+                    'bulk_cattle_sale_approve',
+                ]
+            ],
+            [
                 'group_name' => 'MilkSale',
                 'permissions' => [
                     'milk_sale_manage',

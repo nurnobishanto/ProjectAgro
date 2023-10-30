@@ -443,6 +443,11 @@ return [
                     'url' => 'admin/cattle-sales'
                 ],
                 [
+                    'text' => 'bulk_cattle_sale',
+                    'can' => 'bulk_cattle_sale_manage',
+                    'url' => 'admin/bulk-cattle-sales'
+                ],
+                [
                     'text' => 'milk_sale',
                     'can' => 'milk_sale_manage',
                     'url' => 'admin/milk-sales'

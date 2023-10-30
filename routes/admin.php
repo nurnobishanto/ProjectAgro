@@ -7,6 +7,7 @@ use App\Http\Controllers\Admin\AssetController;
 use App\Http\Controllers\Admin\BalanceTransferController;
 use App\Http\Controllers\Admin\BatchController;
 use App\Http\Controllers\Admin\BreedsController;
+use App\Http\Controllers\Admin\BulkCattleSaleController;
 use App\Http\Controllers\Admin\CattleController;
 use App\Http\Controllers\Admin\CattleDeathController;
 use App\Http\Controllers\Admin\CattleSaleController;
@@ -239,6 +240,14 @@ Route::get('/cattle-sales/trashed/{cattle_sale}/restore',[CattleSaleController::
 Route::get('/cattle-sales/trashed/{cattle_sale}/delete',[CattleSaleController::class,'force_delete'])->middleware('permission:cattle_sale_manage')->name('cattle-sales.force_delete');
 Route::get('/cattle-sales/{cattle_sale}/approve',[CattleSaleController::class,'approve'])->middleware('permission:cattle_sale_approve')->name('cattle-sales.approve');
 Route::resource('/cattle-sales',CattleSaleController::class)->middleware('permission:cattle_sale_manage');
+
+//BulkCattleSale
+Route::get('/bulk-cattle-sales/trashed',[BulkCattleSaleController::class,'trashed_list'])->middleware('permission:bulk_cattle_sale_manage')->name('bulk-cattle-sales.trashed');
+Route::get('/bulk-cattle-sales/trashed/{bulk_cattle_sale}/restore',[BulkCattleSaleController::class,'restore'])->middleware('permission:bulk_cattle_sale_manage')->name('bulk-cattle-sales.restore');
+Route::get('/bulk-cattle-sales/trashed/{bulk_cattle_sale}/delete',[BulkCattleSaleController::class,'force_delete'])->middleware('permission:bulk_cattle_sale_manage')->name('bulk-cattle-sales.force_delete');
+Route::get('/bulk-cattle-sales/{bulk_cattle_sale}/approve',[BulkCattleSaleController::class,'approve'])->middleware('permission:bulk_cattle_sale_approve')->name('bulk-cattle-sales.approve');
+Route::resource('/bulk-cattle-sales',BulkCattleSaleController::class)->middleware('permission:bulk_cattle_sale_manage');
+
 
 //Supplier Payment
 Route::get('/supplier-payments/trashed',[SupplierPaymentController::class,'trashed_list'])->middleware('permission:supplier_payment_manage')->name('supplier-payments.trashed');

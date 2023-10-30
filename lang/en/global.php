@@ -467,5 +467,13 @@ return [
     'weekly' => 'Weekly',
     'monthly' => 'Monthly',
     'yearly' => 'Yearly',
+    'bulk_cattle_sale' => 'Bulk Cattle Sale',
+    'bulk_cattle_sales' => 'Bulk Cattle Sale List',
+    'create_bulk_cattle_sale' => 'Create Bulk Cattle Sale',
+    'update_bulk_cattle_sale' => 'Update Bulk Cattle Sale',
+    'delete_bulk_cattle_sale' => 'Delete Bulk Cattle Sale',
+    'view_bulk_cattle_sale' => 'View Bulk Cattle Sale',
+    'sold' => 'Sold',
+
 
 ];

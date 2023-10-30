@@ -95,7 +95,7 @@
                             <div class="col-md-12" id="cattle_list">
                                 <div class="card">
                                     <div class="card-header">
-                                        <h5 class="card-title">{{__('global.select_feeding_item')}}</h5>
+                                        <h5 class="card-title">{{__('global.cattle_list')}}</h5>
                                         <a href="#cattle_list" class="badge badge-success mx-2" id="toggleAllButton">Select All</a>
                                     </div>
                                     <div class="card-body">

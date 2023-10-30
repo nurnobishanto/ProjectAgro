@@ -100,6 +100,7 @@ class CattleSaleController extends Controller
         $request->validate([
             'unique_id' => 'required',
             'date' => 'required',
+            'cattle_id' => 'required|unique:cattle_sales,id,'.$id,
             'amount' => 'required',
             'account_id' => 'required',
             'party_id' => 'required',
