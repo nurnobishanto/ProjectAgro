@@ -31,6 +31,7 @@ use App\Http\Controllers\Admin\PurchaseController;
 use App\Http\Controllers\Admin\RoleController;
 use App\Http\Controllers\Admin\SessionYearController;
 use App\Http\Controllers\Admin\StaffController;
+use App\Http\Controllers\Admin\StaffPaymentController;
 use App\Http\Controllers\Admin\SupplierController;
 use App\Http\Controllers\Admin\SupplierPaymentController;
 use App\Http\Controllers\Admin\TaxController;
@@ -262,6 +263,13 @@ Route::get('/party-receives/trashed/{party_receive}/restore',[PartyReceivedContr
 Route::get('/party-receives/trashed/{party_receive}/delete',[PartyReceivedController::class,'force_delete'])->middleware('permission:party_receive_manage')->name('party-receives.force_delete');
 Route::get('/party-receives/{party_receive}/approve',[PartyReceivedController::class,'approve'])->middleware('permission:party_receive_approve')->name('party-receives.approve');
 Route::resource('/party-receives',PartyReceivedController::class)->middleware('permission:party_receive_manage');
+
+//Staff Payment
+Route::get('/staff-payments/trashed',[StaffPaymentController::class,'trashed_list'])->middleware('permission:staff_payment_manage')->name('staff-payments.trashed');
+Route::get('/staff-payments/trashed/{staff_payment}/restore',[StaffPaymentController::class,'restore'])->middleware('permission:staff_payment_manage')->name('staff-payments.restore');
+Route::get('/staff-payments/trashed/{staff_payment}/delete',[StaffPaymentController::class,'force_delete'])->middleware('permission:staff_payment_manage')->name('staff-payments.force_delete');
+Route::get('/staff-payments/{staff_payment}/approve',[StaffPaymentController::class,'approve'])->middleware('permission:staff_payment_approve')->name('staff-payments.approve');
+Route::resource('/staff-payments',StaffPaymentController::class)->middleware('permission:staff_payment_manage');
 
 //Setting
 Route::get('global-setting',[\App\Http\Controllers\Admin\GlobalSettingController::class,'global_setting'])->name('global_setting');

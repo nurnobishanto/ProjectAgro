@@ -24,8 +24,8 @@
         <div class="col-md-12">
             <div class="card">
                 <div class="card-body">
+                    @can('vaccine_create')
                     <form action="{{route('admin.vaccines.create')}}" method="GET">
-
                         @if (count($errors) > 0)
                             <div class = "alert alert-danger">
                                 <ul>
@@ -62,16 +62,14 @@
                                     </select>
                                 </div>
                             </div>
-                            <div class="col-lg-2 col-md-3 col-sm-6">
+                            <div class="col-lg-2 col-md-3 col-sm-6 align-self-end">
                                 <div class="form-group">
-                                    @can('vaccine_create')
-                                        <input type="submit" value="{{__('global.add_new')}}" class="btn btn-primary form-control mt-4">
-                                    @endcan
+                                    <input type="submit" value="{{__('global.add_new')}}" class="btn btn-primary form-control">
                                 </div>
                             </div>
                         </div>
-
                     </form>
+                    @endcan
                 </div>
             </div>
         </div>

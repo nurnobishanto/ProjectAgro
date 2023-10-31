@@ -8,6 +8,7 @@ use App\Models\CattleType;
 use App\Models\Farm;
 use App\Models\FeedingGroup;
 use App\Models\Product;
+use App\Models\Staff;
 use Illuminate\Http\Request;
 
 class AjaxCartController extends Controller
@@ -37,7 +38,18 @@ class AjaxCartController extends Controller
                 'name' => $product->name. ' ('.(getStock($farm_id, $product->id)->quantity ?? 0).' X '.$product->unit->code.' )'
             ];
         }
-
+        return response()->json($data);
+    }
+    public function farm_staff_list(Request $request){
+        $farm_id = $request->input('farm_id');
+        $staff_list =  Staff::where('farm_id',$farm_id)->get();
+        $data = [];
+        foreach ($staff_list as $staff){
+            $data[] = [
+                'id' => $staff->id,
+                'name' => $staff->name.' ('.__('global.'.$staff->pay_type).')',
+            ];
+        }
         return response()->json($data);
     }
     public function farm_dewormer_list(Request $request){

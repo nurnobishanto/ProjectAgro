@@ -492,12 +492,17 @@ return [
             'text'    => 'expense_management',
             'icon'    => 'fas fa-credit-card',
             'icon_color' => 'red',
-            'can' => ['expense_manage','expense_category','cattle_death_manage'],
+            'can' => ['expense_manage','expense_category','cattle_death_manage','staff_payment_manage'],
             'submenu' => [
                 [
                     'text' => 'expenses',
                     'can' => 'expense_manage',
                     'url' => 'admin/expenses'
+                ],
+                [
+                    'text' => 'staff_payment',
+                    'can' => 'staff_payment_manage',
+                    'url' => 'admin/staff-payments'
                 ],
                 [
                     'text' => 'cattle_deaths',

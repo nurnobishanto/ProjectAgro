@@ -24,6 +24,7 @@
         <div class="col-md-12">
             <div class="card">
                 <div class="card-body">
+                    @can('dewormer_create')
                     <form action="{{route('admin.dewormers.create')}}" method="GET">
 
                         @if (count($errors) > 0)
@@ -62,16 +63,14 @@
                                     </select>
                                 </div>
                             </div>
-                            <div class="col-lg-2 col-md-3 col-sm-6">
+                            <div class="col-lg-2 col-md-3 col-sm-6 align-self-end">
                                 <div class="form-group">
-                                    @can('dewormer_create')
-                                        <input type="submit" value="{{__('global.add_new')}}" class="btn btn-primary form-control mt-4">
-                                    @endcan
+                                    <input type="submit" value="{{__('global.add_new')}}" class="btn btn-primary form-control">
                                 </div>
                             </div>
                         </div>
-
                     </form>
+                    @endcan
                 </div>
             </div>
         </div>

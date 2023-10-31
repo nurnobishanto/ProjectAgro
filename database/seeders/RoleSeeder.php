@@ -411,6 +411,18 @@ class RoleSeeder extends Seeder
                 ]
             ],
             [
+                'group_name' => 'StaffPayment',
+                'permissions' => [
+                    'staff_payment_manage',
+                    'staff_payment_list',
+                    'staff_payment_view',
+                    'staff_payment_update',
+                    'staff_payment_delete',
+                    'staff_payment_create',
+                    'staff_payment_approve',
+                ]
+            ],
+            [
                 'group_name' => 'PartyReceive',
                 'permissions' => [
                     'party_receive_manage',

@@ -7,6 +7,7 @@ use App\Models\Cattle;
 use App\Models\CattleStructure;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\App;
+use Illuminate\Support\Facades\Validator;
 
 class FatteningController extends Controller
 {
@@ -16,9 +17,12 @@ class FatteningController extends Controller
         return view('admin.fattenings.index',compact('fattenings'));
     }
     public function create(Request $request){
-        $request->validate([
-            'tag_id'=>'required',
+        $validator = Validator::make($request->all(), [
+            'tag_id' => 'required',
         ]);
+        if ($validator->fails()) {
+            return redirect()->route('admin.fattenings.index')->withErrors($validator)->withInput();
+        }
         App::setLocale(session('locale'));
         $data = array();
         $data['cattle'] = Cattle::where('id',$request->tag_id)->first();

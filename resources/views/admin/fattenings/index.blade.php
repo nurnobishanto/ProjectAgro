@@ -34,7 +34,7 @@
                             </div>
                         @endif
                         <div class="row">
-                            <div class="col-lg-2 col-md-3 col-sm-6">
+                            <div class=" col-md-3 col-sm-6">
                                 <div class="form-group ">
                                     <label for="farm_id">{{ __('global.select_farm')}}<span class="text-danger"> *</span></label>
                                     <select id="farm_id" name="farm_id" class="form-control">
@@ -43,7 +43,7 @@
 
                                 </div>
                             </div>
-                            <div class="col-lg-2 col-md-3 col-sm-6">
+                            <div class=" col-md-3 col-sm-6">
                                 <div class="form-group">
                                     <label for="cattle_type_id">{{ __('global.select_cattle_type')}}<span class="text-danger"> *</span></label>
                                     <select id="cattle_type_id" name="cattle_type_id" class="form-control">
@@ -53,7 +53,7 @@
                                 </div>
                             </div>
 
-                            <div class="col-lg-2 col-md-3 col-sm-6">
+                            <div class=" col-md-3 col-sm-6">
                                 <div class="form-group">
                                     <label for="tag_id">{{ __('global.select_tag_id')}}<span class="text-danger"> *</span></label>
                                     <select id="tag_id" name="tag_id" class="form-control">
@@ -61,9 +61,9 @@
                                     </select>
                                 </div>
                             </div>
-                            <div class="col-lg-2 col-md-3 col-sm-6">
+                            <div class=" col-md-3 col-sm-6 align-self-end">
                                 <div class="form-group">
-                                    <input type="submit" value="Submit" class="btn btn-primary mt-4">
+                                    <input type="submit" value="{{__('global.add_new')}}" class="btn btn-primary form-control">
                                 </div>
                             </div>
                         </div>

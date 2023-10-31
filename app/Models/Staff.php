@@ -33,4 +33,8 @@ class Staff extends Model
     {
         return $this->belongsTo(Admin::class, 'updated_by');
     }
+    public function staff_payments(): \Illuminate\Database\Eloquent\Relations\HasMany
+    {
+        return $this->hasMany(StaffPayment::class);
+    }
 }

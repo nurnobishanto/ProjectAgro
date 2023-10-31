@@ -67,5 +67,6 @@ return [
     'balance_transfer' => 'Balance Transfer',
     'asset' => 'Asset',
     'staff' => 'Staff',
+    'staff_payment' => 'Staff Payment',
     'bulk_cattle_sale' => 'Bulk Cattle Sale',
 ];

@@ -39,9 +39,9 @@ if (!function_exists('getPayType')) {
     function getPayType()
     {
         $type = [
-            'hourly' => __('global.hourly'),
+           // 'hourly' => __('global.hourly'),
             'daily' => __('global.daily'),
-            'weekly' => __('global.weekly'),
+          //  'weekly' => __('global.weekly'),
             'monthly' => __('global.monthly'),
             'yearly' => __('global.yearly'),
         ];

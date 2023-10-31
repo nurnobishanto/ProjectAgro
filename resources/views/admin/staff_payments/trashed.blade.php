@@ -1,23 +1,20 @@
 @extends('adminlte::page')
 
-@section('title', __('global.staffs'))
+@section('title', __('global.staff_payments'). __('global.deleted'))
 
 @section('content_header')
     <div class="row mb-2">
         <div class="col-sm-6">
-            <h1>{{__('global.staffs')}}</h1>
-            @can('staff_create')
-                <a href="{{route('admin.staffs.create')}}" class="btn btn-primary mt-2">{{__('global.add_new')}}</a>
-            @endcan
-            @can('staff_delete')
-                <a href="{{route('admin.staffs.trashed')}}" class="btn btn-danger mt-2">{{__('global.trash_list')}}</a>
+            <h1>{{__('global.staff_payments'). __('global.deleted')}}</h1>
+            @can('staff_list')
+                <a href="{{route('admin.staff-payments.index')}}" class="btn btn-primary mt-2">{{__('global.go_back')}}</a>
             @endcan
 
         </div>
         <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
                 <li class="breadcrumb-item"><a href="{{route('admin.dashboard')}}">{{__('global.home')}}</a></li>
-                <li class="breadcrumb-item active">{{__('global.staffs')}}</li>
+                <li class="breadcrumb-item active">{{__('global.staff_payments')}}</li>
             </ol>
 
         </div>
@@ -30,13 +27,15 @@
             @can('staff_list')
                 <div class="card">
                     <div class="card-body table-responsive">
-                        <table id="adminsList" class="table  dataTable table-bordered table-striped">
+                        <table id="staffsList" class="table  dataTable table-bordered table-striped">
                             <thead>
                             <tr>
                                 <th>{{__('global.sl')}}</th>
-                                <th>{{__('global.farm')}}</th>
-                                <th>{{__('global.staff_name')}}</th>
-                                <th>{{__('global.phone')}}</th>
+                                <th>{{__('global.unique_id')}}</th>
+                                <th>{{__('global.date')}}</th>
+                                <th>{{__('global.account')}}</th>
+                                <th>{{__('global.paid_amount')}}</th>
+                                <th>{{__('global.staff')}}</th>
                                 <th>{{__('global.status')}}</th>
                                 <th>{{__('global.updated_at')}}</th>
                                 <th>{{__('global.action')}}</th>
@@ -44,29 +43,21 @@
                             </thead>
                             <tbody>
                             <?php $sl = 1; ?>
-                            @foreach($staffs as $staff)
+                            @foreach($staff_payments as $staff_payment)
                                 <tr>
                                     <td>{{$sl++}}</td>
-                                    <td>{{$staff->farm->name??'--'}}</td>
-                                    <td>{{$staff->name}}</td>
-                                    <td>{{$staff->phone}}</td>
-                                    <td>{{__('global.'.$staff->status)}}</td>
-                                    <td>{{date_format($staff->updated_at,'d M y h:i A') }}</td>
+                                    <td>{{$staff_payment->unique_id}}</td>
+                                    <td>{{$staff_payment->date}}</td>
+                                    <td>{{$staff_payment->account->account_name??'--'}} ({{$staff_payment->account->account_no??'--'}}) {{$staff_payment->account->admin->name??'--'}}</td>
+                                    <td>{{$staff_payment->amount}}</td>
+                                    <td>{{$staff_payment->staff->name}}</td>
+                                    <td>{{$staff_payment->status}}</td>
+                                    <td>{{date_format($staff_payment->updated_at,'d M y h:i A') }}</td>
                                     <td class="text-center">
-                                        <form action="{{ route('admin.staffs.destroy', $staff->id) }}" method="POST">
-                                            @method('DELETE')
-                                            @csrf
-                                            @can('staff_view')
-                                                <a href="{{route('admin.staffs.show',['staff'=>$staff->id])}}" class="btn btn-info px-1 py-0 btn-sm"><i class="fa fa-eye"></i></a>
-                                            @endcan
-                                            @can('staff_update')
-                                                <a href="{{route('admin.staffs.edit',['staff'=>$staff->id])}}" class="btn btn-warning px-1 py-0 btn-sm"><i class="fa fa-pen"></i></a>
-                                            @endcan
-                                            @can('staff_delete')
-                                                <button onclick="isDelete(this)" class="btn btn-danger btn-sm px-1 py-0"><i class="fa fa-trash"></i></button>
-                                            @endcan
-
-                                        </form>
+                                        @can('staff_payment_delete')
+                                        <a href="{{route('admin.staff-payments.restore',['staff_payment'=>$staff_payment->id])}}"  class="btn btn-success btn-sm px-1 py-0"><i class="fa fa-arrow-left"></i></a>
+                                        <a href="{{route('admin.staff-payments.force_delete',['staff_payment'=>$staff_payment->id])}}"  class="btn btn-danger btn-sm px-1 py-0"><i class="fa fa-trash"></i></a>
+                                        @endcan
                                     </td>
                                 </tr>
                             @endforeach
@@ -75,9 +66,11 @@
                             <tfoot>
                             <tr>
                                 <th>{{__('global.sl')}}</th>
-                                <th>{{__('global.farm')}}</th>
-                                <th>{{__('global.staff_name')}}</th>
-                                <th>{{__('global.phone')}}</th>
+                                <th>{{__('global.unique_id')}}</th>
+                                <th>{{__('global.date')}}</th>
+                                <th>{{__('global.account')}}</th>
+                                <th>{{__('global.paid_amount')}}</th>
+                                <th>{{__('global.staff')}}</th>
                                 <th>{{__('global.status')}}</th>
                                 <th>{{__('global.updated_at')}}</th>
                                 <th>{{__('global.action')}}</th>
@@ -132,7 +125,7 @@
         }
 
         $(document).ready(function() {
-            $("#adminsList").DataTable({
+            $("#staffsList").DataTable({
                 dom: 'Bfrtip',
                 responsive: true,
                 lengthChange: false,

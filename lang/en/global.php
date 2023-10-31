@@ -453,6 +453,7 @@ return [
     'view_asset' => 'View Asset',
     'enter_asset' => 'Enter Asset',
     'staff' => 'Staff',
+    'select_staff' => 'Select Staff',
     'staff_name' => 'Staff Name',
     'staffs' => 'Staff List',
     'create_staff' => 'Create Staff',
@@ -473,7 +474,14 @@ return [
     'update_bulk_cattle_sale' => 'Update Bulk Cattle Sale',
     'delete_bulk_cattle_sale' => 'Delete Bulk Cattle Sale',
     'view_bulk_cattle_sale' => 'View Bulk Cattle Sale',
+    'staff_payment' => 'Staff Payment',
+    'staff_payments' => 'Staff Payment List',
+    'create_staff_payment' => 'Create Staff Payment',
+    'update_staff_payment' => 'Update Staff Payment',
+    'delete_staff_payment' => 'Delete Staff Payment',
+    'view_staff_payment' => 'View Staff Payment',
     'sold' => 'Sold',
+    'payment_limit_reached' => 'Payment limit reached',
 
 
 ];

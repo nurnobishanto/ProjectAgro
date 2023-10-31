@@ -22,6 +22,7 @@ Route::get('/', function () {
 
 Route::prefix('ajax/')->group(function (){
     Route::get('farms',[\App\Http\Controllers\AjaxCartController::class,'farms'])->name('farms');
+    Route::get('farm-staff-list',[\App\Http\Controllers\AjaxCartController::class,'farm_staff_list'])->name('farm_staff_list');
     Route::get('cattle-types',[\App\Http\Controllers\AjaxCartController::class,'cattle_types'])->name('cattle_types');
     Route::get('cattle-cattle-list',[\App\Http\Controllers\AjaxCartController::class,'farm_cattle_list'])->name('farm_cattle_list');
     Route::get('farm-medicine-list',[\App\Http\Controllers\AjaxCartController::class,'farm_medicine_list'])->name('farm_medicine_list');

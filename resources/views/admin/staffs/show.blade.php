@@ -70,7 +70,63 @@
                                 <button onclick="isDelete(this)" class="btn btn-danger"><i class="fa fa-trash"></i> Delete</button>
                             @endcan
                         </form>
+                </div>
+                <div class="card-footer">
+                    <h5 class="card-title">{{__('global.staff_payments')}}</h5>
+                    <div class="table-responsive">
+                        <table class="table table-bordered datatable">
+                            <thead>
+                            <tr>
+                                <th>{{__('global.unique_id')}}</th>
+                                <th>{{__('global.date')}}</th>
+                                <th>{{__('global.account')}}</th>
+                                <th>{{__('global.amount')}}</th>
+                                <th>{{__('global.type')}}</th>
+                                <th>{{__('global.staff')}}</th>
+                                <th>{{__('global.status')}}</th>
+                                <th>{{__('global.updated_at')}}</th>
+                                <th>{{__('global.action')}}</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            @foreach($staff->staff_payments as $staff_payment)
+                                <tr>
+                                    <td>{{$staff_payment->unique_id}}</td>
+                                    <td>{{$staff_payment->date}}</td>
+                                    <td>{{$staff_payment->account->account_name??'--'}} ({{$staff_payment->account->account_no??'--'}}) {{$staff_payment->account->admin->name??'--'}}</td>
+                                    <td>{{$staff_payment->amount}}</td>
+                                    <td>{{__('global.'.$staff_payment->pay_type)}}</td>
+                                    <td>{{$staff_payment->staff->name??'--'}}</td>
+                                    <td>{{__('global.'.$staff_payment->status)}}</td>
+                                    <td>{{date_format($staff_payment->updated_at,'d M y h:i A') }}</td>
+                                    <td class="text-center">
+                                        <form action="{{ route('admin.staff-payments.destroy', $staff_payment->id) }}" method="POST">
+                                            @method('DELETE')
+                                            @csrf
+                                            @can('staff_payment_view')
+                                                <a href="{{route('admin.staff-payments.show',['staff_payment'=>$staff_payment->id])}}" class="btn btn-info px-1 py-0 btn-sm"><i class="fa fa-eye"></i></a>
+                                            @endcan
+                                            @if($staff_payment->status == 'pending')
+                                                @can('staff_payment_update')
+                                                    <a href="{{route('admin.staff-payments.edit',['staff_payment'=>$staff_payment->id])}}" class="btn btn-warning px-1 py-0 btn-sm"><i class="fa fa-pen"></i></a>
+                                                @endcan
+                                                @can('staff_payment_delete')
+                                                    <button onclick="isDelete(this)" class="btn btn-danger btn-sm px-1 py-0"><i class="fa fa-trash"></i></button>
+                                                @endcan
+                                                @can('staff_payment_approve')
+                                                    <a href="{{route('admin.staff-payments.approve',['staff_payment'=>$staff_payment->id])}}" class="btn btn-primary btn-sm px-1 py-0"><i class="fa fa-thumbs-up"></i></a>
+                                                @endcan
+                                            @else
+                                                <a href="{{route('admin.staff-payments.show',['staff_payment'=>$staff_payment->id])}}" class="btn btn-info px-1 py-0 btn-sm">{{$staff_payment->status}}</a>
+                                            @endif
 
+                                        </form>
+                                    </td>
+                                </tr>
+                            @endforeach
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
             </div>
         </div>
@@ -84,6 +140,8 @@
     </div>
 @stop
 @section('plugins.toastr',true)
+@section('plugins.datatablesPlugins', true)
+@section('plugins.Datatables', true)
 @section('plugins.Sweetalert2', true)
 @section('css')
 
@@ -91,6 +149,53 @@
 
 @section('js')
     <script>
+        $(".datatable").DataTable({
+            dom: 'Bfrtip',
+            responsive: true,
+            lengthChange: false,
+            autoWidth: false,
+            searching: true,
+            ordering: true,
+            info: true,
+            paging: true,
+            buttons: [
+                {
+                    extend: 'copy',
+                    text: '{{ __('global.copy') }}',
+                },
+                {
+                    extend: 'csv',
+                    text: '{{ __('global.export_csv') }}',
+                },
+                {
+                    extend: 'excel',
+                    text: '{{ __('global.export_excel') }}',
+                },
+                {
+                    extend: 'pdf',
+                    text: '{{ __('global.export_pdf') }}',
+                },
+                {
+                    extend: 'print',
+                    text: '{{ __('global.print') }}',
+                },
+                {
+                    extend: 'colvis',
+                    text: '{{ __('global.colvis') }}',
+                }
+            ],
+            pagingType: 'full_numbers',
+            pageLength: 10,
+            lengthMenu: [10, 25, 50, 100],
+            language: {
+                paginate: {
+                    first: "{{ __('global.first') }}",
+                    previous: "{{ __('global.previous') }}",
+                    next: "{{ __('global.next') }}",
+                    last: "{{ __('global.last') }}",
+                }
+            }
+        });
         function isDelete(button) {
             event.preventDefault();
             var row = $(button).closest("tr");
