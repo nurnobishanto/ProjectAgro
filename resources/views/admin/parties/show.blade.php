@@ -23,68 +23,51 @@
         <div class="col-12">
             <div class="card">
                 <div class="card-body">
-                        @if (count($errors) > 0)
-                            <div class = "alert alert-danger">
-                                <ul>
-                                    @foreach ($errors->all() as $error)
-                                        <li>{{ $error }}</li>
-                                    @endforeach
-                                </ul>
-                            </div>
-                        @endif
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <label for="name">{{ __('global.full_name')}}</label>
-                                        <input id="name" class="form-control" disabled value="{{$party->name}}">
-                                    </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <label for="phone">{{ __('global.phone')}}</label>
-                                        <input id="phone" class="form-control" disabled value="{{$party->phone}}">
-                                    </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <label for="email">{{ __('global.email_address')}}</label>
-                                        <input id="email" class="form-control" disabled value="{{$party->email}}">
-                                    </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <label for="address">{{ __('global.address')}}</label>
-                                        <input id="address" class="form-control" disabled value="{{$party->address}}">
-                                    </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <label for="company">{{ __('global.company')}}</label>
-                                        <input id="company" class="form-control" disabled value="{{$party->company}}">
-                                    </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <label for="current_balance">{{ __('global.current_balance')}}</label>
-                                        <input id="current_balance" class="form-control" disabled value="{{$party->current_balance}}">
-                                    </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <label for="created_by">{{ __('global.created_by')}}</label>
-                                        <input id="created_by" class="form-control" disabled value="{{$party->createdBy->name}}">
-                                    </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <img src="{{asset('uploads/'.$party->photo)}}" alt="{{$party->name}}" class="img-fluid" style="max-height: 150px">
-                                    </div>
-                                </div>
-
-                            </div>
-
-
-
+                    <div class="table-responsive">
+                        <table class="table table-bordered">
+                            <tbody>
+                            <tr>
+                                <th width="200px">{{__('global.name')}}</th>
+                                <th>{{__('global.value')}}</th>
+                            </tr>
+                            <tr>
+                                <th>{{__('global.full_name')}}</th>
+                                <td>{{$party->name}}</td>
+                            </tr>
+                            <tr>
+                                <th>{{__('global.phone')}}</th>
+                                <td>{{$party->phone}}</td>
+                            </tr>
+                            <tr>
+                                <th>{{__('global.email_address')}}</th>
+                                <td>{{$party->email}}</td>
+                            </tr>
+                            <tr>
+                                <th>{{__('global.address')}}</th>
+                                <td>{{$party->address}}</td>
+                            </tr>
+                            <tr>
+                                <th>{{__('global.company')}}</th>
+                                <td>{{$party->company}}</td>
+                            </tr>
+                            <tr>
+                                <th>{{__('global.balance')}}</th>
+                                <td>{{$party->current_balance}}</td>
+                            </tr> <tr>
+                                <th>{{__('global.photo')}}</th>
+                                <td><img src="{{asset('uploads/'.$party->photo)}}" alt="{{$party->name}}" class="img-thumbnail" style="max-height: 150px"></td>
+                            </tr>
+                            <tr>
+                                <th>{{__('global.created_by')}}</th>
+                                <td>{{$party->createdBy->name}}</td>
+                            </tr>
+                            <tr>
+                                <th>{{__('global.status')}}</th>
+                                <td>{{__('global.'.$party->status)}}</td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
                         <form action="{{ route('admin.parties.destroy', $party->id) }}" method="POST">
                             @method('DELETE')
                             @csrf

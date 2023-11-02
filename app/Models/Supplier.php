@@ -16,6 +16,7 @@ class Supplier extends Model
         'email',
         'address',
         'company',
+        'status',
         'previous_balance',
         'current_balance',
         'created_by',

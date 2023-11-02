@@ -68,6 +68,15 @@
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
+                                    <label for="status">{{ __('global.select_status')}}</label>
+                                    <select id="status" name="status" class="form-control">
+                                        <option value="active" @if($party->status == 'active') selected @endif>{{__('global.active')}}</option>
+                                        <option value="deactivate" @if($party->status == 'deactivate') selected @endif>{{__('global.deactivate')}}</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
                                     <label for="photo">{{__('global.select_photo')}}</label>
                                     <input name="photo" type="file" class="form-control" id="photo" accept="image/*">
                                 </div>

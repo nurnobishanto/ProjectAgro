@@ -34,6 +34,8 @@ class PartyController extends Controller
         App::setLocale(session('locale'));
         $request->validate([
             'name' => 'required',
+            'status' => 'required',
+            'email' => 'email|unique:parties',
             'photo' => 'image|mimes:jpeg,png,jpg,gif|max:2048',
         ]);
         $imagePath = null;
@@ -45,6 +47,7 @@ class PartyController extends Controller
             'phone' =>$request->phone,
             'email' =>$request->email,
             'company' =>$request->company,
+            'status' =>$request->status,
             'previous_balance' =>$request->previous_balance??0,
             'current_balance' =>$request->previous_balance??0,
             'address' =>$request->address,
@@ -72,6 +75,7 @@ class PartyController extends Controller
         $party = Party::find($id);
         $request->validate([
             'name' => 'required',
+            'status' => 'required',
             'email' => 'email|unique:parties,id,'.$id,
             'photo' => 'image|mimes:jpeg,png,jpg,gif|max:2048',
         ]);
@@ -89,6 +93,7 @@ class PartyController extends Controller
         $party->email = $request->email;
         $party->address = $request->address;
         $party->company = $request->company;
+        $party->status = $request->status;
         $party->photo = $imagePath;
         $party->update();
         toastr()->success($party->name.__('global.updated_success'),__('global.party').__('global.updated'));

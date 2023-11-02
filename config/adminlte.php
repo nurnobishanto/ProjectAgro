@@ -487,6 +487,45 @@ return [
                 ],
             ]
         ],
+        ['header' => 'slaughter_management'],
+        [
+            'text'    => 'slaughter_management',
+            'icon'    => 'fas fa-circle',
+            'icon_color' => 'info',
+            'can' => ['slaughter_manage','slaughter_manage','slaughter_waste_manage','slaughter_stock_manage','slaughter_store_manage','slaughter_customer_manage'],
+            'submenu' => [
+                [
+                    'text' => 'slaughter',
+                    'can' => 'slaughter_manage',
+                    'url' => 'admin/slaughters'
+                ],
+                [
+                    'text' => 'slaughter_sale',
+                    'can' => 'slaughter_sale_manage',
+                    'url' => 'admin/slaughter-sales'
+                ],
+                [
+                    'text' => 'slaughter_waste',
+                    'can' => 'slaughter_waste_manage',
+                    'url' => 'admin/slaughter-wastes'
+                ],
+                [
+                    'text' => 'slaughter_stock',
+                    'can' => 'slaughter_stock_manage',
+                    'url' => 'admin/slaughter-stocks'
+                ],
+                [
+                    'text' => 'slaughter_store',
+                    'can' => 'slaughter_store_manage',
+                    'url' => 'admin/slaughter-stores'
+                ],
+                [
+                    'text' => 'slaughter_customer',
+                    'can' => 'slaughter_customer_manage',
+                    'url' => 'admin/slaughter-customers'
+                ],
+            ]
+        ],
         ['header' => 'expense_management'],
         [
             'text'    => 'expense_management',
@@ -551,6 +590,11 @@ return [
                     'text' => 'party_receive',
                     'can' => 'party_receive_manage',
                     'url' => 'admin/party-receives'
+                ],
+                [
+                    'text' => 'slaughter_customer_receive',
+                    'can' => 'slaughter_customer_receive_manage',
+                    'url' => 'admin/slaughter-customer-receives'
                 ],
             ]
         ],

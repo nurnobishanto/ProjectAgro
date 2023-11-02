@@ -61,6 +61,10 @@
                                 <th>{{__('global.created_by')}}</th>
                                 <td>{{$slaughter_customer->createdBy->name}}</td>
                             </tr>
+                            <tr>
+                                <th>{{__('global.status')}}</th>
+                                <td>{{__('global.'.$slaughter_customer->status)}}</td>
+                            </tr>
                             </tbody>
                         </table>
                     </div>
