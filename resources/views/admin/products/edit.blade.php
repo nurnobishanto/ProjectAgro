@@ -54,10 +54,11 @@
                                     <select name="type" class="form-control" id="type">
                                         <option value="">{{__('global.select_type')}}</option>
                                         <option value="cattle_meal"  @if($product->type === 'cattle_meal') selected @endif>{{__('global.cattle_meal')}}</option>
-                                        <option value="milk_collection" @if($product->type === 'milk_collection') selected @endif>{{__('global.milk_collection')}}</option>
                                         <option value="cattle_medicine" @if($product->type === 'cattle_medicine') selected @endif>{{__('global.cattle_medicine')}}</option>
                                         <option value="dewormer_medicine" @if($product->type === 'dewormer_medicine') selected @endif>{{__('global.dewormer_medicine')}}</option>
                                         <option value="vaccination" @if($product->type === 'vaccination') selected @endif>{{__('global.vaccination')}}</option>
+                                        <option value="slaughter_item" @if($product->type === 'slaughter_item') selected @endif>{{__('global.slaughter_item')}}</option>
+                                        <option value="milk_collection" @if($product->type === 'milk_collection') selected @endif>{{__('global.milk_collection')}}</option>
                                     </select>
                                 </div>
                             </div>

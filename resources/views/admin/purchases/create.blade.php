@@ -143,7 +143,7 @@
                                     <label for="product">{{__('global.select_products')}}<span class="text-danger">*</span></label>
                                     <select name="" class="select2 form-control" id="product">
                                         <option value="">{{__('global.select_products')}}</option>
-                                        @foreach(getProducts() as $product)
+                                        @foreach(getProductsForPurchase() as $product)
                                             <option value="{{ $product->id }}" data-price="{{ $product->purchase_price }}"  data-img="{{ asset('uploads/'.$product->image) }}">
                                                 {{ $product->name }} - {{ __('global.'.$product->type) }}
                                         @endforeach

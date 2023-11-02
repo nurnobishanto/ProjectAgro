@@ -53,10 +53,11 @@
                                     <select name="type" class="form-control" id="type">
                                         <option value="">{{__('global.select_type')}}</option>
                                         <option value="cattle_meal">{{__('global.cattle_meal')}}</option>
-                                        <option value="milk_collection">{{__('global.milk_collection')}}</option>
                                         <option value="cattle_medicine">{{__('global.cattle_medicine')}}</option>
                                         <option value="dewormer_medicine">{{__('global.dewormer_medicine')}}</option>
                                         <option value="vaccination">{{__('global.vaccination')}}</option>
+                                        <option value="slaughter_item">{{__('global.slaughter_item')}}</option>
+                                        <option value="milk_collection">{{__('global.milk_collection')}}</option>
                                     </select>
                                 </div>
                             </div>

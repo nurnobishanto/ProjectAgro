@@ -495,6 +495,7 @@ return [
     'update_slaughter_store' => 'Update Slaughter Store',
     'delete_slaughter_store' => 'Delete Slaughter Store',
     'view_slaughter_store' => 'View Slaughter Store',
+    'slaughter_item' => 'Slaughter Item',
 
 
 ];

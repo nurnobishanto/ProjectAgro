@@ -163,11 +163,11 @@ if (!function_exists('getFeedItems')) {
         return \App\Models\Product::where('type','cattle_meal')->get();
     }
 }
-if (!function_exists('getProducts')) {
+if (!function_exists('getProductsForPurchase')) {
 
-    function getProducts()
+    function getProductsForPurchase()
     {
-        return \App\Models\Product::all();
+        return \App\Models\Product::whereNotIn('type', ['milk_collection', 'slaughter_item'])->get();
     }
 }
 if (!function_exists('getAdmins')) {
