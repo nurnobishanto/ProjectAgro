@@ -35,6 +35,8 @@ class SupplierController extends Controller
         App::setLocale(session('locale'));
         $request->validate([
             'name' => 'required',
+            'status' => 'required',
+            'email' => 'email|unique:suppliers',
             'photo' => 'image|mimes:jpeg,png,jpg,gif|max:2048',
         ]);
         $imagePath = null;
@@ -46,6 +48,7 @@ class SupplierController extends Controller
             'phone' =>$request->phone,
             'email' =>$request->email,
             'company' =>$request->company,
+            'status' =>$request->status,
             'previous_balance' =>$request->previous_balance??0,
             'current_balance' =>$request->previous_balance??0,
             'address' =>$request->address,
@@ -73,6 +76,7 @@ class SupplierController extends Controller
         $supplier = Supplier::find($id);
         $request->validate([
             'name' => 'required',
+            'status' => 'required',
             'email' => 'email|unique:suppliers,id,'.$id,
             'photo' => 'image|mimes:jpeg,png,jpg,gif|max:2048',
         ]);
@@ -90,6 +94,7 @@ class SupplierController extends Controller
         $supplier->email = $request->email;
         $supplier->address = $request->address;
         $supplier->company = $request->company;
+        $supplier->status = $request->status;
         $supplier->photo = $imagePath;
         $supplier->update();
         toastr()->success($supplier->name.__('global.updated_success'),__('global.supplier').__('global.updated'));

@@ -103,6 +103,83 @@ class RoleSeeder extends Seeder
                     'party_create',
                 ]
             ],
+            [
+                'group_name' => 'SlaughterCustomer',
+                'permissions' => [
+                    'slaughter_customer_manage',
+                    'slaughter_customer_list',
+                    'slaughter_customer_view',
+                    'slaughter_customer_update',
+                    'slaughter_customer_delete',
+                    'slaughter_customer_create',
+                ]
+            ],
+            [
+                'group_name' => 'SlaughterCustomerReceive',
+                'permissions' => [
+                    'slaughter_customer_receive_manage',
+                    'slaughter_customer_receive_list',
+                    'slaughter_customer_receive_view',
+                    'slaughter_customer_receive_update',
+                    'slaughter_customer_receive_delete',
+                    'slaughter_customer_receive_create',
+                ]
+            ],
+            [
+                'group_name' => 'SlaughterStore',
+                'permissions' => [
+                    'slaughter_store_manage',
+                    'slaughter_store_list',
+                    'slaughter_store_view',
+                    'slaughter_store_update',
+                    'slaughter_store_delete',
+                    'slaughter_store_create',
+                ]
+            ],
+            [
+                'group_name' => 'SlaughterSale',
+                'permissions' => [
+                    'slaughter_sale_manage',
+                    'slaughter_sale_list',
+                    'slaughter_sale_view',
+                    'slaughter_sale_update',
+                    'slaughter_sale_delete',
+                    'slaughter_sale_create',
+                ]
+            ],
+            [
+                'group_name' => 'SlaughterWaste',
+                'permissions' => [
+                    'slaughter_waste_manage',
+                    'slaughter_waste_list',
+                    'slaughter_waste_view',
+                    'slaughter_waste_update',
+                    'slaughter_waste_delete',
+                    'slaughter_waste_create',
+                ]
+            ],
+            [
+                'group_name' => 'SlaughterStock',
+                'permissions' => [
+                    'slaughter_stock_manage',
+                    'slaughter_stock_list',
+                    'slaughter_stock_view',
+                    'slaughter_stock_update',
+                    'slaughter_stock_delete',
+                    'slaughter_stock_create',
+                ]
+            ],
+            [
+                'group_name' => 'Slaughter',
+                'permissions' => [
+                    'slaughter_manage',
+                    'slaughter_list',
+                    'slaughter_view',
+                    'slaughter_update',
+                    'slaughter_delete',
+                    'slaughter_create',
+                ]
+            ],
 
             [
                 'group_name' => 'CattleType',

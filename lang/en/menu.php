@@ -69,4 +69,12 @@ return [
     'staff' => 'Staff',
     'staff_payment' => 'Staff Payment',
     'bulk_cattle_sale' => 'Bulk Cattle Sale',
+    'slaughter_management' => 'Slaughter Management',
+    'slaughter_store' => 'Slaughter Store',
+    'slaughter_stock' => 'Slaughter Stock',
+    'slaughter_customer' => 'Slaughter Customer',
+    'slaughter_customer_receive' => 'Slaughter Customer Receive',
+    'slaughter_sale' => 'Slaughter Sale',
+    'slaughter_waste' => 'Slaughter Waste',
+    'slaughter' => 'Slaughter',
 ];

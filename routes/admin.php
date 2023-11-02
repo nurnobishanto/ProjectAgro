@@ -30,6 +30,8 @@ use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\Admin\PurchaseController;
 use App\Http\Controllers\Admin\RoleController;
 use App\Http\Controllers\Admin\SessionYearController;
+use App\Http\Controllers\Admin\SlaughterCustomerController;
+use App\Http\Controllers\Admin\SlaughterStoreController;
 use App\Http\Controllers\Admin\StaffController;
 use App\Http\Controllers\Admin\StaffPaymentController;
 use App\Http\Controllers\Admin\SupplierController;
@@ -66,6 +68,18 @@ Route::get('/parties/trashed',[PartyController::class,'trashed_list'])->middlewa
 Route::get('/parties/trashed/{party}/restore',[PartyController::class,'restore'])->middleware('permission:party_manage')->name('parties.restore');
 Route::get('/parties/trashed/{party}/delete',[PartyController::class,'force_delete'])->middleware('permission:party_manage')->name('parties.force_delete');
 Route::resource('/parties',PartyController::class)->middleware('permission:party_manage');
+
+//Slaughter Customers
+Route::get('/slaughter-customers/trashed',[SlaughterCustomerController::class,'trashed_list'])->middleware('permission:slaughter_customer_manage')->name('slaughter-customers.trashed');
+Route::get('/slaughter-customers/trashed/{slaughter_customer}/restore',[SlaughterCustomerController::class,'restore'])->middleware('permission:slaughter_customer_manage')->name('slaughter-customers.restore');
+Route::get('/slaughter-customers/trashed/{slaughter_customer}/delete',[SlaughterCustomerController::class,'force_delete'])->middleware('permission:slaughter_customer_manage')->name('slaughter-customers.force_delete');
+Route::resource('/slaughter-customers',SlaughterCustomerController::class)->middleware('permission:slaughter_customer_manage');
+
+//Slaughter Store
+Route::get('/slaughter-stores/trashed',[SlaughterStoreController::class,'trashed_list'])->middleware('permission:slaughter_store_manage')->name('slaughter-stores.trashed');
+Route::get('/slaughter-stores/trashed/{slaughter_store}/restore',[SlaughterStoreController::class,'restore'])->middleware('permission:slaughter_store_manage')->name('slaughter-stores.restore');
+Route::get('/slaughter-stores/trashed/{slaughter_store}/delete',[SlaughterStoreController::class,'force_delete'])->middleware('permission:slaughter_store_manage')->name('slaughter-stores.force_delete');
+Route::resource('/slaughter-stores',SlaughterStoreController::class)->middleware('permission:slaughter_store_manage');
 
 
 //Cattle Type

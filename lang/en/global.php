@@ -482,6 +482,13 @@ return [
     'view_staff_payment' => 'View Staff Payment',
     'sold' => 'Sold',
     'payment_limit_reached' => 'Payment limit reached',
+    'slaughter_customer' => 'Slaughter Customer',
+    'slaughter_customers' => 'Slaughter Customer List',
+    'create_slaughter_customer' => 'Create Slaughter Customer',
+    'update_slaughter_customer' => 'Update Slaughter Customer',
+    'delete_slaughter_customer' => 'Delete Slaughter Customer',
+    'view_slaughter_customer' => 'View Slaughter Customer',
+    'value' => 'Value',
 
 
 ];
