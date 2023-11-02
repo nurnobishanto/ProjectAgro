@@ -489,6 +489,7 @@ return [
     'delete_slaughter_customer' => 'Delete Slaughter Customer',
     'view_slaughter_customer' => 'View Slaughter Customer',
     'value' => 'Value',
+    'select_slaughter_store' => 'Select Slaughter Store',
     'slaughter_store' => 'Slaughter Store',
     'slaughter_stores' => 'Slaughter Store List',
     'create_slaughter_store' => 'Create Slaughter Store',
@@ -496,6 +497,19 @@ return [
     'delete_slaughter_store' => 'Delete Slaughter Store',
     'view_slaughter_store' => 'View Slaughter Store',
     'slaughter_item' => 'Slaughter Item',
-
+    'slaughtered' => 'Slaughtered',
+    'slaughter' => 'Slaughter',
+    'slaughters' => 'Slaughter List',
+    'create_slaughter' => 'Create Slaughter',
+    'update_slaughter' => 'Update Slaughter',
+    'delete_slaughter' => 'Delete Slaughter',
+    'view_slaughter' => 'View Slaughter',
+    'enter_quantity' => 'Enter Quantity',
+    'slaughter_stock' => 'Slaughter Stock',
+    'slaughter_stocks' => 'Slaughter Stock List',
+    'create_slaughter_stock' => 'Create Slaughter Stock',
+    'update_slaughter_stock' => 'Update Slaughter Stock',
+    'delete_slaughter_stock' => 'Delete Slaughter Stock',
+    'view_slaughter_stock' => 'View Slaughter Stock',
 
 ];

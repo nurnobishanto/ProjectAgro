@@ -163,10 +163,6 @@ class RoleSeeder extends Seeder
                 'permissions' => [
                     'slaughter_stock_manage',
                     'slaughter_stock_list',
-                    'slaughter_stock_view',
-                    'slaughter_stock_update',
-                    'slaughter_stock_delete',
-                    'slaughter_stock_create',
                 ]
             ],
             [
@@ -178,6 +174,7 @@ class RoleSeeder extends Seeder
                     'slaughter_update',
                     'slaughter_delete',
                     'slaughter_create',
+                    'slaughter_approve',
                 ]
             ],
 

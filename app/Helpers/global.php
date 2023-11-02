@@ -15,6 +15,20 @@ if (!function_exists('myCustomFunction')) {
 
     }
 }
+if (!function_exists('getSlaughterItems')) {
+
+    function getSlaughterItems()
+    {
+        return \App\Models\Product::where('type','slaughter_item')->get();
+    }
+}
+if (!function_exists('getSlaughterStore')) {
+
+    function getSlaughterStore()
+    {
+        return \App\Models\SlaughterStore::where('status','active')->get();
+    }
+}
 if (!function_exists('getPartyList')) {
 
     function getPartyList()

@@ -30,6 +30,7 @@ use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\Admin\PurchaseController;
 use App\Http\Controllers\Admin\RoleController;
 use App\Http\Controllers\Admin\SessionYearController;
+use App\Http\Controllers\Admin\SlaughterController;
 use App\Http\Controllers\Admin\SlaughterCustomerController;
 use App\Http\Controllers\Admin\SlaughterStoreController;
 use App\Http\Controllers\Admin\StaffController;
@@ -138,7 +139,6 @@ Route::resource('/taxes',TaxController::class)->middleware('permission:tax_manag
 
 //Fattening
 Route::resource('/fattenings',FatteningController::class)->middleware('permission:fattening_manage');
-
 
 //Purchase
 Route::get('/purchases/trashed',[PurchaseController::class,'trashed_list'])->middleware('permission:purchase_manage')->name('purchases.trashed');
@@ -255,6 +255,14 @@ Route::get('/cattle-sales/trashed/{cattle_sale}/restore',[CattleSaleController::
 Route::get('/cattle-sales/trashed/{cattle_sale}/delete',[CattleSaleController::class,'force_delete'])->middleware('permission:cattle_sale_manage')->name('cattle-sales.force_delete');
 Route::get('/cattle-sales/{cattle_sale}/approve',[CattleSaleController::class,'approve'])->middleware('permission:cattle_sale_approve')->name('cattle-sales.approve');
 Route::resource('/cattle-sales',CattleSaleController::class)->middleware('permission:cattle_sale_manage');
+
+//Slaughter
+Route::get('/slaughters/trashed',[SlaughterController::class,'trashed_list'])->middleware('permission:slaughter_manage')->name('slaughters.trashed');
+Route::get('/slaughters/trashed/{slaughter}/restore',[SlaughterController::class,'restore'])->middleware('permission:slaughter_manage')->name('slaughters.restore');
+Route::get('/slaughters/trashed/{slaughter}/delete',[SlaughterController::class,'force_delete'])->middleware('permission:slaughter_manage')->name('slaughters.force_delete');
+Route::get('/slaughters/{slaughter}/approve',[SlaughterController::class,'approve'])->middleware('permission:slaughter_approve')->name('slaughters.approve');
+Route::resource('/slaughters',SlaughterController::class)->middleware('permission:slaughter_manage');
+Route::get('/slaughter-stocks',[SlaughterController::class,'stocks'])->middleware('permission:slaughter_stock_manage');
 
 //BulkCattleSale
 Route::get('/bulk-cattle-sales/trashed',[BulkCattleSaleController::class,'trashed_list'])->middleware('permission:bulk_cattle_sale_manage')->name('bulk-cattle-sales.trashed');
