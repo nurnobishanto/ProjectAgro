@@ -32,6 +32,7 @@ use App\Http\Controllers\Admin\RoleController;
 use App\Http\Controllers\Admin\SessionYearController;
 use App\Http\Controllers\Admin\SlaughterController;
 use App\Http\Controllers\Admin\SlaughterCustomerController;
+use App\Http\Controllers\Admin\SlaughterCustomerReceiveController;
 use App\Http\Controllers\Admin\SlaughterStoreController;
 use App\Http\Controllers\Admin\StaffController;
 use App\Http\Controllers\Admin\StaffPaymentController;
@@ -285,6 +286,13 @@ Route::get('/party-receives/trashed/{party_receive}/restore',[PartyReceivedContr
 Route::get('/party-receives/trashed/{party_receive}/delete',[PartyReceivedController::class,'force_delete'])->middleware('permission:party_receive_manage')->name('party-receives.force_delete');
 Route::get('/party-receives/{party_receive}/approve',[PartyReceivedController::class,'approve'])->middleware('permission:party_receive_approve')->name('party-receives.approve');
 Route::resource('/party-receives',PartyReceivedController::class)->middleware('permission:party_receive_manage');
+
+//Slaughter Customer Receive
+Route::get('/slaughter_customer-receives/trashed',[SlaughterCustomerReceiveController::class,'trashed_list'])->middleware('permission:slaughter_customer_receive_manage')->name('slaughter_customer-receives.trashed');
+Route::get('/slaughter_customer-receives/trashed/{slaughter_customer_receive}/restore',[SlaughterCustomerReceiveController::class,'restore'])->middleware('permission:slaughter_customer_receive_manage')->name('slaughter_customer-receives.restore');
+Route::get('/slaughter_customer-receives/trashed/{slaughter_customer_receive}/delete',[SlaughterCustomerReceiveController::class,'force_delete'])->middleware('permission:slaughter_customer_receive_manage')->name('slaughter_customer-receives.force_delete');
+Route::get('/slaughter_customer-receives/{slaughter_customer_receive}/approve',[SlaughterCustomerReceiveController::class,'approve'])->middleware('permission:slaughter_customer_receive_approve')->name('slaughter_customer-receives.approve');
+Route::resource('/slaughter_customer-receives',SlaughterCustomerReceiveController::class)->middleware('permission:slaughter_customer_receive_manage');
 
 //Staff Payment
 Route::get('/staff-payments/trashed',[StaffPaymentController::class,'trashed_list'])->middleware('permission:staff_payment_manage')->name('staff-payments.trashed');

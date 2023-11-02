@@ -34,7 +34,8 @@
                                 <th>{{__('global.unique_id')}}</th>
                                 <th>{{__('global.date')}}</th>
                                 <th>{{__('global.account')}}</th>
-                                <th>{{__('global.paid_amount')}}</th>
+                                <th>{{__('global.amount')}}</th>
+                                <th>{{__('global.type')}}</th>
                                 <th>{{__('global.supplier')}}</th>
                                 <th>{{__('global.status')}}</th>
                                 <th>{{__('global.updated_at')}}</th>
@@ -50,8 +51,9 @@
                                     <td>{{$supplier_payment->date}}</td>
                                     <td>{{$supplier_payment->account->account_name??'--'}} ({{$supplier_payment->account->account_no??'--'}}) {{$supplier_payment->account->admin->name??'--'}}</td>
                                     <td>{{$supplier_payment->amount}}</td>
+                                    <td>{{__('global.'.$supplier_payment->type)}}</td>
                                     <td>{{$supplier_payment->supplier->name}}</td>
-                                    <td>{{$supplier_payment->status}}</td>
+                                    <td>{{__('global.'.$supplier_payment->status)}}</td>
                                     <td>{{date_format($supplier_payment->updated_at,'d M y h:i A') }}</td>
                                     <td class="text-center">
                                         @can('supplier_payment_delete')
@@ -69,7 +71,8 @@
                                 <th>{{__('global.unique_id')}}</th>
                                 <th>{{__('global.date')}}</th>
                                 <th>{{__('global.account')}}</th>
-                                <th>{{__('global.paid_amount')}}</th>
+                                <th>{{__('global.amount')}}</th>
+                                <th>{{__('global.type')}}</th>
                                 <th>{{__('global.supplier')}}</th>
                                 <th>{{__('global.status')}}</th>
                                 <th>{{__('global.updated_at')}}</th>

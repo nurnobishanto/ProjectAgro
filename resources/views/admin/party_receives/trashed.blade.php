@@ -1,20 +1,20 @@
 @extends('adminlte::page')
 
-@section('title', __('global.opening_balances'). __('global.deleted'))
+@section('title', __('global.party_receives'). __('global.deleted'))
 
 @section('content_header')
     <div class="row mb-2">
         <div class="col-sm-6">
-            <h1>{{__('global.opening_balances'). __('global.deleted')}}</h1>
+            <h1>{{__('global.party_receives'). __('global.deleted')}}</h1>
             @can('supplier_list')
-                <a href="{{route('admin.opening-balances.index')}}" class="btn btn-primary mt-2">{{__('global.go_back')}}</a>
+                <a href="{{route('admin.party-receives.index')}}" class="btn btn-primary mt-2">{{__('global.go_back')}}</a>
             @endcan
 
         </div>
         <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
                 <li class="breadcrumb-item"><a href="{{route('admin.dashboard')}}">{{__('global.home')}}</a></li>
-                <li class="breadcrumb-item active">{{__('global.opening_balances')}}</li>
+                <li class="breadcrumb-item active">{{__('global.party_receives')}}</li>
             </ol>
 
         </div>
@@ -34,7 +34,9 @@
                                 <th>{{__('global.unique_id')}}</th>
                                 <th>{{__('global.date')}}</th>
                                 <th>{{__('global.account')}}</th>
-                                <th>{{__('global.opening_balances')}}</th>
+                                <th>{{__('global.amount')}}</th>
+                                <th>{{__('global.type')}}</th>
+                                <th>{{__('global.party')}}</th>
                                 <th>{{__('global.status')}}</th>
                                 <th>{{__('global.updated_at')}}</th>
                                 <th>{{__('global.action')}}</th>
@@ -42,19 +44,21 @@
                             </thead>
                             <tbody>
                             <?php $sl = 1; ?>
-                            @foreach($opening_balances as $opening_balance)
+                            @foreach($party_receives as $party_receive)
                                 <tr>
                                     <td>{{$sl++}}</td>
-                                    <td>{{$opening_balance->unique_id}}</td>
-                                    <td>{{$opening_balance->date}}</td>
-                                    <td>{{$opening_balance->account->account_name??'--'}} ({{$opening_balance->account->account_no??'--'}}) {{$opening_balance->account->admin->name??'--'}}</td>
-                                    <td>{{$opening_balance->amount}}</td>
-                                    <td>{{$opening_balance->status}}</td>
-                                    <td>{{date_format($opening_balance->updated_at,'d M y h:i A') }}</td>
+                                    <td>{{$party_receive->unique_id}}</td>
+                                    <td>{{$party_receive->date}}</td>
+                                    <td>{{$party_receive->account->account_name??'--'}} ({{$party_receive->account->account_no??'--'}}) {{$party_receive->account->admin->name??'--'}}</td>
+                                    <td>{{$party_receive->amount}}</td>
+                                    <td>{{__('global.'.$party_receive->type)}}</td>
+                                    <td>{{$party_receive->party->name}}</td>
+                                    <td>{{__('global.'.$party_receive->status)}}</td>
+                                    <td>{{date_format($party_receive->updated_at,'d M y h:i A') }}</td>
                                     <td class="text-center">
-                                        @can('opening_balance_delete')
-                                        <a href="{{route('admin.opening-balances.restore',['opening_balance'=>$opening_balance->id])}}"  class="btn btn-success btn-sm px-1 py-0"><i class="fa fa-arrow-left"></i></a>
-                                        <a href="{{route('admin.opening-balances.force_delete',['opening_balance'=>$opening_balance->id])}}"  class="btn btn-danger btn-sm px-1 py-0"><i class="fa fa-trash"></i></a>
+                                        @can('party_receive_delete')
+                                        <a href="{{route('admin.party-receives.restore',['party_receive'=>$party_receive->id])}}"  class="btn btn-success btn-sm px-1 py-0"><i class="fa fa-arrow-left"></i></a>
+                                        <a href="{{route('admin.party-receives.force_delete',['party_receive'=>$party_receive->id])}}"  class="btn btn-danger btn-sm px-1 py-0"><i class="fa fa-trash"></i></a>
                                         @endcan
                                     </td>
                                 </tr>
@@ -67,7 +71,9 @@
                                 <th>{{__('global.unique_id')}}</th>
                                 <th>{{__('global.date')}}</th>
                                 <th>{{__('global.account')}}</th>
-                                <th>{{__('global.opening_balances')}}</th>
+                                <th>{{__('global.amount')}}</th>
+                                <th>{{__('global.type')}}</th>
+                                <th>{{__('global.party')}}</th>
                                 <th>{{__('global.status')}}</th>
                                 <th>{{__('global.updated_at')}}</th>
                                 <th>{{__('global.action')}}</th>

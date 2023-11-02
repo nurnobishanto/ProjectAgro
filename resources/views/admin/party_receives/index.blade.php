@@ -49,7 +49,6 @@
                             <?php $sl = 1; ?>
                             @foreach($party_receives as $party_receive)
                                 <tr>
-
                                     <td>{{$sl++}}</td>
                                     <td>{{$party_receive->unique_id}}</td>
                                     <td>{{$party_receive->date}}</td>
@@ -57,7 +56,7 @@
                                     <td>{{$party_receive->amount}}</td>
                                     <td>{{__('global.'.$party_receive->type)}}</td>
                                     <td>{{$party_receive->party->name}}</td>
-                                    <td>{{$party_receive->status}}</td>
+                                    <td>{{__('global.'.$party_receive->status)}}</td>
                                     <td>{{date_format($party_receive->updated_at,'d M y h:i A') }}</td>
                                     <td class="text-center">
                                         <form action="{{ route('admin.party-receives.destroy', $party_receive->id) }}" method="POST">

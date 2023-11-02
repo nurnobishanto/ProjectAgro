@@ -123,6 +123,7 @@ class RoleSeeder extends Seeder
                     'slaughter_customer_receive_update',
                     'slaughter_customer_receive_delete',
                     'slaughter_customer_receive_create',
+                    'slaughter_customer_receive_approve',
                 ]
             ],
             [

@@ -1,23 +1,23 @@
 @extends('adminlte::page')
 
-@section('title', __('global.supplier_payments'))
+@section('title', __('global.slaughter_customer_receives'))
 
 @section('content_header')
     <div class="row mb-2">
         <div class="col-sm-6">
-            <h1>{{__('global.supplier_payments')}}</h1>
-            @can('supplier_payment_create')
-                <a href="{{route('admin.supplier-payments.create')}}" class="btn btn-primary mt-2">{{__('global.add_new')}}</a>
+            <h1>{{__('global.slaughter_customer_receives')}}</h1>
+            @can('slaughter_customer_receive_create')
+                <a href="{{route('admin.slaughter_customer-receives.create')}}" class="btn btn-primary mt-2">{{__('global.add_new')}}</a>
             @endcan
-            @can('supplier_payment_delete')
-                <a href="{{route('admin.supplier-payments.trashed')}}" class="btn btn-danger mt-2">{{__('global.trash_list')}}</a>
+            @can('slaughter_customer_receive_delete')
+                <a href="{{route('admin.slaughter_customer-receives.trashed')}}" class="btn btn-danger mt-2">{{__('global.trash_list')}}</a>
             @endcan
 
         </div>
         <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
                 <li class="breadcrumb-item"><a href="{{route('admin.dashboard')}}">{{__('global.home')}}</a></li>
-                <li class="breadcrumb-item active">{{__('global.supplier_payments')}}</li>
+                <li class="breadcrumb-item active">{{__('global.slaughter_customer_receives')}}</li>
             </ol>
 
         </div>
@@ -27,7 +27,7 @@
 @section('content')
     <div class="row">
         <div class="col-12">
-            @can('supplier_payment_list')
+            @can('slaughter_customer_receive_list')
                 <div class="card">
                     <div class="card-body table-responsive">
                         <table id="adminsList" class="table  dataTable table-bordered table-striped">
@@ -39,7 +39,7 @@
                                 <th>{{__('global.account')}}</th>
                                 <th>{{__('global.amount')}}</th>
                                 <th>{{__('global.type')}}</th>
-                                <th>{{__('global.supplier')}}</th>
+                                <th>{{__('global.slaughter_customer')}}</th>
                                 <th>{{__('global.status')}}</th>
                                 <th>{{__('global.updated_at')}}</th>
                                 <th>{{__('global.action')}}</th>
@@ -47,37 +47,37 @@
                             </thead>
                             <tbody>
                             <?php $sl = 1; ?>
-                            @foreach($supplier_payments as $supplier_payment)
+                            @foreach($slaughter_customer_receives as $slaughter_customer_receive)
                                 <tr>
 
                                     <td>{{$sl++}}</td>
-                                    <td>{{$supplier_payment->unique_id}}</td>
-                                    <td>{{$supplier_payment->date}}</td>
-                                    <td>{{$supplier_payment->account->account_name??'--'}} ({{$supplier_payment->account->account_no??'--'}}) {{$supplier_payment->account->admin->name??'--'}}</td>
-                                    <td>{{$supplier_payment->amount}}</td>
-                                    <td>{{__('global.'.$supplier_payment->type)}}</td>
-                                    <td>{{$supplier_payment->supplier->name}}</td>
-                                    <td>{{__('global.'.$supplier_payment->status)}}</td>
-                                    <td>{{date_format($supplier_payment->updated_at,'d M y h:i A') }}</td>
+                                    <td>{{$slaughter_customer_receive->unique_id}}</td>
+                                    <td>{{$slaughter_customer_receive->date}}</td>
+                                    <td>{{$slaughter_customer_receive->account->account_name??'--'}} ({{$slaughter_customer_receive->account->account_no??'--'}}) {{$slaughter_customer_receive->account->admin->name??'--'}}</td>
+                                    <td>{{$slaughter_customer_receive->amount}}</td>
+                                    <td>{{__('global.'.$slaughter_customer_receive->type)}}</td>
+                                    <td>{{$slaughter_customer_receive->slaughter_customer->name}}</td>
+                                    <td>{{__('global.'.$slaughter_customer_receive->status)}}</td>
+                                    <td>{{date_format($slaughter_customer_receive->updated_at,'d M y h:i A') }}</td>
                                     <td class="text-center">
-                                        <form action="{{ route('admin.supplier-payments.destroy', $supplier_payment->id) }}" method="POST">
+                                        <form action="{{ route('admin.slaughter_customer-receives.destroy', $slaughter_customer_receive->id) }}" method="POST">
                                             @method('DELETE')
                                             @csrf
-                                            @can('supplier_payment_view')
-                                                <a href="{{route('admin.supplier-payments.show',['supplier_payment'=>$supplier_payment->id])}}" class="btn btn-info px-1 py-0 btn-sm"><i class="fa fa-eye"></i></a>
+                                            @can('slaughter_customer_receive_view')
+                                                <a href="{{route('admin.slaughter_customer-receives.show',['slaughter_customer_receife'=>$slaughter_customer_receive->id])}}" class="btn btn-info px-1 py-0 btn-sm"><i class="fa fa-eye"></i></a>
                                             @endcan
-                                            @if($supplier_payment->status == 'pending')
-                                                @can('supplier_payment_update')
-                                                    <a href="{{route('admin.supplier-payments.edit',['supplier_payment'=>$supplier_payment->id])}}" class="btn btn-warning px-1 py-0 btn-sm"><i class="fa fa-pen"></i></a>
+                                            @if($slaughter_customer_receive->status == 'pending')
+                                                @can('slaughter_customer_receive_update')
+                                                    <a href="{{route('admin.slaughter_customer-receives.edit',['slaughter_customer_receife'=>$slaughter_customer_receive->id])}}" class="btn btn-warning px-1 py-0 btn-sm"><i class="fa fa-pen"></i></a>
                                                 @endcan
-                                                @can('supplier_payment_delete')
+                                                @can('slaughter_customer_receive_delete')
                                                     <button onclick="isDelete(this)" class="btn btn-danger btn-sm px-1 py-0"><i class="fa fa-trash"></i></button>
                                                 @endcan
-                                                @can('supplier_payment_approve')
-                                                    <a href="{{route('admin.supplier-payments.approve',['supplier_payment'=>$supplier_payment->id])}}" class="btn btn-primary btn-sm px-1 py-0"><i class="fa fa-thumbs-up"></i></a>
+                                                @can('slaughter_customer_receive_approve')
+                                                    <a href="{{route('admin.slaughter_customer-receives.approve',['slaughter_customer_receive'=>$slaughter_customer_receive->id])}}" class="btn btn-primary btn-sm px-1 py-0"><i class="fa fa-thumbs-up"></i></a>
                                                 @endcan
                                             @else
-                                                <a href="{{route('admin.supplier-payments.show',['supplier_payment'=>$supplier_payment->id])}}" class="btn btn-info px-1 py-0 btn-sm">{{$supplier_payment->status}}</a>
+                                                <a href="{{route('admin.slaughter_customer-receives.show',['slaughter_customer_receife'=>$slaughter_customer_receive->id])}}" class="btn btn-info px-1 py-0 btn-sm">{{$slaughter_customer_receive->status}}</a>
                                             @endif
 
                                         </form>
@@ -94,7 +94,7 @@
                                 <th>{{__('global.account')}}</th>
                                 <th>{{__('global.amount')}}</th>
                                 <th>{{__('global.type')}}</th>
-                                <th>{{__('global.supplier')}}</th>
+                                <th>{{__('global.slaughter_customer')}}</th>
                                 <th>{{__('global.status')}}</th>
                                 <th>{{__('global.updated_at')}}</th>
                                 <th>{{__('global.action')}}</th>

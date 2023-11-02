@@ -15,6 +15,13 @@ if (!function_exists('myCustomFunction')) {
 
     }
 }
+if (!function_exists('getSlaughterCustomer')) {
+
+    function getSlaughterCustomer()
+    {
+        return \App\Models\SlaughterCustomer::all();
+    }
+}
 if (!function_exists('getSlaughterItems')) {
 
     function getSlaughterItems()

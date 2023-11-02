@@ -594,7 +594,7 @@ return [
                 [
                     'text' => 'slaughter_customer_receive',
                     'can' => 'slaughter_customer_receive_manage',
-                    'url' => 'admin/slaughter-customer-receives'
+                    'url' => 'admin/slaughter_customer-receives'
                 ],
             ]
         ],
