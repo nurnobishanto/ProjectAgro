@@ -1,23 +1,23 @@
 @extends('adminlte::page')
 
-@section('title', __('global.slaughter_customers'))
+@section('title', __('global.slaughter_stores'))
 
 @section('content_header')
     <div class="row mb-2">
         <div class="col-sm-6">
-            <h1>{{__('global.slaughter_customers')}}</h1>
-            @can('slaughter_customer_create')
-                <a href="{{route('admin.slaughter-customers.create')}}" class="btn btn-primary mt-2">{{__('global.add_new')}}</a>
+            <h1>{{__('global.slaughter_stores')}}</h1>
+            @can('slaughter_store_create')
+                <a href="{{route('admin.slaughter-stores.create')}}" class="btn btn-primary mt-2">{{__('global.add_new')}}</a>
             @endcan
-            @can('slaughter_customer_delete')
-                <a href="{{route('admin.slaughter-customers.trashed')}}" class="btn btn-danger mt-2">{{__('global.trash_list')}}</a>
+            @can('slaughter_store_delete')
+                <a href="{{route('admin.slaughter-stores.trashed')}}" class="btn btn-danger mt-2">{{__('global.trash_list')}}</a>
             @endcan
 
         </div>
         <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
                 <li class="breadcrumb-item"><a href="{{route('admin.dashboard')}}">{{__('global.home')}}</a></li>
-                <li class="breadcrumb-item active">{{__('global.slaughter_customers')}}</li>
+                <li class="breadcrumb-item active">{{__('global.slaughter_stores')}}</li>
             </ol>
 
         </div>
@@ -27,7 +27,7 @@
 @section('content')
     <div class="row">
         <div class="col-12">
-            @can('slaughter_customer_list')
+            @can('slaughter_store_list')
                 <div class="card">
                     <div class="card-body table-responsive">
                         <table id="adminsList" class="table  dataTable table-bordered table-striped">
@@ -38,33 +38,33 @@
                                 <th>{{__('global.phone')}}</th>
                                 <th>{{__('global.email')}}</th>
                                 <th>{{__('global.company')}}</th>
-                                <th>{{__('global.balance')}}</th>
+                                <th>{{__('global.status')}}</th>
                                 <th>{{__('global.action')}}</th>
                             </tr>
                             </thead>
                             <tbody>
-                            @foreach($slaughter_customers as $slaughter_customer)
+                            @foreach($slaughter_stores as $slaughter_store)
                                 <tr>
 
                                     <td>
-                                        <img class="rounded border" width="100px" src="{{asset('uploads/'.$slaughter_customer->photo)}}" alt="{{$slaughter_customer->name}}">
+                                        <img class="rounded border" width="100px" src="{{asset('uploads/'.$slaughter_store->photo)}}" alt="{{$slaughter_store->name}}">
                                     </td>
-                                    <td>{{$slaughter_customer->name}}</td>
-                                    <td>{{$slaughter_customer->phone}}</td>
-                                    <td>{{$slaughter_customer->email}}</td>
-                                    <td>{{$slaughter_customer->company}}</td>
-                                    <td>{{$slaughter_customer->balance}}</td>
+                                    <td>{{$slaughter_store->name}}</td>
+                                    <td>{{$slaughter_store->phone}}</td>
+                                    <td>{{$slaughter_store->email}}</td>
+                                    <td>{{$slaughter_store->company}}</td>
+                                    <td>{{__('global.'.$slaughter_store->status)}}</td>
                                     <td class="text-center">
-                                        <form action="{{ route('admin.slaughter-customers.destroy', $slaughter_customer->id) }}" method="POST">
+                                        <form action="{{ route('admin.slaughter-stores.destroy', $slaughter_store->id) }}" method="POST">
                                             @method('DELETE')
                                             @csrf
-                                            @can('slaughter_customer_view')
-                                                <a href="{{route('admin.slaughter-customers.show',['slaughter_customer'=>$slaughter_customer->id])}}" class="btn btn-info px-1 py-0 btn-sm"><i class="fa fa-eye"></i></a>
+                                            @can('slaughter_store_view')
+                                                <a href="{{route('admin.slaughter-stores.show',['slaughter_store'=>$slaughter_store->id])}}" class="btn btn-info px-1 py-0 btn-sm"><i class="fa fa-eye"></i></a>
                                             @endcan
-                                            @can('slaughter_customer_update')
-                                                <a href="{{route('admin.slaughter-customers.edit',['slaughter_customer'=>$slaughter_customer->id])}}" class="btn btn-warning px-1 py-0 btn-sm"><i class="fa fa-pen"></i></a>
+                                            @can('slaughter_store_update')
+                                                <a href="{{route('admin.slaughter-stores.edit',['slaughter_store'=>$slaughter_store->id])}}" class="btn btn-warning px-1 py-0 btn-sm"><i class="fa fa-pen"></i></a>
                                             @endcan
-                                            @can('slaughter_customer_delete')
+                                            @can('slaughter_store_delete')
                                                 <button onclick="isDelete(this)" class="btn btn-danger btn-sm px-1 py-0"><i class="fa fa-trash"></i></button>
                                             @endcan
 
@@ -81,7 +81,7 @@
                                 <th>{{__('global.phone')}}</th>
                                 <th>{{__('global.email')}}</th>
                                 <th>{{__('global.company')}}</th>
-                                <th>{{__('global.balance')}}</th>
+                                <th>{{__('global.status')}}</th>
                                 <th>{{__('global.action')}}</th>
                             </tr>
                             </tfoot>

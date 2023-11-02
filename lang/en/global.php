@@ -489,6 +489,12 @@ return [
     'delete_slaughter_customer' => 'Delete Slaughter Customer',
     'view_slaughter_customer' => 'View Slaughter Customer',
     'value' => 'Value',
+    'slaughter_store' => 'Slaughter Store',
+    'slaughter_stores' => 'Slaughter Store List',
+    'create_slaughter_store' => 'Create Slaughter Store',
+    'update_slaughter_store' => 'Update Slaughter Store',
+    'delete_slaughter_store' => 'Delete Slaughter Store',
+    'view_slaughter_store' => 'View Slaughter Store',
 
 
 ];
