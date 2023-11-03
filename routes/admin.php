@@ -33,6 +33,7 @@ use App\Http\Controllers\Admin\SessionYearController;
 use App\Http\Controllers\Admin\SlaughterController;
 use App\Http\Controllers\Admin\SlaughterCustomerController;
 use App\Http\Controllers\Admin\SlaughterCustomerReceiveController;
+use App\Http\Controllers\Admin\SlaughterSaleController;
 use App\Http\Controllers\Admin\SlaughterStoreController;
 use App\Http\Controllers\Admin\StaffController;
 use App\Http\Controllers\Admin\StaffPaymentController;
@@ -263,7 +264,7 @@ Route::get('/slaughters/trashed/{slaughter}/restore',[SlaughterController::class
 Route::get('/slaughters/trashed/{slaughter}/delete',[SlaughterController::class,'force_delete'])->middleware('permission:slaughter_manage')->name('slaughters.force_delete');
 Route::get('/slaughters/{slaughter}/approve',[SlaughterController::class,'approve'])->middleware('permission:slaughter_approve')->name('slaughters.approve');
 Route::resource('/slaughters',SlaughterController::class)->middleware('permission:slaughter_manage');
-Route::get('/slaughter-stocks',[SlaughterController::class,'stocks'])->middleware('permission:slaughter_stock_manage');
+Route::get('/slaughter-stocks',[SlaughterController::class,'stocks'])->middleware('permission:slaughter_stock_manage')->name('slaughters.stock');
 
 //BulkCattleSale
 Route::get('/bulk-cattle-sales/trashed',[BulkCattleSaleController::class,'trashed_list'])->middleware('permission:bulk_cattle_sale_manage')->name('bulk-cattle-sales.trashed');
@@ -293,6 +294,14 @@ Route::get('/slaughter_customer-receives/trashed/{slaughter_customer_receive}/re
 Route::get('/slaughter_customer-receives/trashed/{slaughter_customer_receive}/delete',[SlaughterCustomerReceiveController::class,'force_delete'])->middleware('permission:slaughter_customer_receive_manage')->name('slaughter_customer-receives.force_delete');
 Route::get('/slaughter_customer-receives/{slaughter_customer_receive}/approve',[SlaughterCustomerReceiveController::class,'approve'])->middleware('permission:slaughter_customer_receive_approve')->name('slaughter_customer-receives.approve');
 Route::resource('/slaughter_customer-receives',SlaughterCustomerReceiveController::class)->middleware('permission:slaughter_customer_receive_manage');
+
+//Slaughter Sale
+Route::get('/slaughter_sales/trashed',[SlaughterSaleController::class,'trashed_list'])->middleware('permission:slaughter_sale_manage')->name('slaughter_sales.trashed');
+Route::get('/slaughter_sales/trashed/{slaughter_sale}/restore',[SlaughterSaleController::class,'restore'])->middleware('permission:slaughter_sale_manage')->name('slaughter_sales.restore');
+Route::get('/slaughter_sales/trashed/{slaughter_sale}/delete',[SlaughterSaleController::class,'force_delete'])->middleware('permission:slaughter_sale_manage')->name('slaughter_sales.force_delete');
+Route::post('/slaughter_sales/{slaughter_sale}/approve',[SlaughterSaleController::class,'approve'])->middleware('permission:slaughter_sale_approve')->name('slaughter_sales.approve');
+Route::resource('/slaughter_sales',SlaughterSaleController::class)->middleware('permission:slaughter_sale_manage');
+
 
 //Staff Payment
 Route::get('/staff-payments/trashed',[StaffPaymentController::class,'trashed_list'])->middleware('permission:staff_payment_manage')->name('staff-payments.trashed');

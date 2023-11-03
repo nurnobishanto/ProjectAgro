@@ -15,6 +15,13 @@ if (!function_exists('myCustomFunction')) {
 
     }
 }
+if (!function_exists('getSlaughterProductsForSale')) {
+
+    function getSlaughterProductsForSale($param)
+    {
+        return \App\Models\SlaughterStock::where('slaughter_store_id',$param)->get();
+    }
+}
 if (!function_exists('getSlaughterCustomer')) {
 
     function getSlaughterCustomer()

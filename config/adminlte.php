@@ -502,7 +502,7 @@ return [
                 [
                     'text' => 'slaughter_sale',
                     'can' => 'slaughter_sale_manage',
-                    'url' => 'admin/slaughter-sales'
+                    'url' => 'admin/slaughter_sales'
                 ],
                 [
                     'text' => 'slaughter_waste',

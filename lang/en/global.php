@@ -518,5 +518,15 @@ return [
     'update_slaughter_customer_receive' => 'Update Slaughter Customer Receive',
     'delete_slaughter_customer_receive' => 'Delete Slaughter Customer Receive',
     'view_slaughter_customer_receive' => 'View Slaughter Customer Receive',
-
+    'slaughter_sale' => 'Slaughter Sale',
+    'slaughter_sales' => 'Slaughter Sale List',
+    'create_slaughter_sale' => 'Create Slaughter Sale',
+    'update_slaughter_sale' => 'Update Slaughter Sale',
+    'delete_slaughter_sale' => 'Delete Slaughter Sale',
+    'view_slaughter_sale' => 'View Slaughter Sale',
+    'slaughter_sale_products' => 'Slaughter Sale Products',
+    'grand_total' => 'Grand Total',
+    'quantity_exceeds_maximum' => 'Quantity Exceeds Maximum',
+    'maximum_allowed_quantity_is' => 'The maximum quantity allowed for this product is',
+    'ok' => 'OK',
 ];

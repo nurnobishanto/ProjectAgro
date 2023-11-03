@@ -146,6 +146,7 @@ class RoleSeeder extends Seeder
                     'slaughter_sale_update',
                     'slaughter_sale_delete',
                     'slaughter_sale_create',
+                    'slaughter_sale_approve',
                 ]
             ],
             [

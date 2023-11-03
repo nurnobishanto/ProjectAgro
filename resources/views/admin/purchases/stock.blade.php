@@ -39,7 +39,7 @@
                                     <div class="form-group">
                                         <select class="form-control select2" name="product_id">
                                             <option value="">All</option>
-                                            @foreach(getProducts() as $product)
+                                            @foreach(getProductsForPurchase() as $product)
                                                 <option value="{{$product->id}}" @if($product_id == $product->id) selected @endif >{{$product->name}}</option>
                                             @endforeach
                                         </select>

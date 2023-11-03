@@ -38,7 +38,7 @@
                             <div class="col-lg-3 col-md-4 col-sm-6">
                                 <div class="form-group">
                                     <label for="unique_id">{{ __('global.unique_id')}}<span class="text-danger"> *</span></label>
-                                    <input name="unique_id" readonly value="{{generateInvoiceId('SCR',\App\Models\SlaughterCustomer::class,'unique_id')}}" id="unique_id"  type="text" class="form-control">
+                                    <input name="unique_id" readonly value="{{generateInvoiceId('SCR',\App\Models\SlaughterCustomerReceive::class,'unique_id')}}" id="unique_id"  type="text" class="form-control">
                                 </div>
                             </div>
                             <div class="col-lg-3 col-md-4 col-sm-6">
