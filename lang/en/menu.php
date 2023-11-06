@@ -4,7 +4,6 @@ return [
     'bangla' => 'Bangla',
     'english' => 'English',
     'dashboard' => 'Dashboard',
-    //Commands
     'commands' => 'Commands',
     'clear_cache' => 'Clear Cache',
     'clear_config' => 'Clear Config',
@@ -77,4 +76,5 @@ return [
     'slaughter_sale' => 'Slaughter Sale',
     'slaughter_waste' => 'Slaughter Waste',
     'slaughter' => 'Slaughter',
+    'reports' => 'Reports',
 ];
