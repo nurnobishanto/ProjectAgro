@@ -158,6 +158,7 @@ class RoleSeeder extends Seeder
                     'slaughter_waste_update',
                     'slaughter_waste_delete',
                     'slaughter_waste_create',
+                    'slaughter_waste_approve',
                 ]
             ],
             [

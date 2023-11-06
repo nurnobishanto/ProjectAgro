@@ -243,7 +243,7 @@ class SlaughterSaleController extends Controller
         $slaughter_sale->status = 'success';
         $slaughter_sale->update();
 
-        toastr()->success('SlaughterSale has been approved ');
+        toastr()->success(__('notification.slaughter_sale_has_been_approved'));
         return redirect()->back();
     }
 

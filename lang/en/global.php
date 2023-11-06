@@ -526,5 +526,13 @@ return [
     'quantity_exceeds_maximum' => 'Quantity Exceeds Maximum',
     'maximum_allowed_quantity_is' => 'The maximum quantity allowed for this product is',
     'ok' => 'OK',
+    'slaughter_waste' => 'Slaughter Waste',
+    'slaughter_wastes' => 'Slaughter Waste List',
+    'create_slaughter_waste' => 'Create Slaughter Waste',
+    'update_slaughter_waste' => 'Update Slaughter Waste',
+    'delete_slaughter_waste' => 'Delete Slaughter Waste',
+    'view_slaughter_waste' => 'View Slaughter Waste',
+    'slaughter_waste_products' => 'Slaughter Waste Products',
+    'total_quantity' => 'Total Quantity',
     //৬/১১/২৩
 ];

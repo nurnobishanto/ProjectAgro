@@ -526,5 +526,13 @@ return [
     'quantity_exceeds_maximum' => 'পরিমাণ সর্বোচ্চ ছাড়িয়ে গেছে',
     'maximum_allowed_quantity_is' => 'এই পণ্যের জন্য অনুমোদিত সর্বোচ্চ পরিমাণ হল',
     'ok' => 'ঠিক আছে',
+    'slaughter_waste' => 'জবাইকৃত আইটেম অপচয়',
+    'slaughter_wastes' => 'জবাইকৃত আইটেম অপচয় তালিকা',
+    'create_slaughter_waste' => 'জবাইকৃত আইটেম অপচয় তৈরি করুন',
+    'update_slaughter_waste' => 'জবাইকৃত আইটেম অপচয় আপডেট করুন',
+    'delete_slaughter_waste' => 'জবাইকৃত আইটেম অপচয় মুছে ফেলুন',
+    'view_slaughter_waste' => 'জবাইকৃত আইটেম অপচয় দেখুন',
+    'slaughter_waste_products' => 'জবাইকৃত আইটেম অপচয় পণ্য',
+    'total_quantity' => 'মোট পরিমাণ',
     //৬/১১/২৩
 ];

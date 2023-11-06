@@ -507,7 +507,7 @@ return [
                 [
                     'text' => 'slaughter_waste',
                     'can' => 'slaughter_waste_manage',
-                    'url' => 'admin/slaughter-wastes'
+                    'url' => 'admin/slaughter_wastes'
                 ],
                 [
                     'text' => 'slaughter_stock',

@@ -35,6 +35,7 @@ use App\Http\Controllers\Admin\SlaughterCustomerController;
 use App\Http\Controllers\Admin\SlaughterCustomerReceiveController;
 use App\Http\Controllers\Admin\SlaughterSaleController;
 use App\Http\Controllers\Admin\SlaughterStoreController;
+use App\Http\Controllers\Admin\SlaughterWasteController;
 use App\Http\Controllers\Admin\StaffController;
 use App\Http\Controllers\Admin\StaffPaymentController;
 use App\Http\Controllers\Admin\SupplierController;
@@ -301,6 +302,13 @@ Route::get('/slaughter_sales/trashed/{slaughter_sale}/restore',[SlaughterSaleCon
 Route::get('/slaughter_sales/trashed/{slaughter_sale}/delete',[SlaughterSaleController::class,'force_delete'])->middleware('permission:slaughter_sale_manage')->name('slaughter_sales.force_delete');
 Route::post('/slaughter_sales/{slaughter_sale}/approve',[SlaughterSaleController::class,'approve'])->middleware('permission:slaughter_sale_approve')->name('slaughter_sales.approve');
 Route::resource('/slaughter_sales',SlaughterSaleController::class)->middleware('permission:slaughter_sale_manage');
+
+//Slaughter Waste
+Route::get('/slaughter_wastes/trashed',[SlaughterWasteController::class,'trashed_list'])->middleware('permission:slaughter_waste_manage')->name('slaughter_wastes.trashed');
+Route::get('/slaughter_wastes/trashed/{slaughter_waste}/restore',[SlaughterWasteController::class,'restore'])->middleware('permission:slaughter_waste_manage')->name('slaughter_wastes.restore');
+Route::get('/slaughter_wastes/trashed/{slaughter_waste}/delete',[SlaughterWasteController::class,'force_delete'])->middleware('permission:slaughter_waste_manage')->name('slaughter_wastes.force_delete');
+Route::post('/slaughter_wastes/{slaughter_waste}/approve',[SlaughterWasteController::class,'approve'])->middleware('permission:slaughter_waste_approve')->name('slaughter_wastes.approve');
+Route::resource('/slaughter_wastes',SlaughterWasteController::class)->middleware('permission:slaughter_waste_manage');
 
 
 //Staff Payment

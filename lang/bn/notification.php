@@ -10,5 +10,7 @@ return [
     'migrated' => 'মাইগ্রেট করা হয়েছে ',
     'fresh_migrated' => 'ফ্রেশ মাইগ্রেট করা হয়েছে ',
     'fresh_migrated_seed' => 'ফ্রেশ মাইগ্রেট করা হয়েছে সাথে সীড',
+    'slaughter_waste_has_been_approved' => 'জবাইকৃত আইটেম অপচয় অনুমোদিত',
+    'slaughter_sale_has_been_approved' => 'জবাইকৃত আইটেম বিক্রয় অনুমোদিত',
 ];
 
