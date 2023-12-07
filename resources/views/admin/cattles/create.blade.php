@@ -86,7 +86,7 @@
                                     </select>
                                 </div>
                             </div>
-                            <div class="col-md-6">
+                            <div class="col-md-6 d-none" id="supplier">
                                 <div class="form-group">
                                     <label for="supplier_id">{{ __('global.select_supplier')}}<span class="text-danger"> *</span></label>
                                     <select id="supplier_id" name="supplier_id" class="form-control">
@@ -346,7 +346,6 @@
                     $('#breed_id').empty();
                 }
             });
-
             $('#gender').change(function() {
                 $('#parent').addClass('d-none');
                 $('#total_child').addClass('d-none');
@@ -360,6 +359,16 @@
                     loadCategories(gender);
                 } else {
                     $('#category').empty();
+                }
+            });
+            $('#is_purchase').change(function (){
+                var is_purchase = $(this).val();
+                if (is_purchase == 1){
+                    $('#supplier').removeClass('d-none');
+                    $('#supplier').addClass('d-block');
+                }else {
+                    $('#supplier').removeClass('d-block');
+                    $('#supplier').addClass('d-none');
                 }
             });
             $('#category').change(function() {

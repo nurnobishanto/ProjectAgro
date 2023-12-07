@@ -47,7 +47,7 @@
 
                                     <td>{{$sl++}}</td>
                                     <td>{{$batch->name}}</td>
-                                    <td>{{$batch->status}}</td>
+                                    <td>{{__('global.'.$batch->status)}}</td>
                                     <td>{{date_format($batch->updated_at,'d M y h:i A') }}</td>
                                     <td class="text-center">
                                         <form action="{{ route('admin.batches.destroy', $batch->id) }}" method="POST">

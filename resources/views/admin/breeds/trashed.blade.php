@@ -45,7 +45,7 @@
                                     <td>{{$sl++}}</td>
                                     <td>{{$breed->cattle_type->title}}</td>
                                     <td>{{$breed->name}}</td>
-                                    <td>{{$breed->status}}</td>
+                                    <td>{{__('global.'.$breed->status)}}</td>
                                     <td>{{date_format($breed->deleted_at,'d M y h:i A')}}</td>
                                     <td class="text-center">
                                         @can('breed_delete')

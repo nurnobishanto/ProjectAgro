@@ -48,7 +48,7 @@
 
                                     <td>{{$sl++}}</td>
                                     <td>{{$session_year->year}}</td>
-                                    <td>{{$session_year->status}}</td>
+                                    <td>{{__('global.'.$session_year->status)}}</td>
                                     <td>{{date_format($session_year->updated_at,'d M y h:i A') }}</td>
                                     <td class="text-center">
                                         <form action="{{ route('admin.session-years.destroy', $session_year->id) }}" method="POST">

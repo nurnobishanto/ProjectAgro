@@ -18,6 +18,7 @@ class Cattle extends Model
       'shade_no',
       'is_purchase',
       'purchase_date',
+      'purchase_price',
       'dob',
       'batch_id',
       'cattle_type_id',
@@ -40,7 +41,6 @@ class Cattle extends Model
       'death_date',
       'sold_date',
       'supplier_id',
-      'purchase_price',
 
     ];
     public function parent(): \Illuminate\Database\Eloquent\Relations\BelongsTo

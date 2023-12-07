@@ -63,6 +63,11 @@ class CattleController extends Controller
             'image' => 'image|mimes:jpeg,png,jpg,gif|max:2048', // Adjust file types and size as needed
             'gallery.*' => 'image|mimes:jpeg,png,jpg,gif|max:2048', // Adjust file types and size as needed
         ]);
+        if ($request->is_purchase == 1){
+            $request->validate([
+                'supplier_id' => 'required',
+            ]);
+        }
 
         $imagePath = null;
         if($request->file('image')){
@@ -82,7 +87,6 @@ class CattleController extends Controller
             'entry_date' => $request->entry_date,
             'shade_no' => $request->shade_no,
             'is_purchase' => $request->is_purchase,
-            'supplier_id' => $request->supplier_id,
             'purchase_price' => $request->purchase_price??0,
             'purchase_date' => $request->purchase_date,
             'dob' => $request->dob,
@@ -107,6 +111,10 @@ class CattleController extends Controller
             'updated_by' =>auth()->user()->id,
             'image' => $imagePath,
         ]);
+        if ($request->is_purchase == 1){
+            $cattle->supplier_id = $request->supplier_id;
+            $cattle->update();
+        }
 
         CattleStructure::create([
             'cattle_id' => $cattle->id,

@@ -42,7 +42,7 @@
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label for="status">{{ __('global.status')}}</label>
-                                        <input id="status" class="form-control" disabled value="{{$session_year->status}}">
+                                        <input id="status" class="form-control" disabled value="{{__('global.'.$session_year->status)}}">
                                     </div>
                                 </div>
                                 <div class="col-md-6">

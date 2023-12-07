@@ -47,7 +47,7 @@
 
                                     <td>{{$sl++}}</td>
                                     <td>{{$cattle_type->title}}</td>
-                                    <td>{{$cattle_type->status}}</td>
+                                    <td>{{__('global.'.$cattle_type->status)}}</td>
                                     <td>{{date_format($cattle_type->updated_at,'d M y h:i A') }}</td>
                                     <td class="text-center">
                                         <form action="{{ route('admin.cattle-types.destroy', $cattle_type->id) }}" method="POST">

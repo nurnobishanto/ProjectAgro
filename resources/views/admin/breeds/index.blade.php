@@ -49,7 +49,7 @@
                                     <td>{{$sl++}}</td>
                                     <td>{{$breed->cattle_type->title}}</td>
                                     <td>{{$breed->name}}</td>
-                                    <td>{{$breed->status}}</td>
+                                    <td>{{__('global.'.$breed->status)}}</td>
                                     <td>{{date_format($breed->updated_at,'d M y h:i A') }}</td>
                                     <td class="text-center">
                                         <form action="{{ route('admin.breeds.destroy', $breed->id) }}" method="POST">
