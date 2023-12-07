@@ -238,7 +238,7 @@ class PurchaseController extends Controller
 
         SupplierPayment::create([
             'unique_id' =>generateInvoiceId('SPAP',SupplierPayment::class,'unique_id'),
-            'date' =>$purchase->date,
+            'date' =>$purchase->purchase_date,
             'supplier_id' =>$purchase->supplier_id,
             'account_id' =>$purchase->account_id,
             'amount' =>$purchase->paid,

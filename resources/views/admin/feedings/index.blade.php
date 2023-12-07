@@ -63,9 +63,8 @@
                                     </select>
                                 </div>
                             </div>
-                            <div class="col-lg-3 col-md-4 col-sm-6">
+                            <div class="col-lg-3 col-md-4 col-sm-6 align-self-end">
                                 <div class="form-group">
-                                    <label>dd</label>
                                     @can('feeding_create')
                                         <input type="submit" value="{{__('global.add_new')}}" class="btn btn-primary form-control">
                                     @endcan

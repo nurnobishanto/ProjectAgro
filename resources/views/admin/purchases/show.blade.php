@@ -224,9 +224,8 @@
                             @can('purchase_approve')
                                 <form action="{{route('admin.purchases.approve',['purchase'=>$purchase->id])}}" method="post" id="approveForm">
                                     @csrf
-
+                                    <button id="approveFormBtn" class="btn btn-primary mx-2"><i class="fa fa-ar"></i> Approve</button>
                                 </form>
-                                <button id="approveFormBtn" class="btn btn-primary mx-2"><i class="fa fa-ar"></i> Approve</button>
                             @endcan
                         @endif
 

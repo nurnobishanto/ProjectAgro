@@ -41,7 +41,6 @@ class Cattle extends Model
       'death_date',
       'sold_date',
       'supplier_id',
-
     ];
     public function parent(): \Illuminate\Database\Eloquent\Relations\BelongsTo
     {
@@ -92,4 +91,5 @@ class Cattle extends Model
     {
         return $this->belongsToMany(Vaccine::class);
     }
+
 }

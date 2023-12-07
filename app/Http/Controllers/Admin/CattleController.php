@@ -10,6 +10,8 @@ use App\Models\CattleStructure;
 use App\Models\CattleType;
 use App\Models\Farm;
 use App\Models\SessionYear;
+use App\Models\Supplier;
+use App\Models\SupplierPayment;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\App;
 
@@ -44,6 +46,7 @@ class CattleController extends Controller
     public function store(Request $request)
     {
 
+
         App::setLocale(session('locale'));
         $request->validate([
             'session_year_id' => 'required',
@@ -52,7 +55,6 @@ class CattleController extends Controller
             'entry_date' => 'required',
             'shade_no' => 'required',
             'is_purchase' => 'required',
-            'purchase_date' => 'required',
             'dob' => 'required',
             'batch_id' => 'required',
             'cattle_type_id' => 'required',
@@ -66,6 +68,8 @@ class CattleController extends Controller
         if ($request->is_purchase == 1){
             $request->validate([
                 'supplier_id' => 'required',
+                'purchase_date' => 'required',
+                'purchase_price' => 'required',
             ]);
         }
 
@@ -88,7 +92,7 @@ class CattleController extends Controller
             'shade_no' => $request->shade_no,
             'is_purchase' => $request->is_purchase,
             'purchase_price' => $request->purchase_price??0,
-            'purchase_date' => $request->purchase_date,
+            'purchase_date' => $request->dob,
             'dob' => $request->dob,
             'batch_id' => $request->batch_id,
             'cattle_type_id' => $request->cattle_type_id,
@@ -113,7 +117,14 @@ class CattleController extends Controller
         ]);
         if ($request->is_purchase == 1){
             $cattle->supplier_id = $request->supplier_id;
+            $cattle->purchase_price = $request->purchase_price;
+            $cattle->purchase_date = $request->purchase_date;
             $cattle->update();
+
+            $supplier = Supplier::find($cattle->supplier_id);
+            $supplier->current_balance = $supplier->current_balance - $cattle->purchase_price;
+            $supplier->update();
+
         }
 
         CattleStructure::create([
@@ -171,6 +182,25 @@ class CattleController extends Controller
             'category' => 'required',
             'status' => 'required',
         ]);
+        if ($request->is_purchase == 1){
+            $request->validate([
+                'supplier_id' => 'required',
+                'purchase_date' => 'required',
+                'purchase_price' => 'required',
+            ]);
+            $old_supplier = Supplier::find($cattle->supplier_id);
+            $old_supplier->current_balance = $old_supplier->current_balance + $cattle->purchase_price;
+            $old_supplier->update();
+
+            $cattle->supplier_id = $request->supplier_id;
+            $cattle->purchase_date = $request->purchase_date;
+            $cattle->purchase_price = $request->purchase_price;
+            $cattle->update();
+
+            $new_supplier = Supplier::find($request->supplier_id);
+            $new_supplier->current_balance = $new_supplier->current_balance - $request->purchase_price;
+            $new_supplier->update();
+        }
         $cattle->session_year_id = $request->session_year_id;
         $cattle->farm_id = $request->farm_id;
         $cattle->tag_id = $request->tag_id;

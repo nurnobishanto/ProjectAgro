@@ -49,7 +49,7 @@
                                     <td>{{$sl++}}</td>
                                     <td>{{$asset->name}}</td>
                                     <td>{{$asset->amount}}</td>
-                                    <td>{{$asset->status}}</td>
+                                    <td>{{__('global.'.$asset->status)}}</td>
                                     <td>{{date_format($asset->updated_at,'d M y h:i A') }}</td>
                                     <td class="text-center">
                                         <form action="{{ route('admin.assets.destroy', $asset->id) }}" method="POST">

@@ -51,8 +51,8 @@
                                 <div class="form-group">
                                     <label for="status">{{__('global.select_status')}}<span class="text-danger"> *</span></label>
                                     <select name="status" class="form-control" id="status">
-                                        <option value="active">{{__('global.active')}}</option>
-                                        <option value="deactivate">{{__('global.deactivate')}}</option>
+                                        <option value="pending">{{__('global.pending')}}</option>
+                                        <option value="success">{{__('global.success')}}</option>
                                     </select>
                                 </div>
                             </div>

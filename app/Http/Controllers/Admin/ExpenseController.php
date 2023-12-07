@@ -15,6 +15,12 @@ class ExpenseController extends Controller
 
     public function approve($id){
         $expense = Expense::find($id);
+
+        $account =  Account::find($expense->account_id);
+        $current_balance = $account->current_balance;
+        $account->current_balance = $current_balance - $expense->amount;
+        $account->update();
+
         $expense->status = 'success';
         $expense->update();
         toastr()->success($expense->date.__('global.approved_success'),__('global.approved'));
@@ -67,10 +73,7 @@ class ExpenseController extends Controller
             'updated_by' =>auth()->user()->id,
             'photo' =>$imagePath,
         ]);
-        $account =  Account::find($request->account_id);
-        $current_balance = $account->current_balance;
-        $account->current_balance = $current_balance - $expense->amount;
-        $account->update();
+
         toastr()->success($expense->name.__('global.created_success'),__('global.expense').__('global.created'));
         return redirect()->route('admin.expenses.index');
     }
@@ -118,10 +121,6 @@ class ExpenseController extends Controller
         $expense->photo = $imagePath;
         $expense->update();
 
-        $account =  Account::find($request->account_id);
-        $current_balance = $account->current_balance;
-        $account->current_balance = ($current_balance + $preAmount) - $expense->amount;
-        $account->update();
         toastr()->success($expense->name.__('global.updated_success'),__('global.expense').__('global.updated'));
         return redirect()->route('admin.expenses.index');
     }
@@ -130,12 +129,6 @@ class ExpenseController extends Controller
     {
         App::setLocale(session('locale'));
         $expense = Expense::find($id);
-
-        $account =  Account::find($expense->account_id);
-        $current_balance = $account->current_balance;
-        $account->current_balance = $current_balance +  $expense->amount;
-        $account->update();
-
         $expense->delete();
         toastr()->success($expense->name.__('global.deleted_success'),__('global.expense').__('global.deleted'));
         return redirect()->route('admin.expenses.index');
@@ -143,11 +136,6 @@ class ExpenseController extends Controller
     public function restore($id){
         App::setLocale(session('locale'));
         $expense = Expense::withTrashed()->find($id);
-
-        $account =  Account::find($expense->account_id);
-        $current_balance = $account->current_balance;
-        $account->current_balance = $current_balance - $expense->amount;
-        $account->update();
 
         $expense->deleted_at = null;
         $expense->update();

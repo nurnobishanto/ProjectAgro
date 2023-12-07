@@ -49,7 +49,7 @@
                                     <td>{{$sl++}}</td>
                                     <td>{{$unit->name}}</td>
                                     <td>{{$unit->code}}</td>
-                                    <td>{{$unit->status}}</td>
+                                    <td>{{__('global.'.$unit->status)}}</td>
                                     <td>{{date_format($unit->updated_at,'d M y h:i A') }}</td>
                                     <td class="text-center">
                                         <form action="{{ route('admin.units.destroy', $unit->id) }}" method="POST">

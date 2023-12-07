@@ -73,7 +73,7 @@ class SupplierPaymentController extends Controller
         $request->validate([
             'unique_id' => 'required',
             'date' => 'required',
-            'type' => 'type',
+            'type' => 'required',
             'supplier_id' => 'required',
             'account_id' => 'required',
             'amount' => 'required',

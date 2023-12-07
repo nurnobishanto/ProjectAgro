@@ -61,9 +61,16 @@
                                     <td>{{date_format($purchase->updated_at,'d M y h:i A') }}</td>
                                     <td class="text-center">
                                         @if($purchase->status === 'pending')
+                                            @can('purchase_approve')
+                                                <form action="{{route('admin.purchases.approve',['purchase'=>$purchase->id])}}" method="post" id="approveForm">
+                                                    @csrf
+                                                    <button id="approveFormBtn" class="btn btn-primary px-1 py-0 btn-sm"><i class="fa fa-thumbs-up"></i></button>
+                                                </form>
+                                            @endcan
                                         <form action="{{ route('admin.purchases.destroy', $purchase->id) }}" method="POST">
                                             @method('DELETE')
                                             @csrf
+
                                             @can('purchase_view')
                                                 <a href="{{route('admin.purchases.show',['purchase'=>$purchase->id])}}" class="btn btn-info px-1 py-0 btn-sm"><i class="fa fa-eye"></i></a>
                                             @endcan
@@ -73,8 +80,8 @@
                                             @can('purchase_delete')
                                                 <button onclick="isDelete(this)" class="btn btn-danger btn-sm px-1 py-0"><i class="fa fa-trash"></i></button>
                                             @endcan
-
                                         </form>
+
                                         @elseif($purchase->status === 'rejected')
                                             <span class="text-capitalize badge badge-danger">{{$purchase->status}}</span>
                                             @can('purchase_view')
