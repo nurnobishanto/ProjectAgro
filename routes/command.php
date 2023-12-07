@@ -6,7 +6,7 @@ use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Session;
 
 
-Route::prefix('command')->group(function (){
+Route::prefix('command')->middleware( ['admin', 'web'])->group(function (){
 
     Route::get('/clear-cache', function (){
         App::setLocale(session('locale'));
