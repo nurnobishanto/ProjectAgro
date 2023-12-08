@@ -43,15 +43,31 @@
                             </tr>
                             <tr>
                                 <th>{{ __('global.date')}}</th>
-                                <td>{{__('global.'.$cattle_sale->date)}}</td>
+                                <td>{{$cattle_sale->date}}</td>
                             </tr>
                             <tr>
                                 <th>{{ __('global.party')}}</th>
                                 <td>{{$cattle_sale->party->name??'--'}}</td>
                             </tr>
                             <tr>
-                                <th>{{ __('global.amount')}}</th>
-                                <td>{{$cattle_sale->amount}}</td>
+                                <th>{{ __('global.feeding_expense')}}</th>
+                                <td>{{$cattle_sale->feeding_expense}} {{getSetting('currency')}}</td>
+                            </tr>
+                            <tr>
+                                <th>{{ __('global.others_expense')}}</th>
+                                <td>{{$cattle_sale->other_expense}} {{getSetting('currency')}}</td>
+                            </tr>
+                            <tr>
+                                <th>{{ __('global.expense')}}</th>
+                                <td>{{$cattle_sale->expense}} {{getSetting('currency')}}</td>
+                            </tr>
+                            <tr>
+                                <th>{{ __('global.total_expense')}}</th>
+                                <td>{{$cattle_sale->feeding_expense +$cattle_sale->other_expense + $cattle_sale->expense}} {{getSetting('currency')}}</td>
+                            </tr>
+                            <tr>
+                                <th>{{ __('global.sale_price')}}</th>
+                                <td>{{$cattle_sale->amount}} {{getSetting('currency')}}</td>
                             </tr>
                             <tr>
                                 <th>{{ __('global.account')}}</th>
@@ -59,23 +75,20 @@
                             </tr>
                             <tr>
                                 <th>{{ __('global.paid')}}</th>
-                                <td>{{$cattle_sale->paid}}</td>
+                                <td>{{$cattle_sale->paid}} {{getSetting('currency')}}</td>
                             </tr>
                             <tr>
                                 <th>{{ __('global.due')}}</th>
-                                <td>{{$cattle_sale->due}}</td>
+                                <td>{{$cattle_sale->due}} {{getSetting('currency')}}</td>
                             </tr>
-                            <tr>
-                                <th>{{ __('global.expense')}}</th>
-                                <td>{{$cattle_sale->expense}}</td>
-                            </tr>
+
                             <tr>
                                 <th>{{ __('global.note')}}</th>
                                 <td>{{$cattle_sale->note}}</td>
                             </tr>
                             <tr>
                                 <th>{{ __('global.status')}}</th>
-                                <td>{{$cattle_sale->status}}</td>
+                                <td>{{__('global.'.$cattle_sale->status)}}</td>
                             </tr>
                             <tr>
                                 <th>{{ __('global.created_at')}}</th>

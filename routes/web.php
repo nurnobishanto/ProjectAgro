@@ -21,7 +21,7 @@ Route::get('/', function () {
 Route::get('/test', function () {
 
     $cattle = \App\Models\Cattle::find(1);
-    return getTotalAvgExpenseCost("2024-07-12");
+    return getTotalAvgExpenseCost("2023-12-11");
 });
 Route::prefix('ajax/')->group(function (){
     Route::get('farms',[\App\Http\Controllers\AjaxCartController::class,'farms'])->name('farms');

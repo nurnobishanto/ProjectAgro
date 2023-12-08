@@ -537,5 +537,6 @@ return [
     'feeding_expense' => 'Feeding Expense',
     'others_expense' => 'Others Expense',
     'total_expense' => 'Total Expense',
+    'death' => 'Dead',
     //৬/১১/২৩
 ];

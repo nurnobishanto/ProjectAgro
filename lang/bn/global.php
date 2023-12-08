@@ -537,5 +537,6 @@ return [
     'feeding_expense' => 'খাওয়ানো ব্যয়',
     'others_expense' => 'অন্যান্য ব্যয়',
     'total_expense' => 'মোট ব্যয়',
+    'death' => 'মৃত',
     //৬/১১/২৩
 ];

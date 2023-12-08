@@ -19,6 +19,8 @@ class BulkCattleSale extends Model
         'party_id',
         'cattle_type_id',
         'farm_id',
+        'feeding_expense',
+        'other_expense',
         'amount',
         'paid',
         'due',

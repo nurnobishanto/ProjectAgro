@@ -153,12 +153,15 @@ class CattleDeathController extends Controller
         $cattle_death = CattleDeath::find($id);
 
         AssignedCost::create([
+            'date' => $cattle_death->date,
             'model' => 'CattleDeath',
             'model_id' => $id,
             'amount' => $cattle_death->other_expense,
         ]);
         $cattle = $cattle_death->cattle;
         $cattle->status = 'death';
+        $cattle->death_date = $cattle_death->date;
+        $cattle->death_reason = $cattle_death->note;
         $cattle->update();
 
         $cattle_death->status = 'approved';

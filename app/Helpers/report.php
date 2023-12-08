@@ -32,12 +32,11 @@ if (!function_exists('getTotalAvgExpenseCost')) {
     function getTotalAvgExpenseCost($customDate = null)
     {
         $date = $customDate ? Carbon\Carbon::parse($customDate)->endOfDay() : now();
-        $assigned_cost = \App\Models\AssignedCost::where('created_at', '<=', $date)->sum('amount');
+        $assigned_cost = \App\Models\AssignedCost::where('date', '<=', $date)->sum('amount');
         $total_expense = \App\Models\Expense::where('status','success')->where('date', '<=', $date)->sum('amount');
         $staff_payments = \App\Models\StaffPayment::where('status','success')->where('date', '<=', $date)->sum('amount');
         $active_cattle = \App\Models\Cattle::where('status','active')->count();
         $death_cattle_cost = \App\Models\CattleDeath::where('status','approved')->where('date', '<=', $date)->sum('amount');
-        //$death_cattle_cost = \App\Models\CattleDeath::where('created_at', '<=', $date)->sum('amount');
         $total_cost = ($total_expense + $staff_payments + $death_cattle_cost) - $assigned_cost;
 
 
@@ -49,7 +48,7 @@ if (!function_exists('getTotalAvgExpenseCost')) {
         $data['staff_payments'] = $staff_payments;
         $data['active_cattle'] = $active_cattle;
         $data['total_cost'] = $total_cost;
-        $data['avg_cost'] = $total_cost / $active_cattle;
+        $data['avg_cost'] =($active_cattle)?($total_cost / $active_cattle):0;
         return $data;
     }
 }

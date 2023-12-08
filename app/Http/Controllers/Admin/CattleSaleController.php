@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Account;
+use App\Models\AssignedCost;
 use App\Models\Cattle;
 use App\Models\CattleSale;
 use App\Models\Party;
@@ -41,7 +42,9 @@ class CattleSaleController extends Controller
         }
         App::setLocale(session('locale'));
         $cattle = Cattle::where('id',$request->tag_id)->where('status','active')->first();
-        $amount = 500;
+        $cattle_cost = getCattleTotalCost($cattle);
+        $other_cost = getTotalAvgExpenseCost();
+        $amount = $cattle_cost['total'] + $other_cost['avg_cost'];
         return view('admin.cattle_sales.create',compact(['cattle','amount']));
     }
 
@@ -56,12 +59,18 @@ class CattleSaleController extends Controller
             'account_id' => 'required',
             'party_id' => 'required',
         ]);
+        $cattle = Cattle::where('id',$request->cattle_id)->where('status','active')->first();
+        $cattle_cost = getCattleTotalCost($cattle);
+        $other_cost = getTotalAvgExpenseCost($request->date);
+        $total = $cattle_cost['total'] + $other_cost['avg_cost'];
         CattleSale::create([
             'unique_id' => $request->unique_id,
             'date' => $request->date,
             'cattle_id' => $request->cattle_id,
             'party_id' => $request->party_id,
             'account_id' => $request->account_id,
+            'feeding_expense' => $cattle_cost['total'],
+            'other_expense' => $other_cost['avg_cost'],
             'amount' => $request->amount??0,
             'paid' => $request->paid??0,
             'due' => $request->due??0,
@@ -100,20 +109,27 @@ class CattleSaleController extends Controller
         $request->validate([
             'unique_id' => 'required',
             'date' => 'required',
-            'cattle_id' => 'required|unique:cattle_sales,id,'.$id,
             'amount' => 'required',
             'account_id' => 'required',
             'party_id' => 'required',
         ]);
 
         $cattle_sale = CattleSale::find($id);
+
+        $cattle = $cattle_sale->cattle;
+        $cattle_cost = getCattleTotalCost($cattle);
+        $other_cost = getTotalAvgExpenseCost($request->date);
+        $total = $cattle_cost['total'] + $other_cost['avg_cost'];
+
         $cattle_sale->unique_id = $request->unique_id;
         $cattle_sale->date = $request->date;
         $cattle_sale->party_id = $request->party_id;
         $cattle_sale->account_id = $request->account_id;
+        $cattle_sale->feeding_expense = $cattle_cost['total'];
+        $cattle_sale->other_expense = $other_cost['avg_cost'];
         $cattle_sale->amount = $request->amount;
         $cattle_sale->paid = $request->paid;
-        $cattle_sale->due = $request->due;
+        $cattle_sale->due = $request->amount - $request->paid;
         $cattle_sale->expense = $request->expense;
         $cattle_sale->note = $request->note;
         $cattle_sale->updated_by = auth()->user()->id;
@@ -153,6 +169,7 @@ class CattleSaleController extends Controller
         if ($cattle_sale->status != 'success'){
             $cattle = $cattle_sale->cattle;
             $cattle->status = 'sold';
+            $cattle->sold_date = $cattle_sale->date;
             $cattle->update();
 
             $party = $cattle_sale->party;
@@ -175,7 +192,12 @@ class CattleSaleController extends Controller
                 'created_by' =>auth()->user()->id,
                 'updated_by' =>auth()->user()->id,
             ]);
-
+            AssignedCost::create([
+                'date' => $cattle_sale->date,
+                'model' => 'CattleSale',
+                'model_id' => $id,
+                'amount' => $cattle_sale->other_expense,
+            ]);
             $cattle_sale->status = 'success';
             $cattle_sale->update();
         }

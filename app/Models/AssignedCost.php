@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class AssignedCost extends Model
 {
     use HasFactory;
-    protected $fillable = ['model', 'model_id', 'amount'];
+    protected $fillable = ['date','model', 'model_id', 'amount'];
     public function model()
     {
         return $this->morphTo();
