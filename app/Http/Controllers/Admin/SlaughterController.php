@@ -41,7 +41,9 @@ class SlaughterController extends Controller
         }
         App::setLocale(session('locale'));
         $cattle = Cattle::where('id',$request->tag_id)->where('status','active')->first();
-        $amount = 500;
+        $cattle_cost = getCattleTotalCost($cattle);
+        $other_cost = getTotalAvgExpenseCost();
+        $amount = $cattle_cost['total'] + $other_cost['avg_cost'];
         return view('admin.slaughters.create',compact(['cattle','amount']));
     }
 
@@ -57,6 +59,9 @@ class SlaughterController extends Controller
             'quantities' => 'required',
         ]);
         $cattle = Cattle::find($request->cattle_id);
+        $cattle_cost = getCattleTotalCost($cattle);
+        $other_cost = getTotalAvgExpenseCost($request->date);
+        $total = $cattle_cost['total'] + $other_cost['avg_cost'];
         $sl = Slaughter::create([
             'unique_id' => $request->unique_id,
             'date' => $request->date,

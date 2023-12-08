@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\AssignedCost;
 use App\Models\Cattle;
 use App\Models\BulkCattleSale;
 use App\Models\CattleType;
@@ -79,6 +80,14 @@ class BulkCattleSaleController extends Controller
             'updated_by' => auth()->user()->id,
         ]);
         $bul_sale->cattles()->sync($request->cattles);
+        $totalFeedCost = 0;
+        $totalOtherCost = getTotalAvgExpenseCost($bul_sale->date)['avg_cost'] * $bul_sale->cattles->count();
+        foreach ($bul_sale->cattles as $cattle){
+            $totalFeedCost += getCattleTotalCost($cattle)['total'];
+        }
+        $bul_sale->feeding_expense = $totalFeedCost;
+        $bul_sale->other_expense = $totalOtherCost;
+        $bul_sale->update();
 
         toastr()->success(__('global.created_success'),__('global.bulk_cattle_sale').__('global.created'));
         return redirect()->route('admin.bulk-cattle-sales.index');
@@ -124,6 +133,16 @@ class BulkCattleSaleController extends Controller
         $bulk_cattle_sale->updated_by = auth()->user()->id;
         $bulk_cattle_sale->update();
         $bulk_cattle_sale->cattles()->sync($request->cattles);
+
+        $totalFeedCost = 0;
+        $totalOtherCost = getTotalAvgExpenseCost($bulk_cattle_sale->date)['avg_cost'] * $bulk_cattle_sale->cattles->count();
+        foreach ($bulk_cattle_sale->cattles as $cattle){
+            $totalFeedCost += getCattleTotalCost($cattle)['total'];
+        }
+        $bulk_cattle_sale->feeding_expense = $totalFeedCost;
+        $bulk_cattle_sale->other_expense = $totalOtherCost;
+        $bulk_cattle_sale->update();
+
         toastr()->success(__('global.updated_success'),__('global.bulk_cattle_sale').__('global.updated'));
         return redirect()->route('admin.bulk-cattle-sales.index');
     }
@@ -155,10 +174,18 @@ class BulkCattleSaleController extends Controller
     }
     public function approve ($id){
         $bulk_cattle_sale = BulkCattleSale::find($id);
+        $checkAllCattle = $bulk_cattle_sale->cattles->contains(function ($cattle) {
+            return $cattle->status != 'active';
+        });
+        if ($checkAllCattle){
+            toastr()->error('Maybe cattle are not active');
+            return  redirect()->back();
+        }
 
         if ($bulk_cattle_sale->status != 'success'){
             foreach ($bulk_cattle_sale->cattles as $cattle){
                 $cattle->status = 'sold';
+                $cattle->sold_date = $bulk_cattle_sale->date;
                 $cattle->update();
             }
 
@@ -181,6 +208,12 @@ class BulkCattleSaleController extends Controller
                 'status' => 'success',
                 'created_by' =>auth()->user()->id,
                 'updated_by' =>auth()->user()->id,
+            ]);
+            AssignedCost::create([
+                'date' => $bulk_cattle_sale->date,
+                'model' => 'BulkCattleSale',
+                'model_id' => $id,
+                'amount' => $bulk_cattle_sale->other_expense,
             ]);
 
             $bulk_cattle_sale->status = 'success';

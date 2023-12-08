@@ -151,6 +151,11 @@ class CattleDeathController extends Controller
     }
     public function approve ($id){
         $cattle_death = CattleDeath::find($id);
+        $cattle = $cattle_death->cattle;
+        if ($cattle->status != 'active'){
+            toastr()->error('Cattle is not active');
+            return  redirect()->back();
+        }
 
         AssignedCost::create([
             'date' => $cattle_death->date,
@@ -158,7 +163,7 @@ class CattleDeathController extends Controller
             'model_id' => $id,
             'amount' => $cattle_death->other_expense,
         ]);
-        $cattle = $cattle_death->cattle;
+
         $cattle->status = 'death';
         $cattle->death_date = $cattle_death->date;
         $cattle->death_reason = $cattle_death->note;

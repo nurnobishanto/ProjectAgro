@@ -23,6 +23,16 @@
         <div class="col-12">
             <div class="card">
                 <div class="card-header">
+                    <table class="table table-bordered">
+                        <tr><th width="30%">{{__('global.farm')}}</th><td>{{$bulk_cattle_sale->farm->name}}</td></tr>
+                        <tr><th>{{__('global.cattle_type')}}</th><td>{{$bulk_cattle_sale->cattle_type->title}}</td></tr>
+                        <tr><th>{{__('global.feeding_expense')}}</th><td><span id="totalFeedingCost">{{$bulk_cattle_sale->feeding_expense}}</span> {{getSetting('currency')}}</td></tr>
+                        <tr><th>{{__('global.others_expense')}}</th><td><span id="otherCost">{{$bulk_cattle_sale->other_expense}}</span>{{getSetting('currency')}}</td></tr>
+                        <tr><th>{{__('global.total_expense')}}</th><th><span id="totalCost">{{$bulk_cattle_sale->feeding_expense + $bulk_cattle_sale->other_expense}}</span> {{getSetting('currency')}}</th></tr>
+
+                    </table>
+                </div>
+                <div class="card-header">
                     <ul class="">
                         <li><strong>{{__('global.farm')}} :</strong> {{$bulk_cattle_sale->farm->name}}</li>
                         <li><strong>{{__('global.cattle_type')}} :</strong> {{$bulk_cattle_sale->cattle_type->title}}</li>
@@ -128,12 +138,13 @@
                                                 <th>{{__('global.weight')}}</th>
                                                 <th>{{__('global.height')}}</th>
                                                 <th>{{__('global.width')}}</th>
+                                                <th>{{__('global.status')}}</th>
                                             </tr>
                                             </thead>
                                             <tbody>
                                             @foreach($cattles as $cattle)
                                                 <tr>
-                                                    <td><input type="checkbox" name="cattles[]" @if ($bulk_cattle_sale->cattles->contains($cattle->id)) checked @endif  value="{{$cattle->id}}" class="form-control form-check"></td>
+                                                    <td><input type="checkbox" name="cattles[]" @if ($bulk_cattle_sale->cattles->contains($cattle->id)) checked @endif  value="{{$cattle->id}}" data-feeding-cost="{{ getCattleTotalCost($cattle)['total'] }}" class="form-control form-check"></td>
                                                     <td>{{$cattle->tag_id}}</td>
                                                     <td>{{__('global.'.$cattle->gender)}}</td>
                                                     <td>{{$cattle->batch->name}}</td>
@@ -141,6 +152,7 @@
                                                     <td>{{getLatestCattleStructure($cattle->id,'weight')}} <sup>{{__('global.kg')}}</sup></td>
                                                     <td>{{getLatestCattleStructure($cattle->id,'height')}} <sup>{{__('global.inch')}}</sup></td>
                                                     <td>{{getLatestCattleStructure($cattle->id,'width')}} <sup>{{__('global.inch')}}</sup></td>
+                                                    <td>{{__('global.'.$cattle->status)}}</td>
                                                 </tr>
                                             @endforeach
                                             </tbody>
@@ -192,8 +204,29 @@
         $('#amount,#paid').on('input',function () {
             priceCalculate();
         });
+        $('input[name="cattles[]"]').on('change', function() {
+            calculateTotalCost();
+        });
 
     });
+    function calculateTotalCost() {
+        var selectedCount = $('input[name="cattles[]"]:checked').length;
+        var otherAvgCost = {{getTotalAvgExpenseCost()['avg_cost']}};
+        var totalFeedCost = 0;
+
+        $('input[name="cattles[]"]:checked').each(function() {
+            var feedingCost = parseFloat($(this).data('feeding-cost'));
+            if (!isNaN(feedingCost)) {
+                totalFeedCost += feedingCost;
+            }
+        });
+        var otherCost = selectedCount * otherAvgCost;
+        var totalCost = totalFeedCost + otherCost;
+        // Display total cost
+        $('#totalFeedingCost').text(totalFeedCost.toFixed(2));
+        $('#otherCost').text(otherCost.toFixed(2));
+        $('#totalCost').text(totalCost.toFixed(2));
+    }
     function priceCalculate(){
         var sale_price = parseFloat($('#amount').val());
         var paid = parseFloat($('#paid').val());

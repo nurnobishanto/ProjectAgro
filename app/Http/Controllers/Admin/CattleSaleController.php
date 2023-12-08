@@ -168,6 +168,10 @@ class CattleSaleController extends Controller
 
         if ($cattle_sale->status != 'success'){
             $cattle = $cattle_sale->cattle;
+            if ($cattle->status != 'active'){
+                toastr()->error('Cattle is not active');
+                return  redirect()->back();
+            }
             $cattle->status = 'sold';
             $cattle->sold_date = $cattle_sale->date;
             $cattle->update();

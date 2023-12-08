@@ -43,14 +43,34 @@
                             </tr>
                             <tr>
                                 <th>{{ __('global.date')}}</th>
-                                <td>{{__('global.'.$bulk_cattle_sale->date)}}</td>
+                                <td>{{$bulk_cattle_sale->date}}</td>
                             </tr>
                             <tr>
                                 <th>{{ __('global.party')}}</th>
                                 <td>{{$bulk_cattle_sale->party->name??'--'}}</td>
                             </tr>
                             <tr>
-                                <th>{{ __('global.amount')}}</th>
+                                <th>{{ __('global.total_cattle')}}</th>
+                                <td>{{$bulk_cattle_sale->cattles->count()}}</td>
+                            </tr>
+                            <tr>
+                                <th>{{ __('global.feeding_expense')}}</th>
+                                <td>{{$bulk_cattle_sale->feeding_expense}} {{getSetting('currency')}}</td>
+                            </tr>
+                            <tr>
+                                <th>{{ __('global.others_expense')}}</th>
+                                <td>{{$bulk_cattle_sale->other_expense}} {{getSetting('currency')}}</td>
+                            </tr>
+                            <tr>
+                                <th>{{ __('global.expense')}}</th>
+                                <td>{{$bulk_cattle_sale->expense}} {{getSetting('currency')}}</td>
+                            </tr>
+                            <tr>
+                                <th>{{ __('global.total_expense')}}</th>
+                                <td>{{$bulk_cattle_sale->feeding_expense+$bulk_cattle_sale->other_expense+$bulk_cattle_sale->expense }} {{getSetting('currency')}}</td>
+                            </tr>
+                            <tr>
+                                <th>{{ __('global.sale_price')}}</th>
                                 <td>{{$bulk_cattle_sale->amount}}</td>
                             </tr>
                             <tr>
@@ -65,17 +85,14 @@
                                 <th>{{ __('global.due')}}</th>
                                 <td>{{$bulk_cattle_sale->due}}</td>
                             </tr>
-                            <tr>
-                                <th>{{ __('global.expense')}}</th>
-                                <td>{{$bulk_cattle_sale->expense}}</td>
-                            </tr>
+
                             <tr>
                                 <th>{{ __('global.note')}}</th>
                                 <td>{{$bulk_cattle_sale->note}}</td>
                             </tr>
                             <tr>
                                 <th>{{ __('global.status')}}</th>
-                                <td>{{$bulk_cattle_sale->status}}</td>
+                                <td>{{__('global.'.$bulk_cattle_sale->status)}}</td>
                             </tr>
                             <tr>
                                 <th>{{ __('global.created_at')}}</th>
@@ -105,6 +122,7 @@
                                                 <th>{{__('global.weight')}}</th>
                                                 <th>{{__('global.height')}}</th>
                                                 <th>{{__('global.width')}}</th>
+                                                <th>{{__('global.status')}}</th>
                                             </tr>
                                             </thead>
                                             <tbody>
@@ -118,6 +136,7 @@
                                                     <td>{{getLatestCattleStructure($cattle->id,'weight')}} <sup>{{__('global.kg')}}</sup></td>
                                                     <td>{{getLatestCattleStructure($cattle->id,'height')}} <sup>{{__('global.inch')}}</sup></td>
                                                     <td>{{getLatestCattleStructure($cattle->id,'width')}} <sup>{{__('global.inch')}}</sup></td>
+                                                    <td>{{__('global.'.$cattle->status)}}</td>
                                                 </tr>
                                             @endforeach
                                             </tbody>
