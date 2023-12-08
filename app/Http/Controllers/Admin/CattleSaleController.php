@@ -119,7 +119,7 @@ class CattleSaleController extends Controller
         $cattle = $cattle_sale->cattle;
         $cattle_cost = getCattleTotalCost($cattle);
         $other_cost = getTotalAvgExpenseCost($request->date);
-        $total = $cattle_cost['total'] + $other_cost['avg_cost'];
+
 
         $cattle_sale->unique_id = $request->unique_id;
         $cattle_sale->date = $request->date;

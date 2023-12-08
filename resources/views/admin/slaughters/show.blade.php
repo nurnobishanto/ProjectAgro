@@ -43,20 +43,31 @@
                             </tr>
                             <tr>
                                 <th>{{ __('global.date')}}</th>
-                                <td>{{__('global.'.$slaughter->date)}}</td>
+                                <td>{{$slaughter->date}}</td>
                             </tr>
                             <tr>
                                 <th>{{ __('global.slaughter_store')}}</th>
                                 <td>{{$slaughter->slaughter_store->name??'--'}}</td>
                             </tr>
-
+                            <tr>
+                                <th>{{ __('global.feeding_expense')}}</th>
+                                <td>{{$slaughter->feeding_expense}} {{getSetting('currency')}}</td>
+                            </tr>
+                            <tr>
+                                <th>{{ __('global.others_expense')}}</th>
+                                <td>{{$slaughter->other_expense}} {{getSetting('currency')}}</td>
+                            </tr>
+                            <tr>
+                                <th>{{ __('global.total_expense')}}</th>
+                                <th>{{$slaughter->feeding_expense+$slaughter->other_expense}} {{getSetting('currency')}}</th>
+                            </tr>
                             <tr>
                                 <th>{{ __('global.note')}}</th>
                                 <td>{{$slaughter->note}}</td>
                             </tr>
                             <tr>
                                 <th>{{ __('global.status')}}</th>
-                                <td>{{$slaughter->status}}</td>
+                                <td>{{__('global.'.$slaughter->status)}}</td>
                             </tr>
                             <tr>
                                 <th>{{ __('global.created_at')}}</th>

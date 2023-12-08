@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\AssignedCost;
 use App\Models\Cattle;
 use App\Models\Slaughter;
 use App\Models\PartyReceive;
@@ -61,13 +62,14 @@ class SlaughterController extends Controller
         $cattle = Cattle::find($request->cattle_id);
         $cattle_cost = getCattleTotalCost($cattle);
         $other_cost = getTotalAvgExpenseCost($request->date);
-        $total = $cattle_cost['total'] + $other_cost['avg_cost'];
         $sl = Slaughter::create([
             'unique_id' => $request->unique_id,
             'date' => $request->date,
             'cattle_id' => $request->cattle_id,
             'farm_id' => $cattle->farm_id,
             'slaughter_store_id' => $request->slaughter_store_id,
+            'feeding_expense' => $cattle_cost['total'],
+            'other_expense' => $other_cost['avg_cost'],
             'note' => $request->note,
             'status' => 'pending',
             'created_by' => auth()->user()->id,
@@ -102,7 +104,7 @@ class SlaughterController extends Controller
         $data = array();
         $data['slaughter'] = $slaughter;
         $data['cattle'] = $slaughter->cattle;
-        $data['amount'] = $slaughter->amount;
+
         return view('admin.slaughters.edit',$data);
     }
     public function update(Request $request, string $id)
@@ -117,9 +119,15 @@ class SlaughterController extends Controller
         ]);
 
         $slaughter = Slaughter::find($id);
+        $cattle = $slaughter->cattle;
+        $cattle_cost = getCattleTotalCost($cattle);
+        $other_cost = getTotalAvgExpenseCost($request->date);
+
         $slaughter->unique_id = $request->unique_id;
         $slaughter->date = $request->date;
         $slaughter->slaughter_store_id = $request->slaughter_store_id;
+        $slaughter->feeding_expense = $cattle_cost['total'];
+        $slaughter->other_expense = $other_cost['avg_cost'];
         $slaughter->note = $request->note;
         $slaughter->updated_by = auth()->user()->id;
         $slaughter->update();
@@ -164,6 +172,10 @@ class SlaughterController extends Controller
         $slaughter = Slaughter::find($id);
         if ($slaughter->status != 'success'){
             $cattle = $slaughter->cattle;
+            if ($cattle->status != 'active'){
+                toastr()->error('Cattle is not active');
+                return  redirect()->back();
+            }
             $cattle->status = 'slaughtered';
             $cattle->update();
             foreach ($slaughter->products as $product){
@@ -182,6 +194,13 @@ class SlaughterController extends Controller
             }
             $slaughter->status = 'success';
             $slaughter->update();
+
+            AssignedCost::create([
+                'date' => $slaughter->date,
+                'model' => 'Slaughter',
+                'model_id' => $id,
+                'amount' => $slaughter->other_expense,
+            ]);
         }
         toastr()->success($slaughter->date.__('global.approved_success'),__('global.approved'));
         return redirect()->route('admin.slaughters.index');

@@ -15,6 +15,8 @@ class Slaughter extends Model
         'date',
         'cattle_id',
         'farm_id',
+        'feeding_expense',
+        'other_expense',
         'slaughter_store_id',
         'note',
         'status',

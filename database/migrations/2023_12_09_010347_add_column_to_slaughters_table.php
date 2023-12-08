@@ -11,8 +11,9 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::table('assigned_costs', function (Blueprint $table) {
-            $table->date('date')->nullable();
+        Schema::table('slaughters', function (Blueprint $table) {
+            $table->double('feeding_expense')->default(0);
+            $table->double('other_expense')->default(0);
         });
     }
 
@@ -21,8 +22,9 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::table('assigned_costs', function (Blueprint $table) {
-            $table->dropColumn('date');
+        Schema::table('slaughters', function (Blueprint $table) {
+            $table->dropColumn('feeding_expense');
+            $table->dropColumn('other_expense');
         });
     }
 };

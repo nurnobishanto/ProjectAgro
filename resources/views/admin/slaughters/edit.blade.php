@@ -23,13 +23,17 @@
         <div class="col-12">
             <div class="card">
                 <div class="card-header">
-                    <ul class="">
-                        <li><strong>{{__('global.farm')}} :</strong> {{$cattle->farm->name}}</li>
-                        <li><strong>{{__('global.cattle_type')}} :</strong> {{$cattle->cattle_type->title}}</li>
-                        <li><strong>{{__('global.tag_id')}} :</strong> {{$cattle->tag_id}}</li>
-                        <li><strong>{{__('global.amount')}} :</strong> {{$amount}}</li>
-                    </ul>
+                    <table class="table table-bordered">
+                        <tr><th width="30%">{{__('global.farm')}}</th><td>{{$cattle->farm->name}}</td></tr>
+                        <tr><th>{{__('global.cattle_type')}}</th><td>{{$cattle->cattle_type->title}}</td></tr>
+                        <tr><th>{{__('global.tag_id')}}</th><td>{{$cattle->tag_id}}</td></tr>
+                        <tr><th>{{__('global.feeding_expense')}}</th><td>{{getCattleTotalCost($cattle)['total'].' '.getSetting('currency')}}</td></tr>
+                        <tr><th>{{__('global.others_expense')}}</th><td>{{getTotalAvgExpenseCost()['avg_cost'].' '.getSetting('currency')}}</td></tr>
+                        <tr><th>{{__('global.total_expense')}}</th><th>{{(getCattleTotalCost($cattle)['total']+getTotalAvgExpenseCost()['avg_cost']).' '.getSetting('currency')}}</th></tr>
+
+                    </table>
                 </div>
+
                 <div class="card-body">
                     <form action="{{route('admin.slaughters.update',['slaughter'=>$slaughter->id])}}" method="POST" enctype="multipart/form-data" id="supplier-form">
                         @method('PUT')
