@@ -13,6 +13,8 @@ class CattleDeath extends Model
     protected $fillable = [
         'date',
         'cattle_id',
+        'feeding_expense',
+        'other_expense',
         'amount',
         'note',
         'status',

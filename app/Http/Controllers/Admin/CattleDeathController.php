@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\AssignedCost;
 use App\Models\Cattle;
 use App\Models\CattleDeath;
 use App\Models\Stock;
@@ -40,7 +41,10 @@ class CattleDeathController extends Controller
         }
         App::setLocale(session('locale'));
         $cattle = Cattle::where('id',$request->tag_id)->where('status','active')->first();
-        $amount = 500;
+        $cattle_cost = getCattleTotalCost($cattle);
+        $other_cost = getTotalAvgExpenseCost();
+        $amount = $cattle_cost['total'] + $other_cost['avg_cost'];
+
         return view('admin.cattle_deaths.create',compact(['cattle','amount']));
     }
 
@@ -52,18 +56,23 @@ class CattleDeathController extends Controller
             'cattle_id' => 'required|unique:cattle_deaths',
             'amount' => 'required',
         ]);
+        $cattle = Cattle::where('id',$request->cattle_id)->where('status','active')->first();
+        $cattle_cost = getCattleTotalCost($cattle);
+        $other_cost = getTotalAvgExpenseCost($request->date);
+        $total = $cattle_cost['total'] + $other_cost['avg_cost'];
+
         CattleDeath::create([
             'date' => $request->date,
             'cattle_id' => $request->cattle_id,
-            'amount' => $request->amount,
+            'feeding_expense' => $cattle_cost['total'],
+            'other_expense' => $other_cost['avg_cost'],
+            'amount' => $total,
             'note' => $request->note,
             'status' => 'pending',
             'created_by' => auth()->user()->id,
             'updated_by' => auth()->user()->id,
         ]);
-        $cattle = Cattle::find($request->cattle_id);
-        $cattle->status = 'death';
-        $cattle->update();
+
         toastr()->success(__('global.created_success'),__('global.cattle_death').__('global.created'));
         return redirect()->route('admin.cattle-deaths.index');
     }
@@ -95,17 +104,21 @@ class CattleDeathController extends Controller
             'cattle_id' => 'required',
             'amount' => 'required',
         ]);
-
         $cattle_death = CattleDeath::find($id);
+        $cattle = $cattle_death->cattle;
+
+        $cattle_cost = getCattleTotalCost($cattle);
+        $other_cost = getTotalAvgExpenseCost($request->date);
+        $total = $cattle_cost['total'] + $other_cost['avg_cost'];
+
+
         $cattle_death->date = $request->date;
-        $cattle_death->amount = $request->amount;
+        $cattle_death->feeding_expense = $cattle_cost['total'];
+        $cattle_death->other_expense = $other_cost['avg_cost'];
+        $cattle_death->amount = $total;
         $cattle_death->note = $request->note;
         $cattle_death->updated_by = auth()->user()->id;
         $cattle_death->update();
-
-        $cattle = Cattle::find($request->cattle_id);
-        $cattle->status = 'death';
-        $cattle->update();
 
         toastr()->success(__('global.updated_success'),__('global.cattle_death').__('global.updated'));
         return redirect()->route('admin.cattle-deaths.index');
@@ -115,10 +128,6 @@ class CattleDeathController extends Controller
     {
         App::setLocale(session('locale'));
         $cattle_death = CattleDeath::find($id);
-
-        $cattle = $cattle_death->cattle;
-        $cattle->status = 'active';
-        $cattle->update();
         $cattle_death->delete();
 
         toastr()->warning($cattle_death->name.__('global.deleted_success'),__('global.cattle_death').__('global.deleted'));
@@ -128,13 +137,9 @@ class CattleDeathController extends Controller
         App::setLocale(session('locale'));
         $cattle_death = CattleDeath::withTrashed()->find($id);
 
-        $cattle = $cattle_death->cattle;
-        $cattle->status = 'death';
-        $cattle->update();
-
         $cattle_death->deleted_at = null;
         $cattle_death->update();
-        toastr()->success($cattle->tag_id.__('global.restored_success'),__('global.restored'));
+        toastr()->success($cattle_death->cattle->tag_id.__('global.restored_success'),__('global.restored'));
         return redirect()->route('admin.cattle-deaths.index');
     }
     public function force_delete($id){
@@ -146,8 +151,19 @@ class CattleDeathController extends Controller
     }
     public function approve ($id){
         $cattle_death = CattleDeath::find($id);
+
+        AssignedCost::create([
+            'model' => 'CattleDeath',
+            'model_id' => $id,
+            'amount' => $cattle_death->other_expense,
+        ]);
+        $cattle = $cattle_death->cattle;
+        $cattle->status = 'death';
+        $cattle->update();
+
         $cattle_death->status = 'approved';
         $cattle_death->update();
+
         toastr()->success($cattle_death->date.__('global.approved_success'),__('global.approved'));
         return redirect()->route('admin.cattle-deaths.index');
     }

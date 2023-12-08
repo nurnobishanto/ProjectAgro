@@ -86,10 +86,12 @@ class Cattle extends Model
     {
         return $this->belongsToMany(Dewormer::class);
     }
-
     public function vaccines(): \Illuminate\Database\Eloquent\Relations\BelongsToMany
     {
         return $this->belongsToMany(Vaccine::class);
     }
-
+    public function treatments(): \Illuminate\Database\Eloquent\Relations\HasMany
+    {
+        return $this->hasMany(Treatment::class);
+    }
 }

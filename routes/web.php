@@ -16,10 +16,13 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-
     return view('website.home');
 });
+Route::get('/test', function () {
 
+    $cattle = \App\Models\Cattle::find(1);
+    return getTotalAvgExpenseCost("2024-07-12");
+});
 Route::prefix('ajax/')->group(function (){
     Route::get('farms',[\App\Http\Controllers\AjaxCartController::class,'farms'])->name('farms');
     Route::get('farm-staff-list',[\App\Http\Controllers\AjaxCartController::class,'farm_staff_list'])->name('farm_staff_list');

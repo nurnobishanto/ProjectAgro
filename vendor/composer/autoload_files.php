@@ -40,4 +40,5 @@ return array(
     '377b22b161c09ed6e5152de788ca020a' => $vendorDir . '/spatie/laravel-permission/src/helpers.php',
     '101b35f72e0ccb1b5ef72aa86bba3ef9' => $vendorDir . '/yoeunes/toastr/src/helpers.php',
     '361cb137becf93096d42fbcf815059ca' => $baseDir . '/app/Helpers/global.php',
+    '06eea892b7090c5242cf068379467222' => $baseDir . '/app/Helpers/report.php',
 );

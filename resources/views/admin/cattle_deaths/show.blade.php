@@ -22,43 +22,20 @@
     <div class="row">
         <div class="col-12">
             <div class="card">
-                <div class="card-header">
-                    <ul class="list-group">
-                        <li><strong>{{__('global.farm')}} :</strong> {{$cattle->farm->name}}</li>
-                        <li><strong>{{__('global.cattle_type')}} :</strong> {{$cattle->cattle_type->title}}</li>
-                        <li><strong>{{__('global.tag_id')}} :</strong> {{$cattle->tag_id}}</li>
-                        <li><strong>{{__('global.amount')}} :</strong> {{$amount}}</li>
-                    </ul>
-                </div>
                 <div class="card-body">
-                        @if (count($errors) > 0)
-                            <div class = "alert alert-danger">
-                                <ul>
-                                    @foreach ($errors->all() as $error)
-                                        <li>{{ $error }}</li>
-                                    @endforeach
-                                </ul>
-                            </div>
-                        @endif
-                            <div class="row">
-                                <div class="col-lg-3 col-md-4 col-sm-6">
-                                    <div class="form-group">
-                                        <label for="date">{{ __('global.select_date')}}<span class="text-danger"> *</span></label>
-                                        <input name="date" readonly disabled id="date" value="{{$cattle_death->date}}"  type="text" class="form-control datepicker">
-                                        <input name="cattle_id" value="{{$cattle->id}}"  class="d-none">
-                                        <input name="amount" value="{{$amount}}"  class="d-none">
-                                    </div>
-                                </div>
-                                <div class="col-lg-9 col-md-8 col-sm-6">
-                                    <div class="form-group">
-                                        <label for="note">{{ __('global.note')}}</label>
-                                        <textarea name="note" disabled rows="1" id="note"  type="text" class="form-control">{{$cattle_death->note}}</textarea>
-                                    </div>
-                                </div>
-                            </div>
+                    <table class="table table-bordered">
+                        <tr><th width="30%">{{__('global.date')}}</th><td>{{$cattle_death->date}}</td></tr>
+                        <tr><th>{{__('global.farm')}}</th><td>{{$cattle->farm->name}}</td></tr>
+                        <tr><th>{{__('global.cattle_type')}}</th><td>{{$cattle->cattle_type->title}}</td></tr>
+                        <tr><th>{{__('global.tag_id')}}</th><td>{{$cattle->tag_id}}</td></tr>
+                        <tr><th>{{__('global.feeding_expense')}}</th><td>{{$cattle_death->feeding_expense.' '.getSetting('currency')}}</td></tr>
+                        <tr><th>{{__('global.others_expense')}}</th><td>{{$cattle_death->other_expense.' '.getSetting('currency')}}</td></tr>
+                        <tr><th>{{__('global.total_expense')}}</th><td>{{$cattle_death->amount.' '.getSetting('currency')}}</td></tr>
+                        <tr><th>{{__('global.note')}}</th><td>{{$cattle_death->note}}</td></tr>
+                    </table>
+                </div>
 
-
-
+                <div class="card-footer">
                         <form action="{{ route('admin.cattle-deaths.destroy', $cattle_death->id) }}" method="POST">
                             @method('DELETE')
                             @csrf

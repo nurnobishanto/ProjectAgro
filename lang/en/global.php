@@ -534,5 +534,8 @@ return [
     'view_slaughter_waste' => 'View Slaughter Waste',
     'slaughter_waste_products' => 'Slaughter Waste Products',
     'total_quantity' => 'Total Quantity',
+    'feeding_expense' => 'Feeding Expense',
+    'others_expense' => 'Others Expense',
+    'total_expense' => 'Total Expense',
     //৬/১১/২৩
 ];

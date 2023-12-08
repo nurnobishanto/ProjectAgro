@@ -534,5 +534,8 @@ return [
     'view_slaughter_waste' => 'জবাইকৃত আইটেম অপচয় দেখুন',
     'slaughter_waste_products' => 'জবাইকৃত আইটেম অপচয় পণ্য',
     'total_quantity' => 'মোট পরিমাণ',
+    'feeding_expense' => 'খাওয়ানো ব্যয়',
+    'others_expense' => 'অন্যান্য ব্যয়',
+    'total_expense' => 'মোট ব্যয়',
     //৬/১১/২৩
 ];
