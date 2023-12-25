@@ -319,6 +319,7 @@
                 name: '{{$product->product->name}}',
                 price: {{$product->unit_price}},
                 img: '{{asset('uploads/'.$product->product->image)}}',
+                unit: '{{$product->product->unit->code}}',
                 quantity: {{$product->quantity}}, // Default quantity
                 subtotal: {{$product->sub_total}} // Initial subtotal
             };
@@ -341,8 +342,8 @@
                 <td><img src="${product.img}" class="img-thumbnail" style="max-width: 50px; max-height: 50px"></td>
 
                 <td>${product.name} <input type="hidden" name="product_ids[]" value="${product.id}"></td>
-                <td><input type="number"  name="product_quantities[]"  class="input-qty product-quantity" value="${product.quantity}"></td>
-                <td><input class="input-price product-price"  type="number" name="product_prices[]" value="${product.price}"/> </td>
+                <td><input type="number"  name="product_quantities[]"  class="input-qty product-quantity" value="${product.quantity}"> <sup>${product.unit}</sup></td>
+                <td><input class="input-price product-price"  type="number" name="product_prices[]" value="${product.price}" step="0.01"/> </td>
                 <td class="product-subtotal">${product.subtotal}</td>
             </tr>
         `);

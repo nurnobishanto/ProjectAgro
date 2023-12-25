@@ -166,7 +166,7 @@
                                     <select name="" class="select2 form-control" id="product">
                                         <option value="">{{__('global.select_products')}}</option>
                                         @foreach(getProductsForPurchase() as $product)
-                                            <option value="{{ $product->id }}" data-price="{{ $product->purchase_price }}"  data-img="{{ asset('uploads/'.$product->image) }}">
+                                            <option value="{{ $product->id }}" data-price="{{ $product->purchase_price }}" data-unit="{{$product->unit->code}}"  data-img="{{ asset('uploads/'.$product->image) }}">
                                                 {{ $product->name }} - {{ __('global.'.$product->type) }}
                                         @endforeach
                                     </select>
@@ -325,6 +325,7 @@
                     name: '{{$product->product->name}}',
                     price: {{$product->unit_price}},
                     img: '{{asset('uploads/'.$product->product->image)}}',
+                    unit: '{{$product->product->unit->code}}',
                     quantity: {{$product->quantity}}, // Default quantity
                     subtotal: {{$product->sub_total}} // Initial subtotal
                 };
@@ -344,6 +345,7 @@
                     var productName = $(this).find('option:selected').text();
                     var productPrice = parseFloat($(this).find('option:selected').data('price'));
                     var img = $(this).find('option:selected').data('img');
+                    var unit = $(this).find('option:selected').data('unit');
                     // Check if the product is not already in the selected products array
                     if (!selectedProducts.some(product => product['id'] === selectedProductId)) {
 
@@ -353,6 +355,7 @@
                             name: productName,
                             price: productPrice,
                             img: img,
+                            unit: unit,
                             quantity: 1, // Default quantity
                             subtotal: productPrice // Initial subtotal
                         };
@@ -405,8 +408,8 @@
                 <td><img src="${product.img}" class="img-thumbnail" style="max-width: 50px; max-height: 50px"></td>
 
                 <td>${product.name} <input type="hidden" name="product_ids[]" value="${product.id}"></td>
-                <td><input type="number" name="product_quantities[]"  class="input-qty product-quantity" value="${product.quantity}"></td>
-                <td><input class="input-price product-price" type="number" name="product_prices[]" value="${product.price}"/> </td>
+                <td><input type="number" name="product_quantities[]"  class="input-qty product-quantity" value="${product.quantity}"><sup>${product.unit}</sup></td>
+                <td><input class="input-price product-price" type="number" name="product_prices[]" value="${product.price}" step="0.01"/> </td>
                 <td class="product-subtotal">${product.subtotal}</td>
                 <td><button class="btn btn-danger btn-sm remove-product"><i class="fas fa-trash"></button></td>
             </tr>
