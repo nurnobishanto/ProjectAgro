@@ -370,9 +370,9 @@
             });
 
             // Event listener for changes in quantity and price inputs
-            $('#selected-products').on('input', '.product-quantity, .product-price', function () {
+            $('#selected-products').on('change', '.product-quantity, .product-price', function () {
                 var selectedProductId = $(this).closest('tr').data('product-id');
-                var quantity = parseInt($(this).closest('tr').find('.product-quantity').val());
+                var quantity = parseFloat($(this).closest('tr').find('.product-quantity').val());
                 var price = parseFloat($(this).closest('tr').find('.product-price').val());
 
                 for (var i = 0; i < selectedProducts.length; i++) {
@@ -408,8 +408,8 @@
                 <td><img src="${product.img}" class="img-thumbnail" style="max-width: 50px; max-height: 50px"></td>
 
                 <td>${product.name} <input type="hidden" name="product_ids[]" value="${product.id}"></td>
-                <td><input type="number" name="product_quantities[]"  class="input-qty product-quantity" value="${product.quantity}"><sup>${product.unit}</sup></td>
-                <td><input class="input-price product-price" type="number" name="product_prices[]" value="${product.price}" step="0.01"/> </td>
+                <td><input type="number" step="any" name="product_quantities[]"  class="input-qty product-quantity" value="${product.quantity}"><sup>${product.unit}</sup></td>
+                <td><input class="input-price product-price" type="number" name="product_prices[]" value="${product.price}" step="any"/> </td>
                 <td class="product-subtotal">${product.subtotal}</td>
                 <td><button class="btn btn-danger btn-sm remove-product"><i class="fas fa-trash"></button></td>
             </tr>
