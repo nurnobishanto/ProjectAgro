@@ -68,6 +68,7 @@
                                                             <input
                                                                 name="qty[]"
                                                                 type="number"
+                                                                step="any"
                                                                 value="{{(getFeedRecordProduct($feeding->id,$item->id)->quantity??0)}}"
                                                                 placeholder="{{ __('global.quantity') }}"
                                                                 class="form-control quantity-input"
