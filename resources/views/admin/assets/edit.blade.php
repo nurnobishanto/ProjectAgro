@@ -48,14 +48,29 @@
                                     <input id="amount" name="amount" class="form-control" value="{{$asset->amount}}" placeholder="{{ __('global.enter_amount')}}">
                                 </div>
                             </div>
-                            <div class="col-md-4">
+                            <div class="col-md-4 col-sm-6 col-12">
                                 <div class="form-group">
-                                    <label for="status">{{ __('global.select_status')}} <span class="text-danger"> *</span></label>
-                                    <select name="status" class="form-control" id="status">
-                                        <option value="pending" @if($asset->status == 'pending') selected @endif>{{ __('global.pending')}}</option>
-                                        <option value="success" @if($asset->status == 'success') selected @endif>{{ __('global.success')}}</option>
+                                    <label for="account_id">{{ __('global.select_account')}}<span class="text-danger"> *</span></label>
+                                    <select id="account_id" name="account_id" class="select2 form-control">
+                                        <option value="">{{ __('global.select_account')}}</option>
+                                        @foreach(getAccountList() as $account)
+                                            <option @if($account->id == $asset->account_id) selected @endif value="{{$account->id}}">{{$account->account_name}} {{$account->account_no}} {{$account->admin->name??'--'}}</option>
+                                        @endforeach
                                     </select>
                                 </div>
+                            </div>
+                            <div class="col-md-8 col-sm-12">
+                                <div class="form-group">
+                                    <label for="note">{{ __('global.note')}}</label>
+                                    <textarea id="note" name="note" class="form-control" placeholder="{{ __('global.enter_note')}}">{{$asset->note}}</textarea>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label for="image">{{ __('global.photo')}}</label>
+                                    <input id="image" name="image" type="file" class="form-control" onchange="previewImage()" >
+                                </div>
+                                <img id="imagePreview" src="{{asset('uploads/'.$asset->image)}}" alt="Selected Image" class="img-thumbnail w-50" style="max-width: 100%;">
                             </div>
 
                         </div>
@@ -89,25 +104,26 @@
 @section('js')
 <script>
     $(document).ready(function() {
-        $('.select2').select2();
-    });
-    document.addEventListener('DOMContentLoaded', function () {
-        const imageForm = document.getElementById('supplier-form');
-        const selectedImage = document.getElementById('selected-image');
-
-        imageForm.addEventListener('change', function () {
-            const fileInput = this.querySelector('input[type="file"]');
-            const file = fileInput.files[0];
-
-            if (file) {
-                const imageUrl = URL.createObjectURL(file);
-                selectedImage.src = imageUrl;
-                selectedImage.style.display = 'block';
-            } else {
-                selectedImage.src = '';
-                selectedImage.style.display = 'none';
-            }
+        $('.select2').select2({
+            theme:'classic',
         });
     });
+    function previewImage() {
+        // Get the selected file input
+        var input = document.getElementById('image');
+
+        // Get the image preview element
+        var imagePreview = document.getElementById('imagePreview');
+
+        // Display the selected image in the preview element
+        if (input.files && input.files[0]) {
+            var reader = new FileReader();
+            reader.onload = function (e) {
+                imagePreview.src = e.target.result;
+                imagePreview.style.display = 'block';
+            };
+            reader.readAsDataURL(input.files[0]);
+        }
+    }
 </script>
 @stop

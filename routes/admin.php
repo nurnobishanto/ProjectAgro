@@ -208,6 +208,7 @@ Route::resource('/accounts',AccountController::class)->middleware('permission:ac
 Route::get('/assets/trashed',[AssetController::class,'trashed_list'])->middleware('permission:asset_manage')->name('assets.trashed');
 Route::get('/assets/trashed/{asset}/restore',[AssetController::class,'restore'])->middleware('permission:asset_manage')->name('assets.restore');
 Route::get('/assets/trashed/{asset}/delete',[AssetController::class,'force_delete'])->middleware('permission:asset_manage')->name('assets.force_delete');
+Route::get('/assets/{asset}/approve',[AssetController::class,'approve'])->middleware('permission:asset_approve')->name('assets.approve');
 Route::resource('/assets',AssetController::class)->middleware('permission:asset_manage');
 
 //Staff

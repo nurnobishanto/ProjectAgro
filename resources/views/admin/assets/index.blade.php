@@ -36,6 +36,7 @@
                                 <th>{{__('global.sl')}}</th>
                                 <th>{{__('global.asset')}}</th>
                                 <th>{{__('global.amount')}}</th>
+                                <th>{{__('global.account')}}</th>
                                 <th>{{__('global.status')}}</th>
                                 <th>{{__('global.updated_at')}}</th>
                                 <th>{{__('global.action')}}</th>
@@ -49,23 +50,31 @@
                                     <td>{{$sl++}}</td>
                                     <td>{{$asset->name}}</td>
                                     <td>{{$asset->amount}}</td>
+                                    <td>{{$asset->account->bank_name??'--'}} {{$asset->account->account_name??'--'}}</td>
                                     <td>{{__('global.'.$asset->status)}}</td>
                                     <td>{{date_format($asset->updated_at,'d M y h:i A') }}</td>
                                     <td class="text-center">
-                                        <form action="{{ route('admin.assets.destroy', $asset->id) }}" method="POST">
-                                            @method('DELETE')
-                                            @csrf
-                                            @can('asset_view')
-                                                <a href="{{route('admin.assets.show',['asset'=>$asset->id])}}" class="btn btn-info px-1 py-0 btn-sm"><i class="fa fa-eye"></i></a>
-                                            @endcan
+                                        @can('asset_view')
+                                            <a href="{{route('admin.assets.show',['asset'=>$asset->id])}}" class="btn btn-info px-1 py-0 btn-sm"><i class="fa fa-eye"></i></a>
+                                        @endcan
+                                        @if($asset->status === 'pending')
+                                            <form action="{{ route('admin.assets.destroy', $asset->id) }}" method="POST" class="d-inline">
+                                                @method('DELETE')
+                                                @csrf
+                                                @can('asset_delete')
+                                                    <button onclick="isDelete(this)" class="btn btn-danger btn-sm px-1 py-0"><i class="fa fa-trash"></i></button>
+                                                @endcan
+                                            </form>
                                             @can('asset_update')
                                                 <a href="{{route('admin.assets.edit',['asset'=>$asset->id])}}" class="btn btn-warning px-1 py-0 btn-sm"><i class="fa fa-pen"></i></a>
                                             @endcan
-                                            @can('asset_delete')
-                                                <button onclick="isDelete(this)" class="btn btn-danger btn-sm px-1 py-0"><i class="fa fa-trash"></i></button>
+                                            @can('asset_approve')
+                                                <a href="{{route('admin.assets.approve',['asset'=>$asset->id])}}" class="btn btn-primary px-1 py-0 btn-sm" ><i class="fa fa-thumbs-up"></i></a>
                                             @endcan
+                                        @else
 
-                                        </form>
+                                        @endif
+
                                     </td>
                                 </tr>
                             @endforeach
@@ -76,6 +85,7 @@
                                 <th>{{__('global.sl')}}</th>
                                 <th>{{__('global.asset')}}</th>
                                 <th>{{__('global.amount')}}</th>
+                                <th>{{__('global.account')}}</th>
                                 <th>{{__('global.status')}}</th>
                                 <th>{{__('global.updated_at')}}</th>
                                 <th>{{__('global.action')}}</th>

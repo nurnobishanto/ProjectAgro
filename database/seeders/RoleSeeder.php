@@ -424,6 +424,7 @@ class RoleSeeder extends Seeder
                     'asset_list',
                     'asset_view',
                     'asset_update',
+                    'asset_approve',
                     'asset_delete',
                     'asset_create',
                 ]

@@ -23,62 +23,38 @@
         <div class="col-12">
             <div class="card">
                 <div class="card-body">
-                        @if (count($errors) > 0)
-                            <div class = "alert alert-danger">
-                                <ul>
-                                    @foreach ($errors->all() as $error)
-                                        <li>{{ $error }}</li>
-                                    @endforeach
-                                </ul>
-                            </div>
-                        @endif
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <label for="name">{{ __('global.asset')}}</label>
-                                        <input id="name" class="form-control" disabled value="{{$asset->name}}">
-                                    </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <label for="amount">{{ __('global.amount')}}</label>
-                                        <input id="amount" class="form-control" disabled value="{{$asset->amount}}">
-                                    </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <label for="status">{{ __('global.status')}}</label>
-                                        <input id="status" class="form-control" disabled value="{{__('global.'.$asset->status)}}">
-                                    </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <label for="updated_at">{{ __('global.updated_at')}}</label>
-                                        <input id="updated_at" class="form-control" disabled value="{{date_format($asset->updated_at,'d M y h:i A') }}">
-                                    </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <label for="created_by">{{ __('global.created_by')}}</label>
-                                        <input id="created_by" class="form-control" disabled value="{{$asset->createdBy->name}}">
-                                    </div>
-                                </div>
-                            </div>
-
-
-
-                        <form action="{{ route('admin.assets.destroy', $asset->id) }}" method="POST">
+                        <table class="table table-bordered">
+                            <tbody>
+                            <tr><th>{{ __('global.asset')}}</th><td>{{$asset->name}}</td></tr>
+                            <tr><th>{{ __('global.amount')}}</th><td>{{$asset->amount}}</td></tr>
+                            <tr><th>{{ __('global.account')}}</th><td>{{$asset->account->bank_name??'--'}} {{$asset->account->account_name??'--'}}</td></tr>
+                            <tr><th>{{ __('global.status')}}</th><td>{{__('global.'.$asset->status)}}</td></tr>
+                            <tr><th>{{ __('global.note')}}</th><td>{!! $asset->note !!}</td></tr>
+                            <tr><th>{{ __('global.photo')}}</th><td><img src="{{asset('uploads/'.$asset->image)}}" class="img-thumbnail w-25" ></td></tr>
+                            <tr><th>{{ __('global.updated_at')}}</th><td>{{date_format($asset->updated_at,'d M y h:i A') }}</td></tr>
+                            <tr><th>{{ __('global.updated_by')}}</th><td>{{$asset->updatedBy->name}}</td></tr>
+                            <tr><th>{{ __('global.created_at')}}</th><td>{{date_format($asset->created_at,'d M y h:i A') }}</td></tr>
+                            <tr><th>{{ __('global.created_by')}}</th><td>{{$asset->createdBy->name}}</td></tr>
+                            </tbody>
+                        </table>
+                </div>
+                <div class="card-footer">
+                    <a href="{{route('admin.assets.index')}}" class="btn btn-success" >Go Back</a>
+                    @if($asset->status === 'pending')
+                        <form action="{{ route('admin.assets.destroy', $asset->id) }}" method="POST" class="d-inline">
                             @method('DELETE')
                             @csrf
-                            <a href="{{route('admin.assets.index')}}" class="btn btn-success" >Go Back</a>
-                            @can('asset_update')
-                                <a href="{{route('admin.assets.edit',['asset'=>$asset->id])}}" class="btn btn-warning "><i class="fa fa-pen"></i> Edit</a>
-                            @endcan
                             @can('asset_delete')
                                 <button onclick="isDelete(this)" class="btn btn-danger"><i class="fa fa-trash"></i> Delete</button>
                             @endcan
+                            @can('asset_update')
+                                <a href="{{route('admin.assets.edit',['asset'=>$asset->id])}}" class="btn btn-warning "><i class="fa fa-pen"></i> Edit</a>
+                            @endcan
                         </form>
-
+                        @can('asset_approve')
+                            <a href="{{route('admin.assets.approve',['asset'=>$asset->id])}}" class="btn btn-primary" ><i class="fa fa-thumbs-up"></i> Approve</a>
+                        @endcan
+                    @endif
                 </div>
             </div>
         </div>

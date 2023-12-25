@@ -33,12 +33,20 @@ class AssetController extends Controller
         $request->validate([
             'name' => 'required',
             'amount' => 'required',
-            'status' => 'required',
+            'account_id' => 'required',
+            'image' => 'image|mimes:jpeg,png,jpg,gif|max:2048',
         ]);
+        $imageFile = null;
+        if($request->file('image')){
+            $imageFile = $request->file('image')->store('asset-image');
+        }
         $asset = Asset::create([
             'name' =>$request->name,
             'amount' =>$request->amount,
-            'status' =>$request->status,
+            'account_id' =>$request->account_id,
+            'status' =>'pending',
+            'note' =>$request->note,
+            'image' =>$imageFile,
             'created_by' =>auth()->user()->id,
             'updated_by' =>auth()->user()->id,
         ]);
@@ -65,16 +73,53 @@ class AssetController extends Controller
         $request->validate([
             'name' => 'required',
             'amount' => 'required',
-            'status' => 'required',
+            'account_id' => 'required',
         ]);
+        $imageFile = $asset->image??null;
+        if($request->file('image')){
+            $imageFile = $request->file('image')->store('asset-image');
+            $old_image_path = "uploads/".$asset->image;
+            if (file_exists($old_image_path)) {
+                @unlink($old_image_path);
+            }
+        }
         $asset->name = $request->name;
         $asset->amount = $request->amount;
-        $asset->status = $request->status;
+        $asset->account_id = $request->account_id;
+        $asset->status = 'pending';
+        $asset->note = $request->note;
+        $asset->image =$imageFile;
         $asset->updated_by = auth()->user()->id;
         $asset->update();
         toastr()->success($asset->name.__('global.updated_success'),__('global.asset').__('global.updated'));
         return redirect()->route('admin.assets.index');
     }
+
+    public function approve($id)
+    {
+        $asset = Asset::find($id);
+
+        if ($asset && $asset->status == 'pending') {
+            $account = $asset->account;
+
+            if ($account) {
+                $account->current_balance -= $asset->amount;
+                $account->save();
+
+                $asset->status = 'success';
+                $asset->save();
+
+                toastr()->success('Asset approved successfully');
+            } else {
+                toastr()->error('Account not found');
+            }
+        } else {
+            toastr()->error('Asset not found or already approved');
+        }
+
+        return redirect()->route('admin.assets.index');
+    }
+
 
     public function destroy(string $id)
     {

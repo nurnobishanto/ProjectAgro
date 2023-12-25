@@ -12,11 +12,17 @@ class Asset extends Model
     protected $fillable = [
         'name',
         'amount',
+        'account_id',
         'status',
+        'note',
+        'image',
         'created_by',
         'updated_by',
     ];
-
+    public function account()
+    {
+        return $this->belongsTo(Account::class, 'account_id');
+    }
     public function createdBy()
     {
         return $this->belongsTo(Admin::class, 'created_by');
