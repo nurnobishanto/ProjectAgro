@@ -57,6 +57,47 @@
                                         <input id="created_by" class="form-control" disabled value="{{$feeding_category->createdBy->name}}">
                                     </div>
                                 </div>
+                                <div class="col-12" id="cattle_list">
+                                    <div class="card">
+                                        <div class="card-header">
+                                            <h5 class="card-title">{{__('global.cattle_list')}}</h5>
+                                        </div>
+                                        <div class="card-body">
+                                            <div class="table-responsive">
+
+                                                <table class="table table-bordered">
+                                                    <thead>
+                                                    <tr>
+                                                        <th width="80px">{{__('global.select')}}</th>
+                                                        <th>{{__('global.tag_id')}}</th>
+                                                        <th>{{__('global.gender')}}</th>
+                                                        <th>{{__('global.batch_no')}}</th>
+                                                        <th>{{__('global.session_year')}}</th>
+                                                        <th>{{__('global.weight')}}</th>
+                                                        <th>{{__('global.height')}}</th>
+                                                        <th>{{__('global.width')}}</th>
+                                                    </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                    @foreach($feeding_category->cattle as $cattle)
+                                                        <tr>
+                                                            <td><input type="checkbox"  checked disabled class="form-control form-check"></td>
+                                                            <td>{{$cattle->tag_id}}</td>
+                                                            <td>{{__('global.'.$cattle->gender)}}</td>
+                                                            <td>{{$cattle->batch->name}}</td>
+                                                            <td>{{$cattle->session_year->year}}</td>
+                                                            <td>{{getLatestCattleStructure($cattle->id,'weight')}} <sup>{{__('global.kg')}}</sup></td>
+                                                            <td>{{getLatestCattleStructure($cattle->id,'height')}} <sup>{{__('global.inch')}}</sup></td>
+                                                            <td>{{getLatestCattleStructure($cattle->id,'width')}} <sup>{{__('global.inch')}}</sup></td>
+                                                        </tr>
+                                                    @endforeach
+                                                    </tbody>
+                                                </table>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
 
 

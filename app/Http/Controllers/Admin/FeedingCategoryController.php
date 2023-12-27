@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Cattle;
 use App\Models\FeedingCategory;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\App;
@@ -24,7 +25,9 @@ class FeedingCategoryController extends Controller
     public function create()
     {
         App::setLocale(session('locale'));
-        return view('admin.feeding_categories.create');
+        $data = array();
+        $data['cattles'] = Cattle::where('status','active')->get();
+        return view('admin.feeding_categories.create',$data);
     }
 
     public function store(Request $request)
@@ -33,6 +36,7 @@ class FeedingCategoryController extends Controller
         $request->validate([
             'name' => 'required|unique:feeding_categories',
             'status' => 'required',
+            'cattles' => 'required',
         ]);
         $feeding_category = FeedingCategory::create([
             'name' =>$request->name,
@@ -40,6 +44,7 @@ class FeedingCategoryController extends Controller
             'created_by' =>auth()->user()->id,
             'updated_by' =>auth()->user()->id,
         ]);
+        $feeding_category->cattle()->sync($request->cattles);
         toastr()->success($feeding_category->name.__('global.created_success'),__('global.feeding_category').__('global.created'));
         return redirect()->route('admin.feeding-categories.index');
     }
@@ -53,21 +58,26 @@ class FeedingCategoryController extends Controller
     public function edit(string $id)
     {
         App::setLocale(session('locale'));
-        $feeding_category = FeedingCategory::find($id);
-        return view('admin.feeding_categories.edit',compact(['feeding_category']));
+        $data = array();
+        $data['cattles'] = Cattle::where('status','active')->get();
+        $data['feeding_category'] =  FeedingCategory::find($id);
+        return view('admin.feeding_categories.edit',$data);
     }
     public function update(Request $request, string $id)
     {
         App::setLocale(session('locale'));
         $feeding_category = FeedingCategory::find($id);
         $request->validate([
-            'name' => 'required|unique:feeding_categories',
+            'name' => 'required|unique:feeding_categories,id,'.$id,
             'status' => 'required',
+            'cattles' => 'required',
         ]);
         $feeding_category->name = $request->name;
         $feeding_category->status = $request->status;
         $feeding_category->updated_by = auth()->user()->id;
         $feeding_category->update();
+        $feeding_category->cattle()->detach();
+        $feeding_category->cattle()->sync($request->cattles);
         toastr()->success($feeding_category->name.__('global.updated_success'),__('global.feeding_category').__('global.updated'));
         return redirect()->route('admin.feeding-categories.index');
     }

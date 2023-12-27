@@ -51,7 +51,48 @@
                                     </select>
                                 </div>
                             </div>
+                            <div class="col-12" id="cattle_list">
+                                <div class="card">
+                                    <div class="card-header">
+                                        <h5 class="card-title">{{__('global.cattle_list')}}</h5>
+                                        <a href="#" class="badge badge-success mx-2" id="toggleAllButton">Select All</a>
+                                    </div>
+                                    <div class="card-body">
+                                        <div class="table-responsive">
 
+                                            <table class="table table-bordered">
+                                                <thead>
+                                                <tr>
+                                                    <th width="80px">{{__('global.select')}}</th>
+                                                    <th>{{__('global.tag_id')}}</th>
+                                                    <th>{{__('global.gender')}}</th>
+                                                    <th>{{__('global.batch_no')}}</th>
+                                                    <th>{{__('global.session_year')}}</th>
+                                                    <th>{{__('global.weight')}}</th>
+                                                    <th>{{__('global.height')}}</th>
+                                                    <th>{{__('global.width')}}</th>
+                                                </tr>
+                                                </thead>
+                                                <tbody>
+                                                @foreach($cattles as $cattle)
+                                                    <tr>
+                                                        <td><input type="checkbox" name="cattles[]" @if ($feeding_category->cattle->contains($cattle->id)) checked @endif  value="{{$cattle->id}}" class="form-control form-check"></td>
+                                                        <td>{{$cattle->tag_id}}</td>
+                                                        <td>{{__('global.'.$cattle->gender)}}</td>
+                                                        <td>{{$cattle->batch->name}}</td>
+                                                        <td>{{$cattle->session_year->year}}</td>
+                                                        <td>{{getLatestCattleStructure($cattle->id,'weight')}} <sup>{{__('global.kg')}}</sup></td>
+                                                        <td>{{getLatestCattleStructure($cattle->id,'height')}} <sup>{{__('global.inch')}}</sup></td>
+                                                        <td>{{getLatestCattleStructure($cattle->id,'width')}} <sup>{{__('global.inch')}}</sup></td>
+                                                    </tr>
+                                                @endforeach
+                                                </tbody>
+                                            </table>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
                         </div>
 
                         @can('feeding_category_update')
@@ -83,25 +124,37 @@
 @section('js')
 <script>
     $(document).ready(function() {
-        $('.select2').select2();
-    });
-    document.addEventListener('DOMContentLoaded', function () {
-        const imageForm = document.getElementById('supplier-form');
-        const selectedImage = document.getElementById('selected-image');
+        $('.select2').select2({
+            theme:'classic',
+        });
+        var $checkboxes = $('input[type="checkbox"]');
+        var $toggleAllButton = $('#toggleAllButton');
 
-        imageForm.addEventListener('change', function () {
-            const fileInput = this.querySelector('input[type="file"]');
-            const file = fileInput.files[0];
+        $toggleAllButton.on('click', function() {
+            $checkboxes.prop('checked', function(i, val) {
+                return !val;
+            });
+            toggleButtonText();
+        });
 
-            if (file) {
-                const imageUrl = URL.createObjectURL(file);
-                selectedImage.src = imageUrl;
-                selectedImage.style.display = 'block';
+        function toggleButtonText() {
+            if ($checkboxes.length === $checkboxes.filter(':checked').length) {
+                $toggleAllButton.text('Uncheck All');
+                $toggleAllButton.removeClass('badge-success')
+                $toggleAllButton.addClass('badge-danger')
             } else {
-                selectedImage.src = '';
-                selectedImage.style.display = 'none';
+                $toggleAllButton.text('Check All');
+                $toggleAllButton.removeClass('badge-danger')
+                $toggleAllButton.addClass('badge-success')
             }
+        }
+
+        toggleButtonText(); // Initialize button text
+
+        $checkboxes.on('change', function() {
+            toggleButtonText();
         });
     });
+
 </script>
 @stop

@@ -10,7 +10,10 @@ class FeedingCategory extends Model
 {
     use HasFactory, SoftDeletes;
     protected $fillable = ['name','status','created_by','updated_by'];
-
+    public function cattle()
+    {
+        return $this->belongsToMany(Cattle::class, 'feeding_category_cattle');
+    }
     public function createdBy()
     {
         return $this->belongsTo(Admin::class, 'created_by');
@@ -19,4 +22,5 @@ class FeedingCategory extends Model
     {
         return $this->belongsTo(Admin::class, 'updated_by');
     }
+
 }

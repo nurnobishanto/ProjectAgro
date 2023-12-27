@@ -35,6 +35,7 @@
                             <tr>
                                 <th>{{__('global.sl')}}</th>
                                 <th>{{__('global.name')}}</th>
+                                <th>{{__('global.cattle')}}</th>
                                 <th>{{__('global.status')}}</th>
                                 <th>{{__('global.updated_at')}}</th>
                                 <th>{{__('global.action')}}</th>
@@ -47,6 +48,7 @@
 
                                     <td>{{$sl++}}</td>
                                     <td>{{$feeding_category->name}}</td>
+                                    <td>{{$feeding_category->cattle->count()}}</td>
                                     <td>{{__('global.'.$feeding_category->status)}}</td>
                                     <td>{{date_format($feeding_category->updated_at,'d M y h:i A') }}</td>
                                     <td class="text-center">
@@ -73,6 +75,7 @@
                             <tr>
                                 <th>{{__('global.sl')}}</th>
                                 <th>{{__('global.name')}}</th>
+                                <th>{{__('global.cattle')}}</th>
                                 <th>{{__('global.status')}}</th>
                                 <th>{{__('global.updated_at')}}</th>
                                 <th>{{__('global.action')}}</th>

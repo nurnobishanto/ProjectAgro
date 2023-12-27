@@ -50,7 +50,48 @@
                                     </select>
                                 </div>
                             </div>
+                            <div class="col-md-12" id="cattle_list">
+                                <div class="card">
+                                    <div class="card-header">
+                                        <h5 class="card-title">{{__('global.cattle_list')}}</h5>
+                                        <a href="#" class="badge badge-success mx-2" id="toggleAllButton">Select All</a>
+                                    </div>
+                                    <div class="card-body">
+                                        <div class="table-responsive">
 
+                                            <table class="table table-bordered">
+                                                <thead>
+                                                <tr>
+                                                    <th width="80px">{{__('global.select')}}</th>
+                                                    <th>{{__('global.tag_id')}}</th>
+                                                    <th>{{__('global.gender')}}</th>
+                                                    <th>{{__('global.batch_no')}}</th>
+                                                    <th>{{__('global.session_year')}}</th>
+                                                    <th>{{__('global.weight')}}</th>
+                                                    <th>{{__('global.height')}}</th>
+                                                    <th>{{__('global.width')}}</th>
+                                                </tr>
+                                                </thead>
+                                                <tbody>
+                                                @foreach($cattles as $cattle)
+                                                    <tr>
+                                                        <td><input type="checkbox" name="cattles[]"  value="{{$cattle->id}}" class="form-control form-check"></td>
+                                                        <td>{{$cattle->tag_id}}</td>
+                                                        <td>{{__('global.'.$cattle->gender)}}</td>
+                                                        <td>{{$cattle->batch->name}}</td>
+                                                        <td>{{$cattle->session_year->year}}</td>
+                                                        <td>{{getLatestCattleStructure($cattle->id,'weight')}} <sup>{{__('global.kg')}}</sup></td>
+                                                        <td>{{getLatestCattleStructure($cattle->id,'height')}} <sup>{{__('global.inch')}}</sup></td>
+                                                        <td>{{getLatestCattleStructure($cattle->id,'width')}} <sup>{{__('global.inch')}}</sup></td>
+                                                    </tr>
+                                                @endforeach
+                                                </tbody>
+                                            </table>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
                         </div>
 
                         @can('feeding_category_create')
@@ -82,7 +123,41 @@
 @section('js')
     <script>
         $(document).ready(function() {
-            $('.select2').select2();
+            $('.select2').select2({
+                theme:'classic',
+            });
+            var $checkboxes = $('input[type="checkbox"]');
+            var $toggleAllButton = $('#toggleAllButton');
+
+            $toggleAllButton.on('click', function() {
+                var allChecked = $checkboxes.length === $checkboxes.filter(':checked').length;
+
+                if (allChecked) {
+                    // If all checkboxes are checked, uncheck all
+                    $checkboxes.prop('checked', false);
+                } else {
+                    // If not all checkboxes are checked, check all
+                    $checkboxes.prop('checked', true);
+                }
+
+                toggleButtonText();
+            });
+
+            function toggleButtonText() {
+                if ($checkboxes.length === $checkboxes.filter(':checked').length) {
+                    $toggleAllButton.text('Uncheck All');
+                    $toggleAllButton.removeClass('badge-success').addClass('badge-danger');
+                } else {
+                    $toggleAllButton.text('Check All');
+                    $toggleAllButton.removeClass('badge-danger').addClass('badge-success');
+                }
+            }
+
+            toggleButtonText(); // Initialize button text
+
+            $checkboxes.on('change', function() {
+                toggleButtonText();
+            });
         });
     </script>
 @stop

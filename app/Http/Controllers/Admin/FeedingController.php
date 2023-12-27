@@ -55,10 +55,16 @@ class FeedingController extends Controller
         $data = array();
 
         $feeding_group = FeedingGroup::where('id',$request->feeding_group_id)->first();
+        $feeding_category = $feeding_group->feeding_category;
         $data['feeding_group'] = $feeding_group;
-        $data['items'] = $feeding_group->products??[];
-        $data['cattles'] = Cattle::where('farm_id',$request->farm_id)->where('cattle_type_id',$request->cattle_type_id)->where('status','active')->get();
 
+        $data['items'] = $feeding_group->products??[];
+        //$data['cattles'] = $feeding_category->cattle->where('farm_id',$request->farm_id)->where('cattle_type_id',$request->cattle_type_id)->where('status','active')->get();
+        $data['cattles'] = $feeding_category->cattle()
+            ->where('farm_id',$request->farm_id)
+            ->where('cattle_type_id',$request->cattle_type_id)
+            ->where('status','active')
+            ->get();
         return view('admin.feedings.create',$data);
     }
 
@@ -129,10 +135,15 @@ class FeedingController extends Controller
         $data = array();
 
         $feeding_group = FeedingGroup::where('id',$feeding->feeding_group_id)->first();
+        $feeding_category = $feeding_group->feeding_category;
         $data['feeding_group'] = $feeding_group;
         $data['feeding'] = $feeding;
         $data['items'] = $feeding_group->products??[];
-        $data['cattles'] = Cattle::where('farm_id',$feeding_group->farm_id)->where('cattle_type_id',$feeding_group->cattle_type_id)->where('status','active')->get();
+        $data['cattles'] = $feeding_category->cattle()
+            ->where('farm_id',$feeding_group->farm_id)
+            ->where('cattle_type_id',$feeding_group->cattle_type_id)
+            ->where('status','active')
+            ->get();
 
         return view('admin.feedings.show',$data);
     }
@@ -143,10 +154,15 @@ class FeedingController extends Controller
         $data = array();
 
         $feeding_group = FeedingGroup::where('id',$feeding->feeding_group_id)->first();
+        $feeding_category = $feeding_group->feeding_category;
         $data['feeding_group'] = $feeding_group;
         $data['feeding'] = $feeding;
         $data['items'] = $feeding_group->products??[];
-        $data['cattles'] = Cattle::where('farm_id',$feeding_group->farm_id)->where('cattle_type_id',$feeding_group->cattle_type_id)->where('status','active')->get();
+        $data['cattles'] = $feeding_category->cattle()
+            ->where('farm_id',$feeding_group->farm_id)
+            ->where('cattle_type_id',$feeding_group->cattle_type_id)
+            ->where('status','active')
+            ->get();
         return view('admin.feedings.edit',$data);
     }
     public function update(Request $request, string $id)
