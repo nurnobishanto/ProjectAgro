@@ -28,6 +28,12 @@ class AjaxCartController extends Controller
         $data =  Cattle::where('cattle_type_id',$cattle_type_id)->where('farm_id',$farm_id)->where('status','active')->get();
         return response()->json($data);
     }
+    public function farm_dairy_cattle_list(Request $request){
+        $farm_id = $request->input('farm_id');
+        $cattle_type_id = $request->input('cattle_type_id');
+        $data =  Cattle::where('cattle_type_id',$cattle_type_id)->where('farm_id',$farm_id)->where('category','dairy')->where('status','active')->get();
+        return response()->json($data);
+    }
     public function farm_medicine_list(Request $request){
         $farm_id = $request->input('farm_id');
         $products =  Product::where('type','cattle_medicine')->get();

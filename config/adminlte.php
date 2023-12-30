@@ -454,6 +454,30 @@ return [
                 ],
             ]
         ],
+        ['header' => 'milk_production'],
+        [
+            'text'    => 'milk_production',
+            'icon'    => 'fas fa-warehouse',
+            'can' => ['milk_production_manage','milk_stock_manage','milk_sale_party_manage'],
+            'submenu' => [
+                [
+                    'text' => 'milk_stock',
+                    'can' => 'milk_stock_manage',
+                    'url' => 'admin/milk-stock'
+                ],
+                [
+                    'text' => 'milk_production',
+                    'can' => 'milk_production_manage',
+                    'url' => 'admin/milk-productions'
+                ],
+                [
+                    'text' => 'milk_sale_party',
+                    'can' => 'milk_sale_party_manage',
+                    'url' => 'admin/milk-sale-parties'
+                ],
+
+            ]
+        ],
         ['header' => 'inventory_management'],
         [
             'text'    => 'inventory_management',

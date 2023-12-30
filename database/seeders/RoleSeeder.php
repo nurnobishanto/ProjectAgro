@@ -572,6 +572,27 @@ class RoleSeeder extends Seeder
                 ]
             ],
             [
+                'group_name' => 'MilkStock',
+                'permissions' => [
+                    'milk_stock_manage',
+                    'milk_stock_list',
+                    'milk_stock_view',
+
+                ]
+            ],
+            [
+                'group_name' => 'MilkProduction',
+                'permissions' => [
+                    'milk_production_manage',
+                    'milk_production_list',
+                    'milk_production_view',
+                    'milk_production_update',
+                    'milk_production_delete',
+                    'milk_production_create',
+                    'milk_production_approve',
+                ]
+            ],
+            [
                 'group_name' => 'MilkSale',
                 'permissions' => [
                     'milk_sale_manage',
@@ -581,6 +602,18 @@ class RoleSeeder extends Seeder
                     'milk_sale_delete',
                     'milk_sale_create',
                     'milk_sale_approve',
+                ]
+            ],
+            [
+                'group_name' => 'MilkSaleParty',
+                'permissions' => [
+                    'milk_sale_party_manage',
+                    'milk_sale_party_list',
+                    'milk_sale_party_view',
+                    'milk_sale_party_update',
+                    'milk_sale_party_delete',
+                    'milk_sale_party_create',
+                    'milk_sale_party_approve',
                 ]
             ],
 

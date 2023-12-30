@@ -4,12 +4,12 @@
         <div class="container">
             <div class="row w-100 align-items-center gx-lg-2 gx-0">
                 <div class="col-xxl-2 col-lg-3">
-                    <a class="navbar-brand d-none d-lg-block" href="index-2.html">
+                    <a class="navbar-brand d-none d-lg-block" href="{{route('website.home')}}">
                         <img style="max-height: 70px" src="{{asset('self/light-logo.png')}}" alt="Sehrish Agro">
 
                     </a>
                     <div class="d-flex justify-content-between w-100 d-lg-none">
-                        <a class="navbar-brand" href="index-2.html">
+                        <a class="navbar-brand" href="{{route('website.home')}}">
                             <img style="max-height: 30px" src="{{asset('self/light-logo.png')}}" alt="Sehrish Agro">
 
                         </a>

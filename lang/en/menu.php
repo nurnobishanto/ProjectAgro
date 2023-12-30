@@ -77,4 +77,9 @@ return [
     'slaughter_waste' => 'Slaughter Waste',
     'slaughter' => 'Slaughter',
     'reports' => 'Reports',
+
+    //
+    'milk_production' => 'Milk Production',
+    'milk_stock' => 'Milk Stock',
+    'milk_sale_party' => 'Milk Sale Party',
 ];

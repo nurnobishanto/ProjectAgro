@@ -538,5 +538,26 @@ return [
     'others_expense' => 'Others Expense',
     'total_expense' => 'Total Expense',
     'death' => 'Dead',
-    //৬/১১/২৩
+    //
+
+    'moment' => 'Moment',
+    'ltr' => 'Ltr',
+    'select_moment' => 'Select Moment',
+    'morning' => 'Morning',
+    'evening' => 'Evening',
+    'enter_milk_quantity' => 'Enter milk quantity',
+    'milk_production' => 'Milk Production',
+    'milk_productions' => 'Milk Production List',
+    'create_milk_production' => 'Create Milk Production',
+    'edit_milk_production' => 'Edit Milk Production',
+    'update_milk_production' => 'Update Milk Production',
+    'view_milk_production' => 'View Milk Production',
+    'delete_milk_production' => 'Delete Milk Production',
+    'milk_sale_party' => 'Milk Sale Party',
+    'milk_sale_parties' => 'Milk Sale Party List',
+    'create_milk_sale_party' => 'Create Milk Sale Party',
+    'edit_milk_sale_party' => 'Edit Milk Sale Party',
+    'update_milk_sale_party' => 'Update Milk Sale Party',
+    'view_milk_sale_party' => 'View Milk Sale Party',
+    'delete_milk_sale_party' => 'Delete Milk Sale Party',
 ];

@@ -7,8 +7,8 @@
                     <ul class="list-inline mb-0">
                         <li class="list-inline-item text-dark">Software Developed by</li>
                         <li class="list-inline-item">
-                            <a href="#!"><img src="{{asset('self')}}/softitbd.png" alt=""></a>
-                        </li>
+                            <a href="https://soft-itbd.com"><img src="{{asset('self')}}/softitbd.png" alt=""></a>
+
                     </ul>
                 </div>
                 <div class="col-lg-7 mt-4 mt-md-0">
@@ -32,9 +32,9 @@
       </span>Sehrish Agro.  All rights reserved. Developed by <a href="https://soft-itbd.com/">SOFT-ITBD</a>.</span></div>
                 <div class="col-md-6">
                     <ul class="list-inline text-md-end mb-0 small mt-3 mt-md-0">
+                        <li class="list-inline-item text-muted"> <a href="{{route('admin.dashboard')}}">Dashboard</a></li>
                         <li class="list-inline-item text-muted">Follow us on</li>
                         <li class="list-inline-item me-1">
-
                             <a href="https://www.facebook.com/sehrishagro" class="btn btn-xs btn-social btn-icon"><i class="fab fa-facebook-square"></i></a></li>
                     </ul>
                 </div>

@@ -22,6 +22,10 @@ use App\Http\Controllers\Admin\FeedingController;
 use App\Http\Controllers\Admin\DewormerController;
 use App\Http\Controllers\Admin\FeedingGroupController;
 use App\Http\Controllers\Admin\FeedingMomentController;
+use App\Http\Controllers\Admin\GlobalSettingController;
+use App\Http\Controllers\Admin\MilkProductionController;
+use App\Http\Controllers\Admin\MilkSalePartyController;
+use App\Http\Controllers\Admin\MilkStockController;
 use App\Http\Controllers\Admin\OpeningBalanceController;
 use App\Http\Controllers\Admin\PartyController;
 use App\Http\Controllers\Admin\PartyReceivedController;
@@ -320,5 +324,21 @@ Route::get('/staff-payments/{staff_payment}/approve',[StaffPaymentController::cl
 Route::resource('/staff-payments',StaffPaymentController::class)->middleware('permission:staff_payment_manage');
 
 //Setting
-Route::get('global-setting',[\App\Http\Controllers\Admin\GlobalSettingController::class,'global_setting'])->name('global_setting');
-Route::post('update-global-setting',[\App\Http\Controllers\Admin\GlobalSettingController::class,'update_global_setting'])->name('update_global_setting');
+Route::get('global-setting',[GlobalSettingController::class,'global_setting'])->name('global_setting');
+Route::post('update-global-setting',[GlobalSettingController::class,'update_global_setting'])->name('update_global_setting');
+
+//Milk productions
+Route::get('/milk-productions/trashed',[MilkProductionController::class,'trashed_list'])->middleware('permission:milk_production_manage')->name('milk-productions.trashed');
+Route::get('/milk-productions/trashed/{milk_production}/restore',[MilkProductionController::class,'restore'])->middleware('permission:milk_production_manage')->name('milk-productions.restore');
+Route::get('/milk-productions/trashed/{milk_production}/delete',[MilkProductionController::class,'force_delete'])->middleware('permission:milk_production_manage')->name('milk-productions.force_delete');
+Route::get('/milk-productions/{milk_production}/approve',[MilkProductionController::class,'approve'])->middleware('permission:milk_production_approve')->name('milk-productions.approve');
+Route::resource('/milk-productions',MilkProductionController::class)->middleware('permission:milk_production_manage');
+
+//Milk Sale Party
+Route::get('/milk-sale-parties/trashed',[MilkSalePartyController::class,'trashed_list'])->middleware('permission:milk_sale_party_manage')->name('milk-sale-parties.trashed');
+Route::get('/milk-sale-parties/trashed/{milk_sale_party}/restore',[MilkSalePartyController::class,'restore'])->middleware('permission:milk_sale_party_manage')->name('milk-sale-parties.restore');
+Route::get('/milk-sale-parties/trashed/{milk_sale_party}/delete',[MilkSalePartyController::class,'force_delete'])->middleware('permission:milk_sale_party_manage')->name('milk-sale-parties.force_delete');
+Route::resource('/milk-sale-parties',MilkSalePartyController::class)->middleware('permission:milk_sale_party_manage');
+
+//Setting
+Route::get('milk-stock',[MilkStockController::class,'milk_stock'])->name('milk_stock');
