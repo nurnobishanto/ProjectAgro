@@ -61,7 +61,7 @@
                             <div class="col-lg-3  col-sm-6">
                                 <div class="form-group">
                                     <label for="amount">{{ __('global.opening_balance')}}<span class="text-danger"> *</span></label>
-                                    <input id="amount" name="amount" type="number" class="form-control" placeholder="{{ __('global.enter_opening_balance')}}">
+                                    <input id="amount" name="amount" type="number" step="any" class="form-control" placeholder="{{ __('global.enter_opening_balance')}}">
                                 </div>
                             </div>
                             <div class="col-md-12">

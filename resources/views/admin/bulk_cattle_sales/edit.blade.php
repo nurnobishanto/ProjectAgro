@@ -90,13 +90,13 @@
                             <div class="col-lg-2 col-md-3 col-sm-6">
                                 <div class="form-group">
                                     <label for="amount">{{ __('global.sale_price')}}<span class="text-danger"> *</span></label>
-                                    <input name="amount" value="{{$bulk_cattle_sale->amount}}" id="amount"  type="number" class="form-control">
+                                    <input name="amount" value="{{$bulk_cattle_sale->amount}}" id="amount"  type="number" step="any" class="form-control">
                                 </div>
                             </div>
                             <div class="col-lg-2 col-md-3 col-sm-6">
                                 <div class="form-group">
                                     <label for="paid">{{ __('global.paid')}}</label>
-                                    <input name="paid" value="{{$bulk_cattle_sale->paid}}" id="paid"  type="number" class="form-control">
+                                    <input name="paid" value="{{$bulk_cattle_sale->paid}}" id="paid"  type="number" step="any" class="form-control">
                                 </div>
                             </div>
                             <div class="col-lg-2 col-md-3 col-sm-6">
@@ -108,7 +108,7 @@
                             <div class="col-lg-2 col-md-3 col-sm-6">
                                 <div class="form-group">
                                     <label for="expense">{{ __('global.expense')}}</label>
-                                    <input name="expense" value="{{$bulk_cattle_sale->expense}}" id="expense" type="number" class="form-control">
+                                    <input name="expense" value="{{$bulk_cattle_sale->expense}}" id="expense" type="number" step="any" class="form-control">
                                 </div>
                             </div>
                             <div class="col-lg-4 col-md-6">

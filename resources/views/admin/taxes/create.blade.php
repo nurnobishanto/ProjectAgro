@@ -44,7 +44,7 @@
                             <div class="col-md-4">
                                 <div class="form-group">
                                     <label for="tax">{{ __('global.tax')}}%<span class="text-danger"> *</span></label>
-                                    <input id="tax" name="tax" type="number" value="{{old('tax')}}" class="form-control" placeholder="{{ __('global.enter_tax')}}">
+                                    <input id="tax" name="tax" type="number" step="any" value="{{old('tax')}}" class="form-control" placeholder="{{ __('global.enter_tax')}}">
                                 </div>
                             </div>
                             <div class="col-md-4">

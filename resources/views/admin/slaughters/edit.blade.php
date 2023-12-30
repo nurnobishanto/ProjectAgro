@@ -98,7 +98,7 @@
                                                 <td>
 
                                                     <input name="items[]" value="{{$item->id}}" class="d-none" placeholder="{{__('global.enter_quantity')}}">
-                                                    <input name="quantities[]" type="number" class="form-control" value="{{ $slaughter->products->find($item->id)->pivot->quantity }}" placeholder="{{__('global.enter_quantity')}}">
+                                                    <input name="quantities[]" type="number" step="any" class="form-control" value="{{ $slaughter->products->find($item->id)->pivot->quantity }}" placeholder="{{__('global.enter_quantity')}}">
                                                 </td>
                                                 <td>{{$item->unit->name??'--'}} ({{$item->unit->code??'--'}})</td>
                                             </tr>

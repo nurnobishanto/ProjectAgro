@@ -100,6 +100,7 @@
                                                             <input
                                                                 name="qty[]"
                                                                 type="number"
+                                                                step="any"
                                                                 placeholder="{{ __('global.quantity') }}"
                                                                 class="form-control quantity-input"
                                                                 data-min="0"

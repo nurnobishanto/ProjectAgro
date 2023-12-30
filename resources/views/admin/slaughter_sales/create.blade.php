@@ -88,13 +88,13 @@
                                     <div class="col-sm-6 col-12">
                                         <div class="form-group">
                                             <label for="paid_amount" class="form-label">{{__('global.paid_amount')}}</label>
-                                            <input  id="paid_amount" type="number"  class="form-control" name="paid_amount" placeholder="{{__('global.paid_amount')}}">
+                                            <input  id="paid_amount" type="number" step="any"  class="form-control" name="paid_amount" placeholder="{{__('global.paid_amount')}}">
                                         </div>
                                     </div>
                                     <div class="col-sm-6 col-12">
                                         <div class="form-group">
                                             <label for="discount" class="form-label">{{__('global.discount')}}</label>
-                                            <input  id="discount" type="number" value="" class="form-control" name="discount" placeholder="{{__('global.discount')}}">
+                                            <input  id="discount" type="number" step="any" value="" class="form-control" name="discount" placeholder="{{__('global.discount')}}">
                                         </div>
                                     </div>
 
@@ -328,7 +328,7 @@
                 <td><img src="${product.img}" class="img-thumbnail" style="max-width: 50px; max-height: 50px"></td>
 
                 <td>${product.name} <input type="hidden" name="product_ids[]" value="${product.id}"></td>
-                <td><input type="number" name="product_quantities[]" max="${product.max}" class="input-qty product-quantity" value="${product.quantity}"></td>
+                <td><input type="number" step="any" name="product_quantities[]" max="${product.max}" class="input-qty product-quantity" value="${product.quantity}"></td>
                 <td><input class="input-price product-price" type="number" name="product_prices[]" value="${product.price}"/> </td>
                 <td class="product-subtotal">${product.subtotal}</td>
                 <td><button class="btn btn-danger btn-sm remove-product"><i class="fas fa-trash"></button></td>

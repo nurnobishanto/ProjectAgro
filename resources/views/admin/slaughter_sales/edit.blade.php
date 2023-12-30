@@ -88,7 +88,7 @@
                                     <div class="col-sm-6 col-12">
                                         <div class="form-group">
                                             <label for="paid_amount" class="form-label">{{__('global.paid_amount')}}</label>
-                                            <input  id="paid_amount" value="{{$slaughter_sale->paid}}" type="number"  class="form-control" name="paid_amount" placeholder="{{__('global.paid_amount')}}">
+                                            <input  id="paid_amount" value="{{$slaughter_sale->paid}}" type="number" step="any"  class="form-control" name="paid_amount" placeholder="{{__('global.paid_amount')}}">
                                         </div>
                                     </div>
                                     <div class="col-sm-6 col-12">

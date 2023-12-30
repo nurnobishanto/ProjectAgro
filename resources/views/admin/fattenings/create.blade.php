@@ -159,19 +159,19 @@
                                 <div class="col-md-4 col-sm-6">
                                     <div class="form-group">
                                         <label for="weight">{{ __('global.weight')}} ({{ __('global.kg')}})<span class="text-danger"> *</span></label>
-                                        <input id="weight" value="{{old('weight')}}" name="weight" type="number"  class="form-control" placeholder="{{ __('global.weight')}}">
+                                        <input id="weight" value="{{old('weight')}}" name="weight" type="number" step="any"  class="form-control" placeholder="{{ __('global.weight')}}">
                                     </div>
                                 </div>
                                 <div class="col-md-4 col-sm-6">
                                     <div class="form-group">
                                         <label for="height">{{ __('global.height')}} ({{ __('global.inch')}})<span class="text-danger"> *</span></label>
-                                        <input id="height" value="{{old('height')}}" name="height" type="number"  class="form-control" placeholder="{{ __('global.height')}}">
+                                        <input id="height" value="{{old('height')}}" name="height" type="number" step="any"  class="form-control" placeholder="{{ __('global.height')}}">
                                     </div>
                                 </div>
                                 <div class="col-md-4 col-sm-6">
                                     <div class="form-group">
                                         <label for="width">{{ __('global.width')}} ({{ __('global.inch')}})<span class="text-danger"> *</span></label>
-                                        <input id="width" value="{{old('width')}}" name="width" type="number"  class="form-control" placeholder="{{ __('global.width')}}">
+                                        <input id="width" value="{{old('width')}}" name="width" type="number"  step="any" class="form-control" placeholder="{{ __('global.width')}}">
                                     </div>
                                 </div>
                                 <div class="col-md-4 col-sm-6">

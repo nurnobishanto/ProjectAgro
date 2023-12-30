@@ -216,8 +216,8 @@
                 <td><img src="${product.img}" class="img-thumbnail" style="max-width: 50px; max-height: 50px"></td>
 
                 <td>${product.name} <input type="hidden" name="product_ids[]" value="${product.id}"></td>
-                <td><input type="number" name="product_quantities[]" max="${product.max}" class="input-qty product-quantity" value="${product.quantity}"></td>
-                <td><input class="input-price product-price" type="number" name="product_prices[]" value="${product.price}"/> </td>
+                <td><input type="number" step="any" name="product_quantities[]" max="${product.max}" class="input-qty product-quantity" value="${product.quantity}"></td>
+                <td><input class="input-price product-price" type="number" step="any" name="product_prices[]" value="${product.price}"/> </td>
                 <td class="product-subtotal">${product.subtotal}</td>
                 <td><button class="btn btn-danger btn-sm remove-product"><i class="fas fa-trash"></button></td>
             </tr>

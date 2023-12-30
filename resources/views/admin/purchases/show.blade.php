@@ -62,31 +62,31 @@
                                     <div class="col-md-4 col-sm-6 col-12">
                                         <div class="form-group">
                                             <label for="paid_amount" class="form-label">{{__('global.paid_amount')}}</label>
-                                            <input  id="paid_amount" readonly value="{{$purchase->paid}}" type="number"  class="form-control" name="paid_amount" placeholder="{{__('global.paid_amount')}}">
+                                            <input  id="paid_amount" readonly value="{{$purchase->paid}}" type="number" step="any"  class="form-control" name="paid_amount" placeholder="{{__('global.paid_amount')}}">
                                         </div>
                                     </div>
                                     <div class="col-md-4 col-sm-6 col-12">
                                         <div class="form-group">
                                             <label for="discount" class="form-label">{{__('global.discount')}}</label>
-                                            <input  id="discount" readonly value="{{$purchase->discount}}" type="number"  class="form-control" name="discount" placeholder="{{__('global.discount')}}">
+                                            <input  id="discount" readonly value="{{$purchase->discount}}" type="number" step="any"  class="form-control" name="discount" placeholder="{{__('global.discount')}}">
                                         </div>
                                     </div>
                                     <div class="col-md-4 col-sm-6 col-12">
                                         <div class="form-group">
                                             <label for="shipping_cost" class="form-label">{{__('global.shipping_cost')}}</label>
-                                            <input  id="shipping_cost" readonly value="{{$purchase->shipping_cost}}" type="number" class="form-control" name="shipping_cost" placeholder="{{__('global.shipping_cost')}}">
+                                            <input  id="shipping_cost" readonly value="{{$purchase->shipping_cost}}" type="number" step="any" class="form-control" name="shipping_cost" placeholder="{{__('global.shipping_cost')}}">
                                         </div>
                                     </div>
                                     <div class="col-md-4 col-sm-6 col-12">
                                         <div class="form-group">
                                             <label for="labor_cost" class="form-label">{{__('global.labor_cost')}}</label>
-                                            <input  id="labor_cost" readonly value="{{$purchase->labor_cost}}" type="number"  class="form-control" name="labor_cost" placeholder="{{__('global.labor_cost')}}">
+                                            <input  id="labor_cost" readonly value="{{$purchase->labor_cost}}" type="number" step="any"  class="form-control" name="labor_cost" placeholder="{{__('global.labor_cost')}}">
                                         </div>
                                     </div>
                                     <div class="col-md-4 col-sm-6 col-12">
                                         <div class="form-group">
                                             <label for="other_cost" class="form-label">{{__('global.other_cost')}}</label>
-                                            <input  id="other_cost" readonly value="{{$purchase->other_cost}}" type="number" class="form-control" name="other_cost" placeholder="{{__('global.other_cost')}}">
+                                            <input  id="other_cost" readonly value="{{$purchase->other_cost}}" type="number" step="any" class="form-control" name="other_cost" placeholder="{{__('global.other_cost')}}">
                                         </div>
                                     </div>
                                     <div class="col-md-4 col-sm-6 col-12">
@@ -342,8 +342,8 @@
                 <td><img src="${product.img}" class="img-thumbnail" style="max-width: 50px; max-height: 50px"></td>
 
                 <td>${product.name} <input type="hidden" name="product_ids[]" value="${product.id}"></td>
-                <td><input type="number"  name="product_quantities[]"  class="input-qty product-quantity" value="${product.quantity}"> <sup>${product.unit}</sup></td>
-                <td><input class="input-price product-price"  type="number" name="product_prices[]" value="${product.price}" step="0.01"/> </td>
+                <td><input type="number" step="any"  name="product_quantities[]"  class="input-qty product-quantity" value="${product.quantity}"> <sup>${product.unit}</sup></td>
+                <td><input class="input-price product-price"  type="number" step="any" name="product_prices[]" value="${product.price}" step="0.01"/> </td>
                 <td class="product-subtotal">${product.subtotal}</td>
             </tr>
         `);

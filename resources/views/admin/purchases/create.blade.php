@@ -96,31 +96,31 @@
                                     <div class="col-md-4 col-sm-6 col-12">
                                         <div class="form-group">
                                             <label for="paid_amount" class="form-label">{{__('global.paid_amount')}}</label>
-                                            <input  id="paid_amount" type="number"  class="form-control" name="paid_amount" placeholder="{{__('global.paid_amount')}}">
+                                            <input  id="paid_amount" type="number"  step="any" class="form-control" name="paid_amount" placeholder="{{__('global.paid_amount')}}">
                                         </div>
                                     </div>
                                     <div class="col-md-4 col-sm-6 col-12">
                                         <div class="form-group">
                                             <label for="discount" class="form-label">{{__('global.discount')}}</label>
-                                            <input  id="discount" type="number" value="" class="form-control" name="discount" placeholder="{{__('global.discount')}}">
+                                            <input  id="discount" type="number" step="any" value="" class="form-control" name="discount" placeholder="{{__('global.discount')}}">
                                         </div>
                                     </div>
                                     <div class="col-md-4 col-sm-6 col-12">
                                         <div class="form-group">
                                             <label for="shipping_cost" class="form-label">{{__('global.shipping_cost')}}</label>
-                                            <input  id="shipping_cost" type="number" value="" class="form-control" name="shipping_cost" placeholder="{{__('global.shipping_cost')}}">
+                                            <input  id="shipping_cost" type="number" step="any" value="" class="form-control" name="shipping_cost" placeholder="{{__('global.shipping_cost')}}">
                                         </div>
                                     </div>
                                     <div class="col-md-4 col-sm-6 col-12">
                                         <div class="form-group">
                                             <label for="labor_cost" class="form-label">{{__('global.labor_cost')}}</label>
-                                            <input  id="labor_cost" type="number" value="" class="form-control" name="labor_cost" placeholder="{{__('global.labor_cost')}}">
+                                            <input  id="labor_cost" type="number" step="any" value="" class="form-control" name="labor_cost" placeholder="{{__('global.labor_cost')}}">
                                         </div>
                                     </div>
                                     <div class="col-md-4 col-sm-6 col-12">
                                         <div class="form-group">
                                             <label for="other_cost" class="form-label">{{__('global.other_cost')}}</label>
-                                            <input  id="other_cost" type="number" value="" class="form-control" name="other_cost" placeholder="{{__('global.other_cost')}}">
+                                            <input  id="other_cost" type="number" step="any" value="" class="form-control" name="other_cost" placeholder="{{__('global.other_cost')}}">
                                         </div>
                                     </div>
                                     <div class="col-md-4 col-sm-6 col-12">

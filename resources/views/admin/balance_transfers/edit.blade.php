@@ -51,7 +51,7 @@
                             <div class="col-lg-3 col-md-4 col-sm-12">
                                 <div class="form-group">
                                     <label for="amount">{{ __('global.balance_transfer')}}<span class="text-danger"> *</span></label>
-                                    <input id="amount" name="amount" value="{{$balance_transfer->amount}}" type="number" class="form-control" placeholder="{{ __('global.enter_balance_transfer')}}">
+                                    <input id="amount" name="amount" value="{{$balance_transfer->amount}}" type="number" step="any" class="form-control" placeholder="{{ __('global.enter_balance_transfer')}}">
                                 </div>
                             </div>
                             <div class="col-lg-3 col-md-6 col-sm-12">

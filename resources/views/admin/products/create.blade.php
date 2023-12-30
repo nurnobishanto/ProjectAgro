@@ -87,7 +87,7 @@
                             <div class="col-md-4">
                                 <div class="form-group">
                                     <label for="alert_quantity">{{ __('global.alert_quantity')}}<span class="text-danger"> *</span></label>
-                                    <input id="alert_quantity" type="number" name="alert_quantity" value="{{old('alert_quantity')}}" class="form-control" placeholder="{{ __('global.alert_quantity')}}">
+                                    <input id="alert_quantity" type="number" step="any" name="alert_quantity" value="{{old('alert_quantity')}}" class="form-control" placeholder="{{ __('global.alert_quantity')}}">
                                 </div>
                             </div>
                             <div class="col-md-4">

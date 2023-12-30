@@ -44,7 +44,7 @@
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label for="previous_balance">{{ __('global.previous_balance')}}</label>
-                                    <input id="previous_balance" type="number" name="previous_balance" class="form-control" placeholder="{{ __('global.previous_balance')}}">
+                                    <input id="previous_balance" type="number" step="any" name="previous_balance" class="form-control" placeholder="{{ __('global.previous_balance')}}">
                                 </div>
                             </div>
                             <div class="col-md-6">

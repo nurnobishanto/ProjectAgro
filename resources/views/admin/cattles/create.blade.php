@@ -100,7 +100,7 @@
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label for="purchase_price">{{ __('global.purchase_price')}}<span class="text-danger"> *</span></label>
-                                    <input id="purchase_price" type="number" name="purchase_price" value="{{old('purchase_price')}}"  placeholder="{{ __('global.enter_purchase_price')}}" class="form-control">
+                                    <input id="purchase_price" type="number" step="any" name="purchase_price" value="{{old('purchase_price')}}"  placeholder="{{ __('global.enter_purchase_price')}}" class="form-control">
                                 </div>
                             </div>
                             <div class="col-md-6">
@@ -119,19 +119,19 @@
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label for="weight">{{ __('global.weight')}} ({{ __('global.kg')}})</label>
-                                    <input id="weight" value="{{old('weight')}}" name="weight" type="number"  class="form-control" placeholder="{{ __('global.weight')}}">
+                                    <input id="weight" value="{{old('weight')}}" name="weight" type="number" step="any"  class="form-control" placeholder="{{ __('global.weight')}}">
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label for="height">{{ __('global.height')}} ({{ __('global.inch')}})</label>
-                                    <input id="height" value="{{old('height')}}" name="height" type="number"  class="form-control" placeholder="{{ __('global.height')}}">
+                                    <input id="height" value="{{old('height')}}" name="height" type="number" step="any"  class="form-control" placeholder="{{ __('global.height')}}">
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label for="width">{{ __('global.width')}} ({{ __('global.inch')}})</label>
-                                    <input id="width" value="{{old('width')}}" name="width" type="number"  class="form-control" placeholder="{{ __('global.width')}}">
+                                    <input id="width" value="{{old('width')}}" name="width" type="number" step="any"  class="form-control" placeholder="{{ __('global.width')}}">
                                 </div>
                             </div>
                             <div class="col-md-6">
@@ -215,7 +215,7 @@
                             <div class="col-md-6 d-none" id="total_child">
                                 <div class="form-group">
                                     <label for="total_child">{{ __('global.total_child')}}</label>
-                                    <input  name="total_child" value="{{old('total_child')}}" type="number" class="form-control" placeholder="{{ __('global.total_child')}}">
+                                    <input  name="total_child" value="{{old('total_child')}}" type="number" step="any" class="form-control" placeholder="{{ __('global.total_child')}}">
                                 </div>
                             </div>
                             <div class="col-md-6 d-none" id="pregnant_date">
@@ -227,7 +227,7 @@
                             <div class="col-md-6 d-none" id="pregnant_no">
                                 <div class="form-group">
                                     <label for="pregnant_no">{{ __('global.pregnant_no')}}</label>
-                                    <input  name="pregnant_no" value="{{old('pregnant_no')}}" type="number" class="form-control" placeholder="{{ __('global.pregnant_no')}}">
+                                    <input  name="pregnant_no" value="{{old('pregnant_no')}}" type="number" step="any" class="form-control" placeholder="{{ __('global.pregnant_no')}}">
                                 </div>
                             </div>
                             <div class="col-md-6 d-none" id="delivery_date">

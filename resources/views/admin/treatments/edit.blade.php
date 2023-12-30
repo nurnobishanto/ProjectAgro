@@ -101,6 +101,7 @@
                                                             <input
                                                                 name="qty[]"
                                                                 type="number"
+                                                                step="any"
                                                                 value="{{$item->pivot->quantity}}"
                                                                 placeholder="{{ __('global.quantity') }}"
                                                                 class="form-control quantity-input"
