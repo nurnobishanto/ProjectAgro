@@ -196,7 +196,7 @@ class SlaughterSaleController extends Controller
     }
     public function approve(Request $request,$id){
         $slaughter_sale = SlaughterSale::find($id);
-        
+
         foreach ($slaughter_sale->products as $product) {
             $stock = SlaughterStock::where('slaughter_store_id', $slaughter_sale->slaughter_store_id)
                 ->where('product_id', $product->id)
