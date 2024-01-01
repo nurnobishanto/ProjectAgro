@@ -20,8 +20,7 @@ Route::get('/', function () {
 })->name('website.home');
 Route::get('/test', function () {
 
-    $cattle = \App\Models\Cattle::find(1);
-    return getTotalAvgExpenseCost("2023-12-11");
+    return getLineChartForMilkProduction(type: "yearly");
 });
 Route::prefix('ajax/')->group(function (){
     Route::get('farms',[\App\Http\Controllers\AjaxCartController::class,'farms'])->name('farms');

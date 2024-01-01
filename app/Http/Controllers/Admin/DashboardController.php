@@ -13,7 +13,7 @@ use Illuminate\Support\Facades\App;
 
 class DashboardController extends Controller
 {
-    public function index(){
+    public function index(Request $request){
         App::setLocale(session('locale'));
         $data = array();
         $data['all_cattle_count'] = Cattle::all();
@@ -21,6 +21,8 @@ class DashboardController extends Controller
         $data['parties'] = Party::all();
         $data['suppliers'] = Supplier::all();
         $data['farms'] = Farm::all();
+        $data['chartData'] = getLineChartForMilkProduction(type: $request->type);
+
 
         return view('admin.dashboard',$data);
     }

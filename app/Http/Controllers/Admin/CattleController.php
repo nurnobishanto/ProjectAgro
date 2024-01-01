@@ -188,9 +188,12 @@ class CattleController extends Controller
                 'purchase_date' => 'required',
                 'purchase_price' => 'required',
             ]);
-            $old_supplier = Supplier::find($cattle->supplier_id);
-            $old_supplier->current_balance = $old_supplier->current_balance + $cattle->purchase_price;
-            $old_supplier->update();
+            if ($cattle->supplier_id){
+                $old_supplier = Supplier::find($cattle->supplier_id);
+                $old_supplier->current_balance = $old_supplier->current_balance + $cattle->purchase_price;
+                $old_supplier->update();
+            }
+
 
             $cattle->supplier_id = $request->supplier_id;
             $cattle->purchase_date = $request->purchase_date;
@@ -200,6 +203,14 @@ class CattleController extends Controller
             $new_supplier = Supplier::find($request->supplier_id);
             $new_supplier->current_balance = $new_supplier->current_balance - $request->purchase_price;
             $new_supplier->update();
+        }else{
+            if ($cattle->supplier_id){
+                $old_supplier = Supplier::find($cattle->supplier_id);
+                $old_supplier->current_balance = $old_supplier->current_balance + $cattle->purchase_price;
+                $old_supplier->update();
+            }
+            $cattle->supplier_id = null;
+            $cattle->update();
         }
         $cattle->session_year_id = $request->session_year_id;
         $cattle->farm_id = $request->farm_id;

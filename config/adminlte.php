@@ -457,7 +457,7 @@ return [
         ['header' => 'milk_production'],
         [
             'text'    => 'milk_production',
-            'icon'    => 'fas fa-warehouse',
+            'icon'    => 'fas fa-tint',
             'can' => ['milk_production_manage','milk_stock_manage','milk_sale_party_manage'],
             'submenu' => [
                 [
@@ -784,32 +784,32 @@ return [
                 [
                     'type' => 'js',
                     'asset' => false,
-                    'location' => env('app_url').'/vendor/datatables-plugins/buttons/js/dataTables.buttons.min.js',
+                    'location' => env('APP_URL').'/vendor/datatables-plugins/buttons/js/dataTables.buttons.min.js',
                 ],
                 [
                     'type' => 'js',
                     'asset' => false,
-                    'location' => env('app_url').'/vendor/datatables-plugins/buttons/js/buttons.bootstrap4.min.js',
+                    'location' => env('APP_URL').'/vendor/datatables-plugins/buttons/js/buttons.bootstrap4.min.js',
                 ],
                 [
                     'type' => 'js',
                     'asset' => false,
-                    'location' => env('app_url').'/vendor/datatables-plugins/buttons/js/buttons.html5.min.js',
+                    'location' => env('APP_URL').'/vendor/datatables-plugins/buttons/js/buttons.html5.min.js',
                 ],
                 [
                     'type' => 'js',
                     'asset' => false,
-                    'location' => env('app_url').'/vendor/datatables-plugins/buttons/js/buttons.print.min.js',
+                    'location' => env('APP_URL').'/vendor/datatables-plugins/buttons/js/buttons.print.min.js',
                 ],
                 [
                     'type' => 'js',
                     'asset' => false,
-                    'location' => env('app_url').'/vendor/datatables-plugins/buttons/js/buttons.colVis.min.js',
+                    'location' => env('APP_URL').'/vendor/datatables-plugins/buttons/js/buttons.colVis.min.js',
                 ],
                 [
                     'type' => 'css',
                     'asset' => false,
-                    'location' => env('app_url').'/vendor/datatables-plugins/buttons/css/buttons.bootstrap4.min.css',
+                    'location' => env('APP_URL').'/vendor/datatables-plugins/buttons/css/buttons.bootstrap4.min.css',
                 ],
             ],
         ],
@@ -819,12 +819,12 @@ return [
                 [
                     'type' => 'js',
                     'asset' => true,
-                    'location' => env('app_url').'/vendor/jquery-ui/jquery-ui.js',
+                    'location' => env('APP_URL').'/vendor/jquery-ui/jquery-ui.js',
                 ],
                 [
                     'type' => 'css',
                     'asset' => true,
-                    'location' => env('app_url').'/vendor/jquery-ui/jquery-ui.css',
+                    'location' => env('APP_URL').'/vendor/jquery-ui/jquery-ui.css',
                 ],
             ],
         ],
@@ -869,12 +869,12 @@ return [
                 [
                     'type' => 'js',
                     'asset' => false,
-                    'location' =>env('app_url').'/vendor/summernote/summernote-bs5.js',
+                    'location' =>env('APP_URL').'/vendor/summernote/summernote-bs5.js',
                 ],
                 [
                     'type' => 'css',
                     'asset' => false,
-                    'location' =>env('app_url').'/vendor/summernote/summernote-bs5.css',
+                    'location' =>env('APP_URL').'/vendor/summernote/summernote-bs5.css',
                 ],
             ],
         ],
@@ -884,7 +884,7 @@ return [
                 [
                     'type' => 'js',
                     'asset' => true,
-                    'location' => env('app_url').'/vendor/moment/moment.min.js',
+                    'location' => env('APP_URL').'/vendor/moment/moment.min.js',
                 ],
             ],
         ],
@@ -900,6 +900,21 @@ return [
                     'type' => 'js',
                     'asset' => false,
                     'location' => '//cdnjs.cloudflare.com/ajax/libs/pace/1.0.2/pace.min.js',
+                ],
+            ],
+        ],
+        'chartJs' => [
+            'active' => false,
+            'files' => [
+                [
+                    'type' => 'css',
+                    'asset' => false,
+                    'location' => env('APP_URL').'/vendor/chart.js/Chart.css',
+                ],
+                [
+                    'type' => 'js',
+                    'asset' => false,
+                    'location' => env('APP_URL').'/vendor/chart.js/Chart.js',
                 ],
             ],
         ],

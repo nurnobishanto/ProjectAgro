@@ -83,6 +83,38 @@
             </div>
         </div>
     </div>
+    <div class="row">
+        <div class="col-md-6">
+            <div class="card card-purple">
+                <div class="card-header">
+                    <h3 class="card-title">Milk Production Bar Chart</h3>
+                    <div class="card-tools">
+                        <button type="button" class="btn btn-tool" data-card-widget="collapse">
+                            <i class="fas fa-minus"></i>
+                        </button>
+
+                    </div>
+                </div>
+                <div class="card-body">
+                    <div class="chart">
+                        <div class="chartjs-size-monitor">
+                            <div class="chartjs-size-monitor-expand">
+                                <div class=""></div>
+                            </div>
+                            <div class="chartjs-size-monitor-shrink">
+                                <div class=""></div>
+                            </div>
+                        </div>
+                        <canvas id="barChart" style="min-height: 250px; height: 250px; max-height: 250px; max-width: 100%; display: block; width: 359px;" width="1077" height="750" class="chartjs-render-monitor"></canvas>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+
+
+    </div>
 
 
 @stop
@@ -93,14 +125,36 @@
         <b>{{__('global.version')}}</b> {{env('DEV_VERSION')}}
     </div>
 @stop
+@section('plugins.chartJs',true)
 @section('css')
     <link rel="stylesheet" href="/css/admin_custom.css">
 @stop
 
 @section('js')
+
     <script>
         $(document).ready(function() {
-            toastr.now();
+
+            var chartData = @json($chartData['data']);
+            var chartOptions = @json($chartData['options']);
+
+            //-------------
+            //- BAR CHART -
+            //-------------
+            var barChartCanvas = $('#barChart').get(0).getContext('2d')
+            var barChartData = $.extend(true, {}, chartData)
+            var temp0 = chartData.datasets[1]
+            var temp1 = chartData.datasets[0]
+            barChartData.datasets[0] = temp1
+            barChartData.datasets[1] = temp0
+            new Chart(barChartCanvas, {
+                type: 'bar',
+                data: barChartData,
+                options: chartOptions
+            })
+
+
+
         });
     </script>
 @stop
