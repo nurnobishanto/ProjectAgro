@@ -53,6 +53,61 @@ if (!function_exists('getTotalAvgExpenseCost')) {
         return $data;
     }
 }
+function fillMissingDates($data, $startDate, $endDate, $type)
+{
+    $dates = generateDates($startDate, $endDate, $type);
+
+    $filledData = [];
+
+    foreach ($dates as $date) {
+        $found = false;
+
+        foreach ($data as $item) {
+            $itemDate = Carbon\Carbon::parse($item['date'])->format('Y-m-d');
+
+            if ($itemDate === $date) {
+                $filledData[] = [
+                    'date' => $date,
+                    'quantity' => $item['quantity'],
+                ];
+                $found = true;
+                break;
+            }
+        }
+
+        if (!$found) {
+            $filledData[] = [
+                'date' => $date,
+                'quantity' => 0,
+            ];
+        }
+    }
+
+    return $filledData;
+}
+
+function generateDates($startDate, $endDate, $type)
+{
+    $startDate = Carbon\Carbon::parse($startDate);
+    $endDate = Carbon\Carbon::parse($endDate);
+
+    $dates = [];
+
+    while ($startDate <= $endDate) {
+        if ($type === 'monthly') {
+            $dates[] = $startDate->format('Y-m');
+            $startDate->addMonth();
+        } elseif ($type === 'yearly') {
+            $dates[] = $startDate->format('Y');
+            $startDate->addYear();
+        } else {
+            $dates[] = $startDate->format('Y-m-d');
+            $startDate->addDay();
+        }
+    }
+
+    return $dates;
+}
 function filterDataByTimeInterval($data, $type, $limit)
 {
     switch ($type) {
@@ -107,13 +162,16 @@ if (!function_exists('getLineChartForMilkProduction')) {
         $filteredMorningData = filterDataByTimeInterval($morningData, $type, $limit);
         $filteredEveningData = filterDataByTimeInterval($eveningData, $type, $limit);
 
+        // Fill missing dates with zero quantities
+        $filledMorningData = fillMissingDates($filteredMorningData, $startDate, $endDate, $type);
+        $filledEveningData = fillMissingDates($filteredEveningData, $startDate, $endDate, $type);
 
 
         $labels = [];
         $morningQuantities = [];
         $eveningQuantities = [];
 
-        foreach ($filteredMorningData as $item) {
+        foreach ($filledMorningData as $item) {
             if ($type === 'monthly') {
                 $labels[] = Carbon\Carbon::parse($item['date'])->format('M y');
             } elseif ($type === 'yearly'){
@@ -126,7 +184,7 @@ if (!function_exists('getLineChartForMilkProduction')) {
             $morningQuantities[] = $item['quantity'];
         }
 
-        foreach ($filteredEveningData as $item) {
+        foreach ($filledEveningData as $item) {
             $eveningQuantities[] = $item['quantity'];
         }
         $morningSum = array_sum($morningQuantities);
