@@ -24,6 +24,7 @@ use App\Http\Controllers\Admin\FeedingGroupController;
 use App\Http\Controllers\Admin\FeedingMomentController;
 use App\Http\Controllers\Admin\GlobalSettingController;
 use App\Http\Controllers\Admin\MilkProductionController;
+use App\Http\Controllers\Admin\MilkSaleController;
 use App\Http\Controllers\Admin\MilkSalePartyController;
 use App\Http\Controllers\Admin\MilkStockController;
 use App\Http\Controllers\Admin\OpeningBalanceController;
@@ -305,14 +306,14 @@ Route::resource('/slaughter_customer-receives',SlaughterCustomerReceiveControlle
 Route::get('/slaughter_sales/trashed',[SlaughterSaleController::class,'trashed_list'])->middleware('permission:slaughter_sale_manage')->name('slaughter_sales.trashed');
 Route::get('/slaughter_sales/trashed/{slaughter_sale}/restore',[SlaughterSaleController::class,'restore'])->middleware('permission:slaughter_sale_manage')->name('slaughter_sales.restore');
 Route::get('/slaughter_sales/trashed/{slaughter_sale}/delete',[SlaughterSaleController::class,'force_delete'])->middleware('permission:slaughter_sale_manage')->name('slaughter_sales.force_delete');
-Route::post('/slaughter_sales/{slaughter_sale}/approve',[SlaughterSaleController::class,'approve'])->middleware('permission:slaughter_sale_approve')->name('slaughter_sales.approve');
+Route::get('/slaughter_sales/{slaughter_sale}/approve',[SlaughterSaleController::class,'approve'])->middleware('permission:slaughter_sale_approve')->name('slaughter_sales.approve');
 Route::resource('/slaughter_sales',SlaughterSaleController::class)->middleware('permission:slaughter_sale_manage');
 
 //Slaughter Waste
 Route::get('/slaughter_wastes/trashed',[SlaughterWasteController::class,'trashed_list'])->middleware('permission:slaughter_waste_manage')->name('slaughter_wastes.trashed');
 Route::get('/slaughter_wastes/trashed/{slaughter_waste}/restore',[SlaughterWasteController::class,'restore'])->middleware('permission:slaughter_waste_manage')->name('slaughter_wastes.restore');
 Route::get('/slaughter_wastes/trashed/{slaughter_waste}/delete',[SlaughterWasteController::class,'force_delete'])->middleware('permission:slaughter_waste_manage')->name('slaughter_wastes.force_delete');
-Route::post('/slaughter_wastes/{slaughter_waste}/approve',[SlaughterWasteController::class,'approve'])->middleware('permission:slaughter_waste_approve')->name('slaughter_wastes.approve');
+Route::get('/slaughter_wastes/{slaughter_waste}/approve',[SlaughterWasteController::class,'approve'])->middleware('permission:slaughter_waste_approve')->name('slaughter_wastes.approve');
 Route::resource('/slaughter_wastes',SlaughterWasteController::class)->middleware('permission:slaughter_waste_manage');
 
 
@@ -339,6 +340,14 @@ Route::get('/milk-sale-parties/trashed',[MilkSalePartyController::class,'trashed
 Route::get('/milk-sale-parties/trashed/{milk_sale_party}/restore',[MilkSalePartyController::class,'restore'])->middleware('permission:milk_sale_party_manage')->name('milk-sale-parties.restore');
 Route::get('/milk-sale-parties/trashed/{milk_sale_party}/delete',[MilkSalePartyController::class,'force_delete'])->middleware('permission:milk_sale_party_manage')->name('milk-sale-parties.force_delete');
 Route::resource('/milk-sale-parties',MilkSalePartyController::class)->middleware('permission:milk_sale_party_manage');
+
+
+//Milk Saled
+Route::get('/milk-sales/trashed',[MilkSaleController::class,'trashed_list'])->middleware('permission:milk_sale_manage')->name('milk-sales.trashed');
+Route::get('/milk-sales/trashed/{milk_sale}/restore',[MilkSaleController::class,'restore'])->middleware('permission:milk_sale_manage')->name('milk-sales.restore');
+Route::get('/milk-sales/trashed/{milk_sale}/delete',[MilkSaleController::class,'force_delete'])->middleware('permission:milk_sale_manage')->name('milk-sales.force_delete');
+Route::get('/milk-sales/{milk_sale}/approve',[MilkSaleController::class,'approve'])->middleware('permission:milk_sale_approve')->name('milk-sales.approve');
+Route::resource('/milk-sales',MilkSaleController::class)->middleware('permission:milk_production_manage');
 
 //Setting
 Route::get('milk-stock',[MilkStockController::class,'milk_stock'])->name('milk_stock');

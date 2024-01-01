@@ -12,5 +12,7 @@ return [
     'fresh_migrated_seed' => 'Fresh Migrated with seed',
     'slaughter_waste_has_been_approved' => 'Slaughter Waste has been approved',
     'slaughter_sale_has_been_approved' => 'Slaughter Sale has been approved',
+    'milk_waste_has_been_approved' => 'Milk Waste has been approved',
+    'milk_sale_has_been_approved' => 'Milk Sale has been approved',
 ];
 

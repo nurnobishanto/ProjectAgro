@@ -101,7 +101,7 @@ class SlaughterSaleController extends Controller
         $slaughter_sale->due = $due;
         $slaughter_sale->update();
 
-        toastr()->success($slaughter_sale->invoice_no.__('global.created_success'),__('global.slaughter_sale').__('global.created'));
+        toastr()->success($slaughter_sale->unique_id.__('global.created_success'),__('global.slaughter_sale').__('global.created'));
         return redirect()->route('admin.slaughter_sales.index');
     }
     public function update(Request $request, $id){
@@ -162,7 +162,7 @@ class SlaughterSaleController extends Controller
         $slaughter_sale->due = $due;
         $slaughter_sale->update();
 
-        toastr()->success($slaughter_sale->invoice_no.__('global.updated_success'),__('global.slaughter_sale').__('global.updated'));
+        toastr()->success($slaughter_sale->unique_id.__('global.updated_success'),__('global.slaughter_sale').__('global.updated'));
         return redirect()->route('admin.slaughter_sales.index');
     }
 
@@ -171,7 +171,7 @@ class SlaughterSaleController extends Controller
         App::setLocale(session('locale'));
         $slaughter_sale = SlaughterSale::find($id);
         $slaughter_sale->delete();
-        toastr()->warning($slaughter_sale->invoice_no.__('global.deleted_success'),__('global.slaughter_sale').__('global.deleted'));
+        toastr()->warning($slaughter_sale->unique_id.__('global.deleted_success'),__('global.slaughter_sale').__('global.deleted'));
         return redirect()->route('admin.slaughter_sales.index');
     }
     public function trashed_list(){
@@ -184,7 +184,7 @@ class SlaughterSaleController extends Controller
         $slaughter_sale = SlaughterSale::withTrashed()->find($id);
         $slaughter_sale->deleted_at = null;
         $slaughter_sale->update();
-        toastr()->success($slaughter_sale->invoice_no.__('global.restored_success'),__('global.restored'));
+        toastr()->success($slaughter_sale->unique_id.__('global.restored_success'),__('global.restored'));
         return redirect()->route('admin.slaughter_sales.index');
     }
     public function force_delete($id){
@@ -196,26 +196,14 @@ class SlaughterSaleController extends Controller
     }
     public function approve(Request $request,$id){
         $slaughter_sale = SlaughterSale::find($id);
+        
         foreach ($slaughter_sale->products as $product) {
             $stock = SlaughterStock::where('slaughter_store_id', $slaughter_sale->slaughter_store_id)
                 ->where('product_id', $product->id)
                 ->first();
-
-            if ($stock) {
-                $preQty = $stock->quantity;
-                $newQty = $product->pivot->quantity;
-                $updateQty = min($newQty, $preQty);
-
-                if ($updateQty > 0) {
-                    $stock->decrement('quantity', $updateQty);
-                    $product->pivot->quantity = $updateQty;
-                    $product->save();
-                } else {
-                    // Detach the product if quantity is zero
-                    $slaughter_sale->products()->detach($product);
-                }
-            } else {
-                $slaughter_sale->products()->detach($product);
+            if (!$stock || $product->pivot->quantity > $stock->quantity) {
+                toastr()->error($product->name, __('global.stock_out'));
+                return redirect()->back();
             }
         }
 

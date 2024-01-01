@@ -22,6 +22,13 @@ if (!function_exists('getSlaughterProductsForSale')) {
         return \App\Models\SlaughterStock::where('slaughter_store_id',$param)->get();
     }
 }
+if (!function_exists('getMilkSaleParty')) {
+
+    function getMilkSaleParty()
+    {
+        return \App\Models\MilkSaleParty::all();
+    }
+}
 if (!function_exists('getSlaughterCustomer')) {
 
     function getSlaughterCustomer()

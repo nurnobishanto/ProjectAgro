@@ -6,38 +6,25 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class MilkSale extends Model
+class MilkPartyReceive extends Model
 {
     use HasFactory,SoftDeletes;
     protected $fillable = [
         'unique_id',
         'date',
         'account_id',
-        'farm_id',
         'milk_sale_party_id',
-        'quantity',
-        'unit_price',
-        'sub_total',
-        'tax',
-        'discount',
-        'total',
-        'paid',
-        'due',
+        'amount',
         'note',
         'status',
+        'type',
         'created_by',
         'updated_by',
     ];
 
-
     public function account()
     {
         return $this->belongsTo(Account::class);
-    }
-
-    public function farm()
-    {
-        return $this->belongsTo(Farm::class);
     }
 
     public function milkSaleParty()

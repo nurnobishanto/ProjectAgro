@@ -35,7 +35,7 @@ class SlaughterCustomerController extends Controller
         $request->validate([
             'name' => 'required',
             'status' => 'required',
-            'email' => 'email|unique:slaughter_customers',
+            'email' => 'email|unique:slaughter_customers|nullable',
             'photo' => 'image|mimes:jpeg,png,jpg,gif|max:2048',
         ]);
         $imagePath = null;
@@ -75,7 +75,7 @@ class SlaughterCustomerController extends Controller
         $request->validate([
             'name' => 'required',
             'status' => 'required',
-            'email' => 'email|unique:slaughter_customers,id,'.$id,
+            'email' => 'nullable|email|unique:slaughter_customers,id,'.$id,
             'photo' => 'image|mimes:jpeg,png,jpg,gif|max:2048',
         ]);
 
