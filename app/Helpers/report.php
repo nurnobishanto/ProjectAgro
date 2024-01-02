@@ -64,7 +64,7 @@ function filterDataByTimeInterval($data, $type, $limit)
                 return Carbon::parse($item->date)->format('Y-m-d');
             })->map(function ($group) {
                 return [
-                    'date' => $group->first()->date, // Use the date of the first item in the group
+                    'date' => Carbon::parse($group->first()->date)->format('Y-m-d'), // Use the date of the first item in the group
                     'm_quantity' => $group->where('moment','morning')->sum('quantity'),
                     'e_quantity' => $group->where('moment','evening')->sum('quantity'),
                 ];
@@ -74,7 +74,7 @@ function filterDataByTimeInterval($data, $type, $limit)
                 return Carbon::parse($item->date)->format('Y-m');
             })->map(function ($group) {
                 return [
-                    'date' => $group->first()->date, // Use the date of the first item in the group
+                    'date' => Carbon::parse($group->first()->date)->format('Y-m'), // Use the date of the first item in the group
                     'm_quantity' => $group->where('moment','morning')->sum('quantity'),
                     'e_quantity' => $group->where('moment','evening')->sum('quantity'),
                 ];
@@ -84,7 +84,7 @@ function filterDataByTimeInterval($data, $type, $limit)
                 return Carbon::parse($item->date)->format('Y');
             })->map(function ($group) {
                 return [
-                    'date' => $group->first()->date, // Use the date of the first item in the group
+                    'date' => Carbon::parse($group->first()->date)->format('Y'), // Use the date of the first item in the group
                     'm_quantity' => $group->where('moment','morning')->sum('quantity'),
                     'e_quantity' => $group->where('moment','evening')->sum('quantity'),
                 ];
@@ -94,7 +94,7 @@ function filterDataByTimeInterval($data, $type, $limit)
                 return Carbon::parse($item->date)->format('Y-m-d');
             })->map(function ($group) {
                 return [
-                    'date' => $group->first()->date, // Use the date of the first item in the group
+                    'date' => Carbon::parse($group->first()->date)->format('Y-m-d') , // Use the date of the first item in the group
                     'm_quantity' => $group->where('moment','morning')->sum('quantity'),
                     'e_quantity' => $group->where('moment','evening')->sum('quantity'),
                 ];
@@ -106,8 +106,7 @@ if (!function_exists('getLineChartForMilkProduction')) {
     function getLineChartForMilkProduction($cattleId = null, $startDate = null, $endDate = null,$type = "daily", $limit = 7)
     {
 
-        $data =  \App\Models\MilkProduction::query();
-
+        $data =  \App\Models\MilkProduction::where('status','success');
         if ($cattleId) {
             $data->where('cattle_id', $cattleId);
         }
@@ -119,7 +118,6 @@ if (!function_exists('getLineChartForMilkProduction')) {
         if ($endDate) {
             $data->where('date', '<=', $endDate);
         }
-
         $data = $data->get();
 
         // Filter data based on the time interval and limit
@@ -130,15 +128,8 @@ if (!function_exists('getLineChartForMilkProduction')) {
         $eveningQuantities = [];
 
         foreach ($filteredData as $item) {
-            if ($type === 'monthly') {
-                $labels[] = Carbon::parse($item['date'])->format('M y');
-            } elseif ($type === 'yearly'){
-                $labels[] = Carbon::parse($item['date'])->format('Y');
-            }
-            else {
-                $labels[] = $item['date'];
-            }
 
+            $labels[] = $item['date'];
             $morningQuantities[] = $item['m_quantity'];
             $eveningQuantities[] = $item['e_quantity'];
         }
