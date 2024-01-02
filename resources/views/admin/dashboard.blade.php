@@ -105,7 +105,7 @@
                                 <div class=""></div>
                             </div>
                         </div>
-                        <canvas id="barChart" style="min-height: 280px; height: 300px; max-height: 350px; max-width: 100%; display: block; width: 359px;" width="1077" height="750" class="chartjs-render-monitor"></canvas>
+                        <canvas id="barChart" style="min-height: 250px; height: 250px; max-height: 250px; max-width: 100%; display: block; width: 359px;" width="1077" height="750" class="chartjs-render-monitor"></canvas>
                     </div>
                 </div>
 

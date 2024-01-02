@@ -6,7 +6,8 @@ use App\Models\FeedingRecord;
 use App\Models\GlobalSetting;
 use App\Models\Party;
 use App\Models\Treatment;
-use ConsoleTVs\Charts;
+use Carbon\Carbon;
+
 
 if (!function_exists('getCattleTotalCost')) {
 
@@ -53,140 +54,96 @@ if (!function_exists('getTotalAvgExpenseCost')) {
         return $data;
     }
 }
-function fillMissingDates($data, $startDate, $endDate, $type)
-{
-    $dates = generateDates($startDate, $endDate, $type);
 
-    $filledData = [];
 
-    foreach ($dates as $date) {
-        $found = false;
-
-        foreach ($data as $item) {
-            $itemDate = Carbon\Carbon::parse($item['date'])->format('Y-m-d');
-
-            if ($itemDate === $date) {
-                $filledData[] = [
-                    'date' => $date,
-                    'quantity' => $item['quantity'],
-                ];
-                $found = true;
-                break;
-            }
-        }
-
-        if (!$found) {
-            $filledData[] = [
-                'date' => $date,
-                'quantity' => 0,
-            ];
-        }
-    }
-
-    return $filledData;
-}
-
-function generateDates($startDate, $endDate, $type)
-{
-    $startDate = Carbon\Carbon::parse($startDate);
-    $endDate = Carbon\Carbon::parse($endDate);
-
-    $dates = [];
-
-    while ($startDate <= $endDate) {
-        if ($type === 'monthly') {
-            $dates[] = $startDate->format('Y-m');
-            $startDate->addMonth();
-        } elseif ($type === 'yearly') {
-            $dates[] = $startDate->format('Y');
-            $startDate->addYear();
-        } else {
-            $dates[] = $startDate->format('Y-m-d');
-            $startDate->addDay();
-        }
-    }
-
-    return $dates;
-}
 function filterDataByTimeInterval($data, $type, $limit)
 {
     switch ($type) {
         case 'daily':
-            return $data->take($limit);
-        case 'monthly':
             return $data->groupBy(function ($item) {
-                return Carbon\Carbon::parse($item->date)->format('Y-m');
+                return Carbon::parse($item->date)->format('Y-m-d');
             })->map(function ($group) {
                 return [
                     'date' => $group->first()->date, // Use the date of the first item in the group
-                    'quantity' => $group->sum('quantity'),
+                    'm_quantity' => $group->where('moment','morning')->sum('quantity'),
+                    'e_quantity' => $group->where('moment','evening')->sum('quantity'),
+                ];
+            })->take($limit);
+        case 'monthly':
+            return $data->groupBy(function ($item) {
+                return Carbon::parse($item->date)->format('Y-m');
+            })->map(function ($group) {
+                return [
+                    'date' => $group->first()->date, // Use the date of the first item in the group
+                    'm_quantity' => $group->where('moment','morning')->sum('quantity'),
+                    'e_quantity' => $group->where('moment','evening')->sum('quantity'),
                 ];
             })->take($limit);
         case 'yearly':
             return $data->groupBy(function ($item) {
-                return Carbon\Carbon::parse($item->date)->format('Y');
+                return Carbon::parse($item->date)->format('Y');
             })->map(function ($group) {
                 return [
                     'date' => $group->first()->date, // Use the date of the first item in the group
-                    'quantity' => $group->sum('quantity'),
+                    'm_quantity' => $group->where('moment','morning')->sum('quantity'),
+                    'e_quantity' => $group->where('moment','evening')->sum('quantity'),
                 ];
             })->take($limit);
         default:
-            return $data->take($limit);
+            return $data->groupBy(function ($item) {
+                return Carbon::parse($item->date)->format('Y-m-d');
+            })->map(function ($group) {
+                return [
+                    'date' => $group->first()->date, // Use the date of the first item in the group
+                    'm_quantity' => $group->where('moment','morning')->sum('quantity'),
+                    'e_quantity' => $group->where('moment','evening')->sum('quantity'),
+                ];
+            })->take($limit);
     }
 }
 if (!function_exists('getLineChartForMilkProduction')) {
 
     function getLineChartForMilkProduction($cattleId = null, $startDate = null, $endDate = null,$type = "daily", $limit = 7)
     {
-        $morningData = \App\Models\MilkProduction::where('moment', 'morning');
-        $eveningData = \App\Models\MilkProduction::where('moment', 'evening');
+
+        $data =  \App\Models\MilkProduction::query();
+
         if ($cattleId) {
-            $morningData->where('cattle_id', $cattleId);
-            $eveningData->where('cattle_id', $cattleId);
+            $data->where('cattle_id', $cattleId);
         }
 
         if ($startDate) {
-            $morningData->where('date', '>=', $startDate);
-            $eveningData->where('date', '>=', $startDate);
+            $data->where('date', '>=', $startDate);
         }
 
         if ($endDate) {
-            $morningData->where('date', '<=', $endDate);
-            $eveningData->where('date', '<=', $endDate);
+            $data->where('date', '<=', $endDate);
         }
-        $morningData = $morningData->get();
-        $eveningData = $eveningData->get();
+
+        $data = $data->get();
 
         // Filter data based on the time interval and limit
-        $filteredMorningData = filterDataByTimeInterval($morningData, $type, $limit);
-        $filteredEveningData = filterDataByTimeInterval($eveningData, $type, $limit);
-
-        // Fill missing dates with zero quantities
-        $filledMorningData = fillMissingDates($filteredMorningData, $startDate, $endDate, $type);
-        $filledEveningData = fillMissingDates($filteredEveningData, $startDate, $endDate, $type);
-
+        $filteredData = filterDataByTimeInterval($data, $type, $limit);
 
         $labels = [];
         $morningQuantities = [];
         $eveningQuantities = [];
 
-        foreach ($filledMorningData as $item) {
+        foreach ($filteredData as $item) {
             if ($type === 'monthly') {
-                $labels[] = Carbon\Carbon::parse($item['date'])->format('M y');
+                $labels[] = Carbon::parse($item['date'])->format('M y');
             } elseif ($type === 'yearly'){
-                $labels[] = Carbon\Carbon::parse($item['date'])->format('Y');
+                $labels[] = Carbon::parse($item['date'])->format('Y');
             }
             else {
                 $labels[] = $item['date'];
             }
 
-            $morningQuantities[] = $item['quantity'];
+            $morningQuantities[] = $item['m_quantity'];
+            $eveningQuantities[] = $item['e_quantity'];
         }
 
-        foreach ($filledEveningData as $item) {
-            $eveningQuantities[] = $item['quantity'];
-        }
+
         $morningSum = array_sum($morningQuantities);
         $eveningSum = array_sum($eveningQuantities);
         return [
@@ -206,7 +163,7 @@ if (!function_exists('getLineChartForMilkProduction')) {
                         'data' => $morningQuantities,
                     ],
                     [
-                        'label' => 'Evening',
+                        'label' => 'Evening (Total: ' . $eveningSum .' '.__('global.ltr'). ')',
                         'backgroundColor' => 'rgba(55, 1, 255, 1)',
                         'borderColor' => 'rgba(210, 214, 222, 1)',
                         'pointRadius' => false,
