@@ -75,7 +75,7 @@
                                     <td>{{$sl++}}</td>
                                     <td>{{$stock->farm->name??'--'}}</td>
                                     <td>{{$stock->product->name??'--'}}</td>
-                                    <td>{{$stock->quantity}} <sup>{{$stock->product->unit->name}}</sup></td>
+                                    <td>{{$stock->quantity}} <sup>{{$stock->product->unit->name??'--'}}</sup></td>
                                     <td>{{$stock->unit_price}} </td>
                                     <td>{{$stock->unit_price * $stock->quantity}}</td>
                                 </tr>
