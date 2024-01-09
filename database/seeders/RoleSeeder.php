@@ -605,6 +605,18 @@ class RoleSeeder extends Seeder
                 ]
             ],
             [
+                'group_name' => 'MilkWaste',
+                'permissions' => [
+                    'milk_waste_manage',
+                    'milk_waste_list',
+                    'milk_waste_view',
+                    'milk_waste_update',
+                    'milk_waste_delete',
+                    'milk_waste_create',
+                    'milk_waste_approve',
+                ]
+            ],
+            [
                 'group_name' => 'MilkSaleParty',
                 'permissions' => [
                     'milk_sale_party_manage',

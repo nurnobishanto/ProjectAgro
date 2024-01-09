@@ -82,4 +82,5 @@ return [
     'milk_production' => 'Milk Production',
     'milk_stock' => 'Milk Stock',
     'milk_sale_party' => 'Milk Sale Party',
+    'milk_waste' => 'Milk Waste',
 ];

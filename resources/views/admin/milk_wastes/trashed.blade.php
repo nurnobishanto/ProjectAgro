@@ -1,20 +1,20 @@
 @extends('adminlte::page')
 
-@section('title', __('global.milk_sales'). __('global.deleted'))
+@section('title', __('global.milk_wastes'). __('global.deleted'))
 
 @section('content_header')
     <div class="row mb-2">
         <div class="col-sm-6">
-            <h1>{{__('global.milk_sales'). __('global.deleted')}}</h1>
+            <h1>{{__('global.milk_wastes'). __('global.deleted')}}</h1>
             @can('supplier_list')
-                <a href="{{route('admin.milk-sales.index')}}" class="btn btn-primary mt-2">{{__('global.go_back')}}</a>
+                <a href="{{route('admin.milk-wastes.index')}}" class="btn btn-primary mt-2">{{__('global.go_back')}}</a>
             @endcan
 
         </div>
         <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
                 <li class="breadcrumb-item"><a href="{{route('admin.dashboard')}}">{{__('global.home')}}</a></li>
-                <li class="breadcrumb-item active">{{__('global.milk_sales')}}</li>
+                <li class="breadcrumb-item active">{{__('global.milk_wastes')}}</li>
             </ol>
 
         </div>
@@ -33,7 +33,6 @@
                                 <th >{{__('global.sl')}}</th>
                                 <th>{{__('global.date')}}</th>
                                 <th>{{__('global.invoice_no')}}</th>
-                                <th>{{__('global.milk_sale_party')}}</th>
                                 <th>{{__('global.farm')}}</th>
                                 <th>{{__('global.quantity')}}</th>
                                 <th>{{__('global.unit_price')}}</th>
@@ -44,21 +43,20 @@
                             </thead>
                             <tbody>
                             <?php $sl = 1; ?>
-                            @foreach($milk_sales as $milk_sale)
+                            @foreach($milk_wastes as $milk_waste)
                                 <tr>
                                     <td>{{$sl++}}</td>
-                                    <td>{{$milk_sale->date}}</td>
-                                    <td>{{$milk_sale->unique_id}}</td>
-                                    <td>{{$milk_sale->milkSaleParty->name??'--'}}</td>
-                                    <td>{{$milk_sale->farm->name??'--'}}</td>
-                                    <td>{{$milk_sale->quantity}}</td>
-                                    <td>{{$milk_sale->unit_price}}</td>
-                                    <td>{{$milk_sale->total}}</td>
-                                    <td>{{__('global.'.$milk_sale->status)}}</td>
+                                    <td>{{$milk_waste->date}}</td>
+                                    <td>{{$milk_waste->unique_id}}</td>
+                                    <td>{{$milk_waste->farm->name??'--'}}</td>
+                                    <td>{{$milk_waste->quantity}}</td>
+                                    <td>{{$milk_waste->unit_price}}</td>
+                                    <td>{{$milk_waste->total}}</td>
+                                    <td>{{__('global.'.$milk_waste->status)}}</td>
                                     <td class="text-center">
-                                        @can('milk_sale_delete')
-                                        <a href="{{route('admin.milk-sales.restore',['milk_sale'=>$milk_sale->id])}}"  class="btn btn-success btn-sm px-1 py-0"><i class="fa fa-arrow-left"></i></a>
-                                        <a href="{{route('admin.milk-sales.force_delete',['milk_sale'=>$milk_sale->id])}}"  class="btn btn-danger btn-sm px-1 py-0"><i class="fa fa-trash"></i></a>
+                                        @can('milk_waste_delete')
+                                        <a href="{{route('admin.milk-wastes.restore',['milk_waste'=>$milk_waste->id])}}"  class="btn btn-success btn-sm px-1 py-0"><i class="fa fa-arrow-left"></i></a>
+                                        <a href="{{route('admin.milk-wastes.force_delete',['milk_waste'=>$milk_waste->id])}}"  class="btn btn-danger btn-sm px-1 py-0"><i class="fa fa-trash"></i></a>
                                         @endcan
                                     </td>
                                 </tr>
@@ -70,7 +68,6 @@
                                 <th >{{__('global.sl')}}</th>
                                 <th>{{__('global.date')}}</th>
                                 <th>{{__('global.invoice_no')}}</th>
-                                <th>{{__('global.milk_sale_party')}}</th>
                                 <th>{{__('global.farm')}}</th>
                                 <th>{{__('global.quantity')}}</th>
                                 <th>{{__('global.unit_price')}}</th>

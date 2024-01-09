@@ -27,6 +27,7 @@ use App\Http\Controllers\Admin\MilkProductionController;
 use App\Http\Controllers\Admin\MilkSaleController;
 use App\Http\Controllers\Admin\MilkSalePartyController;
 use App\Http\Controllers\Admin\MilkStockController;
+use App\Http\Controllers\Admin\MilkWasteController;
 use App\Http\Controllers\Admin\OpeningBalanceController;
 use App\Http\Controllers\Admin\PartyController;
 use App\Http\Controllers\Admin\PartyReceivedController;
@@ -342,12 +343,19 @@ Route::get('/milk-sale-parties/trashed/{milk_sale_party}/delete',[MilkSalePartyC
 Route::resource('/milk-sale-parties',MilkSalePartyController::class)->middleware('permission:milk_sale_party_manage');
 
 
-//Milk Saled
+//Milk Sale
 Route::get('/milk-sales/trashed',[MilkSaleController::class,'trashed_list'])->middleware('permission:milk_sale_manage')->name('milk-sales.trashed');
 Route::get('/milk-sales/trashed/{milk_sale}/restore',[MilkSaleController::class,'restore'])->middleware('permission:milk_sale_manage')->name('milk-sales.restore');
 Route::get('/milk-sales/trashed/{milk_sale}/delete',[MilkSaleController::class,'force_delete'])->middleware('permission:milk_sale_manage')->name('milk-sales.force_delete');
 Route::get('/milk-sales/{milk_sale}/approve',[MilkSaleController::class,'approve'])->middleware('permission:milk_sale_approve')->name('milk-sales.approve');
-Route::resource('/milk-sales',MilkSaleController::class)->middleware('permission:milk_production_manage');
+Route::resource('/milk-sales',MilkSaleController::class)->middleware('permission:milk_sale_manage');
+
+//Milk Waste
+Route::get('/milk-wastes/trashed',[MilkWasteController::class,'trashed_list'])->middleware('permission:milk_waste_manage')->name('milk-wastes.trashed');
+Route::get('/milk-wastes/trashed/{milk_waste}/restore',[MilkWasteController::class,'restore'])->middleware('permission:milk_waste_manage')->name('milk-wastes.restore');
+Route::get('/milk-wastes/trashed/{milk_waste}/delete',[MilkWasteController::class,'force_delete'])->middleware('permission:milk_waste_manage')->name('milk-wastes.force_delete');
+Route::get('/milk-wastes/{milk_waste}/approve',[MilkWasteController::class,'approve'])->middleware('permission:milk_waste_approve')->name('milk-wastes.approve');
+Route::resource('/milk-wastes',MilkWasteController::class)->middleware('permission:milk_waste_manage');
 
 //Setting
 Route::get('milk-stock',[MilkStockController::class,'milk_stock'])->name('milk_stock');

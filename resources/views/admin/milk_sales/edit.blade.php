@@ -200,6 +200,7 @@
 @stop
 @section('plugins.toastr',true)
 @section('plugins.Select2',true)
+@section('plugins.Sweetalert2',true)
 @section('plugins.Summernote',true)
 @section('css')
     <style>

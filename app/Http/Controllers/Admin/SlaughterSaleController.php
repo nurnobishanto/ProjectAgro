@@ -206,6 +206,22 @@ class SlaughterSaleController extends Controller
                 return redirect()->back();
             }
         }
+        foreach ($slaughter_sale->products as $product) {
+            $stock = SlaughterStock::where('slaughter_store_id', $slaughter_sale->slaughter_store_id)
+                ->where('product_id', $product->id)
+                ->first();
+            if ($stock) {
+                $preQty = $stock->quantity;
+                $newQty = $product->pivot->quantity;
+                $updateQty = min($newQty, $preQty);
+
+                if ($updateQty > 0) {
+                    $stock->decrement('quantity', $updateQty);
+                    $product->pivot->quantity = $updateQty;
+                    $product->save();
+                }
+            }
+        }
 
         $customer = SlaughterCustomer::find($slaughter_sale->slaughter_customer_id);
         $account = Account::find($slaughter_sale->account_id);

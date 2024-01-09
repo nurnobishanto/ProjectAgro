@@ -471,6 +471,11 @@ return [
                     'url' => 'admin/milk-productions'
                 ],
                 [
+                    'text' => 'milk_waste',
+                    'can' => 'milk_waste_manage',
+                    'url' => 'admin/milk-wastes'
+                ],
+                [
                     'text' => 'milk_sale_party',
                     'can' => 'milk_sale_party_manage',
                     'url' => 'admin/milk-sale-parties'

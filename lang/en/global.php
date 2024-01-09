@@ -571,4 +571,12 @@ return [
     'select_milk_sale_party' => 'Select Milk Sale Party',
     'milk_quantity' => 'Milk Quantity',
     'stock_out' => 'Stock Out',
+    'milk_waste' => 'Milk Waste',
+    'milk_wastes' => 'Milk Waste List',
+    'create_milk_waste' => 'Create Milk Waste',
+    'edit_milk_waste' => 'Edit Milk Waste',
+    'update_milk_waste' => 'Update Milk Waste',
+    'view_milk_waste' => 'View Milk Waste',
+    'delete_milk_waste' => 'Delete Milk Waste',
+    'milk_store' => 'Milk Store',
 ];
