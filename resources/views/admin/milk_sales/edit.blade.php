@@ -55,9 +55,9 @@
                                         <div class="form-group">
                                             <label for="tax">{{ __('global.tax')}}<span class="text-danger">*</span></label>
                                             <select name="tax" class="select2 form-control" id="tax">
-                                                <option value="0" @if(0 === $milk_sale->tax) selected @endif>{{__('global.no_tax')}} 0</option>
+                                                <option value="0" @if(0 == $milk_sale->tax) selected @endif>{{__('global.no_tax')}} 0</option>
                                                 @foreach(getTax() as $tax)
-                                                    <option value="{{ $tax->tax }}" @if($tax->tax  === $milk_sale->tax) selected @endif>{{ $tax->name }} ({{$tax->tax}} %)</option>
+                                                    <option value="{{ $tax->tax }}" @if($tax->tax  == $milk_sale->tax) selected @endif>{{ $tax->name }} ({{$tax->tax}} %)</option>
                                                 @endforeach
                                             </select>
                                         </div>
@@ -68,7 +68,7 @@
                                             <select name="milk_sale_party_id" class="select2 form-control" id="milk_sale_party_id">
                                                 <option value="">{{__('global.select_milk_sale_party')}}</option>
                                                 @foreach(getMilkSaleParty() as $customer)
-                                                    <option value="{{ $customer->id }}" @if($customer->id === $milk_sale->milk_sale_party_id) selected @endif>{{ $customer->name }}</option>
+                                                    <option value="{{ $customer->id }}" @if($customer->id == $milk_sale->milk_sale_party_id) selected @endif>{{ $customer->name }}</option>
                                                 @endforeach
                                             </select>
                                         </div>
@@ -80,7 +80,7 @@
                                             <select id="account_id" name="account_id" class="select2 form-control">
                                                 <option value="">{{ __('global.select_account')}}</option>
                                                 @foreach(getAccountList() as $account)
-                                                    <option value="{{$account->id}}" @if($account->id  === $milk_sale->account_id) selected @endif>{{$account->account_name}} {{$account->account_no}} {{$account->admin->name??'--'}}</option>
+                                                    <option value="{{$account->id}}" @if($account->id  == $milk_sale->account_id) selected @endif>{{$account->account_name}} {{$account->account_no}} {{$account->admin->name??'--'}}</option>
                                                 @endforeach
                                             </select>
                                         </div>
