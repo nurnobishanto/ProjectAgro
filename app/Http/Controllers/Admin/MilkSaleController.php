@@ -118,11 +118,11 @@ class MilkSaleController extends Controller
         $milk_sale->date = $request->date;
         $milk_sale->milk_sale_party_id = $request->milk_sale_party_id;
         $milk_sale->account_id = $request->account_id;
-        $milk_sale->quantity = $request->quantity;
-        $milk_sale->unit_price = $request->unit_price;
+        $milk_sale->quantity = $quantity;
+        $milk_sale->unit_price = $unit_price;
         $milk_sale->sub_total = $sub_total;
-        $milk_sale->tax = $request->tax;
-        $milk_sale->discount = $request->discount;
+        $milk_sale->tax = $request->tax??0;
+        $milk_sale->discount = $discount;
         $milk_sale->total = $grand_total;
         $milk_sale->paid = $paid_amount;
         $milk_sale->due = $due;
