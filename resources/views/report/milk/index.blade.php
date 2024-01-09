@@ -1,16 +1,16 @@
 @extends('adminlte::page')
 
-@section('title', __('global.milk_production_report'))
+@section('title', __('global.milk_productions'))
 
 @section('content_header')
     <div class="row mb-2">
         <div class="col-sm-6">
-            <h1>{{__('global.milk_production_report')}}</h1>
+            <h1>{{__('global.milk_productions')}}</h1>
         </div>
         <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
                 <li class="breadcrumb-item"><a href="{{route('admin.dashboard')}}">{{__('global.home')}}</a></li>
-                <li class="breadcrumb-item active">{{__('global.milk_production_report')}}</li>
+                <li class="breadcrumb-item active">{{__('global.milk_productions')}}</li>
             </ol>
         </div>
     </div>
@@ -21,7 +21,7 @@
         <div class="col-md-12">
             <div class="card">
                 <div class="card-body">
-                    <form action="{{route('report.milk.production')}}" method="GET">
+                    <form action="{{route('report.milk')}}" method="GET">
                         @if (count($errors) > 0)
                             <div class = "alert alert-danger">
                                 <ul>
@@ -105,48 +105,81 @@
                 <div class="card">
                     <div class="card-body table-responsive">
                         <table id="adminsList" class="table  dataTable table-bordered table-striped">
+                            <caption>
+
+                            </caption>
                             <thead>
                             <tr>
                                 <th>{{__('global.sl')}}</th>
-                                <th>{{__('global.unique_id')}}</th>
-                                <th>{{__('global.date')}}</th>
-                                <th>{{__('global.farm')}}</th>
-                                <th>{{__('global.tag_id')}}</th>
-                                <th>{{__('global.quantity')}}</th>
-                                <th>{{__('global.moment')}}</th>
-                                <th>{{__('global.status')}}</th>
-                                <th>{{__('global.updated_at')}}</th>
+                                <th>{{__('global.name')}}</th>
+                                <th>{{__('global.qty')}}</th>
+                                <th>{{__('global.total')}}</th>
+
 
                             </thead>
                             <tbody>
-                            <?php $sl = 1; ?>
-                            @foreach($milk_productions as $milk_production)
-                                <tr>
-
+                                <?php $sl = 1; ?>
+                                <tr class="bg-success">
                                     <td>{{$sl++}}</td>
-                                    <td>{{$milk_production->unique_id}}</td>
-                                    <td>{{$milk_production->date}}</td>
-                                    <td>{{$milk_production->cattle->farm->name??'--'}}</td>
-                                    <td>{{$milk_production->cattle->tag_id??'--'}} </td>
-                                    <td>{{$milk_production->quantity??'--'}} </td>
-                                    <td>{{__('global.'.$milk_production->moment)}}</td>
-                                    <td>{{__('global.'.$milk_production->status)}}</td>
-                                    <td>{{date_format($milk_production->updated_at,'d M Y') }}</td>
+                                    <td>Total Milk Production ( Morning )</td>
+                                    <td>{{$milk_productions->where('moment','morning')->sum('quantity')}} {{__('global.ltr')}}</td>
+                                    <td></td>
                                 </tr>
-                            @endforeach
+                                <tr class="bg-success">
+                                    <td>{{$sl++}}</td>
+                                    <td>Total Milk Production ( Evening )</td>
+                                    <td>{{$milk_productions->where('moment','evening')->sum('quantity')}} {{__('global.ltr')}}</td>
+                                    <td></td>
+                                </tr>
+                                <tr class="bg-success">
+                                    <th>{{$sl++}}</th>
+                                    <th>Total Milk Production</th>
+                                    <th>{{$milk_productions->sum('quantity')}} {{__('global.ltr')}}</th>
+                                    <th></th>
+                                </tr>
+                                <tr class="bg-primary">
+                                    <td>{{$sl++}}</td>
+                                    <td>Total Milk Sale (Success)</td>
+                                    <td>{{$milk_sales->where('status','success')->sum('quantity')}} {{__('global.ltr')}}</td>
+                                    <td>{{getSetting('currency')}} {{$milk_sales->where('status','success')->sum('total')}}</td>
+                                </tr>
+                                <tr class="bg-primary">
+                                    <td>{{$sl++}}</td>
+                                    <td>Total Milk Sale (Pending)</td>
+                                    <td>{{$milk_sales->where('status','pending')->sum('quantity')}} {{__('global.ltr')}}</td>
+                                    <td>{{getSetting('currency')}} {{$milk_sales->where('status','pending')->sum('total')}}</td>
+                                </tr>
+                                <tr class="bg-primary">
+                                    <th>{{$sl++}}</th>
+                                    <th>Total Milk Sale</th>
+                                    <th>{{$milk_sales->sum('quantity')}} {{__('global.ltr')}}</th>
+                                    <th>{{getSetting('currency')}} {{$milk_sales->sum('total')}}</th>
+                                </tr>
+                                <tr class="bg-danger">
+                                    <td>{{$sl++}}</td>
+                                    <td>Total Milk Waste (Success)</td>
+                                    <td>{{$milk_wastes->where('status','success')->sum('quantity')}} {{__('global.ltr')}}</td>
+                                    <td>{{getSetting('currency')}} {{$milk_wastes->where('status','success')->sum('total')}}</td>
+                                </tr>
+                                <tr class="bg-danger">
+                                    <td>{{$sl++}}</td>
+                                    <td>Total Milk Waste (Pending)</td>
+                                    <td>{{$milk_wastes->where('status','pending')->sum('quantity')}} {{__('global.ltr')}}</td>
+                                    <td>{{getSetting('currency')}} {{$milk_wastes->where('status','pending')->sum('total')}}</td>
+                                </tr>
+                                <tr class="bg-danger">
+                                    <th>{{$sl++}}</th>
+                                    <th>Total Milk Waste</th>
+                                    <th>{{$milk_wastes->sum('quantity')}} {{__('global.ltr')}}</th>
+                                    <th>{{getSetting('currency')}} {{$milk_wastes->sum('total')}}</th>
+                                </tr>
 
                             </tbody>
                             <tfoot>
                             <tr>
                                 <th>{{__('global.sl')}}</th>
-                                <th>{{__('global.unique_id')}}</th>
-                                <th>{{__('global.date')}}</th>
-                                <th>{{__('global.farm')}}</th>
-                                <th>{{__('global.tag_id')}}</th>
-                                <th>{{__('global.quantity')}}</th>
-                                <th>{{__('global.moment')}}</th>
-                                <th>{{__('global.status')}}</th>
-                                <th>{{__('global.updated_at')}}</th>
+                                <th>{{__('global.name')}}</th>
+                                <th>{{__('global.value')}}</th>
                             </tr>
                             </tfoot>
                         </table>

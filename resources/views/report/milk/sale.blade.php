@@ -12,7 +12,6 @@
                 <li class="breadcrumb-item"><a href="{{route('admin.dashboard')}}">{{__('global.home')}}</a></li>
                 <li class="breadcrumb-item active">{{__('global.milk_sale_report')}}</li>
             </ol>
-
         </div>
     </div>
 @stop
