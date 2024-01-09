@@ -83,7 +83,7 @@
                                     <td>{{$milk_sale->farm->name??'--'}}</td>
                                     <td>{{$milk_sale->quantity}}</td>
                                     <td>{{$milk_sale->unit_price}}</td>
-                                    <td>{{$milk_sale->sub_total}}</td>
+                                    <td>{{$milk_sale->total}}</td>
                                     <td>{{__('global.'.$milk_sale->status)}}</td>
 
                                     <td class="text-center">
