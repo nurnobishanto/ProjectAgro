@@ -77,4 +77,8 @@ return [
     'slaughter_waste' => 'জবাইকৃত আইটেম নষ্ট',
     'slaughter' => 'জবাই',
     'reports' => 'রিপোর্টস ',
+    'milk_production' => 'দুধ উৎপাদন',
+    'milk_stock' => 'দুধের স্টক',
+    'milk_sale_party' => 'দুধ বিক্রির পার্টি',
+    'milk_waste' => 'নষ্ট দুধ',
 ];

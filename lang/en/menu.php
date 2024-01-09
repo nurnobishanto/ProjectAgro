@@ -77,10 +77,15 @@ return [
     'slaughter_waste' => 'Slaughter Waste',
     'slaughter' => 'Slaughter',
     'reports' => 'Reports',
-
-    //
     'milk_production' => 'Milk Production',
     'milk_stock' => 'Milk Stock',
     'milk_sale_party' => 'Milk Sale Party',
     'milk_waste' => 'Milk Waste',
+    //
+    'all_reports' => 'All Reports',
+    'milk_report' => 'Milk Report',
+    'milk_summery_report' => 'Milk Summery Report',
+    'milk_production_report' => 'Milk Production Report',
+    'milk_sale_report' => 'Milk Sale Report',
+    'milk_waste_report' => 'Milk Waste Report',
 ];

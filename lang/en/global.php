@@ -538,8 +538,6 @@ return [
     'others_expense' => 'Others Expense',
     'total_expense' => 'Total Expense',
     'death' => 'Dead',
-    //
-
     'moment' => 'Moment',
     'ltr' => 'Ltr',
     'select_moment' => 'Select Moment',
@@ -579,4 +577,13 @@ return [
     'view_milk_waste' => 'View Milk Waste',
     'delete_milk_waste' => 'Delete Milk Waste',
     'milk_store' => 'Milk Store',
+    //
+    'filter' => 'Filter',
+    'milk_summery_report' => 'Milk Summery Report',
+    'milk_production_report' => 'Milk Production Report',
+    'milk_sale_report' => 'Milk Sale Report',
+    'milk_waste_report' => 'Milk Waste Report',
+    'select_from_date' => 'Select from date',
+    'select_to_date' => 'Select to date',
+    'all' => 'All',
 ];
