@@ -19,15 +19,20 @@ if (!function_exists('getCattleTotalCost')) {
         $vaccine_cost = $cattle->vaccines->where('status','success')->sum('avg_cost');
         $treatment_cost = $cattle->treatments->where('status','success')->sum('cost');
         $data = array();
-        $data['purchase_price'] = $purchase_price;
-        $data['feeding_cost'] = $feeding_cost;
-        $data['dewormer_cost'] = $dewormer_cost;
-        $data['vaccine_cost'] = $vaccine_cost;
-        $data['treatment_cost'] = $treatment_cost;
+        $data['purchase_price'] = number_format($purchase_price, 2);
+        $data['feeding_cost'] = number_format($feeding_cost, 2);
+        $data['dewormer_cost'] = number_format($dewormer_cost, 2);
+        $data['vaccine_cost'] = number_format($vaccine_cost, 2);
+        $data['treatment_cost'] = number_format($treatment_cost, 2);
+
         $total = $purchase_price + $feeding_cost + $dewormer_cost + $vaccine_cost + $treatment_cost;
-        $data['total'] = $purchase_price + $feeding_cost + $dewormer_cost + $vaccine_cost + $treatment_cost;
-        $data['avg_other_cost'] = getTotalAvgExpenseCost($customDate)['avg_cost'];
-        $data['grand_total'] = $total + getTotalAvgExpenseCost($customDate)['avg_cost'];
+        $data['total'] = number_format($total, 2);
+
+        $data['avg_other_cost'] = number_format(getTotalAvgExpenseCost($customDate)['avg_cost'], 2);
+
+        $grand_total = $total + getTotalAvgExpenseCost($customDate)['avg_cost'];
+        $data['grand_total'] = number_format($grand_total, 2);
+
         return $data;
     }
 }
