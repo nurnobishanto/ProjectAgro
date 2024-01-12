@@ -10,5 +10,5 @@ Route::prefix('/milk')->group(function () {
 });
 
 Route::prefix('/cattle')->group(function () {
-    Route::get('/', [\App\Http\Controllers\Report\CattleReportController::class,'index'])->name('cattle');
+    Route::get('/expense-report', [\App\Http\Controllers\Report\CattleReportController::class,'expense_report'])->name('cattle.expense_report');
 });

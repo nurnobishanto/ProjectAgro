@@ -8,7 +8,7 @@ use Illuminate\Http\Request;
 
 class CattleReportController extends Controller
 {
-    public function index(Request $request){
+    public function expense_report(Request $request){
         $cattles = Cattle::where('status','active');
         //return $cattles;
         if ($request->farm_id){ $cattles = $cattles->where('farm_id',$request->farm_id); }
@@ -17,6 +17,6 @@ class CattleReportController extends Controller
 
         $data = array();
         $data['cattles'] = $cattles->get();
-        return view('report.cattle.index',$data);
+        return view('report.cattle.expense_report',$data);
     }
 }

@@ -630,13 +630,13 @@ return [
         ['header' => 'reports'],
         [
             'text' => 'cattle_report',
-            'can' => ['cattle_report','cattle_summery_report'],
+            'can' => ['cattle_report','cattle_expense_report'],
             'url' => 'report/cattle',
             'submenu' => [
                 [
-                    'text' => 'cattle_summery_report',
-                    'can' => 'cattle_summery_report',
-                    'url' => 'report/cattle'
+                    'text' => 'cattle_expense_report',
+                    'can' => 'cattle_expense_report',
+                    'url' => 'report/cattle/expense-report'
                 ],
             ]
 

@@ -588,5 +588,6 @@ return [
     'all' => 'All',
     'cattle_report' => 'Cattle Report',
     'cattle_summery_report' => 'Cattle Summery Report',
+    'cattle_expense_report' => 'Cattle expense Report',
     'avg_other_cost' => 'Other Avg',
 ];

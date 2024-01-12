@@ -1,18 +1,18 @@
 @extends('adminlte::page')
 
-@section('title', __('global.cattle_summery_report'))
+@section('title', __('global.cattle_expense_report'))
 
 @section('content_header')
     <div class="row mb-2">
         <div class="col-sm-6">
-            <h1>{{__('global.cattle_summery_report')}}</h1>
+            <h1>{{__('global.cattle_expense_report')}}</h1>
 
 
         </div>
         <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
                 <li class="breadcrumb-item"><a href="{{route('admin.dashboard')}}">{{__('global.home')}}</a></li>
-                <li class="breadcrumb-item active">{{__('global.cattle_summery_report')}}</li>
+                <li class="breadcrumb-item active">{{__('global.cattle_expense_report')}}</li>
             </ol>
 
         </div>
@@ -24,7 +24,7 @@
         <div class="col-md-12">
             <div class="card">
                 <div class="card-body">
-                    <form action="{{route('report.cattle')}}" method="GET">
+                    <form action="{{route('report.cattle.expense_report')}}" method="GET">
 
                         <div class="row">
                             <div class=" col-md-3 col-sm-6">

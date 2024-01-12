@@ -642,7 +642,7 @@ class RoleSeeder extends Seeder
                 'group_name' => 'CattleReports',
                 'permissions' => [
                     'cattle_report',
-                    'cattle_summery_report',
+                    'cattle_expense_report',
                 ]
             ],
 
