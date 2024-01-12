@@ -9,4 +9,6 @@ Route::prefix('/milk')->group(function () {
     Route::get('/waste', [\App\Http\Controllers\Report\MilkReportController::class,'waste'])->name('milk.waste');
 });
 
-
+Route::prefix('/cattle')->group(function () {
+    Route::get('/', [\App\Http\Controllers\Report\CattleReportController::class,'index'])->name('cattle');
+});

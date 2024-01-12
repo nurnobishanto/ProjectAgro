@@ -629,13 +629,20 @@ class RoleSeeder extends Seeder
                 ]
             ],
             [
-                'group_name' => 'Reports',
+                'group_name' => 'MilkReports',
                 'permissions' => [
                     'milk_report',
                     'milk_summery_report',
                     'milk_production_report',
                     'milk_sale_report',
                     'milk_waste_report',
+                ]
+            ],
+            [
+                'group_name' => 'CattleReports',
+                'permissions' => [
+                    'cattle_report',
+                    'cattle_summery_report',
                 ]
             ],
 

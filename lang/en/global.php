@@ -586,4 +586,7 @@ return [
     'select_from_date' => 'Select from date',
     'select_to_date' => 'Select to date',
     'all' => 'All',
+    'cattle_report' => 'Cattle Report',
+    'cattle_summery_report' => 'Cattle Summery Report',
+    'avg_other_cost' => 'Other Avg',
 ];

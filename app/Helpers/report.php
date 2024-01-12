@@ -11,7 +11,7 @@ use Carbon\Carbon;
 
 if (!function_exists('getCattleTotalCost')) {
 
-    function getCattleTotalCost($cattle)
+    function getCattleTotalCost($cattle,$customDate = null)
     {
         $purchase_price = $cattle->purchase_price;
         $feeding_cost = $cattle->feedingRecords->where('status','success')->sum('per_cattle_cost');
@@ -24,7 +24,10 @@ if (!function_exists('getCattleTotalCost')) {
         $data['dewormer_cost'] = $dewormer_cost;
         $data['vaccine_cost'] = $vaccine_cost;
         $data['treatment_cost'] = $treatment_cost;
+        $total = $purchase_price + $feeding_cost + $dewormer_cost + $vaccine_cost + $treatment_cost;
         $data['total'] = $purchase_price + $feeding_cost + $dewormer_cost + $vaccine_cost + $treatment_cost;
+        $data['avg_other_cost'] = getTotalAvgExpenseCost($customDate)['avg_cost'];
+        $data['grand_total'] = $total + getTotalAvgExpenseCost($customDate)['avg_cost'];
         return $data;
     }
 }

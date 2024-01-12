@@ -88,4 +88,6 @@ return [
     'milk_production_report' => 'Milk Production Report',
     'milk_sale_report' => 'Milk Sale Report',
     'milk_waste_report' => 'Milk Waste Report',
+    'cattle_report' => 'Cattle Report',
+    'cattle_summery_report' => 'Cattle Summery Report',
 ];

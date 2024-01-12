@@ -16,16 +16,14 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('website.home');
+    return redirect(\route('admin.dashboard'));
 })->name('website.home');
-Route::get('/test', function () {
 
-    return getLineChartForMilkProduction(type: "yearly");
-});
 Route::prefix('ajax/')->group(function (){
     Route::get('farms',[\App\Http\Controllers\AjaxCartController::class,'farms'])->name('farms');
     Route::get('farm-staff-list',[\App\Http\Controllers\AjaxCartController::class,'farm_staff_list'])->name('farm_staff_list');
     Route::get('cattle-types',[\App\Http\Controllers\AjaxCartController::class,'cattle_types'])->name('cattle_types');
+    Route::get('farm-all-cattle-list',[\App\Http\Controllers\AjaxCartController::class,'farm_all_cattle_list'])->name('farm_all_cattle_list');
     Route::get('farm-cattle-list',[\App\Http\Controllers\AjaxCartController::class,'farm_cattle_list'])->name('farm_cattle_list');
     Route::get('farm-dairy-cattle-list',[\App\Http\Controllers\AjaxCartController::class,'farm_dairy_cattle_list'])->name('farm_dairy_cattle_list');
     Route::get('farm-medicine-list',[\App\Http\Controllers\AjaxCartController::class,'farm_medicine_list'])->name('farm_medicine_list');

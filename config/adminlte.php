@@ -629,38 +629,45 @@ return [
         ],
         ['header' => 'reports'],
         [
-            'text'    => 'all_reports',
-            'can' => ['milk_report','milk_summery_report','milk_production_report','milk_sale_report','milk_waste_report'],
+            'text' => 'cattle_report',
+            'can' => ['cattle_report','cattle_summery_report'],
+            'url' => 'report/cattle',
             'submenu' => [
                 [
-                    'text' => 'milk_report',
-                    'can' => ['milk_report','milk_summery_report','milk_production_report','milk_sale_report','milk_waste_report'],
-                    'url' => 'report/milk',
-                    'submenu' => [
-                        [
-                            'text' => 'milk_summery_report',
-                            'can' => 'milk_summery_report',
-                            'url' => 'report/milk'
-                        ],
-                        [
-                            'text' => 'milk_production_report',
-                            'can' => 'milk_production_report',
-                            'url' => 'report/milk/production'
-                        ],
-                        [
-                            'text' => 'milk_sale_report',
-                            'can' => 'milk_sale_report',
-                            'url' => 'report/milk/sale'
-                        ],
-                        [
-                            'text' => 'milk_waste_report',
-                            'can' => 'milk_waste_report',
-                            'url' => 'report/milk/waste'
-                        ],
-                    ]
-
+                    'text' => 'cattle_summery_report',
+                    'can' => 'cattle_summery_report',
+                    'url' => 'report/cattle'
                 ],
             ]
+
+        ],
+        [
+            'text' => 'milk_report',
+            'can' => ['milk_report','milk_summery_report','milk_production_report','milk_sale_report','milk_waste_report'],
+            'url' => 'report/milk',
+            'submenu' => [
+                [
+                    'text' => 'milk_summery_report',
+                    'can' => 'milk_summery_report',
+                    'url' => 'report/milk'
+                ],
+                [
+                    'text' => 'milk_production_report',
+                    'can' => 'milk_production_report',
+                    'url' => 'report/milk/production'
+                ],
+                [
+                    'text' => 'milk_sale_report',
+                    'can' => 'milk_sale_report',
+                    'url' => 'report/milk/sale'
+                ],
+                [
+                    'text' => 'milk_waste_report',
+                    'can' => 'milk_waste_report',
+                    'url' => 'report/milk/waste'
+                ],
+            ]
+
         ],
         ['header' => 'settings'],
         [
