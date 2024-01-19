@@ -26,12 +26,13 @@ if (!function_exists('getCattleTotalCost')) {
         $data['treatment_cost'] = number_format($treatment_cost, 2);
 
         $total = $purchase_price + $feeding_cost + $dewormer_cost + $vaccine_cost + $treatment_cost;
-        $data['total'] = $total;
+        $data['total'] = floatval(str_replace(',', '', number_format($total, 2)));
 
         $data['avg_other_cost'] = getTotalAvgExpenseCost($customDate)['avg_cost'];
 
         $grand_total = $total + getTotalAvgExpenseCost($customDate)['avg_cost'];
-        $data['grand_total'] = $grand_total;
+        $data['grand_total'] = floatval(str_replace(',', '', number_format($grand_total, 2)));
+
 
         return $data;
     }
