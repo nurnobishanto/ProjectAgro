@@ -43,8 +43,7 @@ class CattleSaleController extends Controller
         App::setLocale(session('locale'));
         $cattle = Cattle::where('id',$request->tag_id)->where('status','active')->first();
         $cattle_cost = getCattleTotalCost($cattle);
-        $other_cost = getTotalAvgExpenseCost();
-        $amount = $cattle_cost['total'] + $other_cost['avg_cost'];
+        $amount = $cattle_cost['grand_total'] ;
         return view('admin.cattle_sales.create',compact(['cattle','amount']));
     }
 
@@ -61,8 +60,7 @@ class CattleSaleController extends Controller
         ]);
         $cattle = Cattle::where('id',$request->cattle_id)->where('status','active')->first();
         $cattle_cost = getCattleTotalCost($cattle);
-        $other_cost = getTotalAvgExpenseCost($request->date);
-        $total = $cattle_cost['total'] + $other_cost['avg_cost'];
+
         CattleSale::create([
             'unique_id' => $request->unique_id,
             'date' => $request->date,
@@ -70,7 +68,7 @@ class CattleSaleController extends Controller
             'party_id' => $request->party_id,
             'account_id' => $request->account_id,
             'feeding_expense' => $cattle_cost['total'],
-            'other_expense' => $other_cost['avg_cost'],
+            'other_expense' => $cattle_cost['avg_other_cost'],
             'amount' => $request->amount??0,
             'paid' => $request->paid??0,
             'due' => $request->due??0,

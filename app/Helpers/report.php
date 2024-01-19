@@ -26,12 +26,12 @@ if (!function_exists('getCattleTotalCost')) {
         $data['treatment_cost'] = number_format($treatment_cost, 2);
 
         $total = $purchase_price + $feeding_cost + $dewormer_cost + $vaccine_cost + $treatment_cost;
-        $data['total'] = number_format($total, 2);
+        $data['total'] = $total;
 
-        $data['avg_other_cost'] = number_format(getTotalAvgExpenseCost($customDate)['avg_cost'], 2);
+        $data['avg_other_cost'] = getTotalAvgExpenseCost($customDate)['avg_cost'];
 
         $grand_total = $total + getTotalAvgExpenseCost($customDate)['avg_cost'];
-        $data['grand_total'] = number_format($grand_total, 2);
+        $data['grand_total'] = $grand_total;
 
         return $data;
     }
@@ -41,7 +41,7 @@ if (!function_exists('getTotalAvgExpenseCost')) {
 
     function getTotalAvgExpenseCost($customDate = null)
     {
-        $date = $customDate ? Carbon\Carbon::parse($customDate)->endOfDay() : now();
+        $date = $customDate ? Carbon::parse($customDate)->endOfDay() : now();
         $assigned_cost = \App\Models\AssignedCost::where('date', '<=', $date)->sum('amount');
         $total_expense = \App\Models\Expense::where('status','success')->where('date', '<=', $date)->sum('amount');
         $staff_payments = \App\Models\StaffPayment::where('status','success')->where('date', '<=', $date)->sum('amount');

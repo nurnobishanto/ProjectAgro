@@ -15,7 +15,7 @@ class CattleSale extends Model
         'account_id',
         'party_id',
         'cattle_id',
-        'feeding_expense',
+        'feeding_expense', //Feeding,treatment,dewormed,vaccine and treatment
         'other_expense',
         'amount',
         'paid',
