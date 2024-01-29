@@ -50,9 +50,9 @@
                                     <td>{{$sl++}}</td>
                                     <td>{{$expense->date}}</td>
                                     <td>
-                                       {{$expense->account->bank_name??'--'}}<br>
+                                       {{$expense->account->bank_name??'--'}} -
                                        {{$expense->account->account_name??'--'}}<br>
-                                       {{$expense->account->account_no??'--'}}<br>
+                                       {{$expense->account->account_no??'--'}} -
                                        {{__('global.'.$expense->account->account_type)??'--'}}<br>
                                     </td>
                                     <td>{{$expense->expense_category->name??'--'}}</td>
