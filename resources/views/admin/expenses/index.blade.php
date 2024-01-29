@@ -44,10 +44,10 @@
                             </tr>
                             </thead>
                             <tbody>
-                            @php $sl = 1; @endphp
+                            @php $sl = $expenses->count(); @endphp
                             @foreach($expenses as $expense)
                                 <tr>
-                                    <td>{{$sl++}}</td>
+                                    <td>{{$sl--}}</td>
                                     <td>{{$expense->date}}</td>
                                     <td>
                                        {{$expense->account->bank_name??'--'}} -
