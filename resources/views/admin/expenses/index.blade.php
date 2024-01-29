@@ -33,6 +33,7 @@
                         <table id="adminsList" class="table  dataTable table-bordered table-striped">
                             <thead>
                             <tr>
+                                <th>{{__('global.sl')}}</th>
                                 <th>{{__('global.date')}}</th>
                                 <th>{{__('global.account')}}</th>
                                 <th>{{__('global.expense_category')}}</th>
@@ -43,10 +44,10 @@
                             </tr>
                             </thead>
                             <tbody>
+                            @php $sl = 1; @endphp
                             @foreach($expenses as $expense)
                                 <tr>
-
-
+                                    <td>{{$sl++}}</td>
                                     <td>{{$expense->date}}</td>
                                     <td>
                                        {{$expense->account->bank_name??'--'}}<br>
@@ -89,6 +90,7 @@
                             </tbody>
                             <tfoot>
                             <tr>
+                                <th>{{__('global.sl')}}</th>
                                 <th>{{__('global.date')}}</th>
                                 <th>{{__('global.account')}}</th>
                                 <th>{{__('global.expense_category')}}</th>
