@@ -643,13 +643,15 @@ class RoleSeeder extends Seeder
                 'permissions' => [
                     'cattle_report',
                     'cattle_expense_report',
+                    'cattle_sale_report',
+                    'cattle_bulk_sale_report',
                 ]
             ],
 
 
         ];
 
-        for ($i = 0;$i<count($permissions);$i++){
+        for ($i = 0;$i < count($permissions);$i++){
             $permissions_group = $permissions[$i]['group_name'];
             for ($j = 0;$j<count($permissions[$i]['permissions']);$j++){
                 $super_permission = Permission::where('name',$permissions[$i]['permissions'][$j])->first();

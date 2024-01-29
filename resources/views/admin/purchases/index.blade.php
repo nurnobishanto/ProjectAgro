@@ -56,7 +56,7 @@
                                     <td>{{$purchase->supplier->name??'--'}}</td>
                                     <td>{{$purchase->farm->name??'--'}}</td>
                                     <td>{{$purchase->purchaseProducts->count()}}</td>
-                                    <td>{{$purchase->purchaseProducts->sum('sub_total')}}</td>
+                                    <td>{{$purchase->grand_total}}</td>
                                     <td>{{__('global.'.$purchase->status)}}</td>
                                     <td>{{date_format($purchase->updated_at,'d M y h:i A') }}</td>
                                     <td class="text-center">
