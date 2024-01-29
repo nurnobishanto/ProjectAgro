@@ -630,13 +630,23 @@ return [
         ['header' => 'reports'],
         [
             'text' => 'cattle_report',
-            'can' => ['cattle_report','cattle_expense_report'],
+            'can' => ['cattle_report','cattle_expense_report','cattle_sale_report','cattle_bulk_sale_report'],
             'url' => 'report/cattle',
             'submenu' => [
                 [
                     'text' => 'cattle_expense_report',
                     'can' => 'cattle_expense_report',
                     'url' => 'report/cattle/expense-report'
+                ],
+                [
+                    'text' => 'cattle_sale_report',
+                    'can' => 'cattle_sale_report',
+                    'url' => 'report/cattle/sale-report'
+                ],
+                [
+                    'text' => 'cattle_bulk_sale_report',
+                    'can' => 'cattle_bulk_sale_report',
+                    'url' => 'report/cattle/bulk-sale-report'
                 ],
             ]
 

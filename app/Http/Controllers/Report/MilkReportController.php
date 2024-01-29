@@ -7,10 +7,12 @@ use App\Models\MilkProduction;
 use App\Models\MilkSale;
 use App\Models\MilkWaste;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\App;
 
 class MilkReportController extends Controller
 {
     public function index(Request $request){
+        App::setLocale(session('locale'));
         $milk_productions = MilkProduction::all();
         $milk_sales = MilkSale::all();
         $milk_wastes = MilkWaste::all();
@@ -58,6 +60,7 @@ class MilkReportController extends Controller
         return view('report.milk.index',$data);
     }
     public function production(Request $request){
+        App::setLocale(session('locale'));
         $milk_productions = MilkProduction::all();
         if ($request->farm_id){ $milk_productions = $milk_productions->where('farm_id',$request->farm_id); }
         if ($request->cattle_type_id){ $milk_productions = $milk_productions->where('cattle_type_id',$request->cattle_type_id); }
@@ -78,6 +81,7 @@ class MilkReportController extends Controller
         return view('report.milk.production',$data);
     }
     public function sale(Request $request){
+        App::setLocale(session('locale'));
         $milk_sales = MilkSale::all();
         if ($request->farm_id){ $milk_sales = $milk_sales->where('farm_id',$request->farm_id); }
         if ($request->milk_sale_party_id){ $milk_sales = $milk_sales->where('milk_sale_party_id',$request->milk_sale_party_id); }
@@ -94,6 +98,7 @@ class MilkReportController extends Controller
         return view('report.milk.sale',$data);
     }
     public function waste(Request $request){
+        App::setLocale(session('locale'));
         $milk_wastes = MilkWaste::all();
         if ($request->farm_id){ $milk_wastes = $milk_wastes->where('farm_id',$request->farm_id); }
         if ($request->status){ $milk_wastes = $milk_wastes->where('status',$request->status); }

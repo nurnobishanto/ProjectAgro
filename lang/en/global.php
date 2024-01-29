@@ -590,4 +590,7 @@ return [
     'cattle_summery_report' => 'Cattle Summery Report',
     'cattle_expense_report' => 'Cattle expense Report',
     'avg_other_cost' => 'Other Avg',
+    'loss_profit' => 'Loss/Profit',
+    'cattle_sale_report' => 'Cattle Sale Report',
+    'cattle_bulk_sale_report' => 'Cattle Bulk Sale Report',
 ];

@@ -90,4 +90,6 @@ return [
     'milk_waste_report' => 'Milk Waste Report',
     'cattle_report' => 'Cattle Report',
     'cattle_expense_report' => 'Cattle Expense Report',
+    'cattle_sale_report' => 'Cattle Sale Report',
+    'cattle_bulk_sale_report' => 'Cattle Bulk Sale Report',
 ];
