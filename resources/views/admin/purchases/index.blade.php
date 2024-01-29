@@ -56,7 +56,12 @@
                                     <td>{{$purchase->supplier->name??'--'}}</td>
                                     <td>{{$purchase->farm->name??'--'}}</td>
                                     <td>{{$purchase->purchaseProducts->count()}}</td>
-                                    <td>{{$purchase->grand_total}}</td>
+                                    @php
+                                       $totalPurchasePrice = $purchase->purchaseProducts->sum('sub_total');
+                                       $taxAmount =round($totalPurchasePrice * ($purchase->tax /100 ),2) ;
+                                       $cost = ($totalPurchasePrice + $purchase->shipping_cost + $purchase->labor_cost + $purchase->other_cost + $taxAmount) - $purchase->discount;
+                                    @endphp
+                                    <td>{{$cost}}</td>
                                     <td>{{__('global.'.$purchase->status)}}</td>
                                     <td>{{date_format($purchase->updated_at,'d M y h:i A') }}</td>
                                     <td class="text-center">

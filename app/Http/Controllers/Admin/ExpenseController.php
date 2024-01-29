@@ -30,7 +30,7 @@ class ExpenseController extends Controller
     public function index()
     {
         App::setLocale(session('locale'));
-        $expenses = Expense::orderBy('id','asc')->get();
+        $expenses = Expense::orderBy('id','desc')->get();
         return view('admin.expenses.index',compact('expenses'));
     }
     public function trashed_list(){
