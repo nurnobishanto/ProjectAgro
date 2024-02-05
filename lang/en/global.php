@@ -579,6 +579,7 @@ return [
     'milk_store' => 'Milk Store',
     //
     'filter' => 'Filter',
+    'asset_report' => 'Asset Report',
     'milk_summery_report' => 'Milk Summery Report',
     'milk_production_report' => 'Milk Production Report',
     'milk_sale_report' => 'Milk Sale Report',
@@ -593,4 +594,11 @@ return [
     'loss_profit' => 'Loss/Profit',
     'cattle_sale_report' => 'Cattle Sale Report',
     'cattle_bulk_sale_report' => 'Cattle Bulk Sale Report',
+    'account_report' => 'Account Report',
+    'expense_report' => 'Expense Report',
+    'opening_balance_report' => 'Opening Balance Report',
+    'balance_transfer_report' => 'Balance Transfer Report',
+    'staff_salary_report' => 'Staff Salary Report',
+    'party_receive_report' => 'Party Receive Report',
+    'supplier_payment_report' => 'Supplier Payment Report',
 ];

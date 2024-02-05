@@ -679,6 +679,55 @@ return [
             ]
 
         ],
+        [
+            'text' => 'Accounts',
+            'can' => '',
+            'url' => '',
+            'submenu' => [
+                [
+                    'text' => 'asset_report',
+                    'can' => '',
+                    'url' => 'report/account/assets'
+                ],
+                [
+                    'text' => 'account_report',
+                    'can' => '',
+                    'url' => 'report/account/accounts'
+                ],
+                [
+                    'text' => 'opening_balance_report',
+                    'can' => '',
+                    'url' => 'report/account/opening-balances'
+                ],
+                [
+                    'text' => 'balance_transfer_report',
+                    'can' => '',
+                    'url' => 'report/account/balance-transfers'
+                ],
+                [
+                    'text' => 'expense_report',
+                    'can' => '',
+                    'url' => 'report/account/expenses'
+                ],
+                [
+                    'text' => 'staff_salary_report',
+                    'can' => '',
+                    'url' => 'report/account/staff-salary'
+                ],
+                [
+                    'text' => 'party_receive_report',
+                    'can' => '',
+                    'url' => 'report/account/party-receive'
+                ],
+                [
+                    'text' => 'supplier_payment_report',
+                    'can' => '',
+                    'url' => 'report/account/supplier-payment'
+                ],
+
+            ]
+        ],
+
         ['header' => 'settings'],
         [
             'text'    => 'global_settings',

@@ -92,4 +92,12 @@ return [
     'cattle_expense_report' => 'Cattle Expense Report',
     'cattle_sale_report' => 'Cattle Sale Report',
     'cattle_bulk_sale_report' => 'Cattle Bulk Sale Report',
+    'asset_report' => 'Asset Report',
+    'account_report' => 'Account Report',
+    'expense_report' => 'Expense Report',
+    'opening_balance_report' => 'Op. Balance Report',
+    'balance_transfer_report' => 'Balance Trans. Report',
+    'staff_salary_report' => 'Staff Salary Report',
+    'party_receive_report' => 'Party Receive Report',
+    'supplier_payment_report' => 'Supp. Payment Report',
 ];
