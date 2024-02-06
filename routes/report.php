@@ -15,6 +15,7 @@ Route::prefix('/cattle')->group(function () {
     Route::get('/bulk-sale-report', [\App\Http\Controllers\Report\CattleReportController::class,'bulk_sale_report'])->name('cattle.bulk_sale_report');
 });
 Route::prefix('/account')->group(function () {
+    Route::get('/income-expenditure-report', [\App\Http\Controllers\Report\AccountReportController::class,'income_expenditure_report'])->name('account.income_expenditure_report');
     Route::get('/assets', [\App\Http\Controllers\Report\AccountReportController::class,'assets'])->name('account.assets');
     Route::get('/accounts', [\App\Http\Controllers\Report\AccountReportController::class,'accounts'])->name('account.accounts');
     Route::get('/opening-balances', [\App\Http\Controllers\Report\AccountReportController::class,'opening_balances'])->name('account.opening_balances');

@@ -601,4 +601,9 @@ return [
     'staff_salary_report' => 'Staff Salary Report',
     'party_receive_report' => 'Party Receive Report',
     'supplier_payment_report' => 'Supplier Payment Report',
+    'income_expenditure_report' => 'Income Expenditure Report',
+    'income' => 'Income',
+    'profit' => 'Profit',
+    'loss' => 'Loss',
+    'report' => 'Report',
 ];

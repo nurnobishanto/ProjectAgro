@@ -685,6 +685,11 @@ return [
             'url' => '',
             'submenu' => [
                 [
+                    'text' => 'income_expenditure_report',
+                    'can' => '',
+                    'url' => 'report/account/income-expenditure-report'
+                ],
+                [
                     'text' => 'asset_report',
                     'can' => '',
                     'url' => 'report/account/assets'
