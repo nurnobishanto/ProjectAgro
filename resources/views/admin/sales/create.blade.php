@@ -139,7 +139,7 @@
                             <div class="col-md-6 col-sm-12">
                                 <div class="form-group">
                                     <label for="product">{{__('global.select_products')}}<span class="text-danger">*</span></label>
-
+                                    {{getProductsForSale($farm->id)}}
                                     <select name="" class="select2 form-control" id="product">
                                         <option value="">{{__('global.select_products')}}</option>
                                         @foreach(getProductsForSale($farm->id) as $stock)
