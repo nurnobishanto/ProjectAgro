@@ -166,8 +166,11 @@
                                     <select name="" class="select2 form-control" id="product">
                                         <option value="">{{__('global.select_products')}}</option>
                                         @foreach(getProductsForSale($sale->farm_id) as $stock)
-                                            <option value="{{ $stock->product->id }}" data-max="{{$stock->quantity}}" data-price="{{ $stock->product->sale_price }}"  data-img="{{ asset('uploads/'.$stock->product->image) }}" data-unit="{{$stock->product->unit->code}}">
-                                                {{ $stock->product->name }} - {{ __('global.'.$stock->product->type) }} - {{$stock->quantity}} {{$stock->product->unit->name??'Deleted'}} / {{getSetting('currency')}} {{$stock->unit_price}}
+                                            @if($stock->product)
+                                                <option value="{{ $stock->product_id }}" data-max="{{ $stock->quantity }}" data-price="{{ $stock->product->sale_price }}"  data-img="{{ asset('uploads/'.$stock->product->image) }}" data-unit="{{ $stock->product->unit->code }}">
+                                                    {{ $stock->product->name }} - {{ __('global.'.$stock->product->type) }} - {{ $stock->quantity }} {{ $stock->product->unit->name ?? 'Deleted' }} / {{ getSetting('currency') }} {{ $stock->unit_price }}
+                                                </option>
+                                            @endif
                                         @endforeach
                                     </select>
                                 </div>
