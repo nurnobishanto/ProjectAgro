@@ -141,7 +141,8 @@
                                     <label for="product">{{__('global.select_products')}}<span class="text-danger">*</span></label>
                                     <select name="" class="select2 form-control" id="product">
                                         <option value="">{{__('global.select_products')}}</option>
-                                        @php print_r(getProductsForSale($farm->id) ) @endphp
+                                        {!! getProductsForSale($farm->id) !!}}
+                                        
 {{--                                        @foreach(getProductsForSale($farm->id) as $stock)--}}
 {{--                                            <option value="{{ $stock->product->id }}" data-max="{{$stock->quantity}}" data-price="{{ $stock->product->sale_price }}"  data-img="{{ asset('uploads/'.$stock->product->image) }}" data-unit="{{$stock->product->unit->code}}">--}}
 {{--                                                {{ $stock->product->name }} - {{ __('global.'.$stock->product->type) }} - {{$stock->quantity}} {{$stock->product->unit->name??'Deleted'}} / {{getSetting('currency')}} {{$stock->unit_price}}--}}
