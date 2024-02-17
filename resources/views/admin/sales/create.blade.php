@@ -40,13 +40,13 @@
                                     <div class="col-md-4 col-sm-6 col-12">
                                         <div class="form-group">
                                             <label for="invoice_no">{{ __('global.invoice_no')}}<span class="text-danger">*</span></label>
-                                            <input id="invoice_no" name="invoice_no" value="{{generateInvoiceId('PINV',\App\Models\Sale::class)}}" class="form-control" placeholder="{{ __('global.invoice_no')}}">
+                                            <input id="invoice_no" name="invoice_no" value="{{generateInvoiceId('SINV',\App\Models\Sale::class)}}" class="form-control" placeholder="{{ __('global.invoice_no')}}">
                                         </div>
                                     </div>
                                     <div class="col-md-4 col-sm-6 col-12">
                                         <div class="form-group">
                                             <label for="sale_date">{{ __('global.sale_date')}}<span class="text-danger">*</span></label>
-                                            <input id="sale_date" name="sale_date" type="text" class="datepicker form-control" placeholder="{{ __('global.sale_date')}}">
+                                            <input id="sale_date" name="sale_date" type="text" readonly  class="datepicker form-control" placeholder="{{ __('global.sale_date')}}">
                                         </div>
                                     </div>
                                     <div class="col-md-4 col-sm-6 col-12">

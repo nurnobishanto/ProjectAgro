@@ -47,7 +47,7 @@
                                     <div class="col-md-4 col-sm-6 col-12">
                                         <div class="form-group">
                                             <label for="sale_date">{{ __('global.sale_date')}}<span class="text-danger">*</span></label>
-                                            <input id="sale_date" name="sale_date" value="{{$sale->sale_date}}" type="text" class="datepicker form-control" placeholder="{{ __('global.sale_date')}}">
+                                            <input id="sale_date" name="sale_date" value="{{$sale->sale_date}}" type="text" readonly  class="datepicker form-control" placeholder="{{ __('global.sale_date')}}">
                                         </div>
                                     </div>
                                     <div class="col-md-4 col-sm-6 col-12">

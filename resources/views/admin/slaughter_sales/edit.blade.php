@@ -48,7 +48,7 @@
                                     <div class="col-md-4 col-sm-6 col-12">
                                         <div class="form-group">
                                             <label for="date">{{ __('global.date')}}<span class="text-danger">*</span></label>
-                                            <input id="date" name="date" value="{{$slaughter_sale->date}}" type="text" class="datepicker form-control" placeholder="{{ __('global.date')}}">
+                                            <input id="date" name="date" value="{{$slaughter_sale->date}}" type="text"  readonly class="datepicker form-control" placeholder="{{ __('global.date')}}">
                                         </div>
                                     </div>
                                     <div class="col-md-4 col-sm-6 col-12">

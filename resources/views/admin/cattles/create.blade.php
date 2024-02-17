@@ -67,7 +67,7 @@
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label for="entry_date">{{ __('global.entry_date')}}<span class="text-danger"> *</span></label>
-                                    <input id="entry_date" name="entry_date" value="{{old('entry_date')}}" placeholder="{{ __('global.entry_date')}}" type="text" class="datepicker form-control">
+                                    <input id="entry_date" name="entry_date" value="{{old('entry_date')}}" placeholder="{{ __('global.entry_date')}}" type="text" readonly  class="datepicker form-control">
                                 </div>
                             </div>
                             <div class="col-md-6">
@@ -221,7 +221,7 @@
                             <div class="col-md-6 d-none" id="pregnant_date">
                                 <div class="form-group">
                                     <label for="pregnant_date">{{ __('global.pregnant_date')}}</label>
-                                    <input  name="pregnant_date" value="{{old('pregnant_date')}}" type="text" class="datepicker form-control" placeholder="{{ __('global.pregnant_date')}}">
+                                    <input  name="pregnant_date" value="{{old('pregnant_date')}}" type="text"  readonly class="datepicker form-control" placeholder="{{ __('global.pregnant_date')}}">
                                 </div>
                             </div>
                             <div class="col-md-6 d-none" id="pregnant_no">
@@ -233,7 +233,7 @@
                             <div class="col-md-6 d-none" id="delivery_date">
                                 <div class="form-group">
                                     <label for="delivery_date">{{ __('global.delivery_date')}}</label>
-                                    <input  name="delivery_date" value="{{old('delivery_date')}}" type="text" class="datepicker form-control" placeholder="{{ __('global.delivery_date')}}">
+                                    <input  name="delivery_date" value="{{old('delivery_date')}}" type="text" readonly  class="datepicker form-control" placeholder="{{ __('global.delivery_date')}}">
                                 </div>
                             </div>
 
