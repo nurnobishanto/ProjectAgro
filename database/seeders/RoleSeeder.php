@@ -384,6 +384,18 @@ class RoleSeeder extends Seeder
                 ]
             ],
             [
+                'group_name' => 'Sale',
+                'permissions' => [
+                    'sale_manage',
+                    'sale_list',
+                    'sale_view',
+                    'sale_update',
+                    'sale_delete',
+                    'sale_create',
+                    'sale_approve',
+                ]
+            ],
+            [
                 'group_name' => 'Purchase',
                 'permissions' => [
                     'purchase_manage',

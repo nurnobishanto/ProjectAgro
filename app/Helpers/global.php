@@ -5,6 +5,7 @@ use App\Models\Account;
 use App\Models\FeedingRecord;
 use App\Models\GlobalSetting;
 use App\Models\Party;
+use App\Models\Stock;
 use App\Models\Treatment;
 
 
@@ -196,6 +197,13 @@ if (!function_exists('getFeedItems')) {
     function getFeedItems()
     {
         return \App\Models\Product::where('type','cattle_meal')->get();
+    }
+}
+if (!function_exists('getProductsForSale')) {
+
+    function getProductsForSale($farm_id)
+    {
+        return Stock::where('farm_id',$farm_id)->where('quantity','>',0)->get();
     }
 }
 if (!function_exists('getProductsForPurchase')) {

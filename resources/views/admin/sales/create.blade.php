@@ -1,17 +1,17 @@
 @extends('adminlte::page')
 
-@section('title', __('global.update_purchase'))
+@section('title', __('global.create_sale'))
 
 @section('content_header')
     <div class="row mb-2">
         <div class="col-sm-6">
-            <h1>{{ __('global.update_purchase')}}</h1>
+            <h1>{{ __('global.create_sale')}}</h1>
         </div>
         <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
                 <li class="breadcrumb-item"><a href="{{route('admin.dashboard')}}">{{ __('global.home')}}</a></li>
-                <li class="breadcrumb-item"><a href="{{route('admin.purchases.index')}}">{{ __('global.purchases')}}</a></li>
-                <li class="breadcrumb-item active">{{ __('global.update_purchase')}}</li>
+                <li class="breadcrumb-item"><a href="{{route('admin.sales.index')}}">{{ __('global.sales')}}</a></li>
+                <li class="breadcrumb-item active">{{ __('global.create_sale')}}</li>
             </ol>
 
         </div>
@@ -23,8 +23,7 @@
         <div class="col-12">
             <div class="card">
                 <div class="card-body">
-                    <form action="{{route('admin.purchases.update',['purchase'=>$purchase->id])}}" method="POST" enctype="multipart/form-data" id="admin-form">
-                        @method('PUT')
+                    <form action="{{route('admin.sales.store')}}" method="POST" enctype="multipart/form-data" id="admin-form">
                         @csrf
                         @if (count($errors) > 0)
                             <div class = "alert alert-danger">
@@ -41,22 +40,22 @@
                                     <div class="col-md-4 col-sm-6 col-12">
                                         <div class="form-group">
                                             <label for="invoice_no">{{ __('global.invoice_no')}}<span class="text-danger">*</span></label>
-                                            <input id="invoice_no" name="invoice_no" value="{{$purchase->invoice_no}}" class="form-control" placeholder="{{ __('global.invoice_no')}}">
+                                            <input id="invoice_no" name="invoice_no" value="{{generateInvoiceId('PINV',\App\Models\Sale::class)}}" class="form-control" placeholder="{{ __('global.invoice_no')}}">
                                         </div>
                                     </div>
                                     <div class="col-md-4 col-sm-6 col-12">
                                         <div class="form-group">
-                                            <label for="purchase_date">{{ __('global.purchase_date')}}<span class="text-danger">*</span></label>
-                                            <input id="purchase_date" name="purchase_date" value="{{$purchase->purchase_date}}" type="text" class="datepicker form-control" placeholder="{{ __('global.purchase_date')}}">
+                                            <label for="sale_date">{{ __('global.sale_date')}}<span class="text-danger">*</span></label>
+                                            <input id="sale_date" name="sale_date" type="text" class="datepicker form-control" placeholder="{{ __('global.sale_date')}}">
                                         </div>
                                     </div>
                                     <div class="col-md-4 col-sm-6 col-12">
                                         <div class="form-group">
-                                            <label for="supplier_id">{{ __('global.select_supplier')}}<span class="text-danger">*</span></label>
-                                            <select name="supplier_id" class="select2 form-control" id="supplier_id">
-                                                <option value="">{{__('global.select_supplier')}}</option>
-                                                @foreach(getSuppliers() as $supplier)
-                                                    <option value="{{ $supplier->id }}" @if($supplier->id === $purchase->supplier_id) selected @endif>{{ $supplier->name }}</option>
+                                            <label for="party_id">{{ __('global.select_party')}}<span class="text-danger">*</span></label>
+                                            <select name="party_id" class="select2 form-control" id="party_id">
+                                                <option value="">{{__('global.select_party')}}</option>
+                                                @foreach(getParties() as $party)
+                                                    <option value="{{ $party->id }}" >{{ $party->name }}</option>
                                                 @endforeach
                                             </select>
                                         </div>
@@ -64,11 +63,9 @@
                                     <div class="col-md-4 col-sm-6 col-12">
                                         <div class="form-group">
                                             <label for="farm_id">{{ __('global.select_farm')}}<span class="text-danger">*</span></label>
-                                            <select name="farm_id" class="select2 form-control" id="farm_id">
+                                            <select readonly name="farm_id" class="select2 form-control" id="farm_id">
                                                 <option value="">{{__('global.select_farm')}}</option>
-                                                @foreach(getFarms() as $farm)
-                                                    <option value="{{ $farm->id }}" @if($farm->id === $purchase->farm_id) selected @endif>{{ $farm->name }}</option>
-                                                @endforeach
+                                                <option value="{{ $farm->id }}" selected>{{ $farm->name }}</option>
                                             </select>
                                         </div>
                                     </div>
@@ -76,9 +73,9 @@
                                         <div class="form-group">
                                             <label for="tax">{{ __('global.tax')}}<span class="text-danger">*</span></label>
                                             <select name="tax" class="select2 form-control" id="tax">
-                                                <option value="0" @if(0 === $purchase->tax) selected @endif>{{__('global.no_tax')}} 0</option>
+                                                <option value="0">{{__('global.no_tax')}} 0</option>
                                                 @foreach(getTax() as $tax)
-                                                    <option value="{{ $tax->tax }}" @if($tax->tax  === $purchase->tax) selected @endif>{{ $tax->name }} ({{$tax->tax}} %)</option>
+                                                    <option value="{{ $tax->tax }}" >{{ $tax->name }} ({{$tax->tax}} %)</option>
                                                 @endforeach
                                             </select>
                                         </div>
@@ -89,7 +86,7 @@
                                             <select id="account_id" name="account_id" class="select2 form-control">
                                                 <option value="">{{ __('global.select_account')}}</option>
                                                 @foreach(getAccountList() as $account)
-                                                    <option value="{{$account->id}}" @if($account->id  === $purchase->account_id) selected @endif>{{$account->account_name}} {{$account->account_no}} {{$account->admin->name??'--'}}</option>
+                                                    <option value="{{$account->id}}">{{$account->account_name}} {{$account->account_no}} {{$account->admin->name??'--'}}</option>
                                                 @endforeach
                                             </select>
                                         </div>
@@ -97,64 +94,43 @@
                                     <div class="col-md-4 col-sm-6 col-12">
                                         <div class="form-group">
                                             <label for="paid_amount" class="form-label">{{__('global.paid_amount')}}</label>
-                                            <input  id="paid_amount" value="{{$purchase->paid}}" type="number"  step="any" class="form-control" name="paid_amount" placeholder="{{__('global.paid_amount')}}">
+                                            <input  id="paid_amount" type="number"  step="any" class="form-control" name="paid_amount" placeholder="{{__('global.paid_amount')}}">
                                         </div>
                                     </div>
                                     <div class="col-md-4 col-sm-6 col-12">
                                         <div class="form-group">
                                             <label for="discount" class="form-label">{{__('global.discount')}}</label>
-                                            <input  id="discount" value="{{$purchase->discount}}" type="number"  step="any" class="form-control" name="discount" placeholder="{{__('global.discount')}}">
+                                            <input  id="discount" type="number" step="any" value="" class="form-control" name="discount" placeholder="{{__('global.discount')}}">
                                         </div>
                                     </div>
                                     <div class="col-md-4 col-sm-6 col-12">
                                         <div class="form-group">
                                             <label for="shipping_cost" class="form-label">{{__('global.shipping_cost')}}</label>
-                                            <input  id="shipping_cost" value="{{$purchase->shipping_cost}}" type="number" step="any" class="form-control" name="shipping_cost" placeholder="{{__('global.shipping_cost')}}">
+                                            <input  id="shipping_cost" type="number" step="any" value="" class="form-control" name="shipping_cost" placeholder="{{__('global.shipping_cost')}}">
                                         </div>
                                     </div>
                                     <div class="col-md-4 col-sm-6 col-12">
                                         <div class="form-group">
                                             <label for="labor_cost" class="form-label">{{__('global.labor_cost')}}</label>
-                                            <input  id="labor_cost" value="{{$purchase->labor_cost}}" type="number"  step="any" class="form-control" name="labor_cost" placeholder="{{__('global.labor_cost')}}">
+                                            <input  id="labor_cost" type="number" step="any" value="" class="form-control" name="labor_cost" placeholder="{{__('global.labor_cost')}}">
                                         </div>
                                     </div>
                                     <div class="col-md-4 col-sm-6 col-12">
                                         <div class="form-group">
                                             <label for="other_cost" class="form-label">{{__('global.other_cost')}}</label>
-                                            <input  id="other_cost" value="{{$purchase->other_cost}}" type="number" step="any" class="form-control" name="other_cost" placeholder="{{__('global.other_cost')}}">
+                                            <input  id="other_cost" type="number" step="any" value="" class="form-control" name="other_cost" placeholder="{{__('global.other_cost')}}">
                                         </div>
                                     </div>
                                     <div class="col-md-4 col-sm-6 col-12">
                                         <div class="form-group">
-                                            <label for="image" class="form-label">{{__('global.image')}} <button type="button" class="btn badge badge-info" data-toggle="modal" data-target="#previewModal"> <i class="fas fa-eye"> </i> </button></label>
+                                            <label for="image" class="form-label">{{__('global.image')}}</label>
                                             <input id="image" type="file" class="form-control" name="image">
-
-                                        </div>
-
-                                        <!-- Modal -->
-                                        <div class="modal fade" id="previewModal" tabindex="-1" aria-labelledby="previewModalLabel" aria-hidden="true">
-                                            <div class="modal-dialog">
-                                                <div class="modal-content">
-                                                    <div class="modal-header">
-                                                        <h5 class="modal-title" id="previewModalLabel">{{__('global.see_image')}}</h5>
-                                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                            <span aria-hidden="true">&times;</span>
-                                                        </button>
-                                                    </div>
-                                                    <div class="modal-body">
-                                                        <img src="{{asset('uploads/'.$purchase->image)}}" class="img-fluid" >
-                                                    </div>
-                                                    <div class="modal-footer">
-                                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                                    </div>
-                                                </div>
-                                            </div>
                                         </div>
                                     </div>
                                     <div class="col-md-4 col-sm-6 col-12">
                                         <div class="form-group">
-                                            <label for="purchase_note">{{ __('global.purchase_note')}}</label>
-                                            <textarea id="purchase_note" name="purchase_note" class="form-control" placeholder="{{ __('global.enter_purchase_note')}}">{{$purchase->purchase_note}}</textarea>
+                                            <label for="sale_note">{{ __('global.sale_note')}}</label>
+                                            <textarea id="sale_note" name="sale_note" class="form-control" placeholder="{{ __('global.enter_sale_note')}}"></textarea>
                                         </div>
                                     </div>
 
@@ -165,9 +141,9 @@
                                     <label for="product">{{__('global.select_products')}}<span class="text-danger">*</span></label>
                                     <select name="" class="select2 form-control" id="product">
                                         <option value="">{{__('global.select_products')}}</option>
-                                        @foreach(getProductsForPurchase() as $product)
-                                            <option value="{{ $product->id }}" data-price="{{ $product->purchase_price }}" data-unit="{{$product->unit->code}}"  data-img="{{ asset('uploads/'.$product->image) }}">
-                                                {{ $product->name }} - {{ __('global.'.$product->type) }}
+                                        @foreach(getProductsForSale($farm->id) as $stock)
+                                            <option value="{{ $stock->product->id }}" data-max="{{$stock->quantity}}" data-price="{{ $stock->product->sale_price }}"  data-img="{{ asset('uploads/'.$stock->product->image) }}" data-unit="{{$stock->product->unit->code}}">
+                                                {{ $stock->product->name }} - {{ __('global.'.$stock->product->type) }} - {{$stock->quantity}} {{$stock->product->unit->name??'Deleted'}} / {{getSetting('currency')}} {{$stock->unit_price}}
                                         @endforeach
                                     </select>
                                 </div>
@@ -180,11 +156,11 @@
                                             <th width="60px">{{__('global.qty')}}</th>
                                             <th width="80px">{{__('global.price')}}</th>
                                             <th width="70px">{{__('global.total')}}</th>
-                                            <th width="50px">{{__('global.action')}}</th>
+                                            <th width="30px">#</th>
                                         </tr>
                                         </thead>
                                         <tbody>
-
+                                        <!-- Add selected products and their details here -->
                                         </tbody>
                                     </table>
                                 </div>
@@ -262,8 +238,8 @@
 
                         </div>
 
-                        @can('purchase_update')
-                            <button class="btn btn-success" type="submit">{{ __('global.update')}}</button>
+                        @can('sale_create')
+                            <button class="btn btn-success" type="submit">{{ __('global.create')}}</button>
                         @endcan
                     </form>
                 </div>
@@ -316,26 +292,10 @@
                 updateTotal();
             });
 
+
             // Initialize an array to store selected products
             var selectedProducts = [];
 
-            @foreach($purchase->purchaseProducts as $product)
-                var selectedProduct = {
-                    id: {{$product->product->id}},
-                    name: '{{$product->product->name}}',
-                    price: {{$product->unit_price}},
-                    img: '{{asset('uploads/'.$product->product->image)}}',
-                    unit: '{{$product->product->unit->code}}',
-                    quantity: {{$product->quantity}}, // Default quantity
-                    subtotal: {{$product->sub_total}} // Initial subtotal
-                };
-                // Add the selected product to the array
-                selectedProducts.push(selectedProduct);
-                // Add the selected product to the table
-                addToTable(selectedProduct);
-                // Update the total
-                updateTotal();
-            @endforeach
             // Listen for changes in the product dropdown
             $('#product').change(function () {
                 var selectedProductId = $(this).val();
@@ -344,17 +304,18 @@
 
                     var productName = $(this).find('option:selected').text();
                     var productPrice = parseFloat($(this).find('option:selected').data('price'));
+                    var max = parseFloat($(this).find('option:selected').data('max'));
                     var img = $(this).find('option:selected').data('img');
                     var unit = $(this).find('option:selected').data('unit');
                     // Check if the product is not already in the selected products array
-                    selectedProductId = Number(selectedProductId);
-                    if (!selectedProducts.some(product => Number(product['id']) === selectedProductId))  {
+                    if (!selectedProducts.some(product => product['id'] === selectedProductId)) {
 
                         // Create a new object to represent the selected product
                         var selectedProduct = {
                             id: selectedProductId,
                             name: productName,
                             price: productPrice,
+                            max: max,
                             img: img,
                             unit: unit,
                             quantity: 1, // Default quantity
@@ -375,7 +336,16 @@
                 var selectedProductId = $(this).closest('tr').data('product-id');
                 var quantity = parseFloat($(this).closest('tr').find('.product-quantity').val());
                 var price = parseFloat($(this).closest('tr').find('.product-price').val());
+                var maxQuantity = parseFloat($(this).attr('max'));
+                // Check if the entered quantity exceeds the max quantity
+                if (!isNaN(maxQuantity) && !isNaN(quantity) && quantity > maxQuantity) {
+                    // Display an alert
+                    quantity = maxQuantity;
+                    $(this).closest('tr').find('.product-quantity').val(maxQuantity);
+                    alert('Maximum quantity exceeded! Max quantity allowed: ' + maxQuantity);
+                    // Reset the input value to the max quantity
 
+                }
                 for (var i = 0; i < selectedProducts.length; i++) {
                     if (selectedProducts[i]['id'] == selectedProductId) {
                         var selectedProduct = selectedProducts[i];
@@ -408,9 +378,9 @@
             <tr data-product-id="${product.id}">
                 <td><img src="${product.img}" class="img-thumbnail" style="max-width: 50px; max-height: 50px"></td>
 
-                <td>${product.name} <input type="hidden" name="product_ids[]" value="${product.id}"></td>
-                <td><input type="number" step="any" name="product_quantities[]"  class="input-qty product-quantity" value="${product.quantity}"><sup>${product.unit}</sup></td>
-                <td><input class="input-price product-price" type="number" name="product_prices[]" value="${product.price}" step="any"/> </td>
+                <td class="small">${product.name} <input type="hidden" name="product_ids[]" value="${product.id}"></td>
+                <td><input type="number" step="any" max="${product.max}" name="product_quantities[]"  class="input-qty product-quantity " value="${product.quantity}" > <sup>${product.unit}</sup></td>
+                <td><input class="input-price product-price" type="number" step="any" name="product_prices[]" value="${product.price}"/> </td>
                 <td class="product-subtotal">${product.subtotal}</td>
                 <td><button class="btn btn-danger btn-sm remove-product"><i class="fas fa-trash"></button></td>
             </tr>

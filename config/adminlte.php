@@ -495,6 +495,11 @@ return [
                     'url' => 'admin/stock'
                 ],
                 [
+                    'text' => 'sale',
+                    'can' => 'sale_manage',
+                    'url' => 'admin/sales'
+                ],
+                [
                     'text' => 'purchase',
                     'can' => 'purchase_manage',
                     'url' => 'admin/purchases'

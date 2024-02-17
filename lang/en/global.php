@@ -577,7 +577,6 @@ return [
     'view_milk_waste' => 'View Milk Waste',
     'delete_milk_waste' => 'Delete Milk Waste',
     'milk_store' => 'Milk Store',
-    //
     'filter' => 'Filter',
     'asset_report' => 'Asset Report',
     'milk_summery_report' => 'Milk Summery Report',
@@ -606,4 +605,13 @@ return [
     'profit' => 'Profit',
     'loss' => 'Loss',
     'report' => 'Report',
+    'sale' => 'Sale',
+    'sales' => 'Sales',
+    'create_sale' => 'Create Sale',
+    'update_sale' => 'Update Sale',
+    'delete_sale' => 'Delete Sale',
+    'view_sale' => 'View Asset',
+    'sale_date' => 'Sale Date',
+    'sale_note' => 'Sale Note',
+    'enter_sale_note' => 'Enter Sale Note',
 ];

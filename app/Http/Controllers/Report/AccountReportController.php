@@ -15,6 +15,7 @@ use App\Models\OpeningBalance;
 use App\Models\PartyReceive;
 use App\Models\Purchase;
 use App\Models\PurchaseProduct;
+use App\Models\Sale;
 use App\Models\SlaughterSale;
 use App\Models\StaffPayment;
 use App\Models\SupplierPayment;
@@ -78,7 +79,15 @@ class AccountReportController extends Controller
                 ->where('status', '=', 'success')
                 ->orderBy('purchase_date', 'asc')
                 ->get();
-
+            $saleProductData = Sale::select(
+                'sale_date as date',
+                DB::raw('paid + due as amount') // Calculate the sum of 'paid' and 'due'
+            )
+                ->with('purchaseProducts')
+                ->whereBetween('sale_date', [$request->from_date, $request->to_date])
+                ->where('status', '=', 'success')
+                ->orderBy('sale_date', 'asc')
+                ->get();
 
 
 
@@ -90,6 +99,7 @@ class AccountReportController extends Controller
                 ->merge($cattleSaleData)
                 ->merge($slaughterSaleData)
                 ->merge($bulkCattleSaleData)
+                ->merge($saleProductData)
                 ->sortBy('date')
                 ->values()
                 ->all();

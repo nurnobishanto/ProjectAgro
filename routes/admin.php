@@ -35,6 +35,7 @@ use App\Http\Controllers\Admin\PermissionController;
 use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\Admin\PurchaseController;
 use App\Http\Controllers\Admin\RoleController;
+use App\Http\Controllers\Admin\SaleController;
 use App\Http\Controllers\Admin\SessionYearController;
 use App\Http\Controllers\Admin\SlaughterController;
 use App\Http\Controllers\Admin\SlaughterCustomerController;
@@ -149,12 +150,21 @@ Route::resource('/taxes',TaxController::class)->middleware('permission:tax_manag
 //Fattening
 Route::resource('/fattenings',FatteningController::class)->middleware('permission:fattening_manage');
 
+//Sales
+Route::get('/sales/trashed',[SaleController::class,'trashed_list'])->middleware('permission:sale_manage')->name('sales.trashed');
+Route::get('/sales/trashed/{sale}/restore',[SaleController::class,'restore'])->middleware('permission:sale_manage')->name('sales.restore');
+Route::get('/sales/trashed/{sale}/delete',[SaleController::class,'force_delete'])->middleware('permission:sale_manage')->name('sales.force_delete');
+Route::post('/sales/{sale}/approve',[SaleController::class,'approve'])->middleware('permission:sale_approve')->name('sales.approve');
+Route::resource('/sales',SaleController::class)->middleware('permission:sale_manage');
+
 //Purchase
 Route::get('/purchases/trashed',[PurchaseController::class,'trashed_list'])->middleware('permission:purchase_manage')->name('purchases.trashed');
 Route::get('/purchases/trashed/{purchase}/restore',[PurchaseController::class,'restore'])->middleware('permission:purchase_manage')->name('purchases.restore');
 Route::get('/purchases/trashed/{purchase}/delete',[PurchaseController::class,'force_delete'])->middleware('permission:purchase_manage')->name('purchases.force_delete');
 Route::post('/purchases/{purchase}/approve',[PurchaseController::class,'approve'])->middleware('permission:purchase_approve')->name('purchases.approve');
 Route::resource('/purchases',PurchaseController::class)->middleware('permission:purchase_manage');
+
+//Stock Report
 Route::get('/stock',[PurchaseController::class,'stock'])->middleware('permission:stock_manage')->name('stock');
 
 //Feeding Category

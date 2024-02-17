@@ -81,7 +81,6 @@ return [
     'milk_stock' => 'Milk Stock',
     'milk_sale_party' => 'Milk Sale Party',
     'milk_waste' => 'Milk Waste',
-    //
     'all_reports' => 'All Reports',
     'milk_report' => 'Milk Report',
     'milk_summery_report' => 'Milk Summery Report',
