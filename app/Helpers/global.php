@@ -203,7 +203,7 @@ if (!function_exists('getProductsForSale')) {
 
     function getProductsForSale($farm_id)
     {
-        return Stock::where('farm_id',$farm_id)->where('quantity','>',0)->get();
+        return \App\Models\Stock::where('farm_id',$farm_id)->where('quantity','>',0)->get();
     }
 }
 if (!function_exists('getProductsForPurchase')) {
