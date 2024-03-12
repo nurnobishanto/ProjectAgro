@@ -35,6 +35,8 @@ class StaffController extends Controller
             'name' => 'required',
             'phone' => 'unique:staff',
             'pay_type' => 'required',
+            'salary' => 'required',
+            'joining_date' => 'required',
             'status' => 'required',
             'image' => 'image|mimes:jpeg,png,jpg,gif|max:2048', // Adjust file types and size as needed
         ]);
@@ -48,7 +50,10 @@ class StaffController extends Controller
             'phone' =>$request->phone,
             'address' =>$request->address,
             'pay_type' =>$request->pay_type,
+            'salary' =>$request->salary,
+            'joining_date' =>$request->joining_date,
             'image' =>$imageFile,
+
             'status' =>$request->status,
             'created_by' =>auth()->user()->id,
             'updated_by' =>auth()->user()->id,
@@ -78,6 +83,8 @@ class StaffController extends Controller
             'name' => 'required',
             'phone' => 'unique:staff,id,'.$id,
             'pay_type' => 'required',
+            'salary' => 'required',
+            'joining_date' => 'required',
             'status' => 'required',
             'image' => 'image|mimes:jpeg,png,jpg,gif|max:2048', // Adjust file types and size as needed
         ]);
@@ -94,6 +101,8 @@ class StaffController extends Controller
         $staff->phone = $request->phone;
         $staff->address = $request->address;
         $staff->pay_type = $request->pay_type;
+        $staff->salary = $request->salary;
+        $staff->joining_date = $request->joining_date;
         $staff->status = $request->status;
         $staff->image = $imageFile;
         $staff->updated_by = auth()->user()->id;

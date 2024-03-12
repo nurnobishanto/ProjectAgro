@@ -613,4 +613,6 @@ return [
     "sale_date" => "বিক্রয় তারিখ",
     'sale_note' => 'বিক্রয় নোট',
     'enter_sale_note' => 'বিক্রয় নোট লিখুন',
+    'joining_date' => 'যোগদান তারিখ',
+    'salary' => 'বেতন',
 ];

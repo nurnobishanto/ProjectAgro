@@ -57,6 +57,7 @@
                                     </select>
                                 </div>
                             </div>
+
                             <div class="col-lg-3 col-md-4 col-sm-6">
                                 <div class="form-group">
                                     <label for="name">{{ __('global.staff_name')}}<span class="text-danger"> *</span></label>
@@ -67,6 +68,18 @@
                                 <div class="form-group">
                                     <label for="phone">{{ __('global.phone')}}<span class="text-danger"> *</span></label>
                                     <input id="phone" name="phone" value="{{old('phone')}}" class="form-control" placeholder="{{ __('global.enter_phone')}}">
+                                </div>
+                            </div>
+                            <div class="col-lg-3 col-md-4 col-sm-6">
+                                <div class="form-group">
+                                    <label for="salary">{{ __('global.salary')}}<span class="text-danger"> *</span></label>
+                                    <input id="salary" name="salary" value="{{old('salary')}}" class="form-control" placeholder="{{ __('global.salary')}}">
+                                </div>
+                            </div>
+                            <div class="col-lg-3 col-md-4 col-sm-6">
+                                <div class="form-group">
+                                    <label for="joining_date">{{ __('global.joining_date')}}<span class="text-danger"> *</span></label>
+                                    <input id="joining_date" readonly type="text" name="joining_date" value="{{old('joining_date')}}" class="form-control datepicker" placeholder="{{ __('global.joining_date')}}">
                                 </div>
                             </div>
                             <div class="col-lg-3 col-md-4 col-sm-6">
@@ -124,6 +137,12 @@
         $(document).ready(function() {
             $('.select2').select2({
                 theme:'classic',
+            });
+            $('.datepicker').datepicker({
+                format: 'dd/mm/yyyy',
+                viewMode: "days",
+                minViewMode: "days",
+                autoclose: true
             });
         });
     </script>

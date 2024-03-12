@@ -72,6 +72,18 @@
                             </div>
                             <div class="col-lg-3 col-md-4 col-sm-6">
                                 <div class="form-group">
+                                    <label for="salary">{{ __('global.salary')}}<span class="text-danger"> *</span></label>
+                                    <input id="salary" name="salary" value="{{old('salary',$staff->salary)}}" class="form-control" placeholder="{{ __('global.salary')}}">
+                                </div>
+                            </div>
+                            <div class="col-lg-3 col-md-4 col-sm-6">
+                                <div class="form-group">
+                                    <label for="joining_date">{{ __('global.joining_date')}}<span class="text-danger"> *</span></label>
+                                    <input id="joining_date" readonly type="text" name="joining_date" value="{{old('joining_date',$staff->joining_date)}}" class="form-control datepicker" placeholder="{{ __('global.joining_date')}}">
+                                </div>
+                            </div>
+                            <div class="col-lg-3 col-md-4 col-sm-6">
+                                <div class="form-group">
                                     <label for="address">{{ __('global.address')}}<span class="text-danger"> *</span></label>
                                     <input id="address" name="address" value="{{$staff->address}}" class="form-control" placeholder="{{ __('global.enter_address')}}">
                                 </div>
@@ -127,6 +139,12 @@
 <script>
     $(document).ready(function() {
         $('.select2').select2();
+    });
+    $('.datepicker').datepicker({
+        format: 'dd/mm/yyyy',
+        viewMode: "days",
+        minViewMode: "days",
+        autoclose: true
     });
     document.addEventListener('DOMContentLoaded', function () {
         const imageForm = document.getElementById('supplier-form');

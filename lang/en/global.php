@@ -614,4 +614,6 @@ return [
     'sale_date' => 'Sale Date',
     'sale_note' => 'Sale Note',
     'enter_sale_note' => 'Enter Sale Note',
+    'joining_date' => 'Joining Date',
+    'salary' => 'Salary',
 ];

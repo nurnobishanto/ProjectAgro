@@ -36,6 +36,7 @@
                                 <th>{{__('global.sl')}}</th>
                                 <th>{{__('global.farm')}}</th>
                                 <th>{{__('global.staff_name')}}</th>
+                                <th>{{__('global.salary')}}</th>
                                 <th>{{__('global.phone')}}</th>
                                 <th>{{__('global.status')}}</th>
                                 <th>{{__('global.updated_at')}}</th>
@@ -49,6 +50,7 @@
                                     <td>{{$sl++}}</td>
                                     <td>{{$staff->farm->name??'--'}}</td>
                                     <td>{{$staff->name}}</td>
+                                    <td>{{$staff->salary}}</td>
                                     <td>{{$staff->phone}}</td>
                                     <td>{{__('global.'.$staff->status)}}</td>
                                     <td>{{date_format($staff->updated_at,'d M y h:i A') }}</td>
@@ -77,6 +79,7 @@
                                 <th>{{__('global.sl')}}</th>
                                 <th>{{__('global.farm')}}</th>
                                 <th>{{__('global.staff_name')}}</th>
+                                <th>{{__('global.salary')}}</th>
                                 <th>{{__('global.phone')}}</th>
                                 <th>{{__('global.status')}}</th>
                                 <th>{{__('global.updated_at')}}</th>
