@@ -122,20 +122,20 @@
                                             <a href="{{route('admin.feedings.index')}}/{{$feeding->id}}" class="btn btn-info px-1 py-0 btn-sm"><i class="fa fa-eye"></i></a>
                                         @endcan
                                         @if($feeding->status == 'pending')
-{{--                                        <form action="{{ route('admin.feedings.destroy', $feeding->id) }}" method="POST">--}}
-{{--                                            @method('DELETE')--}}
-{{--                                            @csrf--}}
+                                        <form action="{{ route('admin.feedings.destroy', $feeding->id) }}" method="POST">
+                                            @method('DELETE')
+                                            @csrf
 
 {{--                                            @can('feeding_update')--}}
 {{--                                                <a href="{{route('admin.feedings.edit',['feeding'=>$feeding->id])}}" class="btn btn-warning px-1 py-0 btn-sm"><i class="fa fa-pen"></i></a>--}}
 {{--                                            @endcan--}}
-{{--                                            @can('feeding_delete')--}}
-{{--                                                <button onclick="isDelete(this)" class="btn btn-danger btn-sm px-1 py-0"><i class="fa fa-trash"></i></button>--}}
-{{--                                            @endcan--}}
-                                            @can('feeding_approve')
-                                                <a href="{{route('admin.feedings.approve',['feeding'=>$feeding->id])}}" class="btn btn-primary btn-sm px-1 py-0"><i class="fa fa-thumbs-up"></i></a>
+                                            @can('feeding_delete')
+                                                <button onclick="isDelete(this)" class="btn btn-danger btn-sm px-1 py-0"><i class="fa fa-trash"></i></button>
                                             @endcan
-{{--                                        </form>--}}
+{{--                                            @can('feeding_approve')--}}
+{{--                                                <a href="{{route('admin.feedings.approve',['feeding'=>$feeding->id])}}" class="btn btn-primary btn-sm px-1 py-0"><i class="fa fa-thumbs-up"></i></a>--}}
+{{--                                            @endcan--}}
+                                        </form>
                                         @else
                                             <span class="btn btn-info px-1 py-0 btn-sm">Success</span>
                                         @endif
