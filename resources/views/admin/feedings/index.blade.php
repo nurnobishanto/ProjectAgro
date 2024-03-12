@@ -20,62 +20,62 @@
 @stop
 
 @section('content')
-{{--    <div class="row">--}}
-{{--        <div class="col-md-12">--}}
-{{--            <div class="card">--}}
-{{--                <div class="card-body">--}}
-{{--                    <form action="{{route('admin.feedings.create')}}" method="GET">--}}
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-body">
+                    <form action="{{route('admin.feedings.create')}}" method="GET">
 
-{{--                        @if (count($errors) > 0)--}}
-{{--                            <div class = "alert alert-danger">--}}
-{{--                                <ul>--}}
-{{--                                    @foreach ($errors->all() as $error)--}}
-{{--                                        <li>{{ $error }}</li>--}}
-{{--                                    @endforeach--}}
-{{--                                </ul>--}}
-{{--                            </div>--}}
-{{--                        @endif--}}
-{{--                        <div class="row">--}}
-{{--                            <div class="col-lg-3 col-md-4 col-sm-6">--}}
-{{--                                <div class="form-group">--}}
-{{--                                    <label for="farm_id">{{__('global.select_farm')}} <span class="text-danger"> *</span></label>--}}
-{{--                                    <select class="select2 form-control" name="farm_id" id="farm_id">--}}
-{{--                                        <option value="">{{__('global.select_farm')}}</option>--}}
+                        @if (count($errors) > 0)
+                            <div class = "alert alert-danger">
+                                <ul>
+                                    @foreach ($errors->all() as $error)
+                                        <li>{{ $error }}</li>
+                                    @endforeach
+                                </ul>
+                            </div>
+                        @endif
+                        <div class="row">
+                            <div class="col-lg-3 col-md-4 col-sm-6">
+                                <div class="form-group">
+                                    <label for="farm_id">{{__('global.select_farm')}} <span class="text-danger"> *</span></label>
+                                    <select class="select2 form-control" name="farm_id" id="farm_id">
+                                        <option value="">{{__('global.select_farm')}}</option>
 
-{{--                                    </select>--}}
-{{--                                </div>--}}
-{{--                            </div>--}}
-{{--                            <div class="col-lg-3 col-md-4 col-sm-6">--}}
-{{--                                <div class="form-group">--}}
-{{--                                    <label for="cattle_type_id">{{ __('global.select_cattle_type')}}<span class="text-danger"> *</span></label>--}}
-{{--                                    <select name="cattle_type_id" id="cattle_type_id" class="form-control select2">--}}
-{{--                                        <option value="">{{ __('global.select_cattle_type')}}</option>--}}
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-lg-3 col-md-4 col-sm-6">
+                                <div class="form-group">
+                                    <label for="cattle_type_id">{{ __('global.select_cattle_type')}}<span class="text-danger"> *</span></label>
+                                    <select name="cattle_type_id" id="cattle_type_id" class="form-control select2">
+                                        <option value="">{{ __('global.select_cattle_type')}}</option>
 
-{{--                                    </select>--}}
-{{--                                </div>--}}
-{{--                            </div>--}}
-{{--                            <div class="col-lg-3 col-md-4 col-sm-6">--}}
-{{--                                <div class="form-group">--}}
-{{--                                    <label for="feeding_group_id">{{ __('global.select_feeding_group')}}<span class="text-danger"> *</span></label>--}}
-{{--                                    <select name="feeding_group_id" id="feeding_group_id" class="form-control select2">--}}
-{{--                                        <option value="">{{ __('global.select_feeding_group')}}</option>--}}
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-lg-3 col-md-4 col-sm-6">
+                                <div class="form-group">
+                                    <label for="feeding_group_id">{{ __('global.select_feeding_group')}}<span class="text-danger"> *</span></label>
+                                    <select name="feeding_group_id" id="feeding_group_id" class="form-control select2">
+                                        <option value="">{{ __('global.select_feeding_group')}}</option>
 
-{{--                                    </select>--}}
-{{--                                </div>--}}
-{{--                            </div>--}}
-{{--                            <div class="col-lg-3 col-md-4 col-sm-6 align-self-end">--}}
-{{--                                <div class="form-group">--}}
-{{--                                    @can('feeding_create')--}}
-{{--                                        <input type="submit" value="{{__('global.add_new')}}" class="btn btn-primary form-control">--}}
-{{--                                    @endcan--}}
-{{--                                </div>--}}
-{{--                            </div>--}}
-{{--                        </div>--}}
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-lg-3 col-md-4 col-sm-6 align-self-end">
+                                <div class="form-group">
+                                    @can('feeding_create')
+                                        <input type="submit" value="{{__('global.add_new')}}" class="btn btn-primary form-control">
+                                    @endcan
+                                </div>
+                            </div>
+                        </div>
 
-{{--                    </form>--}}
-{{--                </div>--}}
-{{--            </div>--}}
-{{--        </div>--}}
+                    </form>
+                </div>
+            </div>
+        </div>
 {{--        <div class="col-12">--}}
 {{--            @can('feeding_list')--}}
 {{--                <div class="card">--}}
@@ -164,7 +164,7 @@
 {{--            @endcan--}}
 
 {{--        </div>--}}
-{{--    </div>--}}
+    </div>
 
 @stop
 @section('footer')
