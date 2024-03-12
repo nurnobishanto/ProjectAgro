@@ -108,13 +108,13 @@
 
                                     <td>{{$sl++}}</td>
                                     <td>{{$feeding->date}}</td>
-{{--                                    <td>{{$feeding->feedingGroup->farm->name??'--'}}</td>--}}
-{{--                                    <td>{{$feeding->feedingGroup->feeding_category->name??'--'}} {{$feeding->feedingGroup->feeding_moment->name??'--'}}</td>--}}
-{{--                                    <td>{{$feeding->cattles->count()??'--'}}</td>--}}
-{{--                                    <td>{{$feeding->products->count()??'--'}}</td>--}}
-{{--                                    <td>{{$feeding->per_cattle_cost??0}}</td>--}}
-{{--                                    <td>{{$feeding->total_cost??0}}</td>--}}
-{{--                                    <td>{{__('global.'.$feeding->status)}}</td>--}}
+                                    <td>{{$feeding->feedingGroup->farm->name??'--'}}</td>
+                                    <td>{{$feeding->feedingGroup->feeding_category->name??'--'}} {{$feeding->feedingGroup->feeding_moment->name??'--'}}</td>
+                                    <td>{{$feeding->cattles->count()??'--'}}</td>
+                                    <td>{{$feeding->products->count()??'--'}}</td>
+                                    <td>{{$feeding->per_cattle_cost??0}}</td>
+                                    <td>{{$feeding->total_cost??0}}</td>
+                                    <td>{{__('global.'.$feeding->status)}}</td>
 {{--                                    <td>{{date_format($feeding->updated_at,'d M y h:i A') }}</td>--}}
 {{--                                    <td class="text-center">--}}
 {{--                                        @can('feeding_view')--}}
