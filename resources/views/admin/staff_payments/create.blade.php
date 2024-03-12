@@ -100,16 +100,16 @@
                 </div>
                 @endcan
                 <div class="card-footer table-responsive">
-                    <caption class="caption-top">Last 10 Salary</caption>
-                    <table class="table">
+                    <caption class="caption-top">Latest 10 Salary</caption>
+                    <table id="paymentList" class="table table-bordered ">
                         <thead>
                         <tr>
-                            <th>SL</th>
-                            <th>Invoice ID</th>
-                            <th>Date</th>
-                            <th>Amount</th>
-                            <th>Account</th>
-                            <th>Status</th>
+                            <th>{{__('global.sl')}}</th>
+                            <th>{{__('global.unique_id')}}</th>
+                            <th>{{__('global.date')}}</th>
+                            <th>{{__('global.amount')}}</th>
+                            <th>{{__('global.account')}}</th>
+                            <th>{{__('global.status')}}</th>
                         </tr>
                         </thead>
                         <tbody>
@@ -125,6 +125,16 @@
                         </tr>
                         @endforeach
                         </tbody>
+                        <tfoot>
+                        <tr>
+                            <th>{{__('global.sl')}}</th>
+                            <th>{{__('global.unique_id')}}</th>
+                            <th>{{__('global.date')}}</th>
+                            <th>{{__('global.amount')}}</th>
+                            <th>{{__('global.account')}}</th>
+                            <th>{{__('global.status')}}</th>
+                        </tr>
+                        </tfoot>
                     </table>
                 </div>
             </div>
@@ -139,6 +149,8 @@
     </div>
 @stop
 @section('plugins.toastr',true)
+@section('plugins.datatablesPlugins', true)
+@section('plugins.Datatables', true)
 @section('plugins.Select2',true)
 @section('css')
 <style>
@@ -159,6 +171,53 @@
                 viewMode: "days",
                 minViewMode: "days",
                 autoclose: true
+            });
+            $("#paymentList").DataTable({
+                dom: 'Bfrtip',
+                responsive: true,
+                lengthChange: false,
+                autoWidth: false,
+                searching: true,
+                ordering: false,
+                info: true,
+                paging: true,
+                buttons: [
+                    {
+                        extend: 'copy',
+                        text: '{{ __('global.copy') }}',
+                    },
+                    {
+                        extend: 'csv',
+                        text: '{{ __('global.export_csv') }}',
+                    },
+                    {
+                        extend: 'excel',
+                        text: '{{ __('global.export_excel') }}',
+                    },
+                    {
+                        extend: 'pdf',
+                        text: '{{ __('global.export_pdf') }}',
+                    },
+                    {
+                        extend: 'print',
+                        text: '{{ __('global.print') }}',
+                    },
+                    {
+                        extend: 'colvis',
+                        text: '{{ __('global.colvis') }}',
+                    }
+                ],
+                pagingType: 'full_numbers',
+                pageLength: 10,
+                lengthMenu: [10, 25, 50, 100],
+                language: {
+                    paginate: {
+                        first: "{{ __('global.first') }}",
+                        previous: "{{ __('global.previous') }}",
+                        next: "{{ __('global.next') }}",
+                        last: "{{ __('global.last') }}",
+                    }
+                }
             });
         });
     </script>

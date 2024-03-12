@@ -38,6 +38,14 @@
                                   <td>{{$staff->name}}</td>
                               </tr>
                               <tr>
+                                  <th>{{ __('global.salary')}}</th>
+                                  <td>{{$staff->salary}}</td>
+                              </tr>
+                              <tr>
+                                  <th>{{ __('global.joining_date')}}</th>
+                                  <td>{{$staff->joining_date}}</td>
+                              </tr>
+                              <tr>
                                   <th>{{ __('global.phone')}}</th>
                                   <td>{{$staff->phone}}</td>
                               </tr>
