@@ -103,11 +103,11 @@
                             </thead>
                             <tbody>
                             <?php $sl = 1; ?>
-{{--                            @foreach($feedings as $feeding)--}}
-{{--                                <tr>--}}
+                            @foreach($feedings as $feeding)
+                                <tr>
 
-{{--                                    <td>{{$sl++}}</td>--}}
-{{--                                    <td>{{$feeding->date}}</td>--}}
+                                    <td>{{$sl++}}</td>
+                                    <td>{{$feeding->date}}</td>
 {{--                                    <td>{{$feeding->feedingGroup->farm->name??'--'}}</td>--}}
 {{--                                    <td>{{$feeding->feedingGroup->feeding_category->name??'--'}} {{$feeding->feedingGroup->feeding_moment->name??'--'}}</td>--}}
 {{--                                    <td>{{$feeding->cattles->count()??'--'}}</td>--}}
@@ -139,8 +139,8 @@
 {{--                                            <span class="btn btn-info px-1 py-0 btn-sm">Success</span>--}}
 {{--                                        @endif--}}
 {{--                                    </td>--}}
-{{--                                </tr>--}}
-{{--                            @endforeach--}}
+                                </tr>
+                            @endforeach
 
                             </tbody>
                             <tfoot>
