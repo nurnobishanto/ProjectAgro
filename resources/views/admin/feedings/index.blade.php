@@ -137,7 +137,7 @@
 {{--                                                    @can('feeding_approve')--}}
 {{--                                                        <a href="/admin/feedings/{{ $feeding->id }}/approve" class="btn btn-primary btn-sm px-1 py-0"><i class="fa fa-thumbs-up"></i></a>--}}
 {{--                                                    @endcan--}}
-{{--                                                </form>--}}
+                                                </form>
 
                                             @else
                                             <span class="btn btn-info px-1 py-0 btn-sm">Success</span>
