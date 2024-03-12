@@ -117,7 +117,7 @@
                                     <td>{{__('global.'.$feeding->status)}}</td>
                                     <td>{{date_format($feeding->updated_at,'d M y h:i A') }}</td>
                                     <td class="text-center">
-                                        <a href="" class="btn btn-info px-1 py-0 btn-sm"><i class="fa fa-eye"></i></a>
+                                        <a href="{{route('admin.feedings.show',$feeding->id)}}" class="btn btn-info px-1 py-0 btn-sm"><i class="fa fa-eye"></i></a>
 {{--                                        @can('feeding_view')--}}
 {{--                                            <a href="{{route('admin.feedings.show',['feeding'=>$feeding->id])}}" class="btn btn-info px-1 py-0 btn-sm"><i class="fa fa-eye"></i></a>--}}
 {{--                                        @endcan--}}
