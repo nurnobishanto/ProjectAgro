@@ -48,6 +48,14 @@
                                 <th>{{__('global.pay_type')}}</th>
                                 <td>{{__('global.'.$staff->pay_type)}}</td>
                             </tr>
+                            <tr>
+                                <th>{{__('global.salary')}}</th>
+                                <td>{{getSetting('currency')}} {{$staff->salary}} </td>
+                            </tr>
+                            <tr>
+                                <th>{{__('global.joining_date')}}</th>
+                                <td>{{$staff->joining_date}} </td>
+                            </tr>
                         </table>
                         <div class="row">
                             <div class="col-lg-3 col-md-3 col-sm-6">
@@ -91,6 +99,34 @@
                     </form>
                 </div>
                 @endcan
+                <div class="card-footer table-responsive">
+                    <caption class="caption-top">Last 10 Salary</caption>
+                    <table class="table">
+                        <thead>
+                        <tr>
+                            <th>SL</th>
+                            <th>Invoice ID</th>
+                            <th>Date</th>
+                            <th>Amount</th>
+                            <th>Account</th>
+                            <th>Status</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        @php $psl = 1; @endphp
+                        @foreach($staff->staff_payments()->orderBy('created_at', 'desc')->get() as $payment)
+                        <tr>
+                            <td>{{$psl++}}</td>
+                            <td>{{$payment->unique_id}}</td>
+                            <td>{{$payment->date}}</td>
+                            <td>{{$payment->amount}}</td>
+                            <td>{{$payment->account->bank_name??'-'}} ({{$payment->account->account_name??'-'}})</td>
+                            <td>{{__('global.'.$payment->status)}}</td>
+                        </tr>
+                        @endforeach
+                        </tbody>
+                    </table>
+                </div>
             </div>
         </div>
     </div>

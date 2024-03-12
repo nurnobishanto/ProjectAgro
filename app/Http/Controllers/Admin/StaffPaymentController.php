@@ -59,7 +59,8 @@ class StaffPaymentController extends Controller
                 ->where('pay_type', 'daily')
                 ->where('date', $date)
                 ->first();
-            if ($dailyPayment) {
+
+            if ($dailyPayment->amount >= $staff->salary) {
                 $canPay =  false;
             }
         }elseif ($paymentType === 'monthly') {
@@ -70,9 +71,9 @@ class StaffPaymentController extends Controller
             $monthlyPayment = StaffPayment::where('staff_id', $staff->id)
                 ->where('pay_type', 'monthly')
                 ->whereBetween('date', [$startOfMonth, $endOfMonth])
-                ->first();
+                ->get();
 
-            if ($monthlyPayment) {
+            if ($monthlyPayment->sum('amount') >= $staff->salary) {
                 $canPay = false;
             }
         }elseif ($paymentType === 'yearly') {
@@ -83,9 +84,9 @@ class StaffPaymentController extends Controller
             $yearlyPayment = StaffPayment::where('staff_id', $staff->id)
                 ->where('pay_type', 'yearly')
                 ->whereBetween('date', [$startOfYear, $endOfYear])
-                ->first();
+                ->get();
 
-            if ($yearlyPayment) {
+            if ($yearlyPayment->sum('amount') >= $staff->salary) {
                 $canPay = false;
             }
         }
@@ -136,6 +137,7 @@ class StaffPaymentController extends Controller
         $canPay = true;
         $staff_payment = StaffPayment::find($id);
         $paymentType = $staff_payment->pay_type;
+        $staff = Staff::find($staff_payment->staff_id);
 
         if ($paymentType === 'daily') {
             // Check if a daily payment has already been made today
@@ -144,7 +146,7 @@ class StaffPaymentController extends Controller
                 ->where('id', '!=' ,$staff_payment->id)
                 ->where('date', $date)
                 ->first();
-            if ($dailyPayment) {
+            if ($dailyPayment->amount >= $staff->salary) {
                 $canPay =  false;
             }
         }elseif ($paymentType === 'monthly') {
@@ -156,9 +158,9 @@ class StaffPaymentController extends Controller
                 ->where('pay_type', 'monthly')
                 ->where('id', '!=' ,$staff_payment->id)
                 ->whereBetween('date', [$startOfMonth, $endOfMonth])
-                ->first();
+                ->get();
 
-            if ($monthlyPayment) {
+            if ($monthlyPayment->sum('amount') >= $staff->salary) {
                 $canPay = false;
             }
         }elseif ($paymentType === 'yearly') {
@@ -170,9 +172,9 @@ class StaffPaymentController extends Controller
                 ->where('pay_type', 'yearly')
                 ->where('id', '!=' ,$staff_payment->id)
                 ->whereBetween('date', [$startOfYear, $endOfYear])
-                ->first();
+                ->get();
 
-            if ($yearlyPayment) {
+            if ($yearlyPayment->sum('amount') >= $staff->salary) {
                 $canPay = false;
             }
         }

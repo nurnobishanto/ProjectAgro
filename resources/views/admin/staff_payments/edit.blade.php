@@ -48,6 +48,14 @@
                                 <th>{{__('global.pay_type')}}</th>
                                 <td>{{__('global.'.$staff->pay_type)}}</td>
                             </tr>
+                            <tr>
+                                <th>{{__('global.salary')}}</th>
+                                <td>{{getSetting('currency')}} {{$staff->salary}} </td>
+                            </tr>
+                            <tr>
+                                <th>{{__('global.joining_date')}}</th>
+                                <td>{{$staff->joining_date}} </td>
+                            </tr>
                         </table>
                         <div class="row">
                             <div class="col-lg-3 col-md-4 col-sm-6">
