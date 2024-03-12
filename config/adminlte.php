@@ -361,7 +361,7 @@ return [
             'submenu' => [
                 [
                     'text' => 'feeding',
-                    'url' => 'admin/feeding',
+                    'url' => 'admin/feedings',
                     'can' => 'feeding_manage',
                 ],
                 [
