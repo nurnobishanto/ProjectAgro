@@ -115,11 +115,11 @@
                                     <td>{{$feeding->per_cattle_cost??0}}</td>
                                     <td>{{$feeding->total_cost??0}}</td>
                                     <td>{{__('global.'.$feeding->status)}}</td>
-{{--                                    <td>{{date_format($feeding->updated_at,'d M y h:i A') }}</td>--}}
+                                    <td>{{date_format($feeding->updated_at,'d M y h:i A') }}</td>
                                     <td class="text-center">
-                                        @can('feeding_view')
-                                            <a href="{{route('admin.feedings.show',['feeding'=>$feeding->id])}}" class="btn btn-info px-1 py-0 btn-sm"><i class="fa fa-eye"></i></a>
-                                        @endcan
+{{--                                        @can('feeding_view')--}}
+{{--                                            <a href="{{route('admin.feedings.show',['feeding'=>$feeding->id])}}" class="btn btn-info px-1 py-0 btn-sm"><i class="fa fa-eye"></i></a>--}}
+{{--                                        @endcan--}}
                                         @if($feeding->status == 'pending')
                                         <form action="{{ route('admin.feedings.destroy', $feeding->id) }}" method="POST">
                                             @method('DELETE')
