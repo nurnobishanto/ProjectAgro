@@ -76,33 +76,33 @@
                 </div>
             </div>
         </div>
-{{--        <div class="col-12">--}}
-{{--            @can('feeding_list')--}}
-{{--                <div class="card">--}}
-{{--                    <div class="card-header">--}}
-{{--                        @can('feeding_delete')--}}
-{{--                            <a href="{{route('admin.feedings.trashed')}}" class="btn btn-danger mt-2">{{__('global.trash_list')}}</a>--}}
-{{--                        @endcan--}}
-{{--                    </div>--}}
+        <div class="col-12">
+            @can('feeding_list')
+                <div class="card">
+                    <div class="card-header">
+                        @can('feeding_delete')
+                            <a href="{{route('admin.feedings.trashed')}}" class="btn btn-danger mt-2">{{__('global.trash_list')}}</a>
+                        @endcan
+                    </div>
 
-{{--                    <div class="card-body table-responsive">--}}
-{{--                        <table id="adminsList" class="table  dataTable table-bordered table-striped">--}}
-{{--                            <thead>--}}
-{{--                            <tr>--}}
-{{--                                <th>{{__('global.sl')}}</th>--}}
-{{--                                <th>{{__('global.date')}}</th>--}}
-{{--                                <th>{{__('global.farm')}}</th>--}}
-{{--                                <th>{{__('global.feeding_group')}}</th>--}}
-{{--                                <th>{{__('global.cattles')}}</th>--}}
-{{--                                <th>{{__('global.items')}}</th>--}}
-{{--                                <th>{{__('global.average')}}</th>--}}
-{{--                                <th>{{__('global.total')}}</th>--}}
-{{--                                <th>{{__('global.status')}}</th>--}}
-{{--                                <th>{{__('global.updated_at')}}</th>--}}
-{{--                                <th>{{__('global.action')}}</th>--}}
-{{--                            </thead>--}}
-{{--                            <tbody>--}}
-{{--                            <?php $sl = 1; ?>--}}
+                    <div class="card-body table-responsive">
+                        <table id="adminsList" class="table  dataTable table-bordered table-striped">
+                            <thead>
+                            <tr>
+                                <th>{{__('global.sl')}}</th>
+                                <th>{{__('global.date')}}</th>
+                                <th>{{__('global.farm')}}</th>
+                                <th>{{__('global.feeding_group')}}</th>
+                                <th>{{__('global.cattles')}}</th>
+                                <th>{{__('global.items')}}</th>
+                                <th>{{__('global.average')}}</th>
+                                <th>{{__('global.total')}}</th>
+                                <th>{{__('global.status')}}</th>
+                                <th>{{__('global.updated_at')}}</th>
+                                <th>{{__('global.action')}}</th>
+                            </thead>
+                            <tbody>
+                            <?php $sl = 1; ?>
 {{--                            @foreach($feedings as $feeding)--}}
 {{--                                <tr>--}}
 
@@ -142,28 +142,28 @@
 {{--                                </tr>--}}
 {{--                            @endforeach--}}
 
-{{--                            </tbody>--}}
-{{--                            <tfoot>--}}
-{{--                            <tr>--}}
-{{--                                <th>{{__('global.sl')}}</th>--}}
-{{--                                <th>{{__('global.date')}}</th>--}}
-{{--                                <th>{{__('global.farm')}}</th>--}}
-{{--                                <th>{{__('global.feeding_group')}}</th>--}}
-{{--                                <th>{{__('global.cattles')}}</th>--}}
-{{--                                <th>{{__('global.items')}}</th>--}}
-{{--                                <th>{{__('global.average')}}</th>--}}
-{{--                                <th>{{__('global.total')}}</th>--}}
-{{--                                <th>{{__('global.status')}}</th>--}}
-{{--                                <th>{{__('global.updated_at')}}</th>--}}
-{{--                                <th>{{__('global.action')}}</th>--}}
-{{--                            </tr>--}}
-{{--                            </tfoot>--}}
-{{--                        </table>--}}
-{{--                    </div>--}}
-{{--                </div>--}}
-{{--            @endcan--}}
+                            </tbody>
+                            <tfoot>
+                            <tr>
+                                <th>{{__('global.sl')}}</th>
+                                <th>{{__('global.date')}}</th>
+                                <th>{{__('global.farm')}}</th>
+                                <th>{{__('global.feeding_group')}}</th>
+                                <th>{{__('global.cattles')}}</th>
+                                <th>{{__('global.items')}}</th>
+                                <th>{{__('global.average')}}</th>
+                                <th>{{__('global.total')}}</th>
+                                <th>{{__('global.status')}}</th>
+                                <th>{{__('global.updated_at')}}</th>
+                                <th>{{__('global.action')}}</th>
+                            </tr>
+                            </tfoot>
+                        </table>
+                    </div>
+                </div>
+            @endcan
 
-{{--        </div>--}}
+        </div>
     </div>
 
 @stop
