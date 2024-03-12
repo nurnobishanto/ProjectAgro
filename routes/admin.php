@@ -186,11 +186,19 @@ Route::get('/feeding-groups/trashed/{feeding_group}/delete',[FeedingGroupControl
 Route::resource('/feeding-groups',FeedingGroupController::class)->middleware('permission:feeding_group_manage');
 
 //Feeding Group
-Route::get('/feedings/trashed',[FeedingController::class,'trashed_list'])->middleware('permission:feeding_manage')->name('feedings.trashed');
-Route::get('/feedings/trashed/{feeding}/restore',[FeedingController::class,'restore'])->middleware('permission:feeding_manage')->name('feedings.restore');
-Route::get('/feedings/trashed/{feeding}/delete',[FeedingController::class,'force_delete'])->middleware('permission:feeding_manage')->name('feedings.force_delete');
-Route::get('/feedings/{feeding}/approve',[FeedingController::class,'approve'])->middleware('permission:feeding_approve')->name('feedings.approve');
-Route::resource('/feedings',FeedingController::class)->middleware('permission:feeding_manage');
+Route::get('/feeding/trashed',[FeedingController::class,'trashed_list'])->middleware('permission:feeding_manage')->name('feedings.trashed');
+Route::get('/feeding/trashed/{feeding}/restore',[FeedingController::class,'restore'])->middleware('permission:feeding_manage')->name('feedings.restore');
+Route::get('/feeding/trashed/{feeding}/delete',[FeedingController::class,'force_delete'])->middleware('permission:feeding_manage')->name('feedings.force_delete');
+Route::get('/feeding/{feeding}/approve',[FeedingController::class,'approve'])->middleware('permission:feeding_approve')->name('feedings.approve');
+Route::resource('/feeding',FeedingController::class)->middleware('permission:feeding_manage') ->names([
+    'index' => 'feedings.index',
+    'create' => 'feedings.create',
+    'store' => 'feedings.store',
+    'show' => 'feedings.show',
+    'edit' => 'feedings.edit',
+    'update' => 'feedings.update',
+    'destroy' => 'feedings.destroy',
+]);
 
 //Feeding Dewormer
 Route::get('/dewormers/trashed',[DewormerController::class,'trashed_list'])->middleware('permission:dewormer_manage')->name('dewormers.trashed');
