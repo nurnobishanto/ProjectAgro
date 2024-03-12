@@ -123,21 +123,21 @@
                                         @endcan
                                         @if($feeding->status == 'pending')
                                                 <form action="/admin/feedings/{{ $feeding->id }}" method="POST">
-                                                    @method('DELETE')
-                                                    @csrf
+{{--                                                    @method('DELETE')--}}
+{{--                                                    @csrf--}}
 
-                                                    @can('feeding_update')
-                                                        <a href="/admin/feedings/{{ $feeding->id }}/edit" class="btn btn-warning px-1 py-0 btn-sm"><i class="fa fa-pen"></i></a>
-                                                    @endcan
+{{--                                                    @can('feeding_update')--}}
+{{--                                                        <a href="/admin/feedings/{{ $feeding->id }}/edit" class="btn btn-warning px-1 py-0 btn-sm"><i class="fa fa-pen"></i></a>--}}
+{{--                                                    @endcan--}}
 
-                                                    @can('feeding_delete')
-                                                        <button onclick="isDelete(this)" class="btn btn-danger btn-sm px-1 py-0"><i class="fa fa-trash"></i></button>
-                                                    @endcan
+{{--                                                    @can('feeding_delete')--}}
+{{--                                                        <button onclick="isDelete(this)" class="btn btn-danger btn-sm px-1 py-0"><i class="fa fa-trash"></i></button>--}}
+{{--                                                    @endcan--}}
 
-                                                    @can('feeding_approve')
-                                                        <a href="/admin/feedings/{{ $feeding->id }}/approve" class="btn btn-primary btn-sm px-1 py-0"><i class="fa fa-thumbs-up"></i></a>
-                                                    @endcan
-                                                </form>
+{{--                                                    @can('feeding_approve')--}}
+{{--                                                        <a href="/admin/feedings/{{ $feeding->id }}/approve" class="btn btn-primary btn-sm px-1 py-0"><i class="fa fa-thumbs-up"></i></a>--}}
+{{--                                                    @endcan--}}
+{{--                                                </form>--}}
 
                                             @else
                                             <span class="btn btn-info px-1 py-0 btn-sm">Success</span>
