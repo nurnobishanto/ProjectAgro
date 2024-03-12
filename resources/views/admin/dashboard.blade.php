@@ -20,7 +20,7 @@
             <div class="info-box mb-3">
                 <span class="info-box-icon bg-primary elevation-1"><i class="fas fa-hippo"></i></span>
                 <div class="info-box-content">
-                    <span class="info-box-text">{{__('global.sold_cattle')}}</span>
+                    <span class="info-box-text">{{__('global.active_cattle')}}</span>
                     <span class="info-box-number">{{$all_cattle_count->where('status','active')->count()}}</span>
                 </div>
             </div>
