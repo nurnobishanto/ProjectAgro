@@ -122,7 +122,7 @@
                                             <a href="{{route('admin.feedings.index')}}/{{$feeding->id}}" class="btn btn-info px-1 py-0 btn-sm"><i class="fa fa-eye"></i></a>
                                         @endcan
                                         @if($feeding->status == 'pending')
-                                                <form action="/admin/feedings/{{ $feeding->id }}" method="POST">
+                                                <form action="{{route('admin.feedings.index')}}/{{ $feeding->id }}" method="POST">
 {{--                                                    @method('DELETE')--}}
 {{--                                                    @csrf--}}
 
